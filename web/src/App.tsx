@@ -174,7 +174,7 @@ export function App() {
         clearInterval(playbackIntervalRef.current);
       }
     };
-  }, [isPlaying, playbackSpeed, canStepForward, stepForward]);
+  import type { ReplayFile } from './types/replay';
 
   // Handle card click
   const handleCardClick = useCallback((cardId: string) => {

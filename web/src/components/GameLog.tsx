@@ -149,8 +149,8 @@ export function GameLog({
         const counterAdd = actionType as { counter_type: string; amount: number };
         return `added ${counterAdd.amount} ${counterAdd.counter_type} counter(s)`;
       case 'GameEnd':
-        const gameEnd = actionType as { winner: string; reason: string };
-        return `game ended - ${gameEnd.winner} won (${gameEnd.reason})`;
+        const gameEnd = actionType as { type: 'GameEnd'; winner: string };
+        return `game ended - ${gameEnd.winner} won`;
       default:
         return `performed ${actionType.type}`;
     }

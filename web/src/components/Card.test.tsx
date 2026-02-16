@@ -5,7 +5,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Card } from './Card';
-import { getCardData } from '../api/scryfall';
+// Note: Scryfall loading is tested in scryfall.test.ts
 
 vi.mock('../api/scryfall');
 

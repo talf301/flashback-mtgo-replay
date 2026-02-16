@@ -8,7 +8,7 @@
 import { useMemo } from 'react';
 import type { BoardState } from '../types/state';
 import { Zone } from './Zone';
-import type { ZoneProps } from './Zone';
+import type { BoardState } from '../types/state';
 import type { ScryfallCard } from '../api/scryfall';
 
 export interface BoardProps {

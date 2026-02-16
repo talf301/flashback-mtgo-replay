@@ -46,6 +46,10 @@ export function ReplayControls({
 }: ReplayControlsProps) {
   const [isDragging, setIsDragging] = useState(false);
 
+  // Handle drag state for slider interaction
+  const handleDragStart = () => setIsDragging(true);
+  const handleDragEnd = () => setIsDragging(false);
+
   const handleSliderChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newStep = parseInt(e.target.value, 10);
@@ -203,7 +207,6 @@ export function ReplayControls({
             <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-slate-300 font-mono text-xs">
               Space
             </kbd>
-            <span>Play/Pause</span>
           </div>
           <div className="flex items-center gap-2">
             <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-slate-300 font-mono text-xs">

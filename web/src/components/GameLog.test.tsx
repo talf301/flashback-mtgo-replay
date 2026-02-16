@@ -235,7 +235,7 @@ describe('GameLog Component', () => {
         timestamp: '2024-01-01T10:00:00Z',
         turn: 1,
         phase: 'beginning',
-        action_type: { type: 'GameEnd', winner: 'player-1', reason: 'concede' },
+        action_type: { type: 'GameEnd', winner: 'player-1' },
       },
     ];
 

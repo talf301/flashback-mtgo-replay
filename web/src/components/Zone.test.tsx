@@ -17,17 +17,6 @@ describe('Zone Component', () => {
     ],
   };
 
-  const mockZoneWithCounters: ZoneType = {
-    name: 'battlefield',
-    owner: 'player-1',
-    cards: [
-      {
-        id: 'card-1',
-        name: 'Card One',
-        counters: [{ type: '+1/+1', amount: 3 }],
-      },
-    ],
-  };
 
   beforeEach(() => {
     vi.clearAllMocks();

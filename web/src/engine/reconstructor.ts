@@ -184,3 +184,21 @@ function applyTokenCreate(state: BoardState, action: ActionType & { type: 'Token
 }
 
 export { createEmptyBoardState } from '../types/state';
+
+
+/**
+ * Reconstructor class for incremental replay reconstruction
+ */
+export class Reconstructor {
+  private actions: ReplayAction[] = [];
+
+  loadReplay(replay: { actions: ReplayAction[] }): void {
+    this.actions = replay.actions;
+  }
+
+  reconstruct(step: number): BoardState {
+    const actionsToApply = this.actions.slice(0, step + 1);
+    return reconstructState(actionsToApply);
+  }
+}
+

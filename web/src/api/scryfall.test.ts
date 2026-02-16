@@ -2,7 +2,7 @@
  * Tests for Scryfall API Integration
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   getCardData,
   getCardBatch,

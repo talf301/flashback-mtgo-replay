@@ -20,7 +20,7 @@ function applyAction(state: BoardState, action: ReplayAction): BoardState {
     case 'PlayLand':
       return applyPlayLand(newState, action.action_type);
     case 'CastSpell':
-      return applyCastSpell(newState, action.action_type);
+      return applyCastSpell(newState, action);
     case 'LifeChange':
       return applyLifeChange(newState, action.action_type);
     case 'ZoneChange':
@@ -53,6 +53,9 @@ function applyPlayLand(state: BoardState, action: ActionType & { type: 'PlayLand
   const handZone = state.zones.find(z => z.name === 'hand');
   if (!handZone) return state;
 
+  const cardInHand = handZone.cards.find(c => c.id === action.card_id);
+  if (!cardInHand) return state;
+
   const battlefieldZone = state.zones.find(z => z.name === 'battlefield');
   if (!battlefieldZone) return state;
 
@@ -76,7 +79,7 @@ function applyPlayLand(state: BoardState, action: ActionType & { type: 'PlayLand
   };
 }
 
-function applyCastSpell(state: BoardState, action: ActionType & { type: 'CastSpell' }): BoardState {
+function applyCastSpell(state: BoardState, action: ReplayAction): BoardState {
   // Remove from hand, add to stack
   const handZone = state.zones.find(z => z.name === 'hand');
   if (!handZone) return state;
@@ -85,16 +88,16 @@ function applyCastSpell(state: BoardState, action: ActionType & { type: 'CastSpe
     ...state,
     zones: state.zones.map(z =>
       z.name === 'hand'
-        ? { ...z, cards: z.cards.filter(c => c.id !== action.card_id) }
+        ? { ...z, cards: z.cards.filter(c => c.id !== action.action_type.card_id) }
         : z
     ),
     stack: [
       ...state.stack,
       {
-        id: `stack-${action.card_id}-${Date.now()}`,
-        card_id: action.card_id,
+        id: `stack-${action.action_type.card_id}-${Date.now()}`,
+        card_id: action.action_type.card_id,
         controller: action.active_player || 'unknown',
-        targets: action.targets,
+        targets: action.action_type.targets,
       },
     ],
   };

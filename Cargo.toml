@@ -2,7 +2,9 @@
 name = "flashback"
 version = "0.1.0"
 edition = "2021"
-
+[lib]
+name = "flashback"
+path = "src/lib.rs"
 [dependencies]
 pnet = "0.34"
 pcap = "1.1"

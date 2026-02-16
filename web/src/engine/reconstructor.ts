@@ -84,20 +84,23 @@ function applyCastSpell(state: BoardState, action: ReplayAction): BoardState {
   const handZone = state.zones.find(z => z.name === 'hand');
   if (!handZone) return state;
 
+  const spellAction = action.action_type as { type: 'CastSpell'; card_id: string; targets: string[] };
+  if (spellAction.type !== 'CastSpell') return state;
+
   return {
     ...state,
     zones: state.zones.map(z =>
       z.name === 'hand'
-        ? { ...z, cards: z.cards.filter(c => c.id !== action.action_type.card_id) }
+        ? { ...z, cards: z.cards.filter(c => c.id !== spellAction.card_id) }
         : z
     ),
     stack: [
       ...state.stack,
       {
-        id: `stack-${action.action_type.card_id}-${Date.now()}`,
-        card_id: action.action_type.card_id,
+        id: `stack-${spellAction.card_id}-${Date.now()}`,
+        card_id: spellAction.card_id,
         controller: action.active_player || 'unknown',
-        targets: action.action_type.targets,
+        targets: spellAction.targets,
       },
     ],
   };

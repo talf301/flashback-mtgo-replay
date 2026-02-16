@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { reconstructState, createEmptyBoardState } from './reconstructor';
+import { reconstructState } from './reconstructor';
 import { ReplayAction } from '../types/replay';
 
 describe('State Reconstruction Engine', () => {

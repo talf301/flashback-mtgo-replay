@@ -9,8 +9,6 @@ pub enum CaptureError {
     Pcap(#[from] PcapError),
     #[error("No suitable network interface found")]
     NoInterface,
-    #[error("Invalid IP address: {0}")]
-    InvalidIp(String),
 }
 
 /// Lists all available network interfaces with their IP addresses.

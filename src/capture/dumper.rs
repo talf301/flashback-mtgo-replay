@@ -43,6 +43,7 @@ impl PacketDumper {
         Ok(())
     }
 
+    #[allow(dead_code)]  // Used in tests, part of public API
     pub fn packet_count(&self) -> u64 {
         self.packet_count
     }

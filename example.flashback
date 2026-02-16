@@ -1,0 +1,233 @@
+{
+  "header": {
+    "game_id": "example-game-001",
+    "players": [
+      {
+        "player_id": "player1",
+        "name": "Alice",
+        "life_total": 20
+      },
+      {
+        "player_id": "player2",
+        "name": "Bob",
+        "life_total": 20
+      }
+    ],
+    "format": "Standard",
+    "start_time": "2024-01-01T10:00:00Z",
+    "end_time": "2024-01-01T10:15:00Z",
+    "result": {
+      "Win": {
+        "winner_id": "player1"
+      }
+    }
+  },
+  "actions": [
+    {
+      "timestamp": "2024-01-01T10:00:00Z",
+      "turn": 1,
+      "phase": "upkeep",
+      "active_player": "player1",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player1",
+          "card_id": "forest-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:05Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "PlayLand": {
+          "player_id": "player1",
+          "card_id": "forest-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:06Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "ZoneTransition": {
+          "card_id": "forest-001",
+          "from_zone": "hand",
+          "to_zone": "battlefield",
+          "player_id": "player1"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:30Z",
+      "turn": 1,
+      "phase": "upkeep",
+      "active_player": "player2",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player2",
+          "card_id": "mountain-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:35Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "PlayLand": {
+          "player_id": "player2",
+          "card_id": "mountain-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:36Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "ZoneTransition": {
+          "card_id": "mountain-001",
+          "from_zone": "hand",
+          "to_zone": "battlefield",
+          "player_id": "player2"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:40Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player2",
+          "card_id": "lightning-bolt-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:45Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "Resolve": {
+          "card_id": "lightning-bolt-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:45Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "LifeChange": {
+          "player_id": "player1",
+          "old_life": 20,
+          "new_life": 17
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:00:46Z",
+      "turn": 1,
+      "phase": "main",
+      "active_player": "player2",
+      "action_type": {
+        "ZoneTransition": {
+          "card_id": "lightning-bolt-001",
+          "from_zone": "stack",
+          "to_zone": "graveyard",
+          "player_id": "player2"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:00Z",
+      "turn": 2,
+      "phase": "upkeep",
+      "active_player": "player1",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player1",
+          "card_id": "llanowar-elves-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:05Z",
+      "turn": 2,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "PlayLand": {
+          "player_id": "player1",
+          "card_id": "forest-002"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:06Z",
+      "turn": 2,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "ZoneTransition": {
+          "card_id": "forest-002",
+          "from_zone": "hand",
+          "to_zone": "battlefield",
+          "player_id": "player1"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:10Z",
+      "turn": 2,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player1",
+          "card_id": "llanowar-elves-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:15Z",
+      "turn": 2,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "Resolve": {
+          "card_id": "llanowar-elves-001"
+        }
+      }
+    },
+    {
+      "timestamp": "2024-01-01T10:01:16Z",
+      "turn": 2,
+      "phase": "main",
+      "active_player": "player1",
+      "action_type": {
+        "ZoneTransition": {
+          "card_id": "llanowar-elves-001",
+          "from_zone": "stack",
+          "to_zone": "battlefield",
+          "player_id": "player1"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "recorder": "flashback",
+    "mtgo_version": "4.0.0"
+  }
+}

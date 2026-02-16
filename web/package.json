@@ -11,12 +11,6 @@
     "test": "vitest",
     "type-check": "tsc -b"
   },
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test": "vitest"
-  },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

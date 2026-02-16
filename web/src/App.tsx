@@ -174,7 +174,11 @@ export function App() {
         clearInterval(playbackIntervalRef.current);
       }
     };
-  import type { ReplayFile } from './types/replay';
+  });
+
+  // Handle card click
+
+    // Handle card click
 
   // Handle card click
   const handleCardClick = useCallback((cardId: string) => {

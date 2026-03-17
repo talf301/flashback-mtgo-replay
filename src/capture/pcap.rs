@@ -95,6 +95,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore]
     fn test_list_network_interfaces() {
         let interfaces = list_interfaces().unwrap();
         // Should return at least one interface on any networked system

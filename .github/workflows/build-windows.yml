@@ -32,12 +32,6 @@ jobs:
           Invoke-WebRequest -Uri "https://npcap.com/dist/npcap-sdk-1.13.zip" -OutFile "npcap-sdk.zip"
           Expand-Archive -Path "npcap-sdk.zip" -DestinationPath "npcap-sdk"
 
-      - name: Install npcap
-        shell: powershell
-        run: |
-          Invoke-WebRequest -Uri "https://npcap.com/dist/npcap-1.79.exe" -OutFile "npcap-installer.exe"
-          Start-Process -FilePath ".\npcap-installer.exe" -ArgumentList "/S" -Wait
-
       - name: Build
         shell: powershell
         env:

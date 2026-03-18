@@ -5,11 +5,8 @@ const MTGO_SERVER_IPS: &[&str] = &[
     "69.174.204.165",
 ];
 
-// MTGO server port constants
-// NOTE: Standard ports 4724/4765 were not observed in captures.
-// TODO: Confirm actual port from Wireshark capture (filter by IP above, check TCP stream).
-const MTGO_GAME_PORT: u16 = 4724;
-const MTGO_UPDATE_PORT: u16 = 4765;
+// MTGO server port (confirmed via Wireshark capture)
+const MTGO_GAME_PORT: u16 = 7770;
 
 /// Check if an IP address is a known MTGO server
 #[allow(dead_code)]
@@ -20,12 +17,12 @@ pub fn is_mtgo_server(addr: &str) -> bool {
 /// Build a BPF filter string to capture MTGO traffic
 pub fn build_bpf_filter() -> String {
     if MTGO_SERVER_IPS.is_empty() {
-        return format!("(tcp port {} or tcp port {})", MTGO_GAME_PORT, MTGO_UPDATE_PORT);
+        return format!("tcp port {}", MTGO_GAME_PORT);
     }
 
     let filters: Vec<String> = MTGO_SERVER_IPS
         .iter()
-        .map(|ip| format!("(host {} and (tcp port {} or tcp port {}))", ip, MTGO_GAME_PORT, MTGO_UPDATE_PORT))
+        .map(|ip| format!("(host {} and tcp port {})", ip, MTGO_GAME_PORT))
         .collect();
 
     format!("({})", filters.join(" or "))

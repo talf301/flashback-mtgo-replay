@@ -10,7 +10,7 @@
 ### Phase 2: Identify Protocol Characteristics
 - [x] Is traffic encrypted? **YES — TLS**
 - [x] Transport protocol: **TCP**
-- [ ] Port numbers used — not 4724 or 4765; need to confirm actual port from capture
+- [x] Port numbers used: **7770** (destination/server port; not the previously assumed 4724/4765)
 - [ ] Message boundaries
 - [ ] Encoding format (binary, JSON, protobuf, XML?)
 

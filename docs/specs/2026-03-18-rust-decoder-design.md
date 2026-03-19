@@ -99,7 +99,7 @@ pub fn decode_fls(msg: RawMessage) -> Result<FlsMessage>
 
 `meta` is the raw `MetaMessage byte[]` — a complete embedded CSMessage with its own 8-byte header.
 
-**Note on `game_id` types:** `GsMessage.game_id` is `i32` on the wire; `GameState.game_id` is `u32`. Cast via `as u32` at the `apply_elements` call site. Log a warning if the value is negative.
+**Note on `game_id` types:** `GsMessage.game_id` is `i32` on the wire; `GameState.game_id` is `u32`. Convert via `u32::try_from(game_id).map_err(...)` at the `apply_elements` call site — do not use `as u32`, which silently wraps negative values. If the value is negative, return `Err` (negative game IDs may be sentinel values).
 
 ### ⚠️ TODO: GsPlayerOrderMessage Wire Layout
 
@@ -172,13 +172,34 @@ impl StateBufProcessor {
 - For non-diff messages: validate `checksum` against the assembled buffer. Do **not** validate `last_state_checksum`.
 - For diff messages: validate `last_state_checksum` against `previous_state` before applying, then validate `checksum` against the result after applying.
 
-### ⚠️ TODO: ApplyDiffs2 (Deferred)
+### ApplyDiffs2 (In Scope)
 
-The diff algorithm (`GamestateContainsDiffs` bit) is deferred until real captured traffic is available for testing. The five-opcode diff format is complex (signed relative seeks, three copy variants, two literal variants) and difficult to validate against synthetic data alone.
+The diff algorithm (`GamestateContainsDiffs` bit) is required for the decoder to produce output — MTGO sends a full state only for the first message (or after reconnects); every subsequent `GamePlayStatusMessage` uses the diff format. Without this, the decoder is a no-op after the initial board snapshot.
 
-**Current behaviour:** if `GamestateContainsDiffs` is set, log a warning and return an empty `Vec<StateElement>`. The assembly buffer is still updated so subsequent full-state messages are unaffected. This means game events during diff-compressed state updates are missed, but full-state resync (game start, reconnect) works correctly.
+The diff format (`ApplyDiffs2` from `PROTOCOL_RESEARCH.md`) is a sequence of variable-length opcodes operating on a cursor over the previous state buffer:
 
-**When implementing:** the copy opcodes use a signed `int16` (or `sbyte` for short-copy) seek relative to the old-state cursor *after* reading the seek field itself. Before each seek, verify `old_cursor + seek` is in `[0, previous_state.len())`. Before each copy, verify `source + count <= previous_state.len()`. Return `Err(DecodeError::UnexpectedEof { context: "diff copy out of bounds" })` on violation. Validate `state_size` == assembled length after applying diffs.
+```rust
+pub fn apply_diffs(old_state: &[u8], diff_data: &[u8]) -> Result<Vec<u8>>
+```
+
+| Leading byte | Meaning |
+|---|---|
+| `0x00` | Copy: read `uint16` count + `int16` seek-from-current; seek old-state cursor, copy `count` bytes |
+| `0x80` with low 7 bits == 0, next byte == 0 | Long literal: read 3-byte little-endian count, then that many literal bytes |
+| `0x80` with low 7 bits == 0, next byte != 0 | Medium copy: count = next byte; `int16` seek; copy from old state |
+| `0x80..0xFF` (low 7 bits != 0) | Short copy: count = low 7 bits; `sbyte` seek; copy from old state |
+| `0x01..0x7F` | Literal: count = byte value (max 127); read that many literal bytes |
+
+**Seek semantics:** seeks are signed offsets relative to the old-state cursor *after* reading the seek field itself. Before each seek, verify `old_cursor + seek` is in `[0, old_state.len())`. Before each copy, verify `source + count <= old_state.len()`. Return `Err(DecodeError::DiffOutOfBounds { context })` on violation.
+
+**Post-diff validation:** `state_size` (from `GamePlayStatusMessage`) must equal the assembled output length. If not, return `Err(DecodeError::DiffSizeMismatch { expected, got })`.
+
+**Checksum validation for diffs:**
+1. Before applying: validate `last_state_checksum` against `previous_state`.
+2. After applying: validate `checksum` against the resulting buffer.
+On mismatch, return `Err(DecodeError::InvalidChecksum { expected, got })`. Do not silently continue — checksum failures indicate lost or corrupted state, and all subsequent diffs will compound the error.
+
+**`previous_state` lifecycle:** after a successful `process()` (whether full-state or diff), store the final assembled buffer as `previous_state` for the next diff. On `reset()` (between games), clear `previous_state`.
 
 ### statebuf.rs — Elements
 
@@ -463,7 +484,22 @@ All other existing variants are unchanged. `PlayLand`, `ActivateAbility`, and `P
 
 ---
 
+## Byte Order
+
+All integer fields throughout the protocol are **little-endian** (MTGO is a Windows/.NET application). This applies to the 8-byte framing header, all inner message fields (`GamePlayStatusMessage`, `StateBuf` element headers, `PropertyContainer` values), and the diff opcodes (`uint16` count, `int16` seek). The only exception is strings, which are raw ISO-8859-1 byte sequences (no endianness concern).
+
 ## Error Handling
+
+**Error severity levels:**
+
+| Level | Scope | Behaviour |
+|---|---|---|
+| Fatal | Framing | Cannot recover stream position. Return `Err`, abort processing. |
+| Message-skip | FLS / game message | Skip this message, log warning, continue to next message. |
+| Element-skip | StateBuf element | Skip this element, store as `Other`, log warning, continue to next element. |
+| Field-skip | PropertyContainer | Abort containing element (store as `Other`), log warning, continue. |
+
+Checksum mismatches in `StateBufProcessor::process()` are **fatal** — a bad checksum means the state buffer is corrupted, and all subsequent diffs will compound the error.
 
 All parsing functions return `Result<T, DecodeError>` using `thiserror`:
 
@@ -472,6 +508,8 @@ pub enum DecodeError {
     Io(#[from] std::io::Error),
     UnexpectedEof { context: &'static str },
     InvalidChecksum { expected: i32, got: i32 },
+    DiffOutOfBounds { context: &'static str },
+    DiffSizeMismatch { expected: u32, got: u32 },
 }
 ```
 
@@ -506,9 +544,89 @@ GamePhase:
 
 ## Testing Strategy
 
-- **framing.rs**: round-trip with hand-crafted byte slices; test `total_len < 8` guard
+### Unit Tests (hand-crafted bytes / synthetic state)
+
+- **framing.rs**: round-trip with hand-crafted byte slices; test `total_len < 8` guard; verify partial reads return `UnexpectedEof`
 - **fls.rs**: hand-crafted `GsMessageMessage` (1153) and `GsReplayMessageMessage` (1156) payloads; verify both produce `GsMessage`
-- **statebuf.rs**: element parsing with hand-crafted `PropertyContainer` bytes including nested lists, `StringConstant` abort, and absent `THINGNUMBER`; test assembly buffer edge cases (Tail-without-Head, Head-discards-partial)
+- **statebuf.rs — elements**: element parsing with hand-crafted `PropertyContainer` bytes including nested lists, `StringConstant` abort, and absent `THINGNUMBER`; test assembly buffer edge cases (Tail-without-Head, Head-discards-partial)
+- **statebuf.rs — apply_diffs**: hand-crafted diff sequences covering all five opcodes; verify copy-with-seek, short-copy, medium-copy, short-literal, long-literal; test bounds checking (seek out of range, copy past end → `DiffOutOfBounds`); test size mismatch → `DiffSizeMismatch`; verify checksum validation before and after diff
 - **state.rs**: `apply_elements` with synthetic element sequences; verify `from_zone` set-and-clear; full-state pruning removes absent things; upsert retains absent-property values
 - **translator.rs**: synthetic before/after `GameState` pairs covering each diff rule; `set_player_order` + `finish` for header assembly; multi-game `reset()` prevents stale-state bleed; bounds-safe seat lookup with empty `player_names`
-- **Integration**: end-to-end test with a real captured (decrypted) dump file once TLS is resolved
+
+### Commutativity Check
+
+The snapshot-diff architecture creates a natural commutativity invariant that should be tested:
+
+```
+Route A: apply wire diff to old_state → parse elements → build new GameState → translate to ReplayActions
+Route B: parse old elements → build old GameState → apply wire diff to old_state → parse new elements → build new GameState → translate to ReplayActions
+```
+
+Both routes must produce identical `Vec<ReplayAction>` output. This validates that the diff application and element parsing are consistent — a bug in either will cause the routes to diverge.
+
+Implement as a property-based test: given any valid `(old_state_bytes, diff_bytes)` pair captured from a real game, assert Route A == Route B.
+
+### Golden-File Tests (real captures)
+
+Real captured data is essential — hand-crafted bytes test our understanding of the format, not the format itself. The implementation is structured to produce a usable golden-file capture early (see Implementation Phases below).
+
+- **Phase 1 deliverable**: a single-game capture saved as `tests/fixtures/single_game.bin` (decrypted TCP stream bytes)
+- **Framing smoke test**: parse every message header from the golden file without panicking; assert all `total_len` values are positive and consistent with available data
+- **Full pipeline golden test**: decode the golden file end-to-end; snapshot the output `Vec<ReplayAction>` as a JSON fixture; assert future runs produce identical output (regression guard)
+- **Checksum audit**: for every `GamePlayStatusMessage` in the golden file, verify the rolling checksum matches — if any fail, the checksum algorithm is wrong
+
+### Fuzz Testing
+
+Protocol decoders must not panic on malformed input. Add `cargo fuzz` targets for:
+- `framing::read_message` — arbitrary bytes
+- `statebuf::apply_diffs` — arbitrary `(old_state, diff_data)` pairs
+- `statebuf::parse_elements` — arbitrary assembled buffer bytes
+- Full pipeline: `framing → fls → game_messages → statebuf` chain
+
+All fuzz targets should return `Result` — panics are bugs, `Err` is expected.
+
+### Regression Process
+
+When a new capture reveals a decoder bug:
+1. Minimize the capture to the smallest reproducing byte sequence
+2. Add as a named fixture in `tests/fixtures/` with a comment describing the bug
+3. Write a test that fails before the fix and passes after
+
+---
+
+## Implementation Phases
+
+The implementation is ordered to produce a real capture as early as possible, which then informs and validates everything that follows.
+
+### Phase A: Capture Harness (get bytes flowing)
+
+Build just enough to capture decrypted bytes from a single MTGO game session and save them to disk:
+
+1. **framing.rs** — parse 8-byte headers, extract `RawMessage` streams from a byte source
+2. **Minimal main loop** — read from decrypted TCP stream (stdin pipe, pcap file, or proxy output), run through `framing::parse_messages`, write raw messages to a dump file with timestamps
+3. **Play one game** — capture the full session, save as `tests/fixtures/single_game.bin`
+
+**Exit criterion:** we have a real capture file. Every subsequent phase validates against it.
+
+### Phase B: Decode Pipeline (parse the capture)
+
+Working against the golden file from Phase A:
+
+1. **opcodes.rs** — constants
+2. **fls.rs** — decode `FlsMessage` variants from `RawMessage`; run against golden file, verify GsMessage extraction
+3. **game_messages.rs** — decode `GameMessage` from FLS meta bytes; verify `GamePlayStatusMessage` fields parse correctly against golden file
+4. **statebuf.rs — assembly** — implement assembly buffer (Head/Tail chunking) without diffs; verify the first full-state message from the golden file assembles and its checksum validates
+5. **statebuf.rs — apply_diffs** — implement `ApplyDiffs2`; verify against golden file that checksums validate for every diff message in the capture
+6. **statebuf.rs — elements** — parse `StateElement` variants from assembled buffers; verify element counts match `n_state_elems` from the golden file
+
+**Exit criterion:** every `GamePlayStatusMessage` in the golden file parses to `Vec<StateElement>` without errors. Checksum validation passes for all messages.
+
+### Phase C: State & Translation (produce replay output)
+
+1. **state.rs** — `GameState::apply_elements`; run against golden file element sequences, inspect resulting state for sanity (things exist, zones populated, life totals reasonable)
+2. **translator.rs** — diff consecutive `GameState` snapshots, emit `ReplayAction` records; run against golden file, inspect output for recognizable game actions
+3. **Commutativity tests** — verify Route A == Route B for every diff message in the golden file
+4. **Schema changes** — add new `ActionType` variants to `src/replay/schema.rs`
+5. **Golden file snapshot** — serialize full pipeline output as JSON fixture for regression
+
+**Exit criterion:** the golden file produces a complete `ReplayFile` with recognizable game actions. Manual inspection confirms actions match what happened in the captured game.

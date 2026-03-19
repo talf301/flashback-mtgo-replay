@@ -25,7 +25,8 @@ decrypted bytes
 [translator]       diffs consecutive GameState snapshots → Vec<ReplayAction>
       │
       ▼
-[replay schema]    existing ReplayFile / ActionType in src/replay/schema.rs (unchanged)
+[replay schema]    ReplayFile / ActionType in src/replay/schema.rs
+                   (schema.rs gains new ActionType variants — see Section 4)
 ```
 
 ---
@@ -41,16 +42,14 @@ src/protocol/
   framing.rs         — 8-byte header parsing, stream reading → RawMessage
   fls.rs             — FLS envelope decoding → FlsMessage
   game_messages.rs   — inner game message dispatch → GameMessage
-  statebuf/
-    mod.rs           — assembly buffer, diff (ApplyDiffs2), element dispatch
-    elements.rs      — StateElement enum + typed structs per element type
+  statebuf.rs        — assembly buffer, element dispatch, element structs
 
 src/state.rs         — new: GameState + ThingState + PlayerState (internal model)
 src/translator.rs    — new: diffs GameState snapshots → Vec<ReplayAction>
 ```
 
 `src/protocol/decoder.rs` and `src/protocol/raw_analyzer.rs` are deleted.
-`src/replay/` is untouched.
+`src/replay/schema.rs` gains new `ActionType` variants (Section 4) but is otherwise untouched.
 
 ---
 
@@ -58,7 +57,7 @@ src/translator.rs    — new: diffs GameState snapshots → Vec<ReplayAction>
 
 ### framing.rs
 
-Mirrors the wire format exactly. Every message (outer and embedded MetaMessage) has the same 8-byte header.
+Every message (outer and embedded MetaMessage) shares the same 8-byte header:
 
 ```
 Offset  Size  Type    Description
@@ -76,36 +75,37 @@ pub fn read_message(r: &mut impl Read) -> Result<RawMessage>
 pub fn parse_messages(data: &[u8]) -> Result<Vec<RawMessage>>
 ```
 
-`read_message` reads 4 bytes for `total_len`, then reads `total_len - 4` more bytes, then slices out opcode/type_check/payload.
+`read_message` reads 4 bytes as `i32` for `total_len`. If `total_len < 8` or `total_len < 0`, return `Err(DecodeError::UnexpectedEof { context: "frame too short" })`. Otherwise read `total_len - 4` more bytes and slice out opcode/type_check/payload. The minimum valid frame is 8 bytes (header only, empty payload).
 
 ### fls.rs
 
-Decodes the FLS messages relevant to game replay. `GsPlayerOrderMessage` (opcode 1155) is included here because it carries player seat order required by the translator.
+Decodes the FLS messages relevant to game replay. `GsMessageMessage` (1153) and `GsReplayMessageMessage` (1156) are merged into a single `GsMessage` variant — their envelope metadata (`match_token`, `match_id`, `host_gsh_server_id`) is consumed off the wire but not stored, since nothing downstream uses it.
 
 ```rust
 pub enum FlsMessage {
-    GsMessage        { match_token: [u8; 16], match_id: i32, game_id: i32, meta: Vec<u8> },
-    GsReplayMessage  { game_id: i32, host_gsh_server_id: i32, meta: Vec<u8> },
+    GsMessage   { game_id: i32, meta: Vec<u8> },
     GameStatusChange { new_status: u32 },
-    PlayerOrder      { seats: Vec<PlayerSeat> },
+    PlayerOrder { seats: Vec<PlayerSeat> },
     Other(RawMessage),
 }
 
 pub struct PlayerSeat {
     pub seat_index: u32,
-    pub player_name: String,   // wide string from wire
+    pub player_name: String,
 }
 
 pub fn decode_fls(msg: RawMessage) -> Result<FlsMessage>
 ```
 
-`meta` is the raw `MetaMessage byte[]` field — a complete embedded CSMessage starting with its own 8-byte header.
+`meta` is the raw `MetaMessage byte[]` — a complete embedded CSMessage with its own 8-byte header.
 
-**Note on `game_id` types:** `GsMessage.game_id` is `i32` on the wire; `GameState.game_id` is `u32`. Cast via `as u32` at the `apply_elements` call site. Negative values are not expected; log a warning if seen.
+**Note on `game_id` types:** `GsMessage.game_id` is `i32` on the wire; `GameState.game_id` is `u32`. Cast via `as u32` at the `apply_elements` call site. Log a warning if the value is negative.
+
+### ⚠️ TODO: GsPlayerOrderMessage Wire Layout
+
+`GsPlayerOrderMessage` (opcode 1155) and `V3ReplayUserOrderMessage` (opcode 4689, game-message range, decoded in `game_messages.rs`) both carry seat order but their field layouts are not yet documented in `PROTOCOL_RESEARCH.md`. Before implementing `PlayerOrder` decoding, decompile these message classes using `tools/opcode-dump --reflect`. Until then, implement `PlayerOrder` as a no-op that logs the raw payload. The fallback player naming (`"player_0"`, `"player_1"`) keeps the pipeline functional.
 
 ### game_messages.rs
-
-Decodes the inner message extracted from a `meta` byte slice:
 
 ```rust
 pub enum GameMessage {
@@ -120,27 +120,35 @@ pub struct GamePlayStatusMessage {
     pub time_left: [i32; 8],          // chess clock ticks per player (64 ticks/second)
     pub player_waiting_for: i32,      // index of player whose clock is running
     pub game_id: u32,
-    pub state_size: u32,              // expected decoded size of StateBuf (for diff validation)
-    pub undiffed_buffer_size: u32,    // non-zero → state_buf_raw is a diff against previous state
+    pub state_size: u32,              // expected decoded size of StateBuf
+    pub undiffed_buffer_size: u32,    // non-zero → state_buf_raw is a diff (see diffs TODO)
     pub n_state_elems: u32,
     pub priority_player: i32,
-    pub checksum: i32,                // rolling checksum of current (post-diff) state buffer
-    pub last_state_checksum: i32,     // rolling checksum of previous state buffer (diff input validation)
-    pub replaying: u8,                // non-zero during replay playback
+    pub checksum: i32,                // rolling checksum of current state buffer
+    pub last_state_checksum: i32,     // rolling checksum of previous state (diff input validation)
     pub flags: u8,
     pub game_state_timestamp: u32,
+    // `replaying: u8` is read off the wire for byte-alignment but not stored.
 }
 
 pub fn decode_game_message(meta: &[u8]) -> Result<GameMessage>
 ```
 
-`decode_game_message` calls `framing::read_message` on the embedded bytes, then dispatches on opcode.
+`decode_game_message` calls `framing::read_message` on the embedded bytes, then dispatches on opcode. All fields must be read in wire order to keep the byte cursor aligned.
 
-**Field order note:** fields must be read in the order listed above to keep the byte cursor aligned; all are present on the wire regardless of whether the decoder uses them.
+### ⚠️ TODO: GameResultsMessage Wire Layout
 
-### statebuf/mod.rs
+`GameResultsMessage` (opcode 4485) field layout is not documented in `PROTOCOL_RESEARCH.md`. Decompile `GameResultsMessage.UnpackBuffer()` from `MTGOMessage.dll` before implementing. In particular: identify which field is `winner_seat`, confirm whether draws use a special sentinel, and whether multiplayer results include multiple seats. Until then, decode as `GameMessage::Other` and emit `GameResult::Incomplete` in the header.
 
-Handles multi-chunk assembly and optional diff decompression before element parsing.
+### statebuf.rs
+
+**Assembly and diff flags** (from `GamePlayStatusMessage.flags`):
+
+| Bit | Constant                 | Meaning                                        |
+|-----|--------------------------|------------------------------------------------|
+| 0   | `GamestateContainsDiffs` | `state_buf_raw` is a diff against previous state |
+| 1   | `GamestateHead`          | Start a new assembly buffer                    |
+| 2   | `GamestateTail`          | Last chunk — process now                       |
 
 ```rust
 pub struct StateBufProcessor {
@@ -151,33 +159,28 @@ pub struct StateBufProcessor {
 impl StateBufProcessor {
     pub fn new() -> Self
     pub fn process(&mut self, msg: &GamePlayStatusMessage) -> Result<Vec<StateElement>>
+    pub fn reset(&mut self)   // called between games — see Section 3
 }
 ```
 
-**Flags bits** (from `GamePlayStatusMessage.flags`):
+**Assembly buffer edge cases:**
+- On `GamestateHead`: unconditionally reset `assembly_buffer` to empty. If bytes were discarded, log a warning.
+- On `GamestateTail` with empty `assembly_buffer` and `GamestateContainsDiffs` clear: treat `state_buf_raw` as a complete single-chunk full state and process it.
+- On `GamestateTail` with `GamestateContainsDiffs` set and `previous_state` empty: return `Err(DecodeError::UnexpectedEof { context: "diff tail without prior head and no previous state" })`.
 
-| Bit | Constant                 | Meaning                                        |
-|-----|--------------------------|------------------------------------------------|
-| 0   | `GamestateContainsDiffs` | `state_buf_raw` is a diff, not a full state    |
-| 1   | `GamestateHead`          | Start a new assembly buffer (first/only chunk) |
-| 2   | `GamestateTail`          | Last chunk — process now                       |
+**Checksum:** rolling sum seeded at `826366246`, `checksum = (checksum << 1) + byte` for each byte.
+- For non-diff messages: validate `checksum` against the assembled buffer. Do **not** validate `last_state_checksum`.
+- For diff messages: validate `last_state_checksum` against `previous_state` before applying, then validate `checksum` against the result after applying.
 
-**Diff format** (`ApplyDiffs2`): sequence of variable-length opcodes over the previous state buffer:
+### ⚠️ TODO: ApplyDiffs2 (Deferred)
 
-| Leading byte                               | Meaning                                                                      |
-|--------------------------------------------|------------------------------------------------------------------------------|
-| `0x00`                                     | Copy: `uint16` count + `int16` seek-from-current; copy from old state        |
-| `0x80`, low 7 bits == 0, next byte == 0    | Long literal: 3-byte LE count, then that many literal bytes                  |
-| `0x80`, low 7 bits == 0, next byte != 0    | Medium copy: count = next byte; `int16` seek; copy from old state            |
-| `0x80..0xFF` (low 7 bits != 0)             | Short copy: count = low 7 bits; `sbyte` seek; copy from old state            |
-| `0x01..0x7F`                               | Literal: count = byte value (max 127); read that many literal bytes          |
+The diff algorithm (`GamestateContainsDiffs` bit) is deferred until real captured traffic is available for testing. The five-opcode diff format is complex (signed relative seeks, three copy variants, two literal variants) and difficult to validate against synthetic data alone.
 
-**Checksum validation:**
-- Before diff: validate `last_state_checksum` against the rolling checksum of `previous_state`
-- After diff (or directly for non-diff): validate `checksum` against the rolling checksum of the assembled buffer
-- Rolling sum: seeded at `826366246`, `checksum = (checksum << 1) + byte` for each byte
+**Current behaviour:** if `GamestateContainsDiffs` is set, log a warning and return an empty `Vec<StateElement>`. The assembly buffer is still updated so subsequent full-state messages are unaffected. This means game events during diff-compressed state updates are missed, but full-state resync (game start, reconnect) works correctly.
 
-### statebuf/elements.rs
+**When implementing:** the copy opcodes use a signed `int16` (or `sbyte` for short-copy) seek relative to the old-state cursor *after* reading the seek field itself. Before each seek, verify `old_cursor + seek` is in `[0, previous_state.len())`. Before each copy, verify `source + count <= previous_state.len()`. Return `Err(DecodeError::UnexpectedEof { context: "diff copy out of bounds" })` on violation. Validate `state_size` == assembled length after applying diffs.
+
+### statebuf.rs — Elements
 
 Each element in the assembled buffer:
 
@@ -206,22 +209,19 @@ pub struct PlayerStatusElement {
     pub life: Vec<i16>,
     pub hand_count: Vec<i16>,
     pub library_count: Vec<i16>,
-    pub graveyard_count: Vec<i16>,   // stored in PlayerState.graveyard_count (index by seat)
+    pub graveyard_count: Vec<i16>,
     pub time_left: Vec<i32>,         // consumed; not currently used by state layer
-    // background_image_names: consumed and discarded (asset names, not game-relevant)
+    // background_image_names: consumed and discarded
     pub active_player: u8,
 }
 
 pub struct TurnStepElement {
     pub turn_number: i32,
-    pub phase: u8,          // GamePhase enum value
-    // Remaining fields (PromptText, PromptedPlayer, SpecialStepType, TimeStamp, button texts,
-    // UIElements, etc.) are skipped using the element's total_size header after reading
-    // turn_number and phase. PromptText is a variable-length string that sits between
-    // phase and PromptedPlayer on the wire, so sequential field reads cannot reach
-    // PromptedPlayer/TimeStamp without also parsing it. Since neither is used in
-    // diff rules, we skip the entire remainder. Add explicit field reads here if
-    // prompt or timestamp data becomes needed.
+    pub phase: u8,                   // GamePhase enum value
+    // PromptText (variable-length string) sits between phase and PromptedPlayer on
+    // the wire, making sequential field reads past it impractical. All fields after
+    // phase are skipped using the element's total_size header. Add explicit reads
+    // here if prompt/button data is needed later.
 }
 
 pub enum PropertyValue {
@@ -236,36 +236,39 @@ pub enum PropertyValue {
 Each entry is a `uint32 key_with_type`:
 - Bits 31–27 (`0xF8000000`): type tag
 - Bits 26–0 (`0x07FFFFFF`): `MagicProperty` key
+- Terminated by `key_with_type == 0x00000000`
+- Nested `List` entries use the same sentinel — no separate length prefix; recursion ends on `0x00000000`
 
-The list is terminated by `key_with_type == 0x00000000`. Nested `List` entries use the same termination — there is no separate length prefix; recursion ends on the same `0x00000000` sentinel.
+| Type bits    | Encoding |
+|---|---|
+| `0x20000000` | `int8` value |
+| `0x28000000` | `int32` value; remap key: apply `(keyWithType & 0xD7FFFFFF) \| 0x20000000` to the full 32-bit field, then mask to `0x07FFFFFF` |
+| `0x40000000` | `uint16` length + ISO-8859-1 bytes; if length == `0xFFFF` → string table (see TODO) |
+| `0x08000000` | Nested attribute list (recurse) |
+| `0x10000000` | No value (function type, skip) |
+| `0x48000000` | StringConstant — no defined payload; abort the entire containing `ThingElement` (propagate out of any nested `readAttributes` frames) and store as `Other { element_type: 5, raw }`. Log a warning. The element cursor advances by `total_size` from the element header, not from within the attribute parser. |
 
-| Type bits    | Encoding                                                                                   |
-|--------------|--------------------------------------------------------------------------------------------|
-| `0x20000000` | `int8` value                                                                               |
-| `0x28000000` | `int32` value; remap key: `(key & 0xD7FFFFFF) \| 0x20000000`, then strip top bits         |
-| `0x40000000` | `uint16` length + ISO-8859-1 bytes; if length == `0xFFFF` → string table lookup (see TODO)|
-| `0x08000000` | Nested attribute list (recurse with same termination logic)                                |
-| `0x10000000` | No value (function type, skip)                                                             |
-| `0x48000000` | StringConstant — **no defined payload length in the protocol**; abort the containing `ThingElement` and store it as `Other { element_type: 5, raw }`. Log a warning. |
+Unknown type tags: log `tracing::warn!` and return `Err` to abort the containing element (stored as `Other`).
 
----
-
-### ⚠️ TODO: GsPlayerOrderMessage Wire Layout
-
-`GsPlayerOrderMessage` (opcode 1155) is not fully documented in `PROTOCOL_RESEARCH.md` — the field layout is not yet decompiled. Before implementing `FlsMessage::PlayerOrder` decoding, decompile this message class from `MTGOMessage.dll` (use the `--reflect GsPlayerOrderMessage` mode of `tools/opcode-dump`). The assumed layout follows the standard convention (`int32` element count, then per-element fields) but must be verified. Until then, implement the `PlayerOrder` arm as a no-op that logs the raw payload — the fallback player naming (`"player_0"`, `"player_1"`) keeps the rest of the pipeline functional.
-
-Additionally, `V3ReplayUserOrderMessage` (opcode 4689) serves the same purpose for v3 replay mode. It is in the game-message opcode range and would be decoded in `game_messages.rs`. Its wire layout is also unresearched — track alongside opcode 1155.
+**`THINGNUMBER` absent:** if `ThingElement.props` does not contain `THINGNUMBER` after parsing, log an error and discard the element — do not upsert into `GameState`.
 
 ---
 
 ### ⚠️ TODO: String Table
 
-When a `String` property has `length == 0xFFFF`, the next 4 bytes are a `uint32 stringTableIndex` referencing a shared string table rather than inline bytes. The string table is populated from other messages not yet fully researched.
+When a `String` property has `length == 0xFFFF`, the next 4 bytes are a `uint32 stringTableIndex` into a shared string table. The table's origin message is not yet identified.
 
-**Current behaviour:** store as placeholder string `"<strtable:N>"` where N is the index.
-**To fix:** identify which FLS/game message carries the string table payload, decode it, and pass the table into the StateBuf processor. Track in `PROTOCOL_RESEARCH.md` under "String Table".
+**Current behaviour:** store as `"<strtable:N>"` where N is the index.
+**To fix:** identify which message carries the table, decode it, pass into `StateBufProcessor`. Track in `PROTOCOL_RESEARCH.md` under "String Table".
+**Impact:** card names may appear as placeholders. Integer-keyed properties (zone, life, tapped, etc.) are unaffected.
 
-**Impact:** card names and some other string properties may show as placeholders until this is resolved. Zone, zone-transition, and life-change tracking (integers) are unaffected.
+### ⚠️ TODO: MiniChange (StateElementType 200)
+
+StateElementType 200 (`MiniChange`) is described as "small incremental state update" in `PROTOCOL_RESEARCH.md` but its payload format is not documented. Currently decoded as `Other` and dropped.
+
+**Risk:** if the server uses `MiniChange` to deliver life changes or zone transitions between full-state snapshots, those events will be silently missed. On a full-state message (`GamestateContainsDiffs` clear), `MiniChange` elements should not be needed for correctness — log a warning if one appears. On a diff message, log a warning and treat the state as suspect.
+
+**To fix:** decompile `MiniChangeElement.ReadBuffer()` from `WotC.MtGO.Client.Model.Play.dll`. Track in `PROTOCOL_RESEARCH.md` under "MiniChange".
 
 ---
 
@@ -276,12 +279,11 @@ Internal board model — no protocol types leak through this boundary.
 ```rust
 pub struct GameState {
     pub game_id: u32,
-    pub timestamp: u32,
     pub turn: i32,
     pub phase: GamePhase,
     pub active_player: usize,
     pub players: Vec<PlayerState>,
-    pub things: HashMap<u32, ThingState>,   // keyed by THINGNUMBER (MagicProperty 537878017)
+    pub things: HashMap<u32, ThingState>,   // keyed by THINGNUMBER (537878017)
 }
 
 pub struct PlayerState {
@@ -295,8 +297,7 @@ pub struct PlayerState {
 pub struct ThingState {
     pub thing_id: u32,
     pub zone: CardZone,
-    pub from_zone: Option<CardZone>,   // previous zone from ThingElement.from_zone; Some on each
-                                       // update, consumed by translator after each process() call
+    pub from_zone: Option<CardZone>,   // set on each update; cleared by translator after process()
     pub controller: usize,
     pub owner: usize,
     pub card_texture_id: Option<u32>,
@@ -304,6 +305,13 @@ pub struct ThingState {
     pub tapped: bool,
     pub power: Option<i32>,
     pub toughness: Option<i32>,
+    pub damage: i32,
+    pub summoning_sickness: bool,
+    pub face_down: bool,
+    pub attached_to_id: Option<u32>,
+    pub plus_counters: i32,
+    pub minus_counters: i32,
+    pub loyalty: i32,
     pub attacking: bool,
     pub blocking: bool,
     pub is_token: bool,
@@ -311,22 +319,24 @@ pub struct ThingState {
 ```
 
 `GameState::apply_elements(elements: &[StateElement]) -> Result<()>` updates in place:
-- Each `Thing` element upserts by `THINGNUMBER`; sets `from_zone` on every update
-- Each `PlayerStatus` element updates all players
-- `TurnStep` updates `turn`, `phase`, `active_player`
 
-After the translator calls `process()` it must clear `from_zone` on all things (`thing.from_zone = None`) so the field is not re-consumed on the next snapshot.
+- **`Thing` elements:** upsert by `THINGNUMBER`. Only update fields whose properties are present in `props` — absent properties retain their current values. On first insert, absent fields default to zero/false/None.
+- **`PlayerStatus` elements:** update all players by seat index. If `life.len() <= seat`, skip that seat rather than panicking. Apply the same guard to `hand_count`, `library_count`, `graveyard_count`.
+- **`TurnStep` elements:** update `turn`, `phase`, `active_player`.
+- **Full-state pruning:** when `GamestateContainsDiffs` is clear (full state), after upserting all `Thing` elements, remove from `things` any `thing_id` not seen in this update's `Thing` elements. On a diff message, do not prune (absent entries may simply be unchanged).
+
+After the translator calls `process()`, it must clear `from_zone` on all things (`thing.from_zone = None`) so the field is not re-consumed on the next snapshot.
 
 ---
 
 ## Section 3: Translator (`src/translator.rs`)
 
-Stateful; diffs consecutive snapshots to emit `ReplayAction` records, then finalises the `ReplayHeader`.
+Stateful; diffs consecutive snapshots to emit `ReplayAction` records.
 
 ```rust
 pub struct ReplayTranslator {
     prev: Option<GameState>,
-    player_names: Vec<String>,   // seat index → player name; populated from GsPlayerOrderMessage
+    player_names: Vec<String>,
     start_time: Option<DateTime<Utc>>,
 }
 
@@ -335,23 +345,34 @@ impl ReplayTranslator {
     pub fn set_player_order(&mut self, seats: Vec<PlayerSeat>)
     pub fn process(&mut self, new_state: GameState, ts: DateTime<Utc>) -> Vec<ReplayAction>
     pub fn finish(self, result: GameResult, end_time: DateTime<Utc>) -> ReplayHeader
+    pub fn reset(&mut self)   // called between games
 }
 ```
+
+**`ReplayAction.timestamp`:** set to the `ts: DateTime<Utc>` passed into `process()` (wall clock at the time of the call). All actions emitted from a single `process()` call share the same timestamp. Do not use `GameState`'s protocol timestamp counter.
+
+**Seat-to-name lookup:** always use `player_names.get(seat).cloned().unwrap_or_else(|| format!("player_{}", seat))`. Never index `player_names` directly — it may be empty if `GsPlayerOrderMessage` has not yet arrived.
+
+**Multi-game sessions:** MTGO reuses the same TCP connection across games. When `GameOverMessage` or `GshGameStatusChangeMessage` with `new_status == GAME_COMPLETED (7)` or `GAME_TERMINATED (5)` arrives, the caller must:
+1. Call `translator.finish()` to close the current replay
+2. Call `translator.reset()` and `state_buf_processor.reset()` before processing the next game
+
+`reset()` sets `prev = None`, `start_time = None`, and clears `player_names` to the fallback state. This prevents the last state of game N from being diffed against the first state of game N+1.
 
 ### ReplayHeader Assembly
 
 | Field | Source |
 |---|---|
 | `game_id` | `GameState.game_id` cast to `String` |
-| `players` | `player_names` from `GsPlayerOrderMessage` (seat order preserved); `life_total` = `PlayerStatusElement.life[seat_index]` cast `i16 → i32` from first `PlayerStatus` element |
-| `format` | Not available in protocol — default to `"Unknown"` |
-| `start_time` | Wall clock when `process()` is first called |
-| `end_time` | Wall clock when `finish()` is called (on `GameOver` message) |
-| `result` | `GameResults.winner_seat` → look up `player_names[winner_seat as usize]` → `GameResult::Win { winner_id }` |
-
-If `GsPlayerOrderMessage` is not received before the first `process()` call, seat indices are used as fallback player IDs (`"player_0"`, `"player_1"`, etc.).
+| `players` | `player_names` from `set_player_order`; `life_total` = `PlayerStatusElement.life[seat_index]` cast `i16 → i32` from first `PlayerStatus` element |
+| `format` | Not in protocol — default to `"Unknown"` |
+| `start_time` | Wall clock on first `process()` call |
+| `end_time` | Wall clock when `finish()` is called |
+| `result` | From `GameResultsMessage.winner_seat` (see TODO) → `player_names.get(winner_seat as usize)` with fallback → `GameResult::Win { winner_id }`. Bounds-safe: use `.get()`, not direct index |
 
 ### Diff Rules
+
+**"Appeared" definition:** `thing_id` absent from `prev.things`. "Zone changed" means `thing_id` present in both `prev.things` and `new_state.things` with different `zone`. Evaluate specific cases before the catch-all; rules are not mutually exclusive only where noted.
 
 Emit order within a single `process()` call:
 
@@ -360,31 +381,63 @@ Emit order within a single `process()` call:
 | `TurnStep.turn_number` increased | `TurnChange { turn, player_id: active_player_name }` |
 | `TurnStep.phase` changed | `PhaseChange { phase: phase_name }` |
 | `PlayerState.life` changed | `LifeChange { player_id, old_life, new_life }` |
-| `thing_id` absent from `prev.things` AND `from_zone == Library(2)` AND new `zone == Hand(1)` | `DrawCard { player_id: owner_name, card_id: thing_id_str }` |
-| `thing_id` absent from `prev.things` AND new `zone == Stack(8)` | `CastSpell { player_id: controller_name, card_id: thing_id_str }` |
-| `thing_id` present in `prev.things` AND zone changed from `Stack(8)` to `Battlefield(7)` | `ZoneTransition { from_zone: "stack", to_zone: "battlefield", ... }` |
-| `thing_id` present in `prev.things` AND zone changed from `Stack(8)` to any non-Battlefield | `Resolve { card_id: thing_id_str }` |
-| `thing_id` present in `prev.things` AND zone changed (any other transition) | `ZoneTransition { from_zone, to_zone, card_id, player_id: controller_name }` |
+| Thing appeared, `from_zone == Library(2)`, `zone == Hand(1)` | `DrawCard { player_id: owner_name, card_id: thing_id_str }` |
+| Thing appeared, `zone == Stack(8)` | `CastSpell { player_id: controller_name, card_id: thing_id_str }` |
+| Thing zone changed from `Stack(8)` to `Battlefield(7)` (known thing) | `ZoneTransition { from_zone: "stack", to_zone: "battlefield", ... }` |
+| Thing zone changed from `Stack(8)` to non-Battlefield (known thing) | `Resolve { card_id: thing_id_str }` |
+| Thing zone changed (any other transition, known thing) | `ZoneTransition { from_zone, to_zone, card_id, player_id: controller_name }` |
 | `ThingState.attacking` became `true` | `Attack { attacker_id: thing_id_str, defender_id: opponent_name }` |
 | `ThingState.blocking` became `true` | `Block { blocker_id: thing_id_str, attacker_id: "unknown" }` |
+| `ThingState.tapped` changed | `TapPermanent { card_id }` or `UntapPermanent { card_id }` |
+| `ThingState.damage` changed | `DamageMarked { card_id, damage }` (absolute value) |
+| `ThingState.summoning_sickness` changed | `SummoningSickness { card_id, has_sickness }` |
+| `ThingState.face_down` changed | `FaceDown { card_id }` or `FaceUp { card_id }` |
+| `ThingState.attached_to_id` changed | `Attach { card_id, attached_to_id }` or `Detach { card_id }` (if None) |
+| `ThingState.plus_counters` changed | `CounterUpdate { card_id, counter_type: "+1/+1", count }` |
+| `ThingState.minus_counters` changed | `CounterUpdate { card_id, counter_type: "-1/-1", count }` |
+| `ThingState.loyalty` changed | `CounterUpdate { card_id, counter_type: "loyalty", count }` |
+| `ThingState.power` or `ThingState.toughness` changed | `PowerToughnessUpdate { card_id, power, toughness }` (emit once with both current values) |
 
-**"Appeared" definition:** a `thing_id` key that is absent from `prev.things` (newly tracked in this snapshot). If a known thing's zone changes to Stack, emit `ZoneTransition`, not `CastSpell`. The Stack→Battlefield and Stack→non-Battlefield rows take priority over the catch-all `ZoneTransition` row — evaluate specific zone-from/to pairs first.
+**`Attack` / `defender_id`:** `ATTACKING` is a boolean; the wire protocol does not encode which player/planeswalker is targeted. In a 2-player game, `defender_id` defaults to the opponent's name (`seat 1 - controller_seat`). Planeswalker attacks and multiplayer (>2 players) produce the same default — a known limitation.
 
-**`PlayLand` note:** The protocol cannot distinguish land plays from other Hand→Battlefield transitions in the StateBuf — there is no separate "play land" event. `ActionType::PlayLand` will not be emitted; land plays appear as `ZoneTransition { from_zone: "hand", to_zone: "battlefield" }`. `PlayLand` remains in the schema for compatibility but is effectively unused post-implementation.
+**`Block` / `attacker_id`:** `BLOCKING` is also boolean; `attacker_id` is `"unknown"`. A future improvement could correlate with `ATTACHED_TO_ID` or combat association data.
 
-**Attack / defender_id:** The `ATTACKING` property is a boolean — the wire protocol does not encode which player or planeswalker is being attacked in the state snapshot. `defender_id` is set to the opponent's player name (seat `1 - controller_seat` in a 2-player game). Planeswalker attacks and multiplayer (>2 players) are not supported; both produce the same default opponent assignment.
+**`CastSpell` heuristic:** fires for any new thing appearing on Stack, including triggered and activated abilities and copies. This is a best-effort approximation — the StateBuf model does not distinguish "cast" from "triggered." Document in schema as such.
 
-**Block / attacker_id:** The `BLOCKING` property is also boolean; the attacker being blocked is not encoded in the StateBuf. `attacker_id` is emitted as `"unknown"`. A future improvement could correlate with `ATTACHED_TO_ID` or combat association data if it becomes available.
+**`PlayLand`:** not emittable from StateBuf; land plays appear as `ZoneTransition { from_zone: "hand", to_zone: "battlefield" }`. `PlayLand` remains in the schema for compatibility but is unused by this decoder.
 
-**PassPriority:** This is a client→server action (`GameNextStepMessage` opcode 4643) not reflected in server-sent state snapshots. It cannot be derived from StateBuf diffs. Deferred — not emitted in this implementation.
+**`PassPriority`:** client→server action not reflected in server-sent state snapshots. Not emitted.
 
-Player IDs in emitted actions are looked up from `player_names[seat]`.
+**`ActivateAbility`:** not emittable from StateBuf. Deferred.
+
+**Opening hand:** cards dealt to the opening hand emit `DrawCard` (zone: Library→Hand). This is intentional. The viewer groups or suppresses initial-hand draws if desired.
+
+**Deduplication:** do not use `game_state_timestamp` as a deduplication key. Always diff `prev` against `new_state` regardless of equal timestamps — state content may still differ (priority changes, etc.).
 
 ---
 
-## Key MagicProperty Constants
+## Section 4: Schema Changes (`src/replay/schema.rs`)
 
-Defined in `opcodes.rs`:
+Add to `ActionType`:
+
+```rust
+TapPermanent    { card_id: String },
+UntapPermanent  { card_id: String },
+DamageMarked    { card_id: String, damage: i32 },
+SummoningSickness { card_id: String, has_sickness: bool },
+FaceDown        { card_id: String },
+FaceUp          { card_id: String },
+Attach          { card_id: String, attached_to_id: String },
+Detach          { card_id: String },
+CounterUpdate   { card_id: String, counter_type: String, count: i32 },
+PowerToughnessUpdate { card_id: String, power: i32, toughness: i32 },
+```
+
+All other existing variants are unchanged. `PlayLand`, `ActivateAbility`, and `PassPriority` remain in the enum for compatibility but are not emitted by this decoder.
+
+---
+
+## Key MagicProperty Constants (`opcodes.rs`)
 
 | Constant | Value | Description |
 |---|---|---|
@@ -399,30 +452,63 @@ Defined in `opcodes.rs`:
 | `BLOCKING` | 538214407 | Is blocking |
 | `POWER` | 538054425 | Creature power |
 | `TOUGHNESS` | 538065157 | Creature toughness |
+| `DAMAGE` | 537876480 | Damage marked on creature |
+| `SUMMONING_SICK` | 537877508 | Has summoning sickness |
+| `FACE_DOWN` | 537924114 | Face-down / morphed |
+| `ATTACHED_TO_ID` | 538318848 | ID of permanent this is attached to |
 | `IS_TOKEN` | 537876520 | Is a token |
+| `PLUS_ONE_PLUS_ONE_COUNTERS` | 538054419 | +1/+1 counter count |
+| `MINUS_ONE_MINUS_ONE_COUNTERS` | 538285849 | -1/-1 counter count |
+| `LOYALTY_COUNTERS` | 538075911 | Loyalty counter count |
 
 ---
 
 ## Error Handling
 
-All parsing functions return `Result<T, DecodeError>` using `thiserror`. `DecodeError` variants:
+All parsing functions return `Result<T, DecodeError>` using `thiserror`:
 
-- `Io(std::io::Error)` — stream read failure
-- `UnexpectedEof { context: &'static str }` — buffer too short
-- `InvalidChecksum { expected: i32, got: i32 }` — StateBuf checksum mismatch
-- `UnknownElementType(u32)` — unrecognised StateElementType (non-fatal: stored as `Other`)
-- `UnknownPropertyType(u32)` — unrecognised property type tag (non-fatal: skip entry)
-- `StringConstantEncountered { thing_id: Option<u32> }` — `0x48000000` tag found; ThingElement stored as `Other`
+```rust
+pub enum DecodeError {
+    Io(#[from] std::io::Error),
+    UnexpectedEof { context: &'static str },
+    InvalidChecksum { expected: i32, got: i32 },
+}
+```
 
-Unknown element/property types are non-fatal so a single unrecognised field doesn't abort an entire game decode.
+Non-fatal conditions use `tracing::warn!` and continue — they do not become `Err` variants:
+- Unknown `StateElementType` → store as `Other`, warn
+- Unknown property type tag → abort containing element (store as `Other`), warn
+- `StringConstantEncountered` → abort containing element (propagating out of any nested `readAttributes` frames), store as `Other`, warn
+- `THINGNUMBER` absent → discard element, warn
+
+---
+
+## CardZone and GamePhase Enums
+
+```
+CardZone:
+  0=Invalid  1=Hand        2=Library    3=Graveyard  4=Exile
+  5=LocalExileCanBePlayed  6=OpponentExileCanBePlayed
+  7=Battlefield  8=Stack  9=Command  10=Commander  11=Planar
+  12=Effects  13=LocalTriggers  14=OpponentTriggers  15=Aside
+  16=Revealed  17-19=Pile1-3  20=Nowhere  21=Sideboard
+  22=Mutate  23=Companion
+
+GamePhase:
+  0=Invalid  1=Untap  2=Upkeep  3=Draw
+  4=PreCombatMain  5=BeginCombat
+  6=DeclareAttackers  7=DeclareBlockers
+  8=CombatDamage  9=EndOfCombat
+  10=PostCombatMain  11=EndOfTurn  12=Cleanup
+```
 
 ---
 
 ## Testing Strategy
 
-- **framing.rs**: unit-test round-trip with hand-crafted byte slices
-- **fls.rs**: unit-test with minimal hand-crafted GsMessageMessage and GsPlayerOrderMessage payloads
-- **statebuf**: unit-test `ApplyDiffs2` with known input/output pairs; unit-test element parsing with hand-crafted PropertyContainer bytes including nested lists and string-table placeholders
-- **state.rs**: unit-test `apply_elements` with synthetic element sequences; verify `from_zone` is set and cleared correctly
-- **translator.rs**: unit-test diff logic with synthetic before/after `GameState` pairs covering each diff rule; test `set_player_order` + `finish` for header assembly
+- **framing.rs**: round-trip with hand-crafted byte slices; test `total_len < 8` guard
+- **fls.rs**: hand-crafted `GsMessageMessage` (1153) and `GsReplayMessageMessage` (1156) payloads; verify both produce `GsMessage`
+- **statebuf.rs**: element parsing with hand-crafted `PropertyContainer` bytes including nested lists, `StringConstant` abort, and absent `THINGNUMBER`; test assembly buffer edge cases (Tail-without-Head, Head-discards-partial)
+- **state.rs**: `apply_elements` with synthetic element sequences; verify `from_zone` set-and-clear; full-state pruning removes absent things; upsert retains absent-property values
+- **translator.rs**: synthetic before/after `GameState` pairs covering each diff rule; `set_player_order` + `finish` for header assembly; multi-game `reset()` prevents stale-state bleed; bounds-safe seat lookup with empty `player_names`
 - **Integration**: end-to-end test with a real captured (decrypted) dump file once TLS is resolved

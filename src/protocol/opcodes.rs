@@ -13,6 +13,12 @@ pub const GS_MESSAGE: u16 = 1153;
 pub const GS_PLAYER_ORDER: u16 = 1155;
 pub const GS_REPLAY_MESSAGE: u16 = 1156;
 
+// === Boundary signal opcodes ===
+
+pub const FLS_GAME_CREATED: u16 = 960;
+pub const FLS_GAME_ENDED: u16 = 967;
+pub const FLS_MATCH_GAME_STARTED: u16 = 2463;
+
 // === Game-level opcodes (Level 2, inside MetaMessage) ===
 
 pub const GAME_RESULTS: u16 = 4485;

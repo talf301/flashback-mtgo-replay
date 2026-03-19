@@ -1,16 +1,10 @@
 // src/protocol/mod.rs
 
-// --- New modules (Phase A) ---
 pub mod framing;
 pub mod opcodes;
-
-// --- Existing modules (kept until Phase C replacement) ---
-pub mod decoder;
-pub mod raw_analyzer;
-pub use decoder::{GameEvent, DecodedEvent, decode_packet, decode_stream};
-pub use raw_analyzer::{PacketAnalysis, Pattern, analyze_packet, analyze_dump_file};
-
-// --- Error type shared by all protocol modules ---
+pub mod fls;
+pub mod game_messages;
+pub mod statebuf;
 
 use thiserror::Error;
 
@@ -33,7 +27,6 @@ pub enum DecodeError {
 }
 
 impl DecodeError {
-    /// Returns true if this error represents an end-of-stream condition.
     pub fn is_eof(&self) -> bool {
         match self {
             DecodeError::UnexpectedEof { .. } => true,

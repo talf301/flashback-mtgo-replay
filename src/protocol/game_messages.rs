@@ -1,0 +1,1 @@
+//! Inner game message decoding.

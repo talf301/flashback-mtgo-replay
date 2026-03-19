@@ -254,6 +254,8 @@ The list is terminated by `key_with_type == 0x00000000`. Nested `List` entries u
 
 `GsPlayerOrderMessage` (opcode 1155) is not fully documented in `PROTOCOL_RESEARCH.md` — the field layout is not yet decompiled. Before implementing `FlsMessage::PlayerOrder` decoding, decompile this message class from `MTGOMessage.dll` (use the `--reflect GsPlayerOrderMessage` mode of `tools/opcode-dump`). The assumed layout follows the standard convention (`int32` element count, then per-element fields) but must be verified. Until then, implement the `PlayerOrder` arm as a no-op that logs the raw payload — the fallback player naming (`"player_0"`, `"player_1"`) keeps the rest of the pipeline functional.
 
+Additionally, `V3ReplayUserOrderMessage` (opcode 4689) serves the same purpose for v3 replay mode. It is in the game-message opcode range and would be decoded in `game_messages.rs`. Its wire layout is also unresearched — track alongside opcode 1155.
+
 ---
 
 ### ⚠️ TODO: String Table
@@ -367,6 +369,8 @@ Emit order within a single `process()` call:
 | `ThingState.blocking` became `true` | `Block { blocker_id: thing_id_str, attacker_id: "unknown" }` |
 
 **"Appeared" definition:** a `thing_id` key that is absent from `prev.things` (newly tracked in this snapshot). If a known thing's zone changes to Stack, emit `ZoneTransition`, not `CastSpell`. The Stack→Battlefield and Stack→non-Battlefield rows take priority over the catch-all `ZoneTransition` row — evaluate specific zone-from/to pairs first.
+
+**`PlayLand` note:** The protocol cannot distinguish land plays from other Hand→Battlefield transitions in the StateBuf — there is no separate "play land" event. `ActionType::PlayLand` will not be emitted; land plays appear as `ZoneTransition { from_zone: "hand", to_zone: "battlefield" }`. `PlayLand` remains in the schema for compatibility but is effectively unused post-implementation.
 
 **Attack / defender_id:** The `ATTACKING` property is a boolean — the wire protocol does not encode which player or planeswalker is being attacked in the state snapshot. `defender_id` is set to the opponent's player name (seat `1 - controller_seat` in a 2-player game). Planeswalker attacks and multiplayer (>2 players) are not supported; both produce the same default opponent assignment.
 

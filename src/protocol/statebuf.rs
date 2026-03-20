@@ -459,22 +459,26 @@ fn parse_turn_step_element(payload: &[u8]) -> Result<TurnStepElement, DecodeErro
     })
 }
 
+/// Maximum number of player seats in MTGO.
+const PLAYER_STATUS_SEATS: usize = 16;
+
 fn parse_player_status_element(payload: &[u8]) -> Result<PlayerStatusElement, DecodeError> {
+    // PlayerStatus uses fixed-size 16-element arrays (one slot per possible seat),
+    // NOT length-prefixed arrays.
     let mut cursor = Cursor::new(payload);
-    let mut buf4 = [0u8; 4];
     let mut buf2 = [0u8; 2];
+    let mut buf4 = [0u8; 4];
 
-    let life = read_i16_array(&mut cursor, &mut buf4, &mut buf2)?;
-    let hand_count = read_i16_array(&mut cursor, &mut buf4, &mut buf2)?;
-    let library_count = read_i16_array(&mut cursor, &mut buf4, &mut buf2)?;
-    let graveyard_count = read_i16_array(&mut cursor, &mut buf4, &mut buf2)?;
-    let time_left = read_i32_array(&mut cursor, &mut buf4)?;
+    let life = read_fixed_i16_array(&mut cursor, &mut buf2, PLAYER_STATUS_SEATS)?;
+    let hand_count = read_fixed_i16_array(&mut cursor, &mut buf2, PLAYER_STATUS_SEATS)?;
+    let library_count = read_fixed_i16_array(&mut cursor, &mut buf2, PLAYER_STATUS_SEATS)?;
+    let graveyard_count = read_fixed_i16_array(&mut cursor, &mut buf2, PLAYER_STATUS_SEATS)?;
+    let time_left = read_fixed_i32_array(&mut cursor, &mut buf4, PLAYER_STATUS_SEATS)?;
 
-    // background_image_names: string[] — read and discard
+    // background_image_names: string[] — i32 count then wide strings, read and discard
     if cursor.read_exact(&mut buf4).is_ok() {
         let str_count = i32::from_le_bytes(buf4);
         for _ in 0..str_count {
-            // Each wide string: int32 char_count + char_count*2 bytes
             if cursor.read_exact(&mut buf4).is_err() {
                 break;
             }
@@ -505,45 +509,34 @@ fn parse_player_status_element(payload: &[u8]) -> Result<PlayerStatusElement, De
     })
 }
 
-fn read_i16_array(
+fn read_fixed_i16_array(
     cursor: &mut Cursor<&[u8]>,
-    buf4: &mut [u8; 4],
     buf2: &mut [u8; 2],
+    count: usize,
 ) -> Result<Vec<i16>, DecodeError> {
-    cursor
-        .read_exact(buf4)
-        .map_err(|_| DecodeError::UnexpectedEof {
-            context: "i16 array count",
-        })?;
-    let count = i32::from_le_bytes(*buf4);
-    let mut values = Vec::with_capacity(count.max(0) as usize);
+    let mut values = Vec::with_capacity(count);
     for _ in 0..count {
         cursor
             .read_exact(buf2)
             .map_err(|_| DecodeError::UnexpectedEof {
-                context: "i16 array value",
+                context: "fixed i16 array value",
             })?;
         values.push(i16::from_le_bytes(*buf2));
     }
     Ok(values)
 }
 
-fn read_i32_array(
+fn read_fixed_i32_array(
     cursor: &mut Cursor<&[u8]>,
     buf4: &mut [u8; 4],
+    count: usize,
 ) -> Result<Vec<i32>, DecodeError> {
-    cursor
-        .read_exact(buf4)
-        .map_err(|_| DecodeError::UnexpectedEof {
-            context: "i32 array count",
-        })?;
-    let count = i32::from_le_bytes(*buf4);
-    let mut values = Vec::with_capacity(count.max(0) as usize);
+    let mut values = Vec::with_capacity(count);
     for _ in 0..count {
         cursor
             .read_exact(buf4)
             .map_err(|_| DecodeError::UnexpectedEof {
-                context: "i32 array value",
+                context: "fixed i32 array value",
             })?;
         values.push(i32::from_le_bytes(*buf4));
     }

@@ -35,6 +35,16 @@ pub enum ActionType {
         to_zone: String,
         player_id: Option<String>,
     },
+    TapPermanent { card_id: String },
+    UntapPermanent { card_id: String },
+    DamageMarked { card_id: String, damage: i32 },
+    SummoningSickness { card_id: String, has_sickness: bool },
+    FaceDown { card_id: String },
+    FaceUp { card_id: String },
+    Attach { card_id: String, attached_to_id: String },
+    Detach { card_id: String },
+    CounterUpdate { card_id: String, counter_type: String, count: i32 },
+    PowerToughnessUpdate { card_id: String, power: i32, toughness: i32 },
     PassPriority { player_id: String },
     PhaseChange { phase: String },
     TurnChange { turn: i32, player_id: String },
@@ -236,6 +246,43 @@ mod tests {
                 from_zone: "stack".to_string(),
                 to_zone: "graveyard".to_string(),
                 player_id: Some("p1".to_string()),
+            },
+            ActionType::TapPermanent {
+                card_id: "c5".to_string(),
+            },
+            ActionType::UntapPermanent {
+                card_id: "c5".to_string(),
+            },
+            ActionType::DamageMarked {
+                card_id: "c5".to_string(),
+                damage: 3,
+            },
+            ActionType::SummoningSickness {
+                card_id: "c5".to_string(),
+                has_sickness: true,
+            },
+            ActionType::FaceDown {
+                card_id: "c5".to_string(),
+            },
+            ActionType::FaceUp {
+                card_id: "c5".to_string(),
+            },
+            ActionType::Attach {
+                card_id: "c6".to_string(),
+                attached_to_id: "c5".to_string(),
+            },
+            ActionType::Detach {
+                card_id: "c6".to_string(),
+            },
+            ActionType::CounterUpdate {
+                card_id: "c5".to_string(),
+                counter_type: "+1/+1".to_string(),
+                count: 2,
+            },
+            ActionType::PowerToughnessUpdate {
+                card_id: "c5".to_string(),
+                power: 4,
+                toughness: 5,
             },
             ActionType::PassPriority {
                 player_id: "p1".to_string(),

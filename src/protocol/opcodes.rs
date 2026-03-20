@@ -30,27 +30,31 @@ pub const GAME_PLAY_STATUS: u16 = 4652;
 pub const V3_REPLAY_USER_ORDER: u16 = 4689;
 
 // === MagicProperty keys (ThingElement attributes, bits 26-0) ===
+// These are the MASKED key values (type tag stripped via & PROP_KEY_MASK),
+// matching what parse_property_container() stores in the HashMap.
 
-pub const THINGNUMBER: u32 = 537878017;
-pub const ZONE: u32 = 537878532;
-pub const CONTROLLER: u32 = 537875729;
-pub const OWNER: u32 = 537876535;
-pub const CARDTEXTURE_NUMBER: u32 = 537875724;
-pub const CARDNAME_STRING: u32 = 1074900499;
-pub const TAPPED: u32 = 538063116;
-pub const ATTACKING: u32 = 537874697;
-pub const BLOCKING: u32 = 538214407;
-pub const POWER: u32 = 538054425;
-pub const TOUGHNESS: u32 = 538065157;
-pub const DAMAGE: u32 = 537876480;
-pub const SUMMONING_SICK: u32 = 537877508;
-pub const FACE_DOWN: u32 = 537924114;
-pub const ATTACHED_TO_ID: u32 = 538318848;
-pub const IS_TOKEN: u32 = 537876520;
-pub const PLUS_ONE_PLUS_ONE_COUNTERS: u32 = 538054419;
-pub const MINUS_ONE_MINUS_ONE_COUNTERS: u32 = 538285849;
-pub const LOYALTY_COUNTERS: u32 = 538075911;
-pub const SRC_THING_ID: u32 = 537877505;
+pub const THINGNUMBER: u32 = 1007105;
+// Note: 0x000f6004 (1007620) is a zone OBJECT reference, not the CardZone enum.
+// The actual CardZone integer is stored under key 0x000f550f (1004815).
+pub const ZONE: u32 = 1004815;
+pub const CONTROLLER: u32 = 1004817;
+pub const OWNER: u32 = 1005623;
+pub const CARDTEXTURE_NUMBER: u32 = 1004812;
+pub const CARDNAME_STRING: u32 = 1158675;
+pub const TAPPED: u32 = 1192204;
+pub const ATTACKING: u32 = 1003785;
+pub const BLOCKING: u32 = 1343495;
+pub const POWER: u32 = 1183513;
+pub const TOUGHNESS: u32 = 1194245;
+pub const DAMAGE: u32 = 1005568;
+pub const SUMMONING_SICK: u32 = 1006596;
+pub const FACE_DOWN: u32 = 1053202;
+pub const ATTACHED_TO_ID: u32 = 1447936;
+pub const IS_TOKEN: u32 = 1005608;
+pub const PLUS_ONE_PLUS_ONE_COUNTERS: u32 = 1183507;
+pub const MINUS_ONE_MINUS_ONE_COUNTERS: u32 = 1414937;
+pub const LOYALTY_COUNTERS: u32 = 1204999;
+pub const SRC_THING_ID: u32 = 1006593;
 
 // === StateElementType ===
 

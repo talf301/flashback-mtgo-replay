@@ -108,6 +108,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
     let mut card_names: HashMap<String, String> = HashMap::new();
     let mut card_textures: HashMap<String, i32> = HashMap::new();
+    let mut last_players: Vec<PlayerInfo> = Vec::new();
+    let mut last_game_id: String = "unknown".to_string();
     let mut gs_message_count = 0u32;
     let mut game_play_status_count = 0u32;
     let mut state_update_count = 0u32;
@@ -199,6 +201,21 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                     }
                     GameMessage::GameOver => {
                         tracing::info!("GameOver received");
+                        // Snapshot player info before reset (filter to real players with life > 0)
+                        if let Some(ref state) = game_state {
+                            last_game_id = state.game_id.to_string();
+                            last_players = state
+                                .players
+                                .iter()
+                                .enumerate()
+                                .filter(|(_, p)| p.life > 0 || p.library_count > 0)
+                                .map(|(i, p)| PlayerInfo {
+                                    player_id: format!("player_{}", i),
+                                    name: format!("player_{}", i),
+                                    life_total: p.life,
+                                })
+                                .collect();
+                        }
                         translator.reset();
                         statebuf_proc.reset();
                         game_state = None;
@@ -240,7 +257,7 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         card_names.len(), card_textures.len()
     );
 
-    // Build ReplayFile
+    // Build ReplayFile — use live state if available, otherwise last snapshot before GameOver
     let final_state = game_state.as_ref();
     let players: Vec<PlayerInfo> = if let Some(state) = final_state {
         state
@@ -254,12 +271,12 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
             })
             .collect()
     } else {
-        Vec::new()
+        last_players
     };
 
     let game_id_str = final_state
         .map(|s| s.game_id.to_string())
-        .unwrap_or_else(|| "unknown".to_string());
+        .unwrap_or(last_game_id);
 
     let header = ReplayHeader {
         game_id: game_id_str,

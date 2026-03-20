@@ -231,9 +231,13 @@ export async function resolveCardNamesByMtgoId(
     }
   }
 
+  // Split: batch endpoint only accepts mtgo_id with 3-5 digits
+  const batchable = uncached.filter((id) => id < 100000);
+  const individual = uncached.filter((id) => id >= 100000);
+
   // Batch fetch in groups of 75
-  for (let i = 0; i < uncached.length; i += 75) {
-    const batch = uncached.slice(i, i + 75);
+  for (let i = 0; i < batchable.length; i += 75) {
+    const batch = batchable.slice(i, i + 75);
 
     try {
       const response = await fetch('https://api.scryfall.com/cards/collection', {
@@ -262,9 +266,24 @@ export async function resolveCardNamesByMtgoId(
     }
 
     // Rate limit: Scryfall asks for 50-100ms between requests
-    if (i + 75 < uncached.length) {
+    if (i + 75 < batchable.length) {
       await new Promise((r) => setTimeout(r, 100));
     }
+  }
+
+  // Individual fetch for 6+ digit IDs (batch endpoint rejects these)
+  for (const id of individual) {
+    try {
+      const response = await fetch(`https://api.scryfall.com/cards/mtgo/${id}`);
+      if (!response.ok) continue;
+      const card: ScryfallCard = await response.json();
+      result.set(id, card);
+      cardCache.set(`mtgo:${id}`, card);
+      cacheCardData(card.id, card);
+    } catch {
+      // skip
+    }
+    await new Promise((r) => setTimeout(r, 100));
   }
 
   return result;

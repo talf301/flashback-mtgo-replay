@@ -272,9 +272,17 @@ export async function resolveCardNamesByMtgoId(
   }
 
   // Individual fetch for 6+ digit IDs (batch endpoint rejects these)
-  for (const id of individual) {
+  // Also used as fallback for IDs not found in the batch
+  const notFoundInBatch = batchable.filter((id) => !result.has(id));
+  for (const id of [...individual, ...notFoundInBatch]) {
     try {
-      const response = await fetch(`https://api.scryfall.com/cards/mtgo/${id}`);
+      let response = await fetch(`https://api.scryfall.com/cards/mtgo/${id}`);
+      // Foil fallback: MTGO foil IDs are typically mtgo_id + 1,
+      // so if id fails, try id - 1 (we may have the foil texture)
+      if (!response.ok && id > 1) {
+        await new Promise((r) => setTimeout(r, 100));
+        response = await fetch(`https://api.scryfall.com/cards/mtgo/${id - 1}`);
+      }
       if (!response.ok) continue;
       const card: ScryfallCard = await response.json();
       result.set(id, card);

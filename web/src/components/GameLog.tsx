@@ -1,23 +1,16 @@
-/**
- * Game Log Sidebar Component
- *
- * Displays a chronological list of game actions with filtering and search.
- * Supports auto-scroll to latest action and clickable log entries.
- */
-
 import { useState, useRef, useEffect, useMemo } from 'react';
-import type { ReplayAction } from '../types/replay';
+import type { RawReplayAction } from '../types/replay';
+import { parseActionType } from '../types/replay';
 
 export interface GameLogProps {
-  actions: ReplayAction[];
+  actions: RawReplayAction[];
   currentStep?: number;
   onActionClick?: (step: number) => void;
   playerNameMap?: Record<string, string>;
+  cardNameMap?: Record<string, string>;
   className?: string;
   maxEntries?: number;
   autoScroll?: boolean;
-  showTimestamp?: boolean;
-  showPhase?: boolean;
 }
 
 export function GameLog({
@@ -25,143 +18,118 @@ export function GameLog({
   currentStep,
   onActionClick,
   playerNameMap = {},
+  cardNameMap = {},
   className = '',
   maxEntries,
   autoScroll = true,
-  showTimestamp = true,
-  showPhase = true,
 }: GameLogProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const currentRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new actions arrive
   useEffect(() => {
-    if (autoScroll && scrollRef.current && actions.length > 0) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    if (autoScroll && currentRef.current) {
+      currentRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
-  }, [actions, autoScroll]);
+  }, [currentStep, autoScroll]);
 
-  // Filter actions based on search and type filter
+  const parsedActions = useMemo(
+    () => actions.map((a, i) => ({ index: i, raw: a, ...parseActionType(a.action_type) })),
+    [actions],
+  );
+
   const filteredActions = useMemo(() => {
-    let filtered = [...actions];
+    let filtered = parsedActions;
 
-    // Apply type filter
     if (filterType !== 'all') {
-      filtered = filtered.filter((action) => {
-        const actionType = typeof action.action_type === 'object'
-          ? action.action_type.type
-          : action.action_type;
-        return actionType === filterType;
-      });
+      filtered = filtered.filter((a) => a.type === filterType);
     }
 
-    // Apply search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter((action) => {
-        const actionType = typeof action.action_type === 'object'
-          ? action.action_type.type
-          : action.action_type;
-        return (
-          actionType.toLowerCase().includes(query) ||
-          action.active_player?.toLowerCase().includes(query) ||
-          action.phase?.toLowerCase().includes(query)
-        );
-      });
+      filtered = filtered.filter((a) =>
+        a.type.toLowerCase().includes(query) ||
+        a.raw.active_player?.toLowerCase().includes(query) ||
+        a.raw.phase?.toLowerCase().includes(query),
+      );
     }
 
-    // Limit entries if specified
     if (maxEntries) {
       filtered = filtered.slice(-maxEntries);
     }
 
     return filtered;
-  }, [actions, searchQuery, filterType, maxEntries]);
+  }, [parsedActions, searchQuery, filterType, maxEntries]);
 
-  // Get unique action types for filter dropdown
   const actionTypes = useMemo(() => {
     const types = new Set<string>();
-    actions.forEach((action) => {
-      const actionType = typeof action.action_type === 'object'
-        ? action.action_type.type
-        : action.action_type;
-      types.add(actionType);
-    });
+    parsedActions.forEach((a) => types.add(a.type));
     return Array.from(types).sort();
-  }, [actions]);
+  }, [parsedActions]);
 
-  const formatTimestamp = (timestamp: string) => {
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString(undefined, {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
+  const getPlayerName = (id?: string): string => {
+    if (!id) return '';
+    return playerNameMap[id] || id;
   };
 
-  const formatPhase = (phase?: string) => {
-    if (!phase) return '';
-    const phaseNames: Record<string, string> = {
-      beginning: 'Beginning',
-      main1: 'Main 1',
-      combat: 'Combat',
-      main2: 'Main 2',
-      end: 'End',
-    };
-    return phaseNames[phase] || phase;
-  };
+  const cardName = (id: string) => cardNameMap[id] || `#${id}`;
 
-  const getActionDescription = (action: ReplayAction): string => {
-    const actionType = typeof action.action_type === 'object'
-      ? action.action_type
-      : { type: action.action_type };
-
-    switch (actionType.type) {
+  const getActionDescription = (type: string, data: Record<string, unknown>): string => {
+    switch (type) {
       case 'DrawCard':
-        return 'drew a card';
+        return `drew ${cardName(data.card_id as string)}`;
       case 'PlayLand':
-        return 'played a land';
+        return `played ${cardName(data.card_id as string)}`;
       case 'CastSpell':
-        return 'cast a spell';
+        return `cast ${cardName(data.card_id as string)}`;
       case 'ActivateAbility':
-        return 'activated an ability';
+        return `activated ${cardName(data.card_id as string)}`;
       case 'Attack':
-        return 'attacked';
+        return `${cardName(data.attacker_id as string)} attacked`;
       case 'Block':
-        return 'blocked';
-      case 'Damage':
-        return 'dealt damage';
-      case 'LifeChange':
-        const lifeChange = actionType as { old: number; new: number };
-        const diff = lifeChange.new - lifeChange.old;
+        return `${cardName(data.blocker_id as string)} blocked`;
+      case 'Resolve':
+        return `${cardName(data.card_id as string)} resolved`;
+      case 'LifeChange': {
+        const diff = (data.new_life as number) - (data.old_life as number);
         return `${diff > 0 ? 'gained' : 'lost'} ${Math.abs(diff)} life`;
+      }
+      case 'ZoneTransition':
+        return `${data.from_zone} -> ${data.to_zone}`;
+      case 'TapPermanent':
+        return `tapped a permanent`;
+      case 'UntapPermanent':
+        return `untapped a permanent`;
+      case 'DamageMarked':
+        return `${data.damage} damage marked`;
+      case 'SummoningSickness':
+        return data.has_sickness ? `summoning sick` : `ready to act`;
+      case 'FaceDown':
+        return `turned face down`;
+      case 'FaceUp':
+        return `turned face up`;
+      case 'Attach':
+        return `attached`;
+      case 'Detach':
+        return `detached`;
+      case 'CounterUpdate':
+        return `${data.count} ${data.counter_type} counter(s)`;
+      case 'PowerToughnessUpdate':
+        return `now ${data.power}/${data.toughness}`;
+      case 'PhaseChange':
+        return `${data.phase}`;
+      case 'TurnChange':
+        return `Turn ${data.turn}`;
       case 'PassPriority':
-        return 'passed priority';
-      case 'ResolveSpell':
-        return 'resolved a spell';
-      case 'TokenCreate':
-        return 'created a token';
-      case 'ZoneChange':
-        const zoneChange = actionType as { from: string; to: string };
-        return `moved card from ${zoneChange.from} to ${zoneChange.to}`;
-      case 'CounterAdd':
-        const counterAdd = actionType as { counter_type: string; amount: number };
-        return `added ${counterAdd.amount} ${counterAdd.counter_type} counter(s)`;
-      case 'GameEnd':
-        const gameEnd = actionType as { type: 'GameEnd'; winner: string };
-        return `game ended - ${gameEnd.winner} won`;
+        return `passed priority`;
+      case 'Unknown':
+        return data.description as string || 'unknown action';
       default:
-        return `performed ${actionType.type}`;
+        return type;
     }
   };
 
-  const getPlayerName = (playerId?: string): string => {
-    if (!playerId) return '';
-    return playerNameMap[playerId] || playerId;
-  };
-
-  const getActionColor = (actionType: string): string => {
+  const getActionColor = (type: string): string => {
     const colorMap: Record<string, string> = {
       DrawCard: 'text-blue-400',
       PlayLand: 'text-green-400',
@@ -169,25 +137,26 @@ export function GameLog({
       ActivateAbility: 'text-yellow-400',
       Attack: 'text-red-400',
       Block: 'text-orange-400',
-      Damage: 'text-red-500',
+      Resolve: 'text-cyan-400',
       LifeChange: 'text-pink-400',
-      PassPriority: 'text-slate-500',
-      ResolveSpell: 'text-cyan-400',
-      TokenCreate: 'text-emerald-400',
-      ZoneChange: 'text-indigo-400',
-      CounterAdd: 'text-amber-400',
-      GameEnd: 'text-red-600 font-bold',
+      ZoneTransition: 'text-indigo-400',
+      TapPermanent: 'text-slate-400',
+      UntapPermanent: 'text-slate-300',
+      DamageMarked: 'text-red-500',
+      SummoningSickness: 'text-slate-500',
+      PhaseChange: 'text-slate-500',
+      TurnChange: 'text-white font-semibold',
+      CounterUpdate: 'text-amber-400',
+      PowerToughnessUpdate: 'text-teal-400',
     };
-    return colorMap[actionType] || 'text-slate-400';
+    return colorMap[type] || 'text-slate-400';
   };
 
   return (
     <div className={`bg-slate-900/80 backdrop-blur border border-slate-700 rounded-lg flex flex-col h-full ${className}`}>
-      {/* Header */}
       <div className="p-4 border-b border-slate-700">
         <h2 className="text-lg font-semibold text-white mb-3">Game Log</h2>
 
-        {/* Search input */}
         <div className="mb-3">
           <input
             type="text"
@@ -198,7 +167,6 @@ export function GameLog({
           />
         </div>
 
-        {/* Type filter */}
         {actionTypes.length > 0 && (
           <div className="flex items-center gap-2">
             <label htmlFor="action-filter" className="text-sm text-slate-400">
@@ -221,58 +189,47 @@ export function GameLog({
         )}
       </div>
 
-      {/* Log entries */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-2">
+      <div className="flex-1 overflow-y-auto p-4 space-y-2">
         {filteredActions.length === 0 ? (
           <div className="text-center text-slate-500 italic py-8">
             No actions to display
           </div>
         ) : (
-          filteredActions.map((action, index) => {
-            const actionType = typeof action.action_type === 'object'
-              ? action.action_type.type
-              : action.action_type;
-
-            const isCurrentStep = currentStep !== undefined && index === currentStep;
-            const stepNumber = actions.indexOf(action);
+          filteredActions.map((action) => {
+            const isCurrentStep = currentStep !== undefined && action.index === currentStep - 1;
+            const playerForAction = (action.data.player_id as string) ?? action.raw.active_player;
 
             return (
               <div
-                key={action.timestamp}
-                onClick={() => onActionClick?.(stepNumber)}
+                key={action.index}
+                ref={isCurrentStep ? currentRef : undefined}
+                onClick={() => onActionClick?.(action.index + 1)}
                 className={`
                   p-3 rounded-lg border transition-all cursor-pointer
                   ${isCurrentStep ? 'border-blue-500 bg-blue-500/10' : 'border-slate-700 hover:border-slate-500 hover:bg-slate-800/50'}
                 `}
               >
                 <div className="flex items-start gap-2">
-                  {showTimestamp && (
-                    <span className="text-xs text-slate-500 flex-shrink-0">
-                      {formatTimestamp(action.timestamp)}
-                    </span>
-                  )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs text-slate-500">#{stepNumber + 1}</span>
-                      {action.turn && (
+                      <span className="text-xs text-slate-500">#{action.index + 1}</span>
+                      {action.raw.turn > 0 && (
                         <span className="text-xs text-slate-500">
-                          Turn {action.turn}
+                          T{action.raw.turn}
                         </span>
                       )}
-                      {showPhase && action.phase && (
+                      {action.raw.phase && (
                         <span className="text-xs text-slate-400">
-                          {formatPhase(action.phase)}
+                          {action.raw.phase}
                         </span>
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      {action.active_player && (
-                        <span className="text-sm font-medium text-slate-300">
-                          {getPlayerName(action.active_player)}
-                        </span>
-                      )}
-                      <span className={`text-sm ${getActionColor(actionType)}`}>
-                        {getActionDescription(action)}
+                      <span className="text-sm font-medium text-slate-300">
+                        {getPlayerName(playerForAction)}
+                      </span>
+                      <span className={`text-sm ${getActionColor(action.type)}`}>
+                        {getActionDescription(action.type, action.data)}
                       </span>
                     </div>
                   </div>
@@ -283,7 +240,6 @@ export function GameLog({
         )}
       </div>
 
-      {/* Footer */}
       {filteredActions.length > 0 && maxEntries && (
         <div className="p-3 border-t border-slate-700 text-xs text-slate-500">
           Showing {filteredActions.length} of {actions.length} actions

@@ -106,6 +106,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
     let start_time = Utc::now();
     translator.set_start_time(start_time);
 
+    let mut card_names: HashMap<String, String> = HashMap::new();
+    let mut card_textures: HashMap<String, i32> = HashMap::new();
     let mut gs_message_count = 0u32;
     let mut game_play_status_count = 0u32;
     let mut state_update_count = 0u32;
@@ -167,6 +169,22 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
                                 state.apply_elements(&elements, !is_diff);
 
+                                // Collect card names and texture IDs
+                                for (thing_id, thing) in &state.things {
+                                    let tid = thing_id.to_string();
+                                    if let Some(ref name) = thing.card_name {
+                                        card_names
+                                            .entry(tid.clone())
+                                            .or_insert_with(|| name.clone());
+                                    }
+                                    if let Some(tex) = thing.card_texture_number {
+                                        let mtgo_id = tex / 2;
+                                        card_textures
+                                            .entry(tid)
+                                            .or_insert(mtgo_id);
+                                    }
+                                }
+
                                 let actions = translator.process(state);
                                 all_actions.extend(actions);
                             }
@@ -217,6 +235,10 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         "Pipeline stats: {} GsMessages, {} GamePlayStatus, {} state updates, {} errors",
         gs_message_count, game_play_status_count, state_update_count, decode_errors
     );
+    eprintln!(
+        "Card names: {}, card textures (MTGO IDs): {}",
+        card_names.len(), card_textures.len()
+    );
 
     // Build ReplayFile
     let final_state = game_state.as_ref();
@@ -260,6 +282,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         header,
         actions: all_actions,
         metadata,
+        card_names,
+        card_textures,
     }
 }
 

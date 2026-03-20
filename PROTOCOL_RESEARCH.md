@@ -518,37 +518,60 @@ Re-run after every MTGO client update to detect protocol changes.
 
 ---
 
-## Next Steps
+## Decoder Status (as of 2026-03-19)
 
-### 1. Build the Go Decoder
+The Rust decoder is complete and validated against `golden_v1.bin` (12MB, 10,195
+messages, 3-game Modern Bo3 match). Full pipeline:
 
-With framing + opcode table + message layouts:
-
-1. Read 4-byte length prefix
-2. Read remainder → complete FLS message buffer
-3. Look up opCode in table; if `GsMessageMessage` (1153) or `GsReplayMessageMessage` (1156):
-   - Extract `MetaMessage` byte[]
-   - Read inner opCode from MetaMessage bytes [4-5]
-   - Dispatch to inner message decoder
-4. For `GamePlayStatusMessage` (inner opCode 4652): decode StateBuf
-
-The decoder only needs to handle the game-relevant subset, not all 1482 types.
-
-### 3. TLS Decryption
-
-Traffic is TLS-encrypted so raw captures are unreadable. Two options:
-
-**Option A — SSLKEYLOGFILE** (try first, may not work with .NET SslStream):
-```powershell
-$env:SSLKEYLOGFILE = "C:\mtgo-keys.log"
-# launch MTGO, play a game
-# load key log in Wireshark: Preferences → TLS → Pre-Master-Secret log
+```
+framing → fls → game_messages → statebuf (assembly + diffs) → state → translator → ReplayFile
 ```
 
-**Option B — Hook SslSocketWrapper** in `FlsClient.dll`:
-The `FlsClient.Sockets.SslSocketWrapper` class is the point where decrypted
-bytes are handed off. Injecting a hook here (e.g. via Harmony/dnSpy) would
-yield plaintext game messages without needing TLS key material.
+**Results:** 623 actions decoded across 11 turns and 3 games. All checksums pass.
+7 non-fatal errors (diff-without-prior-state at game boundaries).
+
+**Golden file action distribution:**
+- Game 1: 262 actions, 9 turns
+- Game 2: 98 actions, 4 turns
+- Game 3: 263 actions, 11 turns
+
+See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for current limitations.
+
+## Next Steps
+
+### 1. Card Name Coverage (highest priority)
+
+Only 25% of cards have names. The `CARDNAME_STRING` property is not sent for
+cards present in the initial state snapshot. Two approaches:
+
+**Option A — CARDTEXTURE_NUMBER mapping** (most promising):
+Every ThingElement has a `CARDTEXTURE_NUMBER` (card art ID). Build a mapping from
+texture IDs to card names/Scryfall IDs. Source: MTGO data files or empirical
+correlation from named cards in captures.
+
+**Option B — String table decoding:**
+Cards with `length == 0xFFFF` names are string table references (`<strtable:N>`).
+Decompile the string table population logic from the MTGO client.
+
+### 2. Multi-Game Separation
+
+The decoder currently concatenates all games in a session. Add game boundary
+detection to split into separate replay files or add boundary markers.
+
+### 3. Replay Header Population
+
+Capture game_id, player names, and result before the GameOver reset clears state.
+Requires:
+- `GsPlayerOrderMessage` (opcode 1155) wire layout — player names/seats
+- `GameResultsMessage` (opcode 4485) wire layout — winner determination
+
+### 4. TLS Decryption
+
+Traffic is TLS-encrypted so raw captures are unreadable. Current approach uses
+a .NET hook (`tools/capture-hook/`) that patches `FlsClient.Sockets.SslSocketWrapper`
+to dump decrypted bytes.
+
+Alternative: `SSLKEYLOGFILE` environment variable (may not work with .NET SslStream).
 
 ---
 

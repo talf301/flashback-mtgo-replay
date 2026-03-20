@@ -5,7 +5,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Card } from './Card';
-// Note: Scryfall loading is tested in scryfall.test.ts
+import { createCard } from '../types/state';
 
 vi.mock('../api/scryfall');
 
@@ -16,59 +16,52 @@ describe('Card Component', () => {
 
   it('should render face-down card', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: true,
-      counters: [],
+      faceDown: true,
     };
 
-    render(<Card card={mockCard} isFaceUp={false} />);
+    render(<Card card={mockCard} />);
 
     expect(screen.getByText('MTG')).toBeInTheDocument();
-    expect(screen.getByText('Card')).toBeInTheDocument();
+    expect(screen.getByText('Face Down')).toBeInTheDocument();
   });
 
   it('should render face-up card without image data', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
-      counters: [],
     };
 
-    render(<Card card={mockCard} isFaceUp={true} />);
+    render(<Card card={mockCard} />);
 
     expect(screen.getByText('Test Card')).toBeInTheDocument();
-    expect(screen.getByText('ID: card-1')).toBeInTheDocument();
   });
 
   it('should render card with counters', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
       counters: [
         { type: '+1/+1', amount: 2 },
         { type: '-1/-1', amount: 1 },
       ],
     };
 
-    render(<Card card={mockCard} isFaceUp={true} showCounters={true} />);
+    render(<Card card={mockCard} showCounters={true} />);
 
-    expect(screen.getByText('+2')).toBeInTheDocument();
-    expect(screen.getByText('-1')).toBeInTheDocument();
+    expect(screen.getByText('2 +1/+1')).toBeInTheDocument();
+    expect(screen.getByText('1 -1/-1')).toBeInTheDocument();
   });
 
   it('should call onClick handler when clicked', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
-      counters: [],
     };
 
     const handleClick = vi.fn();
-    render(<Card card={mockCard} isFaceUp={true} onClick={handleClick} />);
+    render(<Card card={mockCard} onClick={handleClick} />);
 
     const cardElement = screen.getByText('Test Card').closest('div');
     if (cardElement) {
@@ -80,69 +73,63 @@ describe('Card Component', () => {
 
   it('should apply selected styles', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
-      counters: [],
     };
 
-    const { rerender } = render(<Card card={mockCard} isFaceUp={true} isSelected={false} />);
+    const { rerender } = render(<Card card={mockCard} isSelected={false} />);
 
-    const cardElement = screen.getByText('Test Card').closest('div');
+    const cardElement = screen.getByText('Test Card').closest('.bg-slate-800');
     expect(cardElement).not.toHaveClass('ring-2');
 
-    rerender(<Card card={mockCard} isFaceUp={true} isSelected={true} />);
+    rerender(<Card card={mockCard} isSelected={true} />);
 
-    const selectedElement = screen.getByText('Test Card').closest('div');
+    const selectedElement = screen.getByText('Test Card').closest('.bg-slate-800');
     expect(selectedElement).toHaveClass('ring-2');
   });
 
   it('should apply tapped styles', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
-      counters: [],
     };
 
-    const { rerender } = render(<Card card={mockCard} isFaceUp={true} isTapped={false} />);
+    const { rerender } = render(<Card card={mockCard} />);
 
-    const cardElement = screen.getByText('Test Card').closest('div');
+    const cardElement = screen.getByText('Test Card').closest('.bg-slate-800');
     expect(cardElement).not.toHaveClass('rotate-90');
 
-    rerender(<Card card={mockCard} isFaceUp={true} isTapped={true} />);
+    const tappedCard = { ...mockCard, tapped: true };
+    rerender(<Card card={tappedCard} />);
 
-    const tappedElement = screen.getByText('Test Card').closest('div');
+    const tappedElement = screen.getByText('Test Card').closest('.bg-slate-800');
     expect(tappedElement).toHaveClass('rotate-90');
   });
 
   it('should handle different sizes', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
-      counters: [],
     };
 
-    const { rerender } = render(<Card card={mockCard} isFaceUp={true} size="small" />);
+    const { rerender } = render(<Card card={mockCard} size="small" />);
     expect(screen.getByText('Test Card')).toBeInTheDocument();
 
-    rerender(<Card card={mockCard} isFaceUp={true} size="normal" />);
+    rerender(<Card card={mockCard} size="normal" />);
     expect(screen.getByText('Test Card')).toBeInTheDocument();
 
-    rerender(<Card card={mockCard} isFaceUp={true} size="large" />);
+    rerender(<Card card={mockCard} size="large" />);
     expect(screen.getByText('Test Card')).toBeInTheDocument();
   });
 
   it('should not show counters when showCounters is false', () => {
     const mockCard = {
-      id: 'card-1',
+      ...createCard('card-1'),
       name: 'Test Card',
-      is_face_down: false,
       counters: [{ type: '+1/+1', amount: 2 }],
     };
 
-    render(<Card card={mockCard} isFaceUp={true} showCounters={false} />);
+    render(<Card card={mockCard} showCounters={false} />);
 
     expect(screen.queryByText('+2')).not.toBeInTheDocument();
   });

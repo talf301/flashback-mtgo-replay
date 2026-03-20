@@ -106,6 +106,7 @@ pub struct ThingState {
     pub controller: i32,
     pub owner: i32,
     pub card_name: Option<String>,
+    pub card_texture_number: Option<i32>,
     pub tapped: bool,
     pub attacking: bool,
     pub blocking: bool,
@@ -130,6 +131,7 @@ impl Default for ThingState {
             controller: 0,
             owner: 0,
             card_name: None,
+            card_texture_number: None,
             tapped: false,
             attacking: false,
             blocking: false,
@@ -249,6 +251,11 @@ impl GameState {
                             opcodes::CARDNAME_STRING => {
                                 if let PropertyValue::Str(s) = value {
                                     thing.card_name = Some(s.clone());
+                                }
+                            }
+                            opcodes::CARDTEXTURE_NUMBER => {
+                                if let PropertyValue::Int(v) = value {
+                                    thing.card_texture_number = Some(*v);
                                 }
                             }
                             opcodes::TAPPED => {

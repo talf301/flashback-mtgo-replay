@@ -522,6 +522,7 @@ mod tests {
             controller: 0,
             owner: 0,
             card_name: None,
+            card_texture_number: None,
             tapped: false,
             attacking: false,
             blocking: false,

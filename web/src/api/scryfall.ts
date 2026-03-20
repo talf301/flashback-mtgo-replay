@@ -208,6 +208,69 @@ export function cacheCardData(key: string, card: ScryfallCard): void {
 }
 
 /**
+ * Resolves MTGO IDs to card names using Scryfall's /cards/collection endpoint.
+ * Batches up to 75 identifiers per request (Scryfall limit).
+ *
+ * @param mtgoIds - Array of MTGO catalog IDs
+ * @returns Map of mtgo_id → card name
+ */
+export async function resolveCardNamesByMtgoId(
+  mtgoIds: number[],
+): Promise<Map<number, ScryfallCard>> {
+  const result = new Map<number, ScryfallCard>();
+  const uncached: number[] = [];
+
+  // Check cache first
+  for (const id of mtgoIds) {
+    const cacheKey = `mtgo:${id}`;
+    const cached = cardCache.get(cacheKey);
+    if (cached) {
+      result.set(id, cached);
+    } else {
+      uncached.push(id);
+    }
+  }
+
+  // Batch fetch in groups of 75
+  for (let i = 0; i < uncached.length; i += 75) {
+    const batch = uncached.slice(i, i + 75);
+
+    try {
+      const response = await fetch('https://api.scryfall.com/cards/collection', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          identifiers: batch.map((id) => ({ mtgo_id: id })),
+        }),
+      });
+
+      if (!response.ok) {
+        console.warn(`Scryfall batch request failed: ${response.status}`);
+        continue;
+      }
+
+      const data = await response.json();
+
+      for (const card of data.data ?? []) {
+        const mtgoId = card.mtgo_id as number;
+        result.set(mtgoId, card);
+        cardCache.set(`mtgo:${mtgoId}`, card);
+        cacheCardData(card.id, card);
+      }
+    } catch (error) {
+      console.warn('Scryfall batch fetch error:', error);
+    }
+
+    // Rate limit: Scryfall asks for 50-100ms between requests
+    if (i + 75 < uncached.length) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+  }
+
+  return result;
+}
+
+/**
  * Clears all card data from cache
  */
 export function clearCardCache(): void {

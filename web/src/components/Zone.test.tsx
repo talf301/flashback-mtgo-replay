@@ -6,14 +6,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Zone } from './Zone';
 import type { Zone as ZoneType } from '../types/state';
+import { createCard } from '../types/state';
 
 describe('Zone Component', () => {
   const mockZone: ZoneType = {
     name: 'battlefield',
     owner: 'player-1',
     cards: [
-      { id: 'card-1', name: 'Card One', counters: [] },
-      { id: 'card-2', name: 'Card Two', counters: [] },
+      { ...createCard('card-1'), name: 'Card One' },
+      { ...createCard('card-2'), name: 'Card Two' },
     ],
   };
 
@@ -25,7 +26,7 @@ describe('Zone Component', () => {
   it('should render zone with cards', () => {
     render(<Zone zone={mockZone} />);
 
-    expect(screen.getByText('Battlefield (player-1)')).toBeInTheDocument();
+    expect(screen.getByText('Battlefield')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
     expect(screen.getByText('Card One')).toBeInTheDocument();
     expect(screen.getByText('Card Two')).toBeInTheDocument();
@@ -40,7 +41,7 @@ describe('Zone Component', () => {
 
     render(<Zone zone={emptyZone} emptyMessage="No cards in graveyard" />);
 
-    expect(screen.getByText('Graveyard (player-1)')).toBeInTheDocument();
+    expect(screen.getByText('Graveyard')).toBeInTheDocument();
     expect(screen.getByText('No cards in graveyard')).toBeInTheDocument();
   });
 
@@ -66,13 +67,13 @@ describe('Zone Component', () => {
   it('should toggle card selection when selectable', () => {
     render(<Zone zone={mockZone} selectable />);
 
-    const cardElement = screen.getByText('Card One').closest('div');
+    const cardElement = screen.getByText('Card One').closest('.bg-slate-800');
     if (cardElement) {
       fireEvent.click(cardElement);
     }
 
     // Card should now have selected class
-    const selectedElement = screen.getByText('Card One').closest('div');
+    const selectedElement = screen.getByText('Card One').closest('.bg-slate-800');
     expect(selectedElement).toHaveClass('ring-2');
 
     // Click again to deselect
@@ -80,7 +81,7 @@ describe('Zone Component', () => {
       fireEvent.click(cardElement);
     }
 
-    const deselectedElement = screen.getByText('Card One').closest('div');
+    const deselectedElement = screen.getByText('Card One').closest('.bg-slate-800');
     expect(deselectedElement).not.toHaveClass('ring-2');
   });
 
@@ -125,9 +126,8 @@ describe('Zone Component', () => {
       name: 'battlefield',
       owner: 'player-1',
       cards: Array.from({ length: 10 }, (_, i) => ({
-        id: `card-${i}`,
+        ...createCard(`card-${i}`),
         name: `Card ${i}`,
-        counters: [],
       })),
     };
 

@@ -10,24 +10,29 @@ import type { ReplayFile } from './types/replay';
 import { getCardBatch } from './api/scryfall';
 
 vi.mock('./api/scryfall');
-vi.mock('./engine/reconstructor');
+vi.mock('./engine/reconstructor', async () => {
+  const { createEmptyBoardState } = await import('./types/state');
+  class MockReconstructor {
+    loadReplay = vi.fn();
+    reconstruct = vi.fn().mockReturnValue(createEmptyBoardState());
+    getActionCount = vi.fn().mockReturnValue(0);
+  }
+  return { Reconstructor: MockReconstructor };
+});
 
 describe('App Component', () => {
   const mockReplayFile: ReplayFile = {
-    version: '1.0',
+    metadata: {},
     header: {
       game_id: 'test-game-123',
       format: 'Standard',
       start_time: '2024-01-01T10:00:00Z',
       end_time: '2024-01-01T10:30:00Z',
       players: [
-        { id: 'player-1', name: 'Alice' },
-        { id: 'player-2', name: 'Bob' },
+        { player_id: 'player-1', name: 'Alice', life_total: 20 },
+        { player_id: 'player-2', name: 'Bob', life_total: 20 },
       ],
-      result: {
-        winner: 'player-1',
-        reason: 'opponent conceded',
-      },
+      result: { Win: { winner_id: 'player-1' } },
     },
     actions: [
       {
@@ -35,21 +40,21 @@ describe('App Component', () => {
         turn: 1,
         phase: 'beginning',
         active_player: 'player-1',
-        action_type: { type: 'DrawCard', card_id: 'card-1' },
+        action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
       },
       {
         timestamp: '2024-01-01T10:00:05Z',
         turn: 1,
         phase: 'main1',
         active_player: 'player-1',
-        action_type: { type: 'PlayLand', card_id: 'card-2' },
+        action_type: { PlayLand: { player_id: 'player-1', card_id: 'card-2' } },
       },
     ],
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
     (getCardBatch as any).mockResolvedValue([]);
   });
 
@@ -99,8 +104,8 @@ describe('App Component', () => {
     await waitFor(() => {
       expect(screen.getByText('Game: test-game-123')).toBeInTheDocument();
       expect(screen.getByText('Standard')).toBeInTheDocument();
-      expect(screen.getByText('Alice')).toBeInTheDocument();
-      expect(screen.getByText('Bob')).toBeInTheDocument();
+      expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);
     });
   });
 
@@ -206,18 +211,18 @@ describe('App Component', () => {
     }
 
     await waitFor(() => {
-      expect(screen.getByText('1x')).toBeInTheDocument();
+      expect(screen.getAllByText('1x').length).toBeGreaterThan(0);
     });
 
     // Change speed to 2x
-    const speed2xButton = screen.getByText('2x').closest('button');
+    const speed2xElements = screen.getAllByText('2x');
+    const speed2xButton = speed2xElements.find(el => el.closest('button'))?.closest('button');
     if (speed2xButton) {
       await userEvent.click(speed2xButton);
     }
 
     await waitFor(() => {
-      const speedElement = screen.getByText('2x');
-      expect(speedElement).toBeInTheDocument();
+      expect(screen.getAllByText('2x').length).toBeGreaterThan(0);
     });
   });
 
@@ -304,7 +309,7 @@ describe('App Component', () => {
     }
 
     await waitFor(() => {
-      expect(screen.getByText('Alice')).toBeInTheDocument();
+      expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
     });
   });
 

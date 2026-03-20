@@ -5,7 +5,7 @@
  * Includes play/pause, step forward/back, jump to start/end, and speed controls.
  */
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 
 export interface ReplayControlsProps {
   isPlaying: boolean;
@@ -44,12 +44,6 @@ export function ReplayControls({
   onJumpToStep,
   className = '',
 }: ReplayControlsProps) {
-  const [isDragging, setIsDragging] = useState(false);
-
-  // Handle drag state for slider interaction
-  const handleDragStart = () => setIsDragging(true);
-  const handleDragEnd = () => setIsDragging(false);
-
   const handleSliderChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newStep = parseInt(e.target.value, 10);
@@ -153,9 +147,6 @@ export function ReplayControls({
               max={totalSteps}
               value={currentStep}
               onChange={handleSliderChange}
-              onMouseDown={() => setIsDragging(true)}
-              onMouseUp={() => setIsDragging(false)}
-              onMouseLeave={() => setIsDragging(false)}
               className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
             />
             {!isPlaying && (

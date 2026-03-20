@@ -20,7 +20,7 @@ export function FileLoader({
   onFileLoad,
   onError,
   className = '',
-  accept = '.json',
+  accept = '.json,.flashback',
   maxSizeBytes = 10 * 1024 * 1024, // 10MB default
 }: FileLoaderProps) {
   const [isDragging, setIsDragging] = useState(false);
@@ -35,10 +35,6 @@ export function FileLoader({
     }
 
     const replay = data as Partial<ReplayFile>;
-
-    if (typeof replay.version !== 'string') {
-      throw new Error('Missing or invalid version');
-    }
 
     if (!replay.header || typeof replay.header !== 'object') {
       throw new Error('Missing or invalid header');
@@ -69,8 +65,8 @@ export function FileLoader({
         }
 
         // Check file type
-        if (accept && !file.name.endsWith('.json')) {
-          throw new Error(`Invalid file type. Expected ${accept}`);
+        if (accept && !file.name.endsWith('.json') && !file.name.endsWith('.flashback')) {
+          throw new Error(`Invalid file type. Expected .json or .flashback`);
         }
 
         // Read file content

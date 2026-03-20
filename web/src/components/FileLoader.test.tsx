@@ -9,15 +9,16 @@ import type { ReplayFile } from '../types/replay';
 
 describe('FileLoader Component', () => {
   const mockReplayFile: ReplayFile = {
-    version: '1.0',
+    metadata: {},
     header: {
       game_id: 'test-game-123',
       format: 'Standard',
       start_time: '2024-01-01T10:00:00Z',
       players: [
-        { id: 'player-1', name: 'Alice' },
-        { id: 'player-2', name: 'Bob' },
+        { player_id: 'player-1', name: 'Alice', life_total: 20 },
+        { player_id: 'player-2', name: 'Bob', life_total: 20 },
       ],
+      result: 'Incomplete',
     },
     actions: [
       {
@@ -25,7 +26,7 @@ describe('FileLoader Component', () => {
         turn: 1,
         phase: 'beginning',
         active_player: 'player-1',
-        action_type: { type: 'DrawCard', card_id: 'card-1' },
+        action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
       },
     ],
   };
@@ -161,7 +162,7 @@ describe('FileLoader Component', () => {
     }
 
     await waitFor(() => {
-      expect(screen.getByText(/Invalid replay file structure/)).toBeInTheDocument();
+      expect(screen.getByText(/Missing or invalid header/)).toBeInTheDocument();
     });
 
     expect(handleLoad).not.toHaveBeenCalled();
@@ -219,7 +220,7 @@ describe('FileLoader Component', () => {
 
     render(<FileLoader onFileLoad={handleLoad} />);
 
-    const dropZone = screen.getByText(/Drag and drop/).closest('div');
+    const dropZone = screen.getByText(/Drag and drop/).closest('.border-dashed');
     if (dropZone) {
       fireEvent.dragOver(dropZone);
       expect(dropZone).toHaveClass('border-blue-500');

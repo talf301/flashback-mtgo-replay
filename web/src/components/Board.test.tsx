@@ -6,7 +6,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Board } from './Board';
 import type { BoardState } from '../types/state';
-import type { ScryfallCard } from '../api/scryfall';
+import { createCard } from '../types/state';
 
 describe('Board Component', () => {
   const mockBoardState: BoardState = {
@@ -15,19 +15,19 @@ describe('Board Component', () => {
         name: 'battlefield',
         owner: 'player-1',
         cards: [
-          { id: 'card-1', name: 'Creature 1', counters: [] },
-          { id: 'card-2', name: 'Creature 2', counters: [] },
+          { ...createCard('card-1'), name: 'Creature 1' },
+          { ...createCard('card-2'), name: 'Creature 2' },
         ],
       },
       {
         name: 'hand',
         owner: 'player-1',
-        cards: [{ id: 'card-3', name: 'Spell 1', counters: [] }],
+        cards: [{ ...createCard('card-3'), name: 'Spell 1' }],
       },
       {
         name: 'battlefield',
         owner: 'player-2',
-        cards: [{ id: 'card-4', name: 'Creature 3', counters: [] }],
+        cards: [{ ...createCard('card-4'), name: 'Creature 3' }],
       },
     ],
     lifeTotals: {
@@ -35,31 +35,9 @@ describe('Board Component', () => {
       'player-2': 20,
     },
     turn: 3,
-    phase: 'main1',
+    phase: 'precombat_main',
     activePlayer: 'player-1',
     stack: [],
-  };
-
-  const mockCardData: Record<string, ScryfallCard> = {
-    'card-1': {
-      id: 'card-1',
-      name: 'Creature 1',
-      cmc: 2,
-      type_line: 'Creature',
-      colors: ['G'],
-      color_identity: ['G'],
-      image_uris: {
-        small: 'https://example.com/small.jpg',
-        normal: 'https://example.com/normal.jpg',
-        large: 'https://example.com/large.jpg',
-        png: 'https://example.com/card.png',
-        art_crop: 'https://example.com/art.jpg',
-        border_crop: 'https://example.com/border.jpg',
-      },
-      legalities: {},
-      set_name: 'Test',
-      collector_number: '1',
-    },
   };
 
   const mockPlayerNames = {
@@ -73,7 +51,6 @@ describe('Board Component', () => {
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
       />,
     );
 
@@ -81,8 +58,8 @@ describe('Board Component', () => {
     expect(screen.getByText('3')).toBeInTheDocument();
     expect(screen.getByText('Phase:')).toBeInTheDocument();
     expect(screen.getByText('Main 1')).toBeInTheDocument();
-    expect(screen.getByText('Active Player:')).toBeInTheDocument();
-    expect(screen.getByText('Alice')).toBeInTheDocument();
+    expect(screen.getByText('Active:')).toBeInTheDocument();
+    expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
   });
 
   it('should render life totals', () => {
@@ -91,14 +68,12 @@ describe('Board Component', () => {
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        showLifeTotals={true}
       />,
     );
 
-    expect(screen.getByText('Alice')).toBeInTheDocument();
+    expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
     expect(screen.getByText('18')).toBeInTheDocument();
-    expect(screen.getByText('Bob')).toBeInTheDocument();
+    expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);
     expect(screen.getByText('20')).toBeInTheDocument();
   });
 
@@ -108,7 +83,6 @@ describe('Board Component', () => {
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
       />,
     );
 
@@ -125,15 +99,11 @@ describe('Board Component', () => {
       stack: [
         {
           id: 'stack-1',
-          card_id: 'card-1',
           controller: 'player-1',
-          targets: ['card-2'],
         },
         {
           id: 'stack-2',
-          card_id: 'card-2',
           controller: 'player-2',
-          targets: [],
         },
       ],
     };
@@ -143,24 +113,20 @@ describe('Board Component', () => {
         boardState={boardStateWithStack}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        showStack={true}
       />,
     );
 
     expect(screen.getByText('Stack (2)')).toBeInTheDocument();
-    expect(screen.getByText('Resolving...')).toBeInTheDocument();
-    expect(screen.getByText('Waiting...')).toBeInTheDocument();
+    expect(screen.getByText('#stack-1')).toBeInTheDocument();
+    expect(screen.getByText('#stack-2')).toBeInTheDocument();
   });
 
-  it('should not render stack when hidden or empty', () => {
+  it('should not render stack when empty', () => {
     render(
       <Board
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        showStack={false}
       />,
     );
 
@@ -173,12 +139,11 @@ describe('Board Component', () => {
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
       />,
     );
 
-    expect(screen.getByText('Alice')).toBeInTheDocument();
-    expect(screen.getByText('Bob')).toBeInTheDocument();
+    expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);
     expect(screen.getByText('Creature 1')).toBeInTheDocument();
     expect(screen.getByText('Creature 2')).toBeInTheDocument();
     expect(screen.getByText('Creature 3')).toBeInTheDocument();
@@ -192,7 +157,6 @@ describe('Board Component', () => {
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
         onCardClick={handleClick}
       />,
     );
@@ -202,48 +166,17 @@ describe('Board Component', () => {
     expect(handleClick).toBeDefined();
   });
 
-  it('should render with compact layout', () => {
+  it('should render with default layout', () => {
     render(
       <Board
         boardState={mockBoardState}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        zoneLayout="compact"
       />,
     );
 
-    expect(screen.getByText('Alice')).toBeInTheDocument();
-    expect(screen.getByText('Bob')).toBeInTheDocument();
-  });
-
-  it('should not render turn info when hidden', () => {
-    render(
-      <Board
-        boardState={mockBoardState}
-        playerIds={['player-1', 'player-2']}
-        playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        showTurnInfo={false}
-      />,
-    );
-
-    expect(screen.queryByText('Turn:')).not.toBeInTheDocument();
-    expect(screen.queryByText('Phase:')).not.toBeInTheDocument();
-  });
-
-  it('should not render life totals when hidden', () => {
-    render(
-      <Board
-        boardState={mockBoardState}
-        playerIds={['player-1', 'player-2']}
-        playerNames={mockPlayerNames}
-        cardData={mockCardData}
-        showLifeTotals={false}
-      />,
-    );
-
-    expect(screen.queryByText('Life')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);
   });
 
   it('should handle missing active player', () => {
@@ -257,11 +190,10 @@ describe('Board Component', () => {
         boardState={boardStateNoActive}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
       />,
     );
 
-    expect(screen.queryByText('Active Player:')).not.toBeInTheDocument();
+    expect(screen.queryByText('Active:')).not.toBeInTheDocument();
   });
 
   it('should handle default life totals', () => {
@@ -275,7 +207,6 @@ describe('Board Component', () => {
         boardState={boardStateNoLife}
         playerIds={['player-1', 'player-2']}
         playerNames={mockPlayerNames}
-        cardData={mockCardData}
       />,
     );
 

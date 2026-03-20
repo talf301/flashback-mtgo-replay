@@ -75,6 +75,13 @@ pub struct ReplayFile {
     pub header: ReplayHeader,
     pub actions: Vec<ReplayAction>,
     pub metadata: HashMap<String, String>,
+    /// Maps card_id (thing ID as string) to card name, for display purposes.
+    #[serde(default, skip_serializing_if = "HashMap::is_empty")]
+    pub card_names: HashMap<String, String>,
+    /// Maps card_id (thing ID as string) to MTGO catalog ID (CARDTEXTURE_NUMBER / 2).
+    /// Used by the viewer to resolve card names via Scryfall when card_names is missing an entry.
+    #[serde(default, skip_serializing_if = "HashMap::is_empty")]
+    pub card_textures: HashMap<String, i32>,
 }
 
 #[derive(Debug, Error)]
@@ -157,6 +164,8 @@ pub fn create_test_replay() -> ReplayFile {
         header,
         actions,
         metadata,
+        card_names: HashMap::new(),
+        card_textures: HashMap::new(),
     }
 }
 

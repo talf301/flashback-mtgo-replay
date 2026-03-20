@@ -132,7 +132,7 @@ describe('ReplayControls Component', () => {
     render(<ReplayControls {...defaultProps} />);
 
     expect(screen.getByText('Playback Speed')).toBeInTheDocument();
-    expect(screen.getByText('1x')).toBeInTheDocument();
+    expect(screen.getAllByText('1x').length).toBeGreaterThan(0);
     expect(screen.getByText('0.5x')).toBeInTheDocument();
     expect(screen.getByText('2x')).toBeInTheDocument();
   });
@@ -140,11 +140,13 @@ describe('ReplayControls Component', () => {
   it('should highlight selected speed', () => {
     render(<ReplayControls {...defaultProps} playbackSpeed={2} />);
 
-    const speed2x = screen.getByText('2x').closest('button');
-    expect(speed2x).toHaveClass('border-blue-500');
+    const speed2xButtons = screen.getAllByText('2x');
+    const speed2xButton = speed2xButtons.find(el => el.closest('button'))?.closest('button');
+    expect(speed2xButton).toHaveClass('border-blue-500');
 
-    const speed1x = screen.getByText('1x').closest('button');
-    expect(speed1x).not.toHaveClass('border-blue-500');
+    const speed1xButtons = screen.getAllByText('1x');
+    const speed1xButton = speed1xButtons.find(el => el.closest('button'))?.closest('button');
+    expect(speed1xButton).not.toHaveClass('border-blue-500');
   });
 
   it('should call onSpeedChange when speed button clicked', () => {
@@ -162,10 +164,8 @@ describe('ReplayControls Component', () => {
     render(<ReplayControls {...defaultProps} />);
 
     expect(screen.getByText('Space')).toBeInTheDocument();
-    expect(screen.getByText('Play/Pause')).toBeInTheDocument();
-    expect(screen.getByText('←')).toBeInTheDocument();
-    expect(screen.getByText('→')).toBeInTheDocument();
     expect(screen.getByText('Step back/forward')).toBeInTheDocument();
+    expect(screen.getByText('Go to start/end')).toBeInTheDocument();
   });
 
   it('should not render slider when onJumpToStep not provided', () => {

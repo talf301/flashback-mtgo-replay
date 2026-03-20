@@ -2,26 +2,32 @@ export interface BoardState {
   zones: Zone[];
   lifeTotals: Record<string, number>;
   turn: number;
-  phase: Phase;
+  phase: string;
   activePlayer?: string;
   stack: StackObject[];
 }
 
-export type Phase = 'beginning' | 'main1' | 'combat' | 'main2' | 'end';
-
 export interface Zone {
   name: string;
   owner?: string;
-  cards: CardRef[];
+  cards: CardState[];
 }
 
-export interface CardRef {
+export interface CardState {
   id: string;
-  scryfall_id?: string;
   name?: string;
   owner?: string;
-  is_face_down?: boolean;
+  controller?: string;
+  tapped: boolean;
+  attacking: boolean;
+  blocking: boolean;
+  faceDown: boolean;
+  summoningSick: boolean;
+  power?: number;
+  toughness?: number;
+  damage: number;
   counters: Counter[];
+  attachedToId?: string;
 }
 
 export interface Counter {
@@ -31,22 +37,29 @@ export interface Counter {
 
 export interface StackObject {
   id: string;
-  card_id: string;
-  controller: string;
-  targets: string[];
+  controller?: string;
 }
 
 export function createEmptyBoardState(): BoardState {
   return {
-    zones: [
-      { name: 'battlefield', cards: [] },
-      { name: 'hand', cards: [] },
-      { name: 'graveyard', cards: [] },
-      { name: 'exile', cards: [] },
-    ],
+    zones: [],
     lifeTotals: {},
-    turn: 1,
-    phase: 'beginning',
+    turn: 0,
+    phase: '',
     stack: [],
+  };
+}
+
+export function createCard(id: string, owner?: string): CardState {
+  return {
+    id,
+    owner,
+    tapped: false,
+    attacking: false,
+    blocking: false,
+    faceDown: false,
+    summoningSick: false,
+    damage: 0,
+    counters: [],
   };
 }

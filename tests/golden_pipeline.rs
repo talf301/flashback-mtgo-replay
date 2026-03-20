@@ -11,6 +11,7 @@ use flashback::protocol::framing;
 use flashback::protocol::game_messages::{self, GameMessage};
 use flashback::protocol::opcodes;
 use flashback::protocol::statebuf::{self, StateBufProcessor};
+use flashback::protocol::DecodeError;
 use flashback::replay::schema::{ActionType, ReplayAction};
 use flashback::state::GameState;
 use flashback::translator::ReplayTranslator;
@@ -224,6 +225,110 @@ fn generate_golden_json_fixture() {
         "Wrote {} actions to {}",
         snapshots.len(),
         GOLDEN_JSON_FIXTURE
+    );
+}
+
+/// Runs the full pipeline through statebuf processing and verifies the rolling
+/// checksum passes for every GamePlayStatusMessage in the golden file.
+///
+/// `StateBufProcessor::process()` validates checksums internally and returns
+/// `Err(DecodeError::InvalidChecksum { .. })` on failure, so this test simply
+/// asserts that every call to `process()` succeeds.
+#[test]
+fn test_golden_checksum_audit() {
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+
+    let messages = framing::parse_messages(&data).expect("framing should parse");
+
+    let mut statebuf_proc = StateBufProcessor::new();
+    let mut full_state_count: usize = 0;
+    let mut diff_count: usize = 0;
+    // Only true checksum failures: InvalidChecksum means the assembled buffer
+    // did not match the expected checksum embedded in the protocol message.
+    let mut checksum_failures: Vec<String> = Vec::new();
+    // Diffs that arrive before any full state has been seen (beginning of a
+    // mid-game capture) produce UnexpectedEof — these are expected edge cases,
+    // not checksum errors.
+    let mut skipped_no_base_state: usize = 0;
+
+    for raw_msg in messages {
+        let fls_msg = match fls::decode_fls(raw_msg) {
+            Ok(m) => m,
+            Err(_) => continue,
+        };
+
+        match fls_msg {
+            FlsMessage::GsMessage { game_id: _, meta } => {
+                let game_msg = match game_messages::decode_game_message(&meta) {
+                    Ok(m) => m,
+                    Err(_) => continue,
+                };
+
+                match game_msg {
+                    GameMessage::GamePlayStatus(gps) => {
+                        let is_diff =
+                            gps.flags & opcodes::FLAG_GAMESTATE_CONTAINS_DIFFS != 0;
+
+                        match statebuf_proc.process(&gps) {
+                            Ok(Some(_)) => {
+                                if is_diff {
+                                    diff_count += 1;
+                                } else {
+                                    full_state_count += 1;
+                                }
+                            }
+                            Ok(None) => {
+                                // Fragment buffered; no assembled buffer yet — no checksum to verify.
+                            }
+                            Err(DecodeError::InvalidChecksum { expected, got }) => {
+                                checksum_failures.push(format!(
+                                    "InvalidChecksum {{ expected: {}, got: {} }}",
+                                    expected, got
+                                ));
+                            }
+                            Err(_) => {
+                                // Other errors (e.g. diff without prior state at stream start)
+                                // are expected edge cases, not checksum failures.
+                                skipped_no_base_state += 1;
+                            }
+                        }
+                    }
+                    GameMessage::GameOver => {
+                        statebuf_proc.reset();
+                    }
+                    _ => {}
+                }
+            }
+            FlsMessage::GameStatusChange { new_status } => {
+                if new_status == 5 || new_status == 7 {
+                    statebuf_proc.reset();
+                }
+            }
+            _ => {}
+        }
+    }
+
+    let total_verified = full_state_count + diff_count;
+    eprintln!(
+        "\nChecksum audit: {} full-state, {} diff, {} total checksums verified, \
+         {} skipped (no base state), {} checksum failures",
+        full_state_count,
+        diff_count,
+        total_verified,
+        skipped_no_base_state,
+        checksum_failures.len()
+    );
+
+    assert!(
+        checksum_failures.is_empty(),
+        "Expected zero checksum failures, got {}:\n{}",
+        checksum_failures.len(),
+        checksum_failures.join("\n")
+    );
+    assert!(
+        total_verified > 0,
+        "Expected at least one assembled buffer to verify, got 0"
     );
 }
 

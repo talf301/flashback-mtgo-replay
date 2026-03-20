@@ -152,8 +152,11 @@ impl ReplayTranslator {
             }
         }
 
-        // Thing diffs
-        for (thing_id, new_thing) in &new.things {
+        // Thing diffs — iterate in sorted order so output is deterministic.
+        let mut thing_ids: Vec<u32> = new.things.keys().copied().collect();
+        thing_ids.sort_unstable();
+        for thing_id in &thing_ids {
+            let new_thing = &new.things[thing_id];
             let card_id = thing_id.to_string();
 
             if let Some(old_thing) = prev.things.get(thing_id) {

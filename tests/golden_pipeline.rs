@@ -4,6 +4,7 @@
 //! that recognizable game actions are produced.
 
 use std::collections::HashMap;
+use std::path::Path;
 
 use flashback::protocol::fls::{self, FlsMessage};
 use flashback::protocol::framing;
@@ -174,4 +175,96 @@ fn test_golden_file_actions_have_valid_turns() {
     // Turns should generally increase (allowing repeats for same-turn actions)
     let max_turn = actions.iter().map(|a| a.turn).max().unwrap_or(0);
     assert!(max_turn > 0, "Expected at least turn 1, max was {}", max_turn);
+}
+
+/// A stripped-down view of a [`ReplayAction`] that omits the `timestamp` field.
+///
+/// Timestamps are set to `Utc::now()` at pipeline execution time, so they
+/// differ between runs and must be excluded from snapshot comparisons.
+#[derive(Debug, PartialEq, serde::Serialize, serde::Deserialize)]
+struct ActionSnapshot {
+    turn: i32,
+    phase: String,
+    active_player: String,
+    action_type: ActionType,
+}
+
+impl From<&flashback::replay::schema::ReplayAction> for ActionSnapshot {
+    fn from(a: &flashback::replay::schema::ReplayAction) -> Self {
+        ActionSnapshot {
+            turn: a.turn,
+            phase: a.phase.clone(),
+            active_player: a.active_player.clone(),
+            action_type: a.action_type.clone(),
+        }
+    }
+}
+
+const GOLDEN_JSON_FIXTURE: &str = "tests/fixtures/golden_v1_replay.json";
+
+/// Generates `tests/fixtures/golden_v1_replay.json` when it does not yet exist.
+///
+/// Run with `cargo test generate_golden_json_fixture -- --ignored` to
+/// (re-)create the fixture.
+#[test]
+#[ignore]
+fn generate_golden_json_fixture() {
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+    let actions = run_pipeline(&data);
+
+    let snapshots: Vec<ActionSnapshot> = actions.iter().map(ActionSnapshot::from).collect();
+    let json =
+        serde_json::to_string_pretty(&snapshots).expect("actions should serialize to JSON");
+
+    std::fs::write(GOLDEN_JSON_FIXTURE, &json)
+        .expect("should write golden_v1_replay.json");
+
+    eprintln!(
+        "Wrote {} actions to {}",
+        snapshots.len(),
+        GOLDEN_JSON_FIXTURE
+    );
+}
+
+/// Regression test: re-runs the pipeline and compares the output (excluding
+/// timestamps) against the stored JSON fixture.
+///
+/// If this test fails, either the pipeline logic changed or the fixture is
+/// stale.  Re-generate it by running the `generate_golden_json_fixture` test
+/// above and reviewing the diff before committing.
+#[test]
+fn test_golden_snapshot_regression() {
+    assert!(
+        Path::new(GOLDEN_JSON_FIXTURE).exists(),
+        "Golden fixture {} not found – run \
+         `cargo test generate_golden_json_fixture -- --ignored` to create it",
+        GOLDEN_JSON_FIXTURE
+    );
+
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+    let actions = run_pipeline(&data);
+    let actual: Vec<ActionSnapshot> = actions.iter().map(ActionSnapshot::from).collect();
+
+    let fixture_json =
+        std::fs::read_to_string(GOLDEN_JSON_FIXTURE).expect("should read fixture JSON");
+    let expected: Vec<ActionSnapshot> =
+        serde_json::from_str(&fixture_json).expect("fixture JSON should deserialize");
+
+    assert_eq!(
+        actual.len(),
+        expected.len(),
+        "Action count mismatch: got {}, expected {}",
+        actual.len(),
+        expected.len()
+    );
+
+    for (i, (act, exp)) in actual.iter().zip(expected.iter()).enumerate() {
+        assert_eq!(
+            act, exp,
+            "Action {} differs from fixture\n  actual:   {:?}\n  expected: {:?}",
+            i, act, exp
+        );
+    }
 }

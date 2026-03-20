@@ -1,0 +1,6616 @@
+[
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "416"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "417"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "419"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "420"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "422"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 1,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "423"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "425"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 20,
+        "new_life": 19
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "426"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "427"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "334"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "335"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "336"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "337"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "338"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "340"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "344"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "347"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "353"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "354"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "355"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "361"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "367"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "368"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "369"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "376"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "377"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "378"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "379"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "380"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "383"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "384"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "385"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "386"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "387"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "388"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "390"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "392"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "393"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "428"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "430"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 2,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "432"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 20,
+        "new_life": 19
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "433"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "434"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "435"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "437"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "438"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "440"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 19,
+        "new_life": 18
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "441"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "442"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "440"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "443",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "446"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "447"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "449"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "451"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "452"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 3,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "454"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 18,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "455"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "456"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "457"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 17,
+        "new_life": 15
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "457",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "457"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "458"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "458",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "460"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "461"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "463"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 4,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "466"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "467"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "469"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "461",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "461"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "475"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "476"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "Block": {
+        "attacker_id": "",
+        "blocker_id": "470"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "481"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 19,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "481",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "482",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 5,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "483"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "485"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "487"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "488"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 15,
+        "new_life": 13
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "488",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "482",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "482"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 17,
+        "new_life": 16
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "491"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "492"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "493"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "481"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "494"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "495"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "496"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "493"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "497"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "497",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "498"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "499"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DamageMarked": {
+        "card_id": "482",
+        "damage": 1
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "500"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "Block": {
+        "attacker_id": "",
+        "blocker_id": "500"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "488"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "505"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "508"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "510",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 6,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "516",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 16,
+        "new_life": 19
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 19,
+        "new_life": 18
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "520"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "521"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "522"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "524"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "525"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "527"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 7,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "528"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "529"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "516",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "516"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 18,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "538"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "539"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "540"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "540"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "541"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "543"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 13,
+        "new_life": 12
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "545"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "546"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "547"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "547"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "547",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 8,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "548"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "549"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "549",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "558"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "559"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "562"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "564"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "566"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 9,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "562",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "562"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "571",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PowerToughnessUpdate": {
+        "card_id": "571",
+        "power": 5,
+        "toughness": 5
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "Block": {
+        "attacker_id": "",
+        "blocker_id": "571"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DamageMarked": {
+        "card_id": "571",
+        "damage": 2
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "577"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "571",
+        "defender_id": "player_1"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 12,
+        "new_life": 7
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "580",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "416"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "417"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "430"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "432"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "433"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "435"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "436"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 1,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "438"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "440"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "442"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "444"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "445"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 2,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "447"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "448"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "448",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "450"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 20,
+        "new_life": 18
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "450",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "450"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "451"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "447"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "453"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 3,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "455"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "448",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "448"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "first_strike_damage"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 18,
+        "new_life": 16
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "458"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "459"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "461"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "461"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "462"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "462",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "464"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "465"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "467"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "468"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "469"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "470"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 4,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "471"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "473"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "474"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "476"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "478"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "478",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "479"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "465",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "478",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "465"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "478"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "481"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "482"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "first_strike_damage"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 16,
+        "new_life": 12
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "first_strike_damage",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "485"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "486"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "487"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "416"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "417"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "418"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "420"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "421"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "430"
+      }
+    }
+  },
+  {
+    "turn": 0,
+    "phase": "unknown(255)",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "436"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 1,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "438"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "440"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "442"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 1,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 2,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "444"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 20,
+        "new_life": 19
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "445"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "446"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "334"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "335"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "336"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "337"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "338"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "339"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "340"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "344"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "345"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "350"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "351"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "352"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "353"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "358"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "364"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "365"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "366"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "373"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "374"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "375"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "376"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "377"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "381"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "382"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "384"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "386"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "387"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "424"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "425"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "427"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "428"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "429"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "447"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "449"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "452"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 19,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "452",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 3,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "454"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "452"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "455",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "444"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "455",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "455"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "454"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "464"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "464",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "465"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "466"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DamageMarked": {
+        "card_id": "455",
+        "damage": 1
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "467"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "Block": {
+        "attacker_id": "",
+        "blocker_id": "467"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 4,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "464",
+        "defender_id": "player_1"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "464"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "declare_blockers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_blockers"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 17,
+        "new_life": 16
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "475"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "476"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 16,
+        "new_life": 14
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "476",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "476"
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "477",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 14,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "483"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 5,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 6,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "492"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 20,
+        "new_life": 18
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "492",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "493"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "492"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "494",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "502"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "503"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 17,
+        "new_life": 16
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "504"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "505"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "506"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 16,
+        "new_life": 14
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "506",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "506"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 7,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "516"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "517",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "521"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "522"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "524"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "526"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "526",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "530",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "533"
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "534"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 8,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "538"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "declare_attackers"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "Attack": {
+        "attacker_id": "526",
+        "defender_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "526"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "declare_attackers",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "540"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "541"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "542"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "543",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "546"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "548"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "549"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "550"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 18,
+        "new_life": 17
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "551"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "552"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 14,
+        "new_life": 13
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "553"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "554"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "555"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "557"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "558"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "560"
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "561"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 9,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "563"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "563"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "564"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "565"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "566"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "567"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "567",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_0",
+        "card_id": "568"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TapPermanent": {
+        "card_id": "567"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "569",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "570"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "571"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "573"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "574"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PlayLand": {
+        "player_id": "player_1",
+        "card_id": "575"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "577"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "572",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "582"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "584"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_0",
+        "old_life": 17,
+        "new_life": 14
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "LifeChange": {
+        "player_id": "player_1",
+        "old_life": 13,
+        "new_life": 16
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 10,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "draw",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "draw"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "588"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "DrawCard": {
+        "player_id": "player_0",
+        "card_id": "590"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "SummoningSickness": {
+        "card_id": "587",
+        "has_sickness": true
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "CastSpell": {
+        "player_id": "player_1",
+        "card_id": "593"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "begin_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "begin_combat"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "end_of_combat",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "end_of_combat"
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "phase": "postcombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "postcombat_main"
+      }
+    }
+  },
+  {
+    "turn": 11,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "TurnChange": {
+        "turn": 11,
+        "player_id": "player_0"
+      }
+    }
+  },
+  {
+    "turn": 11,
+    "phase": "upkeep",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "upkeep"
+      }
+    }
+  },
+  {
+    "turn": 11,
+    "phase": "precombat_main",
+    "active_player": "player_0",
+    "action_type": {
+      "PhaseChange": {
+        "phase": "precombat_main"
+      }
+    }
+  }
+]

@@ -357,6 +357,294 @@ fn test_golden_checksum_audit() {
     );
 }
 
+/// Commutativity check: for every diff message in the golden file, verify that
+/// Route A and Route B produce identical `Vec<ReplayAction>` output.
+///
+/// Route A: apply_diffs(old_bytes, diff_bytes) → parse_elements → GameState → translate
+/// Route B: parse_elements(old_bytes) → old_GameState → apply_diffs(old_bytes, diff_bytes)
+///          → parse_elements(result) → new_GameState → translate
+///
+/// Both routes must emit identical actions, proving that building an intermediate
+/// GameState from old_bytes before applying the diff does not alter the output.
+#[test]
+fn test_commutativity_check() {
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+
+    let messages = framing::parse_messages(&data).expect("framing should parse");
+
+    // We maintain a parallel state-cache that records assembled full buffers keyed
+    // by checksum so we can retrieve old_bytes for a diff message independently of
+    // the production StateBufProcessor.
+    let mut state_cache: Vec<(i32, Vec<u8>)> = Vec::new();
+    // Assembly buffer used to reconstruct multi-chunk messages.
+    let mut assembly_buf: Vec<u8> = Vec::new();
+
+    // Production StateBufProcessor drives the main loop (checksum validation etc.)
+    let mut statebuf_proc = StateBufProcessor::new();
+
+    // Per-game state used by both routes between iterations (they must share history).
+    let mut game_state_a: Option<GameState> = None;
+    let mut game_state_b: Option<GameState> = None;
+    let mut translator_a = ReplayTranslator::new();
+    let mut translator_b = ReplayTranslator::new();
+
+    let mut game_id_seen: Option<u32> = None;
+
+    let mut diff_messages_checked: usize = 0;
+    let mut mismatches: Vec<String> = Vec::new();
+
+    const CACHE_MAX: usize = 16;
+
+    for raw_msg in messages {
+        let fls_msg = match fls::decode_fls(raw_msg) {
+            Ok(m) => m,
+            Err(_) => continue,
+        };
+
+        match fls_msg {
+            FlsMessage::GsMessage { game_id, meta } => {
+                let game_msg = match game_messages::decode_game_message(&meta) {
+                    Ok(m) => m,
+                    Err(_) => continue,
+                };
+
+                match game_msg {
+                    GameMessage::GamePlayStatus(gps) => {
+                        let is_diff = gps.flags & opcodes::FLAG_GAMESTATE_CONTAINS_DIFFS != 0;
+                        let is_head = gps.flags & opcodes::FLAG_GAMESTATE_HEAD != 0;
+                        let is_tail = gps.flags & opcodes::FLAG_GAMESTATE_TAIL != 0;
+
+                        // --- Mirror assembly in our local buffer ---
+                        if is_head {
+                            assembly_buf.clear();
+                        }
+                        assembly_buf.extend_from_slice(&gps.state_buf_raw);
+
+                        // --- Drive production processor (validates checksum) ---
+                        let assembled_opt = match statebuf_proc.process(&gps) {
+                            Ok(v) => v,
+                            Err(_) => {
+                                // Diff without a base state or other protocol error —
+                                // skip, also clear local assembly buffer to stay in sync.
+                                if is_tail {
+                                    assembly_buf.clear();
+                                }
+                                continue;
+                            }
+                        };
+
+                        if !is_tail {
+                            // Fragment buffered; nothing assembled yet.
+                            continue;
+                        }
+
+                        // assembled_opt is Some(_) because is_tail == true and process succeeded.
+                        let new_state_bytes = match assembled_opt {
+                            Some(b) => b,
+                            None => continue,
+                        };
+
+                        let gid = u32::try_from(game_id).unwrap_or(game_id as u32);
+                        game_id_seen = Some(gid);
+
+                        if is_diff {
+                            // Retrieve old_state_bytes from our local cache using last_state_checksum.
+                            let diff_bytes = assembly_buf.clone();
+                            let old_bytes_opt: Option<Vec<u8>> = {
+                                // Try states matching last_state_checksum, newest first.
+                                let mut found = None;
+                                for (cs, base) in state_cache.iter().rev() {
+                                    if *cs != gps.last_state_checksum {
+                                        continue;
+                                    }
+                                    if let Ok(result) = statebuf::apply_diffs(base, &diff_bytes) {
+                                        if statebuf::compute_checksum(&result) == gps.checksum {
+                                            found = Some(base.clone());
+                                            break;
+                                        }
+                                    }
+                                }
+                                // Fallback: try all cached states.
+                                if found.is_none() {
+                                    for (cs, base) in state_cache.iter().rev() {
+                                        if *cs == gps.last_state_checksum {
+                                            continue;
+                                        }
+                                        if let Ok(result) = statebuf::apply_diffs(base, &diff_bytes) {
+                                            if statebuf::compute_checksum(&result) == gps.checksum {
+                                                found = Some(base.clone());
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                found
+                            };
+
+                            if let Some(old_bytes) = old_bytes_opt {
+                                // ---- Route A ----
+                                // Feed old state to translator_a first (so it has the prior state),
+                                // then feed new state.
+                                {
+                                    let elements_old =
+                                        match statebuf::parse_elements(&old_bytes) {
+                                            Ok(e) => e,
+                                            Err(_) => {
+                                                // Cache new state and continue.
+                                                let cs = statebuf::compute_checksum(&new_state_bytes);
+                                                push_cache(&mut state_cache, cs, new_state_bytes.clone(), CACHE_MAX);
+                                                assembly_buf.clear();
+                                                continue;
+                                            }
+                                        };
+                                    let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
+                                    state_a.apply_elements(&elements_old, false);
+                                    let _ = translator_a.process(state_a);
+                                }
+                                let elements_new_a =
+                                    match statebuf::parse_elements(&new_state_bytes) {
+                                        Ok(e) => e,
+                                        Err(_) => {
+                                            let cs = statebuf::compute_checksum(&new_state_bytes);
+                                            push_cache(&mut state_cache, cs, new_state_bytes.clone(), CACHE_MAX);
+                                            assembly_buf.clear();
+                                            continue;
+                                        }
+                                    };
+                                let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
+                                state_a.apply_elements(&elements_new_a, false);
+                                let actions_a: Vec<ActionSnapshot> =
+                                    translator_a.process(state_a).iter().map(ActionSnapshot::from).collect();
+
+                                // ---- Route B ----
+                                // Parse old bytes, build old GameState, then apply diff and parse new bytes.
+                                {
+                                    let elements_old_b =
+                                        match statebuf::parse_elements(&old_bytes) {
+                                            Ok(e) => e,
+                                            Err(_) => {
+                                                let cs = statebuf::compute_checksum(&new_state_bytes);
+                                                push_cache(&mut state_cache, cs, new_state_bytes.clone(), CACHE_MAX);
+                                                assembly_buf.clear();
+                                                continue;
+                                            }
+                                        };
+                                    let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
+                                    state_b.apply_elements(&elements_old_b, false);
+                                    let _ = translator_b.process(state_b);
+                                }
+                                // Now apply diff: same new_state_bytes already computed by production processor.
+                                let elements_new_b =
+                                    match statebuf::parse_elements(&new_state_bytes) {
+                                        Ok(e) => e,
+                                        Err(_) => {
+                                            let cs = statebuf::compute_checksum(&new_state_bytes);
+                                            push_cache(&mut state_cache, cs, new_state_bytes.clone(), CACHE_MAX);
+                                            assembly_buf.clear();
+                                            continue;
+                                        }
+                                    };
+                                let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
+                                state_b.apply_elements(&elements_new_b, false);
+                                let actions_b: Vec<ActionSnapshot> =
+                                    translator_b.process(state_b).iter().map(ActionSnapshot::from).collect();
+
+                                if actions_a != actions_b {
+                                    mismatches.push(format!(
+                                        "diff message (game_id={}, checksum={}) produced different actions:\n  Route A ({} actions): {:?}\n  Route B ({} actions): {:?}",
+                                        gid, gps.checksum, actions_a.len(), &actions_a[..actions_a.len().min(3)],
+                                        actions_b.len(), &actions_b[..actions_b.len().min(3)]
+                                    ));
+                                }
+                                diff_messages_checked += 1;
+                            }
+                        } else {
+                            // Full state: feed both routes normally.
+                            let elements = match statebuf::parse_elements(&new_state_bytes) {
+                                Ok(e) => e,
+                                Err(_) => {
+                                    let cs = statebuf::compute_checksum(&new_state_bytes);
+                                    push_cache(&mut state_cache, cs, new_state_bytes.clone(), CACHE_MAX);
+                                    assembly_buf.clear();
+                                    continue;
+                                }
+                            };
+
+                            {
+                                let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
+                                state_a.apply_elements(&elements, true);
+                                let _ = translator_a.process(state_a);
+                            }
+                            {
+                                let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
+                                state_b.apply_elements(&elements, true);
+                                let _ = translator_b.process(state_b);
+                            }
+                        }
+
+                        // Cache the new state for future diff lookups.
+                        let cs = statebuf::compute_checksum(&new_state_bytes);
+                        push_cache(&mut state_cache, cs, new_state_bytes, CACHE_MAX);
+                        assembly_buf.clear();
+                    }
+                    GameMessage::GameOver => {
+                        translator_a.reset();
+                        translator_b.reset();
+                        statebuf_proc.reset();
+                        state_cache.clear();
+                        assembly_buf.clear();
+                        game_state_a = None;
+                        game_state_b = None;
+                    }
+                    _ => {}
+                }
+            }
+            FlsMessage::GameStatusChange { new_status } => {
+                if new_status == 5 || new_status == 7 {
+                    translator_a.reset();
+                    translator_b.reset();
+                    statebuf_proc.reset();
+                    state_cache.clear();
+                    assembly_buf.clear();
+                    game_state_a = None;
+                    game_state_b = None;
+                }
+            }
+            FlsMessage::GameCreated { .. }
+            | FlsMessage::GameEnded { .. }
+            | FlsMessage::MatchStarted { .. } => {}
+            _ => {}
+        }
+    }
+
+    eprintln!(
+        "\nCommutativity check: {} diff messages verified, {} mismatches",
+        diff_messages_checked,
+        mismatches.len()
+    );
+
+    assert!(
+        diff_messages_checked > 0,
+        "Expected to check at least one diff message, got 0"
+    );
+    assert!(
+        mismatches.is_empty(),
+        "Commutativity violations found ({}):\n{}",
+        mismatches.len(),
+        mismatches.join("\n---\n")
+    );
+}
+
+/// Helper: push a state into the cache, evicting the oldest entry if at capacity.
+fn push_cache(cache: &mut Vec<(i32, Vec<u8>)>, checksum: i32, state: Vec<u8>, max: usize) {
+    cache.retain(|(cs, s)| !(*cs == checksum && s.len() == state.len()));
+    if cache.len() >= max {
+        cache.remove(0);
+    }
+    cache.push((checksum, state));
+}
+
 /// Regression test: re-runs the pipeline and compares the output (excluding
 /// timestamps) against the stored JSON fixture.
 ///

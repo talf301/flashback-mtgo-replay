@@ -389,8 +389,6 @@ fn test_commutativity_check() {
     let mut translator_a = ReplayTranslator::new();
     let mut translator_b = ReplayTranslator::new();
 
-    let mut game_id_seen: Option<u32> = None;
-
     let mut diff_messages_checked: usize = 0;
     let mut mismatches: Vec<String> = Vec::new();
 
@@ -408,6 +406,8 @@ fn test_commutativity_check() {
                     Ok(m) => m,
                     Err(_) => continue,
                 };
+
+                let gid = u32::try_from(game_id).unwrap_or(game_id as u32);
 
                 match game_msg {
                     GameMessage::GamePlayStatus(gps) => {
@@ -444,9 +444,6 @@ fn test_commutativity_check() {
                             Some(b) => b,
                             None => continue,
                         };
-
-                        let gid = u32::try_from(game_id).unwrap_or(game_id as u32);
-                        game_id_seen = Some(gid);
 
                         if is_diff {
                             // Retrieve old_state_bytes from our local cache using last_state_checksum.

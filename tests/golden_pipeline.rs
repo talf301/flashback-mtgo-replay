@@ -178,6 +178,31 @@ fn test_golden_file_actions_have_valid_turns() {
     assert!(max_turn > 0, "Expected at least turn 1, max was {}", max_turn);
 }
 
+#[test]
+fn test_golden_framing_smoke() {
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+
+    let messages = framing::parse_messages(&data).expect("framing::parse_messages should return Ok");
+
+    assert_eq!(
+        messages.len(),
+        10195,
+        "Expected 10195 messages, got {}",
+        messages.len()
+    );
+
+    for (i, msg) in messages.iter().enumerate() {
+        assert!(
+            msg.opcode > 0,
+            "Message {} has invalid opcode 0",
+            i
+        );
+        // payload length is always >= 0 for a Vec, but assert the field is accessible
+        let _len = msg.payload.len();
+    }
+}
+
 /// A stripped-down view of a [`ReplayAction`] that omits the `timestamp` field.
 ///
 /// Timestamps are set to `Utc::now()` at pipeline execution time, so they

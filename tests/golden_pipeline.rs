@@ -652,6 +652,62 @@ fn test_commutativity_check() {
     );
 }
 
+#[test]
+#[ignore]
+fn generate_golden_game3_fixture() {
+    let data = std::fs::read("tests/fixtures/golden_v1.bin").unwrap();
+    let messages = flashback::protocol::framing::parse_messages(&data).unwrap();
+
+    let mut game_over_count = 0;
+    let mut game3_start = None;
+
+    for (i, msg) in messages.iter().enumerate() {
+        if msg.opcode != 1153 && msg.opcode != 1156 { continue; }
+        let fls_msg = flashback::protocol::fls::decode_fls(msg.clone()).unwrap();
+        let meta = match &fls_msg {
+            flashback::protocol::fls::FlsMessage::GsMessage { meta, .. } => meta.clone(),
+            _ => continue,
+        };
+        let mut cursor = std::io::Cursor::new(&meta);
+        if let Ok(inner) = flashback::protocol::framing::read_message(&mut cursor) {
+            if inner.opcode == flashback::protocol::opcodes::GAME_OVER {
+                game_over_count += 1;
+                if game_over_count == 2 {
+                    game3_start = Some(i + 1);
+                }
+            }
+        }
+    }
+
+    let start = game3_start.expect("Expected at least 2 GameOver messages");
+    let game3_messages = &messages[start..];
+
+    // Re-serialize using framing format
+    let mut output = Vec::new();
+    for msg in game3_messages {
+        let total_len = (8 + msg.payload.len()) as i32;
+        output.extend_from_slice(&total_len.to_le_bytes());
+        output.extend_from_slice(&msg.opcode.to_le_bytes());
+        output.extend_from_slice(&msg.type_check.to_le_bytes());
+        output.extend_from_slice(&msg.payload);
+    }
+
+    std::fs::write("tests/fixtures/golden_game3.bin", &output).unwrap();
+    eprintln!(
+        "Wrote golden_game3.bin: {} messages, {} bytes",
+        game3_messages.len(),
+        output.len()
+    );
+}
+
+#[test]
+fn test_golden_game3_fixture_parses() {
+    let data = std::fs::read("tests/fixtures/golden_game3.bin").unwrap();
+    let messages = flashback::protocol::framing::parse_messages(&data).unwrap();
+    assert!(messages.len() > 100, "game3 fixture should have many messages");
+    eprintln!("golden_game3.bin: {} messages", messages.len());
+}
+
 /// Helper: push a state into the cache, evicting the oldest entry if at capacity.
 fn push_cache(cache: &mut Vec<(i32, Vec<u8>)>, checksum: i32, state: Vec<u8>, max: usize) {
     cache.retain(|(cs, s)| !(*cs == checksum && s.len() == state.len()));

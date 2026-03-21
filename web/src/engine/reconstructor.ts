@@ -13,9 +13,13 @@ export class Reconstructor {
   private actions: RawReplayAction[] = [];
   private cardNames: Record<string, string> = {};
 
-  loadReplay(replay: ReplayFile): void {
-    this.actions = replay.actions;
-    this.cardNames = replay.card_names ?? {};
+  loadReplay(replay: ReplayFile, gameIndex: number = 0): void {
+    const game = replay.games[gameIndex];
+    if (!game) {
+      throw new Error(`Game index ${gameIndex} out of range (${replay.games.length} games)`);
+    }
+    this.actions = game.actions;
+    this.cardNames = game.card_names ? { ...game.card_names } : {};
   }
 
   /**

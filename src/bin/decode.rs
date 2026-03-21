@@ -451,7 +451,7 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
     };
 
     let mut metadata = HashMap::new();
-    metadata.insert("version".to_string(), "1.0".to_string());
+    metadata.insert("version".to_string(), "2.0".to_string());
     metadata.insert("decoder".to_string(), "flashback".to_string());
     metadata.insert(
         "decode_errors".to_string(),

@@ -44,7 +44,11 @@ GameHeader {
 }
 ```
 
-`ReplayHeader` (match-level) keeps: `format`, `start_time`, `end_time`, `players` (names only, no life — life is per-game). `game_id` moves to `GameHeader` since each game in a Bo3 has a different MTGO game ID.
+`ReplayHeader` (match-level) keeps: `format`, `start_time`, `end_time`, `players`. Remove `game_id` and `result` from `ReplayHeader` — both move to `GameHeader`. Reuse `PlayerInfo` at the match level with `life_total` set to the starting life (20 for constructed).
+
+The `GameOver` player snapshot currently filters out players with `life <= 0 && library_count <= 0`, which would exclude the losing player. Fix: include all players that were tracked (the filter for phantom/empty players is separate and should check for presence in the game, not life total).
+
+Bump metadata version to `"2.0"` to distinguish the new schema.
 
 This is a breaking schema change for both the Rust types and the TypeScript viewer types.
 
@@ -54,7 +58,7 @@ This is a breaking schema change for both the Rust types and the TypeScript view
 
 1. Maintain per-game accumulators: `current_actions`, `current_card_names`, `current_card_textures`, `current_game_id`.
 2. On `GameOver`: snapshot player info from `game_state`, package into `GameReplay` with `game_number = games.len() + 1`, push to `games` vec, reset accumulators and translator/statebuf state.
-3. On `GameStatusChange` (status 5 or 7): same reset logic.
+3. On `GameStatusChange` (status 5 or 7): if `current_actions` is non-empty, package as an incomplete game (same as step 4). Then reset accumulators and state.
 4. After the message loop: if `current_actions` is non-empty, package as an incomplete game (no `GameOver` was received — capture ended mid-game or stream was truncated).
 5. Build `ReplayFile` with the `games` vec.
 
@@ -68,7 +72,7 @@ Write a `#[test] #[ignore]` helper that:
 
 1. Parses `golden_v1.bin` into raw messages.
 2. Walks the FLS stream counting `GameOver` messages.
-3. After the 2nd `GameOver`, records all subsequent raw messages as game 3's data.
+3. After the 2nd `GameOver`, records all subsequent raw messages as game 3's data. Includes any `GameStatusChange` messages that precede the actual game data (they're part of the inter-game boundary protocol).
 4. Re-serializes those messages into `tests/fixtures/golden_game3.bin` using the framing format (length-prefixed messages).
 
 This gives us a ~4MB single-game fixture that tests the full pipeline end-to-end.
@@ -91,13 +95,12 @@ This gives us a ~4MB single-game fixture that tests the full pipeline end-to-end
 
 - Add `GameReplay` interface with `game_number`, `header: GameHeader`, `actions`, `card_names`, `card_textures`.
 - Add `GameHeader` interface.
-- `ReplayFile.actions` removed; replaced by `ReplayFile.games`.
-- Keep `card_names`/`card_textures` on `ReplayFile` as optional for backward compat during migration, but prefer per-game maps.
+- `ReplayFile.actions`, `card_names`, `card_textures` removed from top level; all live on `GameReplay` now. No backward-compat optionals (non-goal).
 
 ### Reconstructor (`web/src/engine/reconstructor.ts`)
 
 - `loadReplay(replay, gameIndex = 0)`: loads a specific game from the replay file.
-- Card names/textures come from `replay.games[gameIndex]`.
+- Card names/textures come from `replay.games[gameIndex]`. `resolveCardTextures` is called internally by `loadReplay` using the selected game's textures rather than requiring the caller to extract them.
 - No changes to the reconstruction logic itself — it still replays actions sequentially.
 
 ### Viewer UI

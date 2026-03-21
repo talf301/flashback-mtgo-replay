@@ -6,7 +6,7 @@
 //!
 //! Full pipeline: framing → fls → game_messages → statebuf → state → translator → ReplayFile
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::env;
 use std::fs;
 use std::process;
@@ -87,33 +87,93 @@ fn main() {
         println!("{}", json);
     }
 
-    let total_actions: usize = replay.games.iter().map(|g| g.actions.len()).sum();
-    let last_turn = replay
-        .games
-        .iter()
-        .flat_map(|g| g.actions.last())
-        .map(|a| a.turn)
-        .last()
-        .unwrap_or(0);
     eprintln!(
-        "Replay: {} actions, {} turns",
-        total_actions,
-        last_turn
+        "Replay: {} games, {} total actions",
+        replay.games.len(),
+        replay.games.iter().map(|g| g.actions.len()).sum::<usize>()
     );
+}
+
+/// Package accumulated state into a GameReplay and push it onto `games`.
+fn package_game(
+    games: &mut Vec<GameReplay>,
+    current_actions: &mut Vec<ReplayAction>,
+    current_card_names: &mut HashMap<String, String>,
+    current_card_textures: &mut HashMap<String, i32>,
+    current_game_id: &mut String,
+    current_winner_seat: &mut Option<u8>,
+    populated_players: &mut HashSet<usize>,
+    game_state: &Option<GameState>,
+) {
+    let players: Vec<PlayerInfo> = if let Some(state) = game_state {
+        state
+            .players
+            .iter()
+            .enumerate()
+            .filter(|(i, _)| populated_players.contains(i))
+            .map(|(i, ps)| PlayerInfo {
+                player_id: format!("player_{}", i),
+                name: format!("Player {}", i),
+                life_total: ps.life,
+            })
+            .collect()
+    } else {
+        Vec::new()
+    };
+
+    let result = match *current_winner_seat {
+        Some(seat) if seat >= 2 && (seat as usize - 2) < players.len() => GameResult::Win {
+            winner_id: format!("player_{}", seat - 2),
+        },
+        Some(_) => GameResult::Incomplete,
+        None => GameResult::Incomplete,
+    };
+
+    let game = GameReplay {
+        game_number: (games.len() + 1) as u32,
+        header: GameHeader {
+            game_id: std::mem::take(current_game_id),
+            players,
+            result,
+        },
+        actions: std::mem::take(current_actions),
+        card_names: std::mem::take(current_card_names),
+        card_textures: std::mem::take(current_card_textures),
+    };
+
+    tracing::info!(
+        "Packaged game {} with {} actions",
+        game.game_number,
+        game.actions.len()
+    );
+
+    games.push(game);
+    *current_winner_seat = None;
+    populated_players.clear();
 }
 
 fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
     let mut statebuf_proc = StateBufProcessor::new();
     let mut game_state: Option<GameState> = None;
     let mut translator = ReplayTranslator::new();
-    let mut all_actions: Vec<ReplayAction> = Vec::new();
     let start_time = Utc::now();
     translator.set_start_time(start_time);
 
-    let mut card_names: HashMap<String, String> = HashMap::new();
-    let mut card_textures: HashMap<String, i32> = HashMap::new();
-    let mut last_players: Vec<PlayerInfo> = Vec::new();
-    let mut last_game_id: String = "unknown".to_string();
+    // Per-game accumulators
+    let mut games: Vec<GameReplay> = Vec::new();
+    let mut current_actions: Vec<ReplayAction> = Vec::new();
+    let mut current_card_names: HashMap<String, String> = HashMap::new();
+    let mut current_card_textures: HashMap<String, i32> = HashMap::new();
+    let mut current_game_id: String = String::new();
+    let mut current_winner_seat: Option<u8> = None;
+    let mut populated_players: HashSet<usize> = HashSet::new();
+
+    // Deferred packaging: GameOver arrives before GameResults in the protocol
+    // stream, so on GameOver we snapshot the game state, reset the pipeline,
+    // and defer packaging until GameResults arrives with winner info.
+    let mut saved_game_state: Option<GameState> = None;
+    let mut pending_package = false;
+
     let mut gs_message_count = 0u32;
     let mut game_play_status_count = 0u32;
     let mut state_update_count = 0u32;
@@ -146,6 +206,24 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                     GameMessage::GamePlayStatus(gps) => {
                         game_play_status_count += 1;
 
+                        // If we have a pending package (GameOver seen but no
+                        // GameResults yet) and a new GamePlayStatus arrives,
+                        // package as incomplete before processing new data.
+                        if pending_package {
+                            package_game(
+                                &mut games,
+                                &mut current_actions,
+                                &mut current_card_names,
+                                &mut current_card_textures,
+                                &mut current_game_id,
+                                &mut current_winner_seat,
+                                &mut populated_players,
+                                &saved_game_state,
+                            );
+                            saved_game_state = None;
+                            pending_package = false;
+                        }
+
                         let is_diff =
                             gps.flags & opcodes::FLAG_GAMESTATE_CONTAINS_DIFFS != 0;
 
@@ -175,24 +253,34 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
                                 state.apply_elements(&elements, !is_diff);
 
+                                // Track populated players
+                                for i in 0..state.players.len() {
+                                    populated_players.insert(i);
+                                }
+
+                                // Track game ID
+                                if current_game_id.is_empty() {
+                                    current_game_id = state.game_id.to_string();
+                                }
+
                                 // Collect card names and texture IDs
                                 for (thing_id, thing) in &state.things {
                                     let tid = thing_id.to_string();
                                     if let Some(ref name) = thing.card_name {
-                                        card_names
+                                        current_card_names
                                             .entry(tid.clone())
                                             .or_insert_with(|| name.clone());
                                     }
                                     if let Some(tex) = thing.card_texture_number {
                                         let mtgo_id = tex / 2;
-                                        card_textures
+                                        current_card_textures
                                             .entry(tid)
                                             .or_insert(mtgo_id);
                                     }
                                 }
 
                                 let actions = translator.process(state, !is_diff);
-                                all_actions.extend(actions);
+                                current_actions.extend(actions);
                             }
                             Ok(None) => {
                                 // Waiting for more chunks
@@ -205,27 +293,59 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                     }
                     GameMessage::GameOver => {
                         tracing::info!("GameOver received");
-                        // Snapshot player info before reset (filter to real players with life > 0)
-                        if let Some(ref state) = game_state {
-                            last_game_id = state.game_id.to_string();
-                            last_players = state
-                                .players
-                                .iter()
-                                .enumerate()
-                                .filter(|(_, p)| p.life > 0 || p.library_count > 0)
-                                .map(|(i, p)| PlayerInfo {
-                                    player_id: format!("player_{}", i),
-                                    name: format!("player_{}", i),
-                                    life_total: p.life,
-                                })
-                                .collect();
-                        }
+                        // Snapshot game state for player info before resetting.
+                        // Actual packaging is deferred until GameResults arrives.
+                        saved_game_state = game_state.take();
+                        pending_package = !current_actions.is_empty();
+
+                        // Reset pipeline state for the next game
                         translator.reset();
                         statebuf_proc.reset();
                         game_state = None;
                     }
                     GameMessage::GameResults(gr) => {
-                        tracing::info!("GameResults: game_id={} winner_seat={:?}", gr.game_id, gr.winner_seat);
+                        tracing::info!(
+                            "GameResults: game_id={} winner_seat={:?}",
+                            gr.game_id,
+                            gr.winner_seat
+                        );
+                        current_winner_seat = gr.winner_seat;
+
+                        // GameResults arrives after GameOver: now we have the
+                        // winner info, so package the completed game.
+                        if pending_package {
+                            package_game(
+                                &mut games,
+                                &mut current_actions,
+                                &mut current_card_names,
+                                &mut current_card_textures,
+                                &mut current_game_id,
+                                &mut current_winner_seat,
+                                &mut populated_players,
+                                &saved_game_state,
+                            );
+                            saved_game_state = None;
+                            pending_package = false;
+                        } else if !current_actions.is_empty() {
+                            // GameResults without a prior GameOver (unusual):
+                            // package with current live state.
+                            tracing::warn!(
+                                "GameResults without prior GameOver — packaging with live state"
+                            );
+                            package_game(
+                                &mut games,
+                                &mut current_actions,
+                                &mut current_card_names,
+                                &mut current_card_textures,
+                                &mut current_game_id,
+                                &mut current_winner_seat,
+                                &mut populated_players,
+                                &game_state,
+                            );
+                            translator.reset();
+                            statebuf_proc.reset();
+                            game_state = None;
+                        }
                     }
                     GameMessage::Other { opcode } => {
                         tracing::trace!("Skipping game opcode {}", opcode);
@@ -235,6 +355,38 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
             FlsMessage::GameStatusChange { new_status } => {
                 if new_status == 5 || new_status == 7 {
                     tracing::info!("GameStatusChange {} — resetting", new_status);
+
+                    // If there's a pending game from GameOver, package it first
+                    if pending_package {
+                        package_game(
+                            &mut games,
+                            &mut current_actions,
+                            &mut current_card_names,
+                            &mut current_card_textures,
+                            &mut current_game_id,
+                            &mut current_winner_seat,
+                            &mut populated_players,
+                            &saved_game_state,
+                        );
+                        saved_game_state = None;
+                        pending_package = false;
+                    } else if !current_actions.is_empty() {
+                        tracing::warn!(
+                            "Packaging incomplete game due to GameStatusChange({})",
+                            new_status
+                        );
+                        package_game(
+                            &mut games,
+                            &mut current_actions,
+                            &mut current_card_names,
+                            &mut current_card_textures,
+                            &mut current_game_id,
+                            &mut current_winner_seat,
+                            &mut populated_players,
+                            &game_state,
+                        );
+                    }
+
                     translator.reset();
                     translator.set_start_time(Utc::now());
                     statebuf_proc.reset();
@@ -255,49 +407,41 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         }
     }
 
+    // Package any remaining game
+    if pending_package {
+        package_game(
+            &mut games,
+            &mut current_actions,
+            &mut current_card_names,
+            &mut current_card_textures,
+            &mut current_game_id,
+            &mut current_winner_seat,
+            &mut populated_players,
+            &saved_game_state,
+        );
+    } else if !current_actions.is_empty() {
+        package_game(
+            &mut games,
+            &mut current_actions,
+            &mut current_card_names,
+            &mut current_card_textures,
+            &mut current_game_id,
+            &mut current_winner_seat,
+            &mut populated_players,
+            &game_state,
+        );
+    }
+
     eprintln!(
         "Pipeline stats: {} GsMessages, {} GamePlayStatus, {} state updates, {} errors",
         gs_message_count, game_play_status_count, state_update_count, decode_errors
     );
-    eprintln!(
-        "Card names: {}, card textures (MTGO IDs): {}",
-        card_names.len(), card_textures.len()
-    );
 
-    // Build ReplayFile — use live state if available, otherwise last snapshot before GameOver
-    let final_state = game_state.as_ref();
-    let players: Vec<PlayerInfo> = if let Some(state) = final_state {
-        state
-            .players
-            .iter()
-            .enumerate()
-            .map(|(i, p)| PlayerInfo {
-                player_id: format!("player_{}", i),
-                name: format!("player_{}", i),
-                life_total: p.life,
-            })
-            .collect()
-    } else {
-        last_players
-    };
-
-    let game_id_str = final_state
-        .map(|s| s.game_id.to_string())
-        .unwrap_or(last_game_id);
-
-    let game_header = GameHeader {
-        game_id: game_id_str,
-        players: players.clone(),
-        result: GameResult::Incomplete,
-    };
-
-    let game = GameReplay {
-        game_number: 1,
-        header: game_header,
-        actions: all_actions,
-        card_names,
-        card_textures,
-    };
+    // Build header from the first game's players (or empty)
+    let players = games
+        .first()
+        .map(|g| g.header.players.clone())
+        .unwrap_or_default();
 
     let header = ReplayHeader {
         players,
@@ -316,7 +460,7 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
     ReplayFile {
         header,
-        games: vec![game],
+        games,
         metadata,
     }
 }

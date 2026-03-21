@@ -5,6 +5,7 @@ use std::io::{Cursor, Read};
 use super::DecodeError;
 use super::framing;
 use super::opcodes;
+use super::game_results::{self, GameResultsMessage};
 
 #[derive(Debug, Clone)]
 pub struct GamePlayStatusMessage {
@@ -26,6 +27,7 @@ pub struct GamePlayStatusMessage {
 pub enum GameMessage {
     GamePlayStatus(GamePlayStatusMessage),
     GameOver,
+    GameResults(GameResultsMessage),
     Other { opcode: u16 },
 }
 
@@ -38,6 +40,7 @@ pub fn decode_game_message(meta: &[u8]) -> Result<GameMessage, DecodeError> {
     match inner.opcode {
         opcodes::GAME_PLAY_STATUS => decode_game_play_status(&inner.payload),
         opcodes::GAME_OVER => Ok(GameMessage::GameOver),
+        opcodes::GAME_RESULTS => game_results::decode_game_results(&inner.payload).map(GameMessage::GameResults),
         _ => Ok(GameMessage::Other { opcode: inner.opcode }),
     }
 }
@@ -256,6 +259,7 @@ mod tests {
             match decode_game_message(&meta) {
                 Ok(GameMessage::GamePlayStatus(_)) => play_status_count += 1,
                 Ok(GameMessage::GameOver) => game_over_count += 1,
+                Ok(GameMessage::GameResults(_)) => other_game_count += 1,
                 Ok(GameMessage::Other { .. }) => other_game_count += 1,
                 Err(e) => {
                     eprintln!("game decode error: {e}");

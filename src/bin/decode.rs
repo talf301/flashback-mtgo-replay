@@ -220,6 +220,9 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                         statebuf_proc.reset();
                         game_state = None;
                     }
+                    GameMessage::GameResults(gr) => {
+                        tracing::info!("GameResults: game_id={} winner_seat={:?}", gr.game_id, gr.winner_seat);
+                    }
                     GameMessage::Other { opcode } => {
                         tracing::trace!("Skipping game opcode {}", opcode);
                     }

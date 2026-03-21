@@ -4,6 +4,7 @@ pub mod framing;
 pub mod opcodes;
 pub mod fls;
 pub mod game_messages;
+pub mod game_results;
 pub mod statebuf;
 
 use thiserror::Error;

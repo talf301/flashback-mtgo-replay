@@ -18,7 +18,6 @@ describe('App E2E Tests', () => {
   const mockReplayFile: ReplayFile = {
     metadata: {},
     header: {
-      game_id: 'e2e-test-game',
       format: 'Modern',
       start_time: '2024-01-01T10:00:00Z',
       end_time: '2024-01-01T11:00:00Z',
@@ -26,43 +25,55 @@ describe('App E2E Tests', () => {
         { player_id: 'player-1', name: 'Player One', life_total: 20 },
         { player_id: 'player-2', name: 'Player Two', life_total: 20 },
       ],
-      result: { Win: { winner_id: 'player-1' } },
     },
-    actions: [
+    games: [
       {
-        timestamp: '2024-01-01T10:00:00Z',
-        turn: 1,
-        phase: 'beginning',
-        active_player: 'player-1',
-        action_type: { DrawCard: { player_id: 'player-1', card_id: 'lightning-bolt' } },
-      },
-      {
-        timestamp: '2024-01-01T10:00:05Z',
-        turn: 1,
-        phase: 'main1',
-        active_player: 'player-1',
-        action_type: { PlayLand: { player_id: 'player-1', card_id: 'mountain' } },
-      },
-      {
-        timestamp: '2024-01-01T10:00:10Z',
-        turn: 1,
-        phase: 'main1',
-        active_player: 'player-1',
-        action_type: { CastSpell: { player_id: 'player-1', card_id: 'lightning-bolt' } },
-      },
-      {
-        timestamp: '2024-01-01T10:00:15Z',
-        turn: 1,
-        phase: 'combat',
-        active_player: 'player-1',
-        action_type: { PassPriority: { player_id: 'player-1' } },
-      },
-      {
-        timestamp: '2024-01-01T10:00:20Z',
-        turn: 1,
-        phase: 'end',
-        active_player: 'player-1',
-        action_type: { PassPriority: { player_id: 'player-1' } },
+        game_number: 1,
+        header: {
+          game_id: 'e2e-test-game',
+          players: [
+            { player_id: 'player-1', name: 'Player One', life_total: 20 },
+            { player_id: 'player-2', name: 'Player Two', life_total: 20 },
+          ],
+          result: { Win: { winner_id: 'player-1' } },
+        },
+        actions: [
+          {
+            timestamp: '2024-01-01T10:00:00Z',
+            turn: 1,
+            phase: 'beginning',
+            active_player: 'player-1',
+            action_type: { DrawCard: { player_id: 'player-1', card_id: 'lightning-bolt' } },
+          },
+          {
+            timestamp: '2024-01-01T10:00:05Z',
+            turn: 1,
+            phase: 'main1',
+            active_player: 'player-1',
+            action_type: { PlayLand: { player_id: 'player-1', card_id: 'mountain' } },
+          },
+          {
+            timestamp: '2024-01-01T10:00:10Z',
+            turn: 1,
+            phase: 'main1',
+            active_player: 'player-1',
+            action_type: { CastSpell: { player_id: 'player-1', card_id: 'lightning-bolt' } },
+          },
+          {
+            timestamp: '2024-01-01T10:00:15Z',
+            turn: 1,
+            phase: 'combat',
+            active_player: 'player-1',
+            action_type: { PassPriority: { player_id: 'player-1' } },
+          },
+          {
+            timestamp: '2024-01-01T10:00:20Z',
+            turn: 1,
+            phase: 'end',
+            active_player: 'player-1',
+            action_type: { PassPriority: { player_id: 'player-1' } },
+          },
+        ],
       },
     ],
   };

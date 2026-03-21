@@ -6,15 +6,25 @@ function makeReplay(actions: RawReplayAction[]): ReplayFile {
   return {
     metadata: {},
     header: {
-      game_id: 'test',
       format: 'Standard',
       start_time: '2024-01-01T00:00:00Z',
       players: [
         { player_id: 'player1', name: 'Player 1', life_total: 20 },
       ],
-      result: 'Incomplete',
     },
-    actions,
+    games: [
+      {
+        game_number: 1,
+        header: {
+          game_id: 'test',
+          players: [
+            { player_id: 'player1', name: 'Player 1', life_total: 20 },
+          ],
+          result: 'Incomplete',
+        },
+        actions,
+      },
+    ],
   };
 }
 

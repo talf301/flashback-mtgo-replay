@@ -40,12 +40,8 @@ export function FileLoader({
       throw new Error('Missing or invalid header');
     }
 
-    if (typeof replay.header.game_id !== 'string') {
-      throw new Error('Missing or invalid game_id in header');
-    }
-
-    if (!Array.isArray(replay.actions)) {
-      throw new Error('Missing or invalid actions array');
+    if (!Array.isArray(replay.games) || replay.games.length === 0) {
+      throw new Error('Missing or invalid games array');
     }
 
     return true;

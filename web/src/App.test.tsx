@@ -24,7 +24,6 @@ describe('App Component', () => {
   const mockReplayFile: ReplayFile = {
     metadata: {},
     header: {
-      game_id: 'test-game-123',
       format: 'Standard',
       start_time: '2024-01-01T10:00:00Z',
       end_time: '2024-01-01T10:30:00Z',
@@ -32,22 +31,34 @@ describe('App Component', () => {
         { player_id: 'player-1', name: 'Alice', life_total: 20 },
         { player_id: 'player-2', name: 'Bob', life_total: 20 },
       ],
-      result: { Win: { winner_id: 'player-1' } },
     },
-    actions: [
+    games: [
       {
-        timestamp: '2024-01-01T10:00:00Z',
-        turn: 1,
-        phase: 'beginning',
-        active_player: 'player-1',
-        action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
-      },
-      {
-        timestamp: '2024-01-01T10:00:05Z',
-        turn: 1,
-        phase: 'main1',
-        active_player: 'player-1',
-        action_type: { PlayLand: { player_id: 'player-1', card_id: 'card-2' } },
+        game_number: 1,
+        header: {
+          game_id: 'test-game-123',
+          players: [
+            { player_id: 'player-1', name: 'Alice', life_total: 20 },
+            { player_id: 'player-2', name: 'Bob', life_total: 20 },
+          ],
+          result: { Win: { winner_id: 'player-1' } },
+        },
+        actions: [
+          {
+            timestamp: '2024-01-01T10:00:00Z',
+            turn: 1,
+            phase: 'beginning',
+            active_player: 'player-1',
+            action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
+          },
+          {
+            timestamp: '2024-01-01T10:00:05Z',
+            turn: 1,
+            phase: 'main1',
+            active_player: 'player-1',
+            action_type: { PlayLand: { player_id: 'player-1', card_id: 'card-2' } },
+          },
+        ],
       },
     ],
   };

@@ -522,6 +522,38 @@ fn generate_golden_json_fixture() {
     );
 }
 
+#[test]
+#[ignore]
+fn generate_golden_game3_replay_json() {
+    let data = std::fs::read("tests/fixtures/golden_game3.bin").unwrap();
+    let messages = flashback::protocol::framing::parse_messages(&data).unwrap();
+    let games = run_pipeline(messages);
+    assert_eq!(games.len(), 1, "single-game fixture should produce 1 game");
+
+    let snapshots: Vec<ActionSnapshot> = games[0].actions.iter().map(|a| ActionSnapshot {
+        turn: a.turn,
+        phase: a.phase.clone(),
+        active_player: a.active_player.clone(),
+        action_type: a.action_type.clone(),
+    }).collect();
+
+    let json = serde_json::to_string_pretty(&snapshots).unwrap();
+    std::fs::write("tests/fixtures/golden_game3_replay.json", json).unwrap();
+    eprintln!("Wrote golden_game3_replay.json: {} actions", snapshots.len());
+}
+
+#[test]
+#[ignore]
+fn generate_golden_v1_replay_json() {
+    let data = std::fs::read("tests/fixtures/golden_v1.bin").unwrap();
+    let messages = flashback::protocol::framing::parse_messages(&data).unwrap();
+    let games = run_pipeline(messages);
+
+    let json = serde_json::to_string_pretty(&games).unwrap();
+    std::fs::write("tests/fixtures/golden_v1_replay.json", json).unwrap();
+    eprintln!("Wrote golden_v1_replay.json: {} games", games.len());
+}
+
 /// Runs the full pipeline through statebuf processing and verifies the rolling
 /// checksum passes for every GamePlayStatusMessage in the golden file.
 ///
@@ -967,47 +999,32 @@ fn push_cache(cache: &mut Vec<(i32, Vec<u8>)>, checksum: i32, state: Vec<u8>, ma
     cache.push((checksum, state));
 }
 
-/// Regression test: re-runs the pipeline and compares the output (excluding
-/// timestamps) against the stored JSON fixture.
+/// Regression test: re-runs the pipeline against golden_game3.bin and compares
+/// the output (excluding timestamps) against the stored golden_game3_replay.json
+/// fixture.
 ///
 /// If this test fails, either the pipeline logic changed or the fixture is
-/// stale.  Re-generate it by running the `generate_golden_json_fixture` test
-/// above and reviewing the diff before committing.
+/// stale.  Re-generate it by running the `generate_golden_game3_replay_json`
+/// test above and reviewing the diff before committing.
 #[test]
-#[ignore] // Temporarily ignored: fixture needs regeneration after per-game split (Task 5)
 fn test_golden_snapshot_regression() {
-    assert!(
-        Path::new(GOLDEN_JSON_FIXTURE).exists(),
-        "Golden fixture {} not found – run \
-         `cargo test generate_golden_json_fixture -- --ignored` to create it",
-        GOLDEN_JSON_FIXTURE
-    );
-
-    let data =
-        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
-    let messages = framing::parse_messages(&data).expect("framing should parse");
+    let data = std::fs::read("tests/fixtures/golden_game3.bin").unwrap();
+    let messages = flashback::protocol::framing::parse_messages(&data).unwrap();
     let games = run_pipeline(messages);
-    let actions: Vec<&ReplayAction> = games.iter().flat_map(|g| &g.actions).collect();
-    let actual: Vec<ActionSnapshot> = actions.iter().map(|a| ActionSnapshot::from(*a)).collect();
+    assert_eq!(games.len(), 1);
 
-    let fixture_json =
-        std::fs::read_to_string(GOLDEN_JSON_FIXTURE).expect("should read fixture JSON");
-    let expected: Vec<ActionSnapshot> =
-        serde_json::from_str(&fixture_json).expect("fixture JSON should deserialize");
+    let actual: Vec<ActionSnapshot> = games[0].actions.iter().map(|a| ActionSnapshot {
+        turn: a.turn,
+        phase: a.phase.clone(),
+        active_player: a.active_player.clone(),
+        action_type: a.action_type.clone(),
+    }).collect();
 
-    assert_eq!(
-        actual.len(),
-        expected.len(),
-        "Action count mismatch: got {}, expected {}",
-        actual.len(),
-        expected.len()
-    );
+    let expected_json = std::fs::read_to_string("tests/fixtures/golden_game3_replay.json").unwrap();
+    let expected: Vec<ActionSnapshot> = serde_json::from_str(&expected_json).unwrap();
 
-    for (i, (act, exp)) in actual.iter().zip(expected.iter()).enumerate() {
-        assert_eq!(
-            act, exp,
-            "Action {} differs from fixture\n  actual:   {:?}\n  expected: {:?}",
-            i, act, exp
-        );
+    assert_eq!(actual.len(), expected.len(), "action count mismatch");
+    for (i, (a, e)) in actual.iter().zip(expected.iter()).enumerate() {
+        assert_eq!(a, e, "action {} mismatch", i);
     }
 }

@@ -19,7 +19,7 @@ use flashback::protocol::game_messages::{self, GameMessage};
 use flashback::protocol::opcodes;
 use flashback::protocol::statebuf::{self, StateBufProcessor};
 use flashback::replay::schema::{
-    GameResult, PlayerInfo, ReplayAction, ReplayFile, ReplayHeader,
+    GameHeader, GameReplay, GameResult, PlayerInfo, ReplayAction, ReplayFile, ReplayHeader,
 };
 use flashback::state::GameState;
 use flashback::translator::ReplayTranslator;
@@ -87,14 +87,18 @@ fn main() {
         println!("{}", json);
     }
 
+    let total_actions: usize = replay.games.iter().map(|g| g.actions.len()).sum();
+    let last_turn = replay
+        .games
+        .iter()
+        .flat_map(|g| g.actions.last())
+        .map(|a| a.turn)
+        .last()
+        .unwrap_or(0);
     eprintln!(
         "Replay: {} actions, {} turns",
-        replay.actions.len(),
-        replay
-            .actions
-            .last()
-            .map(|a| a.turn)
-            .unwrap_or(0)
+        total_actions,
+        last_turn
     );
 }
 
@@ -281,13 +285,25 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         .map(|s| s.game_id.to_string())
         .unwrap_or(last_game_id);
 
-    let header = ReplayHeader {
+    let game_header = GameHeader {
         game_id: game_id_str,
+        players: players.clone(),
+        result: GameResult::Incomplete,
+    };
+
+    let game = GameReplay {
+        game_number: 1,
+        header: game_header,
+        actions: all_actions,
+        card_names,
+        card_textures,
+    };
+
+    let header = ReplayHeader {
         players,
         format: String::new(),
         start_time,
         end_time: Some(Utc::now()),
-        result: GameResult::Incomplete,
     };
 
     let mut metadata = HashMap::new();
@@ -300,10 +316,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
     ReplayFile {
         header,
-        actions: all_actions,
+        games: vec![game],
         metadata,
-        card_names,
-        card_textures,
     }
 }
 

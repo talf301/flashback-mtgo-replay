@@ -60,28 +60,35 @@ pub struct ReplayAction {
     pub action_type: ActionType,
 }
 
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct GameHeader {
+    pub game_id: String,
+    pub players: Vec<PlayerInfo>,
+    pub result: GameResult,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct GameReplay {
+    pub game_number: u32,
+    pub header: GameHeader,
+    pub actions: Vec<ReplayAction>,
+    pub card_names: HashMap<String, String>,
+    pub card_textures: HashMap<String, i32>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ReplayHeader {
-    pub game_id: String,
     pub players: Vec<PlayerInfo>,
     pub format: String,
     pub start_time: DateTime<Utc>,
     pub end_time: Option<DateTime<Utc>>,
-    pub result: GameResult,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ReplayFile {
     pub header: ReplayHeader,
-    pub actions: Vec<ReplayAction>,
+    pub games: Vec<GameReplay>,
     pub metadata: HashMap<String, String>,
-    /// Maps card_id (thing ID as string) to card name, for display purposes.
-    #[serde(default, skip_serializing_if = "HashMap::is_empty")]
-    pub card_names: HashMap<String, String>,
-    /// Maps card_id (thing ID as string) to MTGO catalog ID (CARDTEXTURE_NUMBER / 2).
-    /// Used by the viewer to resolve card names via Scryfall when card_names is missing an entry.
-    #[serde(default, skip_serializing_if = "HashMap::is_empty")]
-    pub card_textures: HashMap<String, i32>,
 }
 
 #[derive(Debug, Error)]
@@ -100,7 +107,7 @@ pub type Result<T> = std::result::Result<T, ReplayError>;
 
 pub fn create_test_replay() -> ReplayFile {
     let start_time = Utc::now();
-    
+
     let players = vec![
         PlayerInfo {
             player_id: "player1".to_string(),
@@ -113,16 +120,14 @@ pub fn create_test_replay() -> ReplayFile {
             life_total: 20,
         },
     ];
-    
+
     let header = ReplayHeader {
-        game_id: "test-game-001".to_string(),
-        players,
+        players: players.clone(),
         format: "Standard".to_string(),
         start_time,
         end_time: None,
-        result: GameResult::Incomplete,
     };
-    
+
     let actions = vec![
         ReplayAction {
             timestamp: start_time,
@@ -155,17 +160,29 @@ pub fn create_test_replay() -> ReplayFile {
             },
         },
     ];
-    
+
+    let game_header = GameHeader {
+        game_id: "test-game-001".to_string(),
+        players: players.clone(),
+        result: GameResult::Incomplete,
+    };
+
+    let game = GameReplay {
+        game_number: 1,
+        header: game_header,
+        actions,
+        card_names: HashMap::new(),
+        card_textures: HashMap::new(),
+    };
+
     let mut metadata = HashMap::new();
     metadata.insert("version".to_string(), "1.0".to_string());
     metadata.insert("recorder".to_string(), "flashback".to_string());
-    
+
     ReplayFile {
         header,
-        actions,
+        games: vec![game],
         metadata,
-        card_names: HashMap::new(),
-        card_textures: HashMap::new(),
     }
 }
 
@@ -185,35 +202,35 @@ pub fn load_replay_file<P: AsRef<Path>>(path: P) -> Result<ReplayFile> {
 mod tests {
     use super::*;
     use tempfile::NamedTempFile;
-    
+
     #[test]
     fn test_replay_file_serialization() {
         let replay = create_test_replay();
-        
+
         // Serialize to JSON
         let json = serde_json::to_string(&replay).expect("Should serialize");
         assert!(!json.is_empty());
-        
+
         // Deserialize back
         let deserialized: ReplayFile = serde_json::from_str(&json).expect("Should deserialize");
-        
+
         assert_eq!(replay, deserialized);
     }
-    
+
     #[test]
     fn test_write_and_load_replay() {
         let replay = create_test_replay();
         let temp_file = NamedTempFile::new().expect("Should create temp file");
-        
+
         // Write
         write_replay_file(temp_file.path(), &replay).expect("Should write");
-        
+
         // Load
         let loaded = load_replay_file(temp_file.path()).expect("Should load");
-        
+
         assert_eq!(replay, loaded);
     }
-    
+
     #[test]
     fn test_action_types() {
         let actions = vec![
@@ -307,12 +324,50 @@ mod tests {
                 description: "test".to_string(),
             },
         ];
-        
+
         // Verify all action types serialize and deserialize correctly
         for action in actions {
             let json = serde_json::to_string(&action).expect("Should serialize");
             let deserialized: ActionType = serde_json::from_str(&json).expect("Should deserialize");
             assert_eq!(action, deserialized);
         }
+    }
+
+    #[test]
+    fn test_game_replay_serialization_roundtrip() {
+        let game = GameReplay {
+            game_number: 1,
+            header: GameHeader {
+                game_id: "12345".to_string(),
+                players: vec![
+                    PlayerInfo { player_id: "player_0".into(), name: "Alice".into(), life_total: 20 },
+                    PlayerInfo { player_id: "player_1".into(), name: "Bob".into(), life_total: 0 },
+                ],
+                result: GameResult::Win { winner_id: "player_0".to_string() },
+            },
+            actions: vec![],
+            card_names: HashMap::new(),
+            card_textures: HashMap::new(),
+        };
+
+        let replay = ReplayFile {
+            header: ReplayHeader {
+                format: "standard".to_string(),
+                start_time: Utc::now(),
+                end_time: Some(Utc::now()),
+                players: vec![
+                    PlayerInfo { player_id: "player_0".into(), name: "Alice".into(), life_total: 20 },
+                    PlayerInfo { player_id: "player_1".into(), name: "Bob".into(), life_total: 20 },
+                ],
+            },
+            games: vec![game],
+            metadata: HashMap::new(),
+        };
+
+        let json = serde_json::to_string(&replay).unwrap();
+        let loaded: ReplayFile = serde_json::from_str(&json).unwrap();
+        assert_eq!(loaded.games.len(), 1);
+        assert_eq!(loaded.games[0].game_number, 1);
+        assert_eq!(loaded.games[0].header.game_id, "12345");
     }
 }

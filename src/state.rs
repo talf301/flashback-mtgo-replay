@@ -351,11 +351,19 @@ impl GameState {
                         }
                     }
 
-                    // Track from_zone: if existing thing and zone changed
                     if is_existing && thing.zone != old_zone {
+                        // Existing thing changed zone — record the old zone type.
                         thing.from_zone = Some(old_zone);
+                    } else if !is_existing && te.from_zone != -1 && te.from_zone != 0 {
+                        // New thing with a non-trivial from_zone element reference.
+                        // Store -1 as a sentinel so the translator knows this thing
+                        // actually moved (vs appeared for the first time).
+                        // We don't know the zone TYPE (from_zone is an object ref),
+                        // but knowing it moved at all is enough.
+                        thing.from_zone = Some(-1);
                     }
-                    // New things: from_zone stays None (set by default)
+                    // New things with from_zone == -1 or 0: from_zone stays None
+                    // (first-time visibility, not a zone transition)
                 }
                 StateElement::Other { .. } => {
                     // Silently skip

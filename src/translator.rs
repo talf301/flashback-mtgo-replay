@@ -3,7 +3,7 @@
 //! Compares consecutive `GameState` snapshots and emits `ReplayAction`s
 //! describing what changed between them.
 
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 use chrono::{DateTime, Utc};
 
@@ -24,6 +24,11 @@ pub struct ReplayTranslator {
     player_names: Vec<String>,
     start_time: Option<DateTime<Utc>>,
     things_seen_on_stack: HashSet<u32>,
+    /// Tracks the last known zone of every thing_id ever seen, surviving
+    /// full-state prunes.  When a thing disappears from the game state
+    /// (pruned by a full state) and later reappears at a different zone,
+    /// we can still detect the zone change.
+    last_known_zones: HashMap<u32, i32>,
 }
 
 impl ReplayTranslator {
@@ -33,6 +38,7 @@ impl ReplayTranslator {
             player_names: Vec::new(),
             start_time: None,
             things_seen_on_stack: HashSet::new(),
+            last_known_zones: HashMap::new(),
         }
     }
 
@@ -50,13 +56,14 @@ impl ReplayTranslator {
         self.start_time = None;
         self.player_names.clear();
         self.things_seen_on_stack.clear();
+        self.last_known_zones.clear();
     }
 
     /// Process a new game state, emitting actions for everything that changed.
     ///
-    /// When `is_full_state` is true, no actions are generated — full state
-    /// snapshots reveal the entire board but don't represent individual game
-    /// actions.  The state is still stored so subsequent diffs are correct.
+    /// When `is_full_state` is true, diff is still run for existing things
+    /// (to catch zone changes) but new-thing actions are suppressed — full
+    /// state snapshots reveal previously-hidden cards that are not new plays.
     pub fn process(&mut self, new_state: &GameState, is_full_state: bool) -> Vec<ReplayAction> {
         // Record stack occupants BEFORE evaluating diffs
         for (thing_id, thing) in &new_state.things {
@@ -65,30 +72,29 @@ impl ReplayTranslator {
             }
         }
 
-        // Skip state updates that regress the game phase within the same turn.
-        // MTGO can interleave state updates from different perspectives, causing
-        // the phase to temporarily go backward.  Ignoring these prevents
-        // duplicate phase changes and mis-attributed actions.
-        if let Some(ref prev) = self.prev {
+        // Detect phase regression: the phase moved backward within the
+        // same turn, likely due to interleaved MTGO state updates.
+        let phase_regressed = if let Some(ref prev) = self.prev {
             let same_turn = new_state.turn == prev.turn;
-            let phase_regresses = new_state.phase.ordinal() < prev.phase.ordinal()
+            let regresses = new_state.phase.ordinal() < prev.phase.ordinal()
                 && new_state.phase.ordinal() != 255
                 && prev.phase.ordinal() != 255;
-            if same_turn && phase_regresses && !is_full_state {
-                return Vec::new();
-            }
-        }
+            same_turn && regresses
+        } else {
+            false
+        };
 
-        let actions = if is_full_state {
-            // Full state snapshots are sync points, not game actions.
-            // Skip action generation to avoid spurious duplicates.
-            Vec::new()
-        } else if let Some(ref prev) = self.prev {
-            self.diff(prev, new_state)
+        let actions = if let Some(ref prev) = self.prev {
+            self.diff(prev, new_state, is_full_state, phase_regressed)
         } else {
             // First state — no diff possible
             Vec::new()
         };
+
+        // Update last_known_zones for every thing in the new state.
+        for (thing_id, thing) in &new_state.things {
+            self.last_known_zones.insert(*thing_id, thing.zone);
+        }
 
         // Clear from_zone on all things after diffing (we clone for storage)
         let mut stored = new_state.clone();
@@ -135,46 +141,61 @@ impl ReplayTranslator {
         }
     }
 
-    fn diff(&self, prev: &GameState, new: &GameState) -> Vec<ReplayAction> {
+    /// Diff two states.
+    ///
+    /// `suppress_new_things`: when true, skip action generation for things
+    ///     that appear for the first time (not in prev).  Used for full-state
+    ///     snapshots where "new" things are just becoming visible.
+    /// `suppress_phase`: when true, skip TurnChange / PhaseChange / LifeChange
+    ///     because the state update regressed the phase within a turn.
+    fn diff(
+        &self,
+        prev: &GameState,
+        new: &GameState,
+        suppress_new_things: bool,
+        suppress_phase: bool,
+    ) -> Vec<ReplayAction> {
         let mut actions = Vec::new();
 
-        // Turn change
-        if new.turn > prev.turn {
-            actions.push(self.make_action(
-                new,
-                ActionType::TurnChange {
-                    turn: new.turn,
-                    player_id: self.player_name(new.active_player),
-                },
-            ));
-        }
-
-        // Phase change — only emit when advancing forward within a turn
-        // (or when the turn changed, which resets the phase sequence).
-        let turn_changed = new.turn > prev.turn;
-        if new.phase != prev.phase
-            && (turn_changed || new.phase.ordinal() > prev.phase.ordinal())
-        {
-            actions.push(self.make_action(
-                new,
-                ActionType::PhaseChange {
-                    phase: new.phase.to_string(),
-                },
-            ));
-        }
-
-        // Life changes
-        let player_count = prev.players.len().min(new.players.len());
-        for i in 0..player_count {
-            if new.players[i].life != prev.players[i].life {
+        if !suppress_phase {
+            // Turn change
+            if new.turn > prev.turn {
                 actions.push(self.make_action(
                     new,
-                    ActionType::LifeChange {
-                        player_id: self.player_name(i),
-                        old_life: prev.players[i].life,
-                        new_life: new.players[i].life,
+                    ActionType::TurnChange {
+                        turn: new.turn,
+                        player_id: self.player_name(new.active_player),
                     },
                 ));
+            }
+
+            // Phase change — only emit when advancing forward within a turn
+            // (or when the turn changed, which resets the phase sequence).
+            let turn_changed = new.turn > prev.turn;
+            if new.phase != prev.phase
+                && (turn_changed || new.phase.ordinal() > prev.phase.ordinal())
+            {
+                actions.push(self.make_action(
+                    new,
+                    ActionType::PhaseChange {
+                        phase: new.phase.to_string(),
+                    },
+                ));
+            }
+
+            // Life changes
+            let player_count = prev.players.len().min(new.players.len());
+            for i in 0..player_count {
+                if new.players[i].life != prev.players[i].life {
+                    actions.push(self.make_action(
+                        new,
+                        ActionType::LifeChange {
+                            player_id: self.player_name(i),
+                            old_life: prev.players[i].life,
+                            new_life: new.players[i].life,
+                        },
+                    ));
+                }
             }
         }
 
@@ -429,13 +450,17 @@ impl ReplayTranslator {
                     ));
                 }
             } else {
-                // New thing — appeared in this state for the first time.
-                // ThingElement.from_zone is a zone object reference (not a CardZone enum),
-                // so we rely on the current zone to infer what happened.
+                // New thing — not in prev state.  Use from_zone to distinguish
+                // real zone transitions from visibility-only appearances.
+                //
+                // from_zone == Some(-1): thing actually moved from another zone
+                //   (the element had a non-trivial from_zone object reference).
+                // from_zone == None: first-time visibility, no zone transition.
+                let moved = new_thing.from_zone == Some(-1);
                 let zone = new_thing.zone;
 
-                if zone == ZONE_HAND {
-                    // New thing in hand → draw
+                if zone == ZONE_HAND && moved {
+                    // Drew a card
                     actions.push(self.make_action(
                         new,
                         ActionType::DrawCard {
@@ -443,8 +468,8 @@ impl ReplayTranslator {
                             card_id: card_id.clone(),
                         },
                     ));
-                } else if zone == ZONE_STACK {
-                    // New thing on stack → cast or activate
+                } else if zone == ZONE_STACK && moved {
+                    // Cast spell or activated ability
                     if let Some(src_id) = new_thing.src_thing_id {
                         if new.things.get(&src_id).map_or(false, |src| {
                             src.zone == ZONE_BATTLEFIELD
@@ -477,12 +502,46 @@ impl ReplayTranslator {
                             },
                         ));
                     }
+                } else if zone == ZONE_BATTLEFIELD && moved {
+                    if self.things_seen_on_stack.contains(thing_id) {
+                        // Was on stack → resolved
+                        actions.push(self.make_action(
+                            new,
+                            ActionType::ZoneTransition {
+                                card_id: card_id.clone(),
+                                from_zone: "stack".to_string(),
+                                to_zone: "battlefield".to_string(),
+                                player_id: Some(
+                                    self.player_name(new_thing.controller as usize),
+                                ),
+                            },
+                        ));
+                    } else {
+                        // Not seen on stack → land play
+                        actions.push(self.make_action(
+                            new,
+                            ActionType::PlayLand {
+                                player_id: self.player_name(new_thing.controller as usize),
+                                card_id: card_id.clone(),
+                            },
+                        ));
+                    }
+                } else if moved && zone != ZONE_LIBRARY {
+                    // Other zone transition (graveyard, exile, etc.)
+                    actions.push(self.make_action(
+                        new,
+                        ActionType::ZoneTransition {
+                            card_id: card_id.clone(),
+                            from_zone: "unknown".to_string(),
+                            to_zone: Self::zone_name(zone).to_string(),
+                            player_id: Some(
+                                self.player_name(new_thing.controller as usize),
+                            ),
+                        },
+                    ));
                 }
-                // Battlefield, graveyard, exile, etc. for new things are skipped.
-                // Things appearing on the battlefield for the first time are
-                // typically the opponent's existing permanents becoming visible,
-                // not actual plays.  Real zone changes (hand→battlefield,
-                // stack→battlefield) are caught by the existing-thing path above.
+                // from_zone == None (no movement) or zone == library:
+                // visibility change or game setup, not a real action.
             }
         }
 
@@ -717,29 +776,26 @@ mod tests {
     }
 
     #[test]
-    fn test_full_state_suppresses_actions() {
+    fn test_full_state_suppresses_new_things_but_keeps_phase() {
         let mut translator = ReplayTranslator::new();
 
         let s1 = make_state(1, 1, GamePhase::PreCombatMain);
         translator.process(&s1, false);
 
-        // Full state with new things and a phase change — should produce NO actions
+        // Full state with new things and a phase change — new things suppressed,
+        // but phase change and existing-thing diffs still emitted.
         let mut s2 = make_state(1, 1, GamePhase::PostCombatMain);
         s2.things.insert(100, default_thing(100, ZONE_BATTLEFIELD));
         s2.things.insert(101, default_thing(101, ZONE_HAND));
         let actions = translator.process(&s2, true);
-        assert!(actions.is_empty(), "Full state should suppress all actions");
-
-        // A subsequent diff should still work — phase changed from PreCombatMain
-        // (stored as prev from s1) to PostCombatMain (stored as prev from s2)
-        let mut s3 = make_state(1, 1, GamePhase::EndStep);
-        s3.things.insert(100, default_thing(100, ZONE_BATTLEFIELD));
-        s3.things.insert(101, default_thing(101, ZONE_HAND));
-        let actions = translator.process(&s3, false);
+        // Phase change IS emitted
         assert!(actions.iter().any(|a| matches!(
             &a.action_type,
-            ActionType::PhaseChange { phase } if phase == "end_step"
+            ActionType::PhaseChange { phase } if phase == "postcombat_main"
         )));
+        // But new things are NOT emitted as DrawCard/PlayLand
+        assert!(!actions.iter().any(|a| matches!(&a.action_type, ActionType::PlayLand { .. })));
+        assert!(!actions.iter().any(|a| matches!(&a.action_type, ActionType::DrawCard { .. })));
     }
 
     /// New things appearing on the battlefield should NOT produce PlayLand.
@@ -793,42 +849,33 @@ mod tests {
         );
     }
 
-    /// Phase regressions within a turn should be suppressed entirely —
-    /// no actions generated, no prev state updated.
+    /// Phase regressions suppress phase/life metadata but still process
+    /// thing diffs (zone changes, taps, etc.) so real game actions aren't lost.
     #[test]
-    fn test_phase_regression_suppressed() {
+    fn test_phase_regression_suppresses_phase_but_keeps_thing_diffs() {
         let mut translator = ReplayTranslator::new();
 
         let mut s1 = make_state(1, 1, GamePhase::PostCombatMain);
         s1.things.insert(400, default_thing(400, ZONE_BATTLEFIELD));
         translator.process(&s1, false);
 
-        // State update that regresses the phase (postcombat_main → upkeep)
-        // should be completely ignored — no actions, no prev update.
+        // State update that regresses the phase (postcombat_main → upkeep).
+        // Phase/turn/life actions suppressed, but thing diffs still processed.
         let mut s2 = make_state(1, 1, GamePhase::Upkeep);
         let mut t = default_thing(400, ZONE_BATTLEFIELD);
-        t.tapped = true; // change that should be ignored
+        t.tapped = true;
         s2.things.insert(400, t);
         let actions = translator.process(&s2, false);
-        assert!(actions.is_empty(), "Phase regression should suppress all actions");
 
-        // A forward phase change should still diff against the pre-regression
-        // state (s1), so the tap from s2 should NOT appear.
-        let mut s3 = make_state(1, 1, GamePhase::EndStep);
-        s3.things.insert(400, default_thing(400, ZONE_BATTLEFIELD)); // untapped
-        let actions = translator.process(&s3, false);
-
+        // No PhaseChange emitted (phase went backward)
         assert!(
-            actions.iter().any(|a| matches!(
-                &a.action_type,
-                ActionType::PhaseChange { phase } if phase == "end_step"
-            )),
-            "Forward phase change should still work after regression"
+            !actions.iter().any(|a| matches!(&a.action_type, ActionType::PhaseChange { .. })),
+            "Phase regression should not emit PhaseChange"
         );
-        // Card 400 was untapped in s1 and untapped in s3 — no tap action
+        // But the tap IS emitted (thing diff still runs)
         assert!(
-            !actions.iter().any(|a| matches!(&a.action_type, ActionType::TapPermanent { .. })),
-            "Regressed state changes should not leak through"
+            actions.iter().any(|a| matches!(&a.action_type, ActionType::TapPermanent { .. })),
+            "Thing diffs should still be processed during phase regression"
         );
     }
 }

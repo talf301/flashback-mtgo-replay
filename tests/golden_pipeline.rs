@@ -178,6 +178,25 @@ fn test_golden_file_actions_have_valid_turns() {
     assert!(max_turn > 0, "Expected at least turn 1, max was {}", max_turn);
 }
 
+/// Verifies that the pipeline generates zone transition actions.
+///
+/// MTGO assigns new thing_ids when cards change zones, so zone changes are
+/// detected through the from_zone element field (not by comparing zone values
+/// on the same thing_id across states).
+#[test]
+fn test_golden_pipeline_has_zone_transitions() {
+    let data =
+        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+    let actions = run_pipeline(&data);
+
+    let play_lands = actions.iter().filter(|a| matches!(&a.action_type, ActionType::PlayLand { .. })).count();
+    let zone_transitions = actions.iter().filter(|a| matches!(&a.action_type, ActionType::ZoneTransition { .. })).count();
+
+    assert!(play_lands > 0, "Expected PlayLand actions, got 0");
+    assert!(zone_transitions > 0, "Expected ZoneTransition actions, got 0");
+}
+
+
 #[test]
 fn test_golden_framing_smoke() {
     let data =

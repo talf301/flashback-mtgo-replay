@@ -11,6 +11,7 @@ import { FileLoader } from './components/FileLoader';
 
 export function App() {
   const [replayFile, setReplayFile] = useState<ReplayFile | null>(null);
+  const [gameIndex, setGameIndex] = useState(0);
   const [reconstructor, setReconstructor] = useState<Reconstructor | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [boardState, setBoardState] = useState<BoardState>(createEmptyBoardState());
@@ -19,7 +20,8 @@ export function App() {
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const playbackIntervalRef = useRef<number | null>(null);
 
-  const totalSteps = replayFile?.actions.length ?? 0;
+  const currentGame = replayFile?.games[gameIndex];
+  const totalSteps = currentGame?.actions.length ?? 0;
   const canStepForward = currentStep < totalSteps;
   const canStepBackward = currentStep > 0;
 
@@ -31,30 +33,66 @@ export function App() {
 
   const handleFileLoad = useCallback((file: ReplayFile) => {
     setReplayFile(file);
+    setGameIndex(0);
     setCurrentStep(0);
     setIsPlaying(false);
 
     const r = new Reconstructor();
-    r.loadReplay(file);
+    r.loadReplay(file, 0);
     setReconstructor(r);
 
     // Initialize to step 0 (empty board before any actions)
     setBoardState(r.reconstruct(0));
 
     // Resolve unnamed cards via Scryfall using MTGO IDs
-    if (file.card_textures && Object.keys(file.card_textures).length > 0) {
-      r.resolveCardTextures(file.card_textures).then((count) => {
+    const game = file.games[0];
+    if (game?.card_textures && Object.keys(game.card_textures).length > 0) {
+      r.resolveCardTextures(game.card_textures).then((count) => {
         if (count > 0) {
           console.log(`Resolved ${count} card names from Scryfall`);
           // Merge resolved names back into the replay file for GameLog etc.
-          setReplayFile((prev) => prev ? {
-            ...prev,
-            card_names: { ...prev.card_names, ...r.getCardNames() },
-          } : prev);
+          setReplayFile((prev) => {
+            if (!prev) return prev;
+            const updatedGames = prev.games.map((g, i) =>
+              i === 0
+                ? { ...g, card_names: { ...g.card_names, ...r.getCardNames() } }
+                : g
+            );
+            return { ...prev, games: updatedGames };
+          });
         }
       });
     }
   }, []);
+
+  const handleGameSwitch = useCallback(
+    async (newIndex: number) => {
+      if (!replayFile || !reconstructor) return;
+      reconstructor.loadReplay(replayFile, newIndex);
+      setGameIndex(newIndex);
+      setCurrentStep(0);
+      setIsPlaying(false);
+      setBoardState(reconstructor.reconstruct(0));
+
+      const game = replayFile.games[newIndex];
+      if (game?.card_textures && Object.keys(game.card_textures).length > 0) {
+        const count = await reconstructor.resolveCardTextures(game.card_textures);
+        if (count > 0) {
+          console.log(`Resolved ${count} card names from Scryfall`);
+          setReplayFile((prev) => {
+            if (!prev) return prev;
+            const updatedGames = prev.games.map((g, i) =>
+              i === newIndex
+                ? { ...g, card_names: { ...g.card_names, ...reconstructor.getCardNames() } }
+                : g
+            );
+            return { ...prev, games: updatedGames };
+          });
+        }
+      }
+    },
+    [replayFile, reconstructor],
+  );
 
   const stepTo = useCallback(
     (step: number) => {
@@ -138,7 +176,7 @@ export function App() {
     );
   }
 
-  const winnerId = getWinnerId(replayFile.header.result);
+  const winnerId = currentGame ? getWinnerId(currentGame.header.result) : undefined;
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -146,24 +184,43 @@ export function App() {
         <div className="max-w-full mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-white">MTG Replay Viewer</h1>
-            <p className="text-sm text-slate-400">Game: {replayFile.header.game_id}</p>
+            <p className="text-sm text-slate-400">Game: {currentGame?.header.game_id}</p>
           </div>
-          {replayFile.header.format && (
-            <div className="px-3 py-1 bg-slate-800 rounded text-slate-300 text-sm">
-              {replayFile.header.format}
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {replayFile.games.length > 1 && (
+              <div className="game-selector flex gap-1">
+                {replayFile.games.map((game, i) => (
+                  <button
+                    key={i}
+                    className={`px-3 py-1 rounded text-sm transition-colors ${
+                      i === gameIndex
+                        ? 'active bg-blue-600 text-white'
+                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    }`}
+                    onClick={() => handleGameSwitch(i)}
+                  >
+                    Game {game.game_number}
+                  </button>
+                ))}
+              </div>
+            )}
+            {replayFile.header.format && (
+              <div className="px-3 py-1 bg-slate-800 rounded text-slate-300 text-sm">
+                {replayFile.header.format}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
       <div className="flex h-[calc(100vh-64px)]">
         <aside className="w-80 border-r border-slate-800 bg-slate-900/50 overflow-hidden flex flex-col">
           <GameLog
-            actions={replayFile.actions}
+            actions={currentGame?.actions ?? []}
             currentStep={currentStep}
             onActionClick={handleActionClick}
             playerNameMap={playerNames}
-            cardNameMap={replayFile.card_names ?? {}}
+            cardNameMap={currentGame?.card_names ?? {}}
             autoScroll={true}
           />
         </aside>
@@ -228,20 +285,23 @@ export function App() {
                 )}
                 <div className="flex justify-between">
                   <span>Actions:</span>
-                  <span>{replayFile.actions.length}</span>
+                  <span>{currentGame?.actions.length ?? 0}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Result:</span>
-                  <span className={winnerId ? 'text-green-400' : ''}>
-                    {getResultLabel(replayFile.header.result)}
-                  </span>
-                </div>
+                {currentGame && (
+                  <div className="flex justify-between">
+                    <span>Result:</span>
+                    <span className={winnerId ? 'text-green-400' : ''}>
+                      {getResultLabel(currentGame.header.result)}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
             <button
               onClick={() => {
                 setReplayFile(null);
+                setGameIndex(0);
                 setReconstructor(null);
                 setCurrentStep(0);
                 setIsPlaying(false);

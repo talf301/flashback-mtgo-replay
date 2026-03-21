@@ -9,21 +9,29 @@
 
 export interface ReplayFile {
   header: ReplayHeader;
-  actions: RawReplayAction[];
+  games: GameReplay[];
   metadata: Record<string, string>;
-  /** Maps card_id (thing ID) to card name, for display. */
-  card_names?: Record<string, string>;
-  /** Maps card_id (thing ID) to MTGO catalog ID (for Scryfall lookup). */
-  card_textures?: Record<string, number>;
 }
 
 export interface ReplayHeader {
-  game_id: string;
   format: string;
   start_time: string;
   end_time?: string | null;
   players: PlayerInfo[];
+}
+
+export interface GameHeader {
+  game_id: string;
+  players: PlayerInfo[];
   result: RawGameResult;
+}
+
+export interface GameReplay {
+  game_number: number;
+  header: GameHeader;
+  actions: RawReplayAction[];
+  card_names?: Record<string, string>;
+  card_textures?: Record<string, number>;
 }
 
 export interface PlayerInfo {

@@ -14,73 +14,13 @@
       }
     ],
     "format": "",
-    "start_time": "2026-03-20T17:58:19.014073539Z",
-    "end_time": "2026-03-20T17:58:19.518754414Z",
+    "start_time": "2026-03-21T00:37:02.507937441Z",
+    "end_time": "2026-03-21T00:37:02.989572357Z",
     "result": "Incomplete"
   },
   "actions": [
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "416"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "417"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "419"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "420"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "422"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -92,7 +32,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -103,7 +43,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -114,53 +54,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "423"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "425"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -171,7 +65,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -182,7 +76,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -195,115 +89,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "426"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "427"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "334"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "335"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "336"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "337"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "338"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "340"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "344"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -315,7 +101,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -327,7 +113,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -339,7 +125,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -351,55 +137,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "361"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "367"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "368"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "369"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -411,7 +149,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -423,7 +161,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -435,7 +173,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -447,151 +185,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "380"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "383"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "384"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "385"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "386"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "387"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "388"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "390"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "392"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "393"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "428"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "430"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -603,7 +197,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -614,7 +208,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "draw",
       "active_player": "player_0",
@@ -625,7 +219,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -636,19 +230,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "432"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -659,7 +241,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -670,7 +252,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -681,7 +263,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -694,55 +276,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "433"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "434"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "435"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "437"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -754,74 +288,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "440"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -834,31 +301,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "441"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "442"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -869,7 +312,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -881,7 +324,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -893,7 +336,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -905,43 +348,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "449"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "451"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "452"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -953,7 +360,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -964,7 +371,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "draw",
       "active_player": "player_0",
@@ -975,7 +382,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -986,19 +393,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "454"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1011,43 +406,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "455"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "456"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "457"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1060,7 +419,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1072,7 +431,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1083,7 +442,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1095,7 +454,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1107,7 +466,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1119,7 +478,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1131,7 +490,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -1142,7 +501,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -1153,7 +512,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 3,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -1164,63 +523,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "463"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 3,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -1232,7 +535,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -1243,7 +546,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "draw",
       "active_player": "player_0",
@@ -1254,7 +557,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1265,7 +568,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1277,7 +580,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1289,7 +592,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1301,7 +604,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -1312,7 +615,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1323,7 +626,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1335,7 +638,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1346,7 +649,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1358,19 +661,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "476"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -1381,7 +672,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -1393,7 +684,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -1404,7 +695,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -1415,43 +706,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "481"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -1462,41 +719,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "481",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 4,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 4,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -1508,7 +731,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -1520,7 +743,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -1531,7 +754,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "draw",
       "active_player": "player_0",
@@ -1542,19 +765,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "483"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1565,7 +776,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1577,7 +788,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1589,19 +800,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "488"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1614,7 +813,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -1626,7 +825,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -1637,7 +836,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1648,7 +847,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1660,7 +859,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1671,7 +870,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1684,43 +883,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "491"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "492"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "493"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1731,7 +894,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1743,7 +906,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1755,7 +918,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1767,7 +930,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1778,7 +941,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1790,7 +953,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1802,7 +965,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1814,7 +977,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1826,7 +989,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1838,7 +1001,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -1850,7 +1013,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -1861,7 +1024,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -1873,7 +1036,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -1884,7 +1047,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -1895,7 +1058,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -1907,7 +1070,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -1918,74 +1081,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "508"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 5,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 5,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -1997,7 +1093,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2009,7 +1105,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2020,7 +1116,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "draw",
       "active_player": "player_0",
@@ -2031,7 +1127,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2042,7 +1138,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2054,7 +1150,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2065,7 +1161,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2078,7 +1174,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 6,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2091,134 +1187,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "520"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "521"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "522"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "524"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "525"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "527"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2230,7 +1199,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2241,7 +1210,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "draw",
       "active_player": "player_0",
@@ -2252,19 +1221,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "528"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2275,19 +1232,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "529"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -2298,7 +1243,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2309,7 +1254,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2321,7 +1266,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2332,7 +1277,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2345,43 +1290,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "538"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "539"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "540"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2392,7 +1301,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2404,7 +1313,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -2415,7 +1324,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -2427,7 +1336,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2438,62 +1347,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2506,43 +1360,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "545"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "546"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 7,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "547"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2553,7 +1371,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2565,7 +1383,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2577,7 +1395,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2588,7 +1406,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "draw",
       "active_player": "player_0",
@@ -2599,7 +1417,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "draw",
       "active_player": "player_0",
@@ -2611,7 +1429,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2622,7 +1440,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2634,7 +1452,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2646,7 +1464,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2658,7 +1476,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2670,7 +1488,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2682,7 +1500,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2693,7 +1511,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2705,7 +1523,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2717,62 +1535,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 8,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 8,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 8,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 8,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2784,7 +1547,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -2795,7 +1558,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "draw",
       "active_player": "player_0",
@@ -2806,7 +1569,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -2817,7 +1580,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -2828,7 +1591,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2839,7 +1602,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2851,7 +1614,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2862,7 +1625,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2874,7 +1637,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -2887,7 +1650,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -2898,7 +1661,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -2910,7 +1673,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -2921,7 +1684,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -2933,7 +1696,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -2945,7 +1708,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -2956,87 +1719,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "declare_attackers"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "Attack": {
-          "attacker_id": "571",
-          "defender_id": "player_1"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "declare_blockers",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "declare_blockers"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
-      "turn": 9,
-      "phase": "end_of_combat",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -3047,18 +1732,19 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
+        "Attack": {
+          "attacker_id": "571",
+          "defender_id": "player_1"
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.014073539Z",
+      "timestamp": "2026-03-21T00:37:02.507937441Z",
       "turn": 9,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3070,31 +1756,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.247682767Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "416"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.247685497Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "417"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.247893031Z",
+      "timestamp": "2026-03-21T00:37:02.734421268Z",
       "turn": 0,
       "phase": "unknown(255)",
       "active_player": "player_0",
@@ -3106,7 +1768,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.247894641Z",
+      "timestamp": "2026-03-21T00:37:02.734423798Z",
       "turn": 0,
       "phase": "unknown(255)",
       "active_player": "player_0",
@@ -3118,43 +1780,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.247895921Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "433"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.247897571Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "435"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.247898711Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "436"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.249090119Z",
+      "timestamp": "2026-03-21T00:37:02.735612924Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3166,7 +1792,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.249090859Z",
+      "timestamp": "2026-03-21T00:37:02.735613734Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3177,7 +1803,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.249568276Z",
+      "timestamp": "2026-03-21T00:37:02.736082076Z",
       "turn": 1,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3188,31 +1814,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.249818240Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "438"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.249819500Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "440"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.250684703Z",
+      "timestamp": "2026-03-21T00:37:02.737190642Z",
       "turn": 1,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -3223,7 +1825,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.250967777Z",
+      "timestamp": "2026-03-21T00:37:02.737479493Z",
       "turn": 1,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3234,7 +1836,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.251239321Z",
+      "timestamp": "2026-03-21T00:37:02.737747895Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3245,87 +1847,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.251538046Z",
-      "turn": 1,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.252090114Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.252413499Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "442"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.252414809Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "444"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.253330263Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "445"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.253603997Z",
-      "turn": 1,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.253899662Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.254200896Z",
+      "timestamp": "2026-03-21T00:37:02.740484418Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3337,7 +1859,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.254201386Z",
+      "timestamp": "2026-03-21T00:37:02.740485228Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3348,7 +1870,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.254837886Z",
+      "timestamp": "2026-03-21T00:37:02.741113371Z",
       "turn": 2,
       "phase": "draw",
       "active_player": "player_0",
@@ -3359,7 +1881,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.255170141Z",
+      "timestamp": "2026-03-21T00:37:02.741450173Z",
       "turn": 2,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3370,19 +1892,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.255527196Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "447"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.256188876Z",
+      "timestamp": "2026-03-21T00:37:02.742460108Z",
       "turn": 2,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3394,7 +1904,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.256525452Z",
+      "timestamp": "2026-03-21T00:37:02.742780080Z",
       "turn": 2,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3406,7 +1916,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.256810496Z",
+      "timestamp": "2026-03-21T00:37:02.743058751Z",
       "turn": 2,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -3417,7 +1927,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.257141371Z",
+      "timestamp": "2026-03-21T00:37:02.743393952Z",
       "turn": 2,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3428,7 +1938,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.257461235Z",
+      "timestamp": "2026-03-21T00:37:02.743707774Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3439,43 +1949,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.257830851Z",
+      "timestamp": "2026-03-21T00:37:02.746530588Z",
       "turn": 2,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.258469751Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.258813476Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "450"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.259107711Z",
-      "turn": 2,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -3486,52 +1962,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.259132221Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "450",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.259436936Z",
-      "turn": 2,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.260109826Z",
-      "turn": 2,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.260438911Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.262112986Z",
+      "timestamp": "2026-03-21T00:37:02.748206516Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3542,7 +1973,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.262114676Z",
+      "timestamp": "2026-03-21T00:37:02.748208076Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3554,7 +1985,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.262800697Z",
+      "timestamp": "2026-03-21T00:37:02.748887600Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3565,7 +1996,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.263141042Z",
+      "timestamp": "2026-03-21T00:37:02.749223341Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3577,7 +2008,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.263795702Z",
+      "timestamp": "2026-03-21T00:37:02.749878554Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3589,7 +2020,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.263796332Z",
+      "timestamp": "2026-03-21T00:37:02.749879324Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3600,7 +2031,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.264534453Z",
+      "timestamp": "2026-03-21T00:37:02.750616458Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3611,7 +2042,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.264563443Z",
+      "timestamp": "2026-03-21T00:37:02.750645598Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3623,7 +2054,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.264895328Z",
+      "timestamp": "2026-03-21T00:37:02.750977240Z",
       "turn": 3,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -3634,7 +2065,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.265245574Z",
+      "timestamp": "2026-03-21T00:37:02.751323811Z",
       "turn": 3,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -3645,7 +2076,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.265625039Z",
+      "timestamp": "2026-03-21T00:37:02.751700703Z",
       "turn": 3,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -3657,7 +2088,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.265986505Z",
+      "timestamp": "2026-03-21T00:37:02.752059315Z",
       "turn": 3,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -3668,7 +2099,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.266322520Z",
+      "timestamp": "2026-03-21T00:37:02.752396227Z",
       "turn": 3,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -3679,7 +2110,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.266714746Z",
+      "timestamp": "2026-03-21T00:37:02.752782109Z",
       "turn": 3,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -3690,7 +2121,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.266715476Z",
+      "timestamp": "2026-03-21T00:37:02.752782729Z",
       "turn": 3,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -3703,7 +2134,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.266744866Z",
+      "timestamp": "2026-03-21T00:37:02.752812189Z",
       "turn": 3,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -3715,7 +2146,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.267165223Z",
+      "timestamp": "2026-03-21T00:37:02.753231041Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3726,31 +2157,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.267194933Z",
-      "turn": 3,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "459"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.267661810Z",
-      "turn": 3,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "461"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.268907069Z",
+      "timestamp": "2026-03-21T00:37:02.754964140Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3761,7 +2168,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.269503698Z",
+      "timestamp": "2026-03-21T00:37:02.755560843Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3773,7 +2180,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.269934575Z",
+      "timestamp": "2026-03-21T00:37:02.755991375Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3785,7 +2192,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.269935945Z",
+      "timestamp": "2026-03-21T00:37:02.755992845Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -3797,100 +2204,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.270324850Z",
-      "turn": 3,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.270357521Z",
-      "turn": 3,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "465"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.271154983Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.271604580Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "467"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.272865259Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "468"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.273269605Z",
-      "turn": 3,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.273305055Z",
-      "turn": 3,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "469"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.273306035Z",
-      "turn": 3,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "470"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.273727392Z",
+      "timestamp": "2026-03-21T00:37:02.759450092Z",
       "turn": 3,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -3901,7 +2215,55 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.274196519Z",
+      "timestamp": "2026-03-21T00:37:02.759485482Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player_1",
+          "card_id": "465"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.759487052Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "468"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.759488152Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player_1",
+          "card_id": "469"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.759489012Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "470"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.759920794Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3913,7 +2275,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.274197019Z",
+      "timestamp": "2026-03-21T00:37:02.759921324Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -3924,7 +2286,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.275089233Z",
+      "timestamp": "2026-03-21T00:37:02.760816188Z",
       "turn": 4,
       "phase": "draw",
       "active_player": "player_0",
@@ -3935,19 +2297,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.275124853Z",
-      "turn": 4,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "471"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.275599730Z",
+      "timestamp": "2026-03-21T00:37:02.761319191Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3958,7 +2308,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.275636541Z",
+      "timestamp": "2026-03-21T00:37:02.761355061Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3970,19 +2320,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.278078408Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "474"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.278080478Z",
+      "timestamp": "2026-03-21T00:37:02.763931504Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -3994,7 +2332,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.279649042Z",
+      "timestamp": "2026-03-21T00:37:02.765535902Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -4006,7 +2344,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.280162659Z",
+      "timestamp": "2026-03-21T00:37:02.766051684Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -4018,7 +2356,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.280164089Z",
+      "timestamp": "2026-03-21T00:37:02.766053124Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -4030,7 +2368,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.281134234Z",
+      "timestamp": "2026-03-21T00:37:02.767014639Z",
       "turn": 4,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -4041,7 +2379,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.282115809Z",
+      "timestamp": "2026-03-21T00:37:02.767990754Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4052,7 +2390,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.282638417Z",
+      "timestamp": "2026-03-21T00:37:02.768509437Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4064,7 +2402,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.283123474Z",
+      "timestamp": "2026-03-21T00:37:02.768992099Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4076,7 +2414,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.283661122Z",
+      "timestamp": "2026-03-21T00:37:02.769527201Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4087,7 +2425,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.283666322Z",
+      "timestamp": "2026-03-21T00:37:02.769532431Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4098,7 +2436,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.283667902Z",
+      "timestamp": "2026-03-21T00:37:02.769534061Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -4110,19 +2448,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.284782819Z",
-      "turn": 4,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "482"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.285795085Z",
+      "timestamp": "2026-03-21T00:37:02.771653352Z",
       "turn": 4,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -4133,7 +2459,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.286877551Z",
+      "timestamp": "2026-03-21T00:37:02.772729227Z",
       "turn": 4,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -4144,7 +2470,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.286878351Z",
+      "timestamp": "2026-03-21T00:37:02.772730027Z",
       "turn": 4,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -4157,7 +2483,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.286919962Z",
+      "timestamp": "2026-03-21T00:37:02.772772157Z",
       "turn": 4,
       "phase": "first_strike_damage",
       "active_player": "player_0",
@@ -4169,7 +2495,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.288040629Z",
+      "timestamp": "2026-03-21T00:37:02.773880783Z",
       "turn": 4,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -4180,115 +2506,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.288083770Z",
-      "turn": 4,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "486"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.288084940Z",
-      "turn": 4,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "487"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.290955493Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "416"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.290957333Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "417"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.290958393Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "418"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.290960053Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "420"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.290961163Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "421"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.291357229Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "430"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.291360829Z",
-      "turn": 0,
-      "phase": "unknown(255)",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "436"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.291945728Z",
+      "timestamp": "2026-03-21T00:37:02.777757832Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -4300,7 +2518,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.291946398Z",
+      "timestamp": "2026-03-21T00:37:02.777758892Z",
       "turn": 1,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -4311,7 +2529,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.292344454Z",
+      "timestamp": "2026-03-21T00:37:02.778137074Z",
       "turn": 1,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -4322,31 +2540,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.292575288Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "438"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.292576558Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "440"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.293408150Z",
+      "timestamp": "2026-03-21T00:37:02.779184739Z",
       "turn": 1,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -4357,7 +2551,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.293680414Z",
+      "timestamp": "2026-03-21T00:37:02.779459971Z",
       "turn": 1,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4368,85 +2562,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.293951498Z",
-      "turn": 1,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.294513477Z",
-      "turn": 1,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.294840072Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.295166967Z",
-      "turn": 1,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "442"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.295754776Z",
-      "turn": 1,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.296070271Z",
-      "turn": 1,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.296382485Z",
-      "turn": 1,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.296706920Z",
+      "timestamp": "2026-03-21T00:37:02.782305044Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -4458,7 +2574,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.296707400Z",
+      "timestamp": "2026-03-21T00:37:02.782305834Z",
       "turn": 2,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -4469,7 +2585,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.297304189Z",
+      "timestamp": "2026-03-21T00:37:02.782907168Z",
       "turn": 2,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -4480,19 +2596,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.297621194Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "444"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.297917518Z",
+      "timestamp": "2026-03-21T00:37:02.783513101Z",
       "turn": 2,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -4503,7 +2607,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.298237203Z",
+      "timestamp": "2026-03-21T00:37:02.783832182Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4514,7 +2618,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.298576769Z",
+      "timestamp": "2026-03-21T00:37:02.784165694Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4527,115 +2631,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.298595329Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "445"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.298596539Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "446"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299457682Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "334"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299459212Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "335"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299460322Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "336"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299461382Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "337"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299462462Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "338"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299463732Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "339"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299464812Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "340"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299466772Z",
+      "timestamp": "2026-03-21T00:37:02.785017798Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4647,7 +2643,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299467822Z",
+      "timestamp": "2026-03-21T00:37:02.785019248Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4659,7 +2655,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299470002Z",
+      "timestamp": "2026-03-21T00:37:02.785021248Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4671,7 +2667,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299471092Z",
+      "timestamp": "2026-03-21T00:37:02.785022338Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4683,7 +2679,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299472092Z",
+      "timestamp": "2026-03-21T00:37:02.785023338Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4695,7 +2691,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299473092Z",
+      "timestamp": "2026-03-21T00:37:02.785024608Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4707,55 +2703,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299474952Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "358"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299477242Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "364"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299478272Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "365"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299479292Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "366"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299482252Z",
+      "timestamp": "2026-03-21T00:37:02.785031378Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4767,7 +2715,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299483212Z",
+      "timestamp": "2026-03-21T00:37:02.785032418Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4779,7 +2727,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299484272Z",
+      "timestamp": "2026-03-21T00:37:02.785033488Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4791,7 +2739,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299485222Z",
+      "timestamp": "2026-03-21T00:37:02.785034838Z",
       "turn": 2,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -4803,210 +2751,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.299486562Z",
+      "timestamp": "2026-03-21T00:37:02.791291429Z",
       "turn": 2,
       "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "377"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299488442Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "381"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299489432Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "382"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299490412Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "384"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299491442Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "386"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299492422Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "387"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299501543Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "424"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299502513Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "425"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299503953Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "427"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299504963Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "428"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299505933Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "429"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299907149Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "447"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.299908359Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "449"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.301836928Z",
-      "turn": 2,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.302612030Z",
-      "turn": 2,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.303041346Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.303482733Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "452"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.303858328Z",
-      "turn": 2,
-      "phase": "precombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -5017,52 +2764,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.303913329Z",
-      "turn": 2,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "452",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.304684421Z",
-      "turn": 2,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.305526564Z",
-      "turn": 2,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.306373856Z",
-      "turn": 2,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.307178759Z",
+      "timestamp": "2026-03-21T00:37:02.792104323Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5074,7 +2776,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.307179319Z",
+      "timestamp": "2026-03-21T00:37:02.792105133Z",
       "turn": 3,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5085,7 +2787,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.308020202Z",
+      "timestamp": "2026-03-21T00:37:02.792943507Z",
       "turn": 3,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5096,19 +2798,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.308501349Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "454"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.308854524Z",
+      "timestamp": "2026-03-21T00:37:02.793751671Z",
       "turn": 3,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -5119,7 +2809,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.309721907Z",
+      "timestamp": "2026-03-21T00:37:02.794614125Z",
       "turn": 3,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -5130,7 +2820,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.310131083Z",
+      "timestamp": "2026-03-21T00:37:02.795019577Z",
       "turn": 3,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5141,7 +2831,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.311932591Z",
+      "timestamp": "2026-03-21T00:37:02.796816276Z",
       "turn": 3,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5152,7 +2842,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.312346387Z",
+      "timestamp": "2026-03-21T00:37:02.797230568Z",
       "turn": 3,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5164,42 +2854,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.313971612Z",
+      "timestamp": "2026-03-21T00:37:02.814806925Z",
       "turn": 3,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.314818655Z",
-      "turn": 3,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.315295572Z",
-      "turn": 3,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.317557206Z",
-      "turn": 3,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "TapPermanent": {
@@ -5208,31 +2865,20 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.319271012Z",
+      "timestamp": "2026-03-21T00:37:02.814812995Z",
       "turn": 3,
-      "phase": "begin_combat",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
+        "TapPermanent": {
+          "card_id": "454"
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.320147415Z",
+      "timestamp": "2026-03-21T00:37:02.814814075Z",
       "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "declare_attackers"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.320641093Z",
-      "turn": 3,
-      "phase": "declare_attackers",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "Attack": {
@@ -5242,9 +2888,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.321113820Z",
+      "timestamp": "2026-03-21T00:37:02.814814485Z",
       "turn": 3,
-      "phase": "declare_attackers",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "TapPermanent": {
@@ -5253,68 +2899,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.325829451Z",
+      "timestamp": "2026-03-21T00:37:02.814814855Z",
       "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "454"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.325834891Z",
-      "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "464"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.326303748Z",
-      "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "464",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.326304918Z",
-      "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "465"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.326816536Z",
-      "turn": 3,
-      "phase": "declare_attackers",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "466"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.327785981Z",
-      "turn": 3,
-      "phase": "declare_attackers",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "DamageMarked": {
@@ -5324,9 +2911,45 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.327792171Z",
+      "timestamp": "2026-03-21T00:37:02.814820095Z",
       "turn": 3,
-      "phase": "declare_attackers",
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "464"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.814820985Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "465"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.814821845Z",
+      "turn": 3,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "466"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.814822665Z",
+      "turn": 3,
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "DrawCard": {
@@ -5336,52 +2959,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.328687305Z",
-      "turn": 3,
-      "phase": "declare_blockers",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "declare_blockers"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.329221123Z",
-      "turn": 3,
-      "phase": "declare_blockers",
-      "active_player": "player_0",
-      "action_type": {
-        "Block": {
-          "attacker_id": "",
-          "blocker_id": "467"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.330672065Z",
-      "turn": 3,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.331661010Z",
-      "turn": 3,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.333534128Z",
+      "timestamp": "2026-03-21T00:37:02.816670414Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5393,7 +2971,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.333534858Z",
+      "timestamp": "2026-03-21T00:37:02.816671424Z",
       "turn": 4,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5404,7 +2982,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.334467612Z",
+      "timestamp": "2026-03-21T00:37:02.818092211Z",
       "turn": 4,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5415,7 +2993,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.334921089Z",
+      "timestamp": "2026-03-21T00:37:02.818812095Z",
       "turn": 4,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -5426,7 +3004,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.335858453Z",
+      "timestamp": "2026-03-21T00:37:02.820387193Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -5437,7 +3015,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.336377101Z",
+      "timestamp": "2026-03-21T00:37:02.821269117Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -5449,7 +3027,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.336835828Z",
+      "timestamp": "2026-03-21T00:37:02.821913400Z",
       "turn": 4,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -5460,7 +3038,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.337706621Z",
+      "timestamp": "2026-03-21T00:37:02.823109656Z",
       "turn": 4,
       "phase": "declare_blockers",
       "active_player": "player_0",
@@ -5471,7 +3049,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.338169158Z",
+      "timestamp": "2026-03-21T00:37:02.823587098Z",
       "turn": 4,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5482,7 +3060,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.338169848Z",
+      "timestamp": "2026-03-21T00:37:02.823588078Z",
       "turn": 4,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5495,137 +3073,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.338652376Z",
-      "turn": 4,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.339633100Z",
-      "turn": 4,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.339699401Z",
-      "turn": 4,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "475"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.340138268Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.340674426Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "476"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.341113883Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "LifeChange": {
-          "player_id": "player_1",
-          "old_life": 16,
-          "new_life": 14
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.341180204Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "476",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.343176334Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "476"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.343719502Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "477",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.345721853Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "LifeChange": {
-          "player_id": "player_1",
-          "old_life": 14,
-          "new_life": 17
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.345796474Z",
-      "turn": 4,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "483"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.346207Z",
+      "timestamp": "2026-03-21T00:37:02.830470682Z",
       "turn": 5,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5637,7 +3085,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.346207500Z",
+      "timestamp": "2026-03-21T00:37:02.830471802Z",
       "turn": 5,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5648,62 +3096,32 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.347194665Z",
-      "turn": 5,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.347687362Z",
-      "turn": 5,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.348172100Z",
-      "turn": 5,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.348684768Z",
+      "timestamp": "2026-03-21T00:37:02.830472412Z",
       "turn": 5,
       "phase": "upkeep",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
+        "LifeChange": {
+          "player_id": "player_1",
+          "old_life": 16,
+          "new_life": 17
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.349691773Z",
+      "timestamp": "2026-03-21T00:37:02.830545203Z",
       "turn": 5,
-      "phase": "draw",
+      "phase": "upkeep",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "483"
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.350222311Z",
+      "timestamp": "2026-03-21T00:37:02.831463617Z",
       "turn": 5,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5714,7 +3132,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.351244966Z",
+      "timestamp": "2026-03-21T00:37:02.831947850Z",
       "turn": 5,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -5725,18 +3143,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.352276512Z",
-      "turn": 5,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.353292237Z",
+      "timestamp": "2026-03-21T00:37:02.832431142Z",
       "turn": 5,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5747,7 +3154,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.357316498Z",
+      "timestamp": "2026-03-21T00:37:02.842204730Z",
       "turn": 6,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5759,7 +3166,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.357317298Z",
+      "timestamp": "2026-03-21T00:37:02.842206690Z",
       "turn": 6,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -5770,7 +3177,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.358353724Z",
+      "timestamp": "2026-03-21T00:37:02.843245275Z",
       "turn": 6,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5781,19 +3188,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.358935423Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "492"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.359360189Z",
+      "timestamp": "2026-03-21T00:37:02.844244680Z",
       "turn": 6,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5806,7 +3201,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.359442230Z",
+      "timestamp": "2026-03-21T00:37:02.844317551Z",
       "turn": 6,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -5818,7 +3213,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.359868587Z",
+      "timestamp": "2026-03-21T00:37:02.844746603Z",
       "turn": 6,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -5829,7 +3224,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.361089155Z",
+      "timestamp": "2026-03-21T00:37:02.845806288Z",
       "turn": 6,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -5840,7 +3235,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.361628474Z",
+      "timestamp": "2026-03-21T00:37:02.846311170Z",
       "turn": 6,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -5851,31 +3246,33 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.362721960Z",
+      "timestamp": "2026-03-21T00:37:02.864092578Z",
       "turn": 6,
-      "phase": "upkeep",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
+        "LifeChange": {
+          "player_id": "player_1",
+          "old_life": 17,
+          "new_life": 14
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.363783926Z",
+      "timestamp": "2026-03-21T00:37:02.864172468Z",
       "turn": 6,
-      "phase": "draw",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
+        "TapPermanent": {
+          "card_id": "492"
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.363860927Z",
+      "timestamp": "2026-03-21T00:37:02.864173828Z",
       "turn": 6,
-      "phase": "draw",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "CastSpell": {
@@ -5885,183 +3282,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.364359735Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.369212418Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "492"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.373084777Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "494",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.373703337Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "502"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.374313456Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "503"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.374897655Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "LifeChange": {
-          "player_id": "player_1",
-          "old_life": 17,
-          "new_life": 16
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.374979036Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "504"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.374980236Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "505"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.376572700Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "506"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.377111368Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "LifeChange": {
-          "player_id": "player_1",
-          "old_life": 16,
-          "new_life": 14
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.377192969Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "506",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.378408398Z",
-      "turn": 6,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "506"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.380725573Z",
-      "turn": 6,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.381374443Z",
-      "turn": 6,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.382015222Z",
-      "turn": 6,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.383198300Z",
+      "timestamp": "2026-03-21T00:37:02.865280714Z",
       "turn": 7,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6073,7 +3294,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.383198930Z",
+      "timestamp": "2026-03-21T00:37:02.865281464Z",
       "turn": 7,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6084,7 +3305,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.384395209Z",
+      "timestamp": "2026-03-21T00:37:02.866479130Z",
       "turn": 7,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -6095,7 +3316,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.384989528Z",
+      "timestamp": "2026-03-21T00:37:02.867065193Z",
       "turn": 7,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -6106,7 +3327,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.385591407Z",
+      "timestamp": "2026-03-21T00:37:02.867662396Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6117,31 +3338,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.386212886Z",
+      "timestamp": "2026-03-21T00:37:02.881891646Z",
       "turn": 7,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.387463575Z",
-      "turn": 7,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.387551226Z",
-      "turn": 7,
-      "phase": "draw",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "CastSpell": {
@@ -6151,68 +3350,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.388119195Z",
+      "timestamp": "2026-03-21T00:37:02.881896976Z",
       "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.392063225Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "517",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.393404595Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "521"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.394099096Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "522"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.394100426Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "524"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.397504307Z",
-      "turn": 7,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "CastSpell": {
@@ -6222,52 +3362,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.398180807Z",
-      "turn": 7,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "526",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.399430716Z",
-      "turn": 7,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.400793047Z",
-      "turn": 7,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.402177608Z",
-      "turn": 7,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.408872289Z",
+      "timestamp": "2026-03-21T00:37:02.888637559Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6279,7 +3374,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.410240730Z",
+      "timestamp": "2026-03-21T00:37:02.889996336Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6291,7 +3386,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.411611501Z",
+      "timestamp": "2026-03-21T00:37:02.891356933Z",
       "turn": 7,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6303,7 +3398,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.414192050Z",
+      "timestamp": "2026-03-21T00:37:02.893941885Z",
       "turn": 8,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6315,7 +3410,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.414192730Z",
+      "timestamp": "2026-03-21T00:37:02.893942655Z",
       "turn": 8,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6326,7 +3421,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.415525500Z",
+      "timestamp": "2026-03-21T00:37:02.895269852Z",
       "turn": 8,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -6337,52 +3432,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.416280821Z",
-      "turn": 8,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "538"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.416930341Z",
-      "turn": 8,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.418308402Z",
-      "turn": 8,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.419057244Z",
-      "turn": 8,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.420492545Z",
+      "timestamp": "2026-03-21T00:37:02.900055506Z",
       "turn": 8,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -6393,7 +3443,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.421880436Z",
+      "timestamp": "2026-03-21T00:37:02.901453352Z",
       "turn": 8,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -6404,7 +3454,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.422666188Z",
+      "timestamp": "2026-03-21T00:37:02.902224126Z",
       "turn": 8,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -6416,7 +3466,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.423399069Z",
+      "timestamp": "2026-03-21T00:37:02.902961540Z",
       "turn": 8,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -6427,7 +3477,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.425583222Z",
+      "timestamp": "2026-03-21T00:37:02.905319311Z",
       "turn": 8,
       "phase": "declare_attackers",
       "active_player": "player_0",
@@ -6439,7 +3489,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.426245012Z",
+      "timestamp": "2026-03-21T00:37:02.906140656Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6450,7 +3500,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.426344324Z",
+      "timestamp": "2026-03-21T00:37:02.906244466Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6462,7 +3512,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.426345294Z",
+      "timestamp": "2026-03-21T00:37:02.906245506Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6474,7 +3524,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.431347360Z",
+      "timestamp": "2026-03-21T00:37:02.911248041Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6486,7 +3536,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.434418976Z",
+      "timestamp": "2026-03-21T00:37:02.914130205Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6498,7 +3548,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.435159837Z",
+      "timestamp": "2026-03-21T00:37:02.914871389Z",
       "turn": 8,
       "phase": "end_of_combat",
       "active_player": "player_0",
@@ -6510,31 +3560,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.436633890Z",
-      "turn": 8,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "549"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.437385731Z",
-      "turn": 8,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "550"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.438775082Z",
+      "timestamp": "2026-03-21T00:37:02.918593567Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6545,7 +3571,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.440257215Z",
+      "timestamp": "2026-03-21T00:37:02.920131844Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6558,31 +3584,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.440363286Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "551"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.440369657Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "552"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.441028297Z",
+      "timestamp": "2026-03-21T00:37:02.920904778Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6595,79 +3597,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.441135678Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "553"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.441136898Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "554"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.443048127Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "555"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.443049617Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "557"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.448080683Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "558"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.448083503Z",
-      "turn": 8,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "560"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.449863640Z",
+      "timestamp": "2026-03-21T00:37:02.929022688Z",
       "turn": 8,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6679,7 +3609,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.450531510Z",
+      "timestamp": "2026-03-21T00:37:02.929652451Z",
       "turn": 9,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6691,7 +3621,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.450532390Z",
+      "timestamp": "2026-03-21T00:37:02.929653121Z",
       "turn": 9,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -6702,7 +3632,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.452077174Z",
+      "timestamp": "2026-03-21T00:37:02.931218719Z",
       "turn": 9,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -6713,19 +3643,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.452933567Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "563"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.453593637Z",
+      "timestamp": "2026-03-21T00:37:02.932726917Z",
       "turn": 9,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -6736,7 +3654,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.454386699Z",
+      "timestamp": "2026-03-21T00:37:02.933518570Z",
       "turn": 9,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -6747,256 +3665,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.455220231Z",
+      "timestamp": "2026-03-21T00:37:02.965922021Z",
       "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.456951918Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "563"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.458621493Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "564"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.458623333Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "565"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.463316174Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "566"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.464523722Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "567"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.465806462Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "567",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.465810632Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_0",
-          "card_id": "568"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.467208353Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "TapPermanent": {
-          "card_id": "567"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.469374676Z",
-      "turn": 9,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "569",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.470952600Z",
-      "turn": 9,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.471071121Z",
-      "turn": 9,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "570"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.471825003Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.472837518Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "571"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.481404498Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "573"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.481406298Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "574"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.481407458Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PlayLand": {
-          "player_id": "player_1",
-          "card_id": "575"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.481408908Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "CastSpell": {
-          "player_id": "player_1",
-          "card_id": "577"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.482277491Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "572",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.485811755Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "582"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.486701278Z",
-      "turn": 9,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "DrawCard": {
-          "player_id": "player_0",
-          "card_id": "584"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.489992278Z",
-      "turn": 9,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -7007,9 +3678,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.489993198Z",
+      "timestamp": "2026-03-21T00:37:02.965923831Z",
       "turn": 9,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "LifeChange": {
@@ -7020,40 +3691,66 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.491665643Z",
-      "turn": 9,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.492548887Z",
-      "turn": 9,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.493421750Z",
+      "timestamp": "2026-03-21T00:37:02.966127481Z",
       "turn": 9,
       "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
+        "TapPermanent": {
+          "card_id": "563"
         }
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.494354284Z",
+      "timestamp": "2026-03-21T00:37:02.966136462Z",
+      "turn": 9,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player_1",
+          "card_id": "573"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.966140842Z",
+      "turn": 9,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "CastSpell": {
+          "player_id": "player_1",
+          "card_id": "577"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.966145912Z",
+      "turn": 9,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "582"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.966148212Z",
+      "turn": 9,
+      "phase": "postcombat_main",
+      "active_player": "player_0",
+      "action_type": {
+        "DrawCard": {
+          "player_id": "player_0",
+          "card_id": "584"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-21T00:37:02.967400808Z",
       "turn": 10,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -7065,7 +3762,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.494354814Z",
+      "timestamp": "2026-03-21T00:37:02.967401748Z",
       "turn": 10,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -7076,7 +3773,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.496094761Z",
+      "timestamp": "2026-03-21T00:37:02.969998001Z",
       "turn": 10,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -7087,7 +3784,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.496968914Z",
+      "timestamp": "2026-03-21T00:37:02.970885725Z",
       "turn": 10,
       "phase": "begin_combat",
       "active_player": "player_0",
@@ -7098,7 +3795,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.497845367Z",
+      "timestamp": "2026-03-21T00:37:02.971756239Z",
       "turn": 10,
       "phase": "postcombat_main",
       "active_player": "player_0",
@@ -7109,42 +3806,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.498757051Z",
+      "timestamp": "2026-03-21T00:37:02.985712138Z",
       "turn": 10,
-      "phase": "upkeep",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "upkeep"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.500549168Z",
-      "turn": 10,
-      "phase": "draw",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "draw"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.501479802Z",
-      "turn": 10,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "precombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.509201019Z",
-      "turn": 10,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "DrawCard": {
@@ -7154,9 +3818,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.510092433Z",
+      "timestamp": "2026-03-21T00:37:02.985714618Z",
       "turn": 10,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "DrawCard": {
@@ -7166,21 +3830,9 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.510993426Z",
+      "timestamp": "2026-03-21T00:37:02.985716778Z",
       "turn": 10,
-      "phase": "precombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "SummoningSickness": {
-          "card_id": "587",
-          "has_sickness": true
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.511919800Z",
-      "turn": 10,
-      "phase": "precombat_main",
+      "phase": "postcombat_main",
       "active_player": "player_0",
       "action_type": {
         "CastSpell": {
@@ -7190,40 +3842,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.512700372Z",
-      "turn": 10,
-      "phase": "begin_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "begin_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.513632186Z",
-      "turn": 10,
-      "phase": "end_of_combat",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "end_of_combat"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.514552790Z",
-      "turn": 10,
-      "phase": "postcombat_main",
-      "active_player": "player_0",
-      "action_type": {
-        "PhaseChange": {
-          "phase": "postcombat_main"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-03-20T17:58:19.515447534Z",
+      "timestamp": "2026-03-21T00:37:02.986583033Z",
       "turn": 11,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -7235,7 +3854,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.515448294Z",
+      "timestamp": "2026-03-21T00:37:02.986584163Z",
       "turn": 11,
       "phase": "upkeep",
       "active_player": "player_0",
@@ -7246,7 +3865,7 @@
       }
     },
     {
-      "timestamp": "2026-03-20T17:58:19.517595486Z",
+      "timestamp": "2026-03-21T00:37:02.988421372Z",
       "turn": 11,
       "phase": "precombat_main",
       "active_player": "player_0",
@@ -7258,292 +3877,292 @@
     }
   ],
   "metadata": {
+    "decode_errors": "7",
     "version": "1.0",
-    "decoder": "flashback",
-    "decode_errors": "7"
+    "decoder": "flashback"
   },
   "card_names": {
-    "466": "Triggered ability from Fable of the Mirror-Breaker",
-    "499": "Triggered ability from Orcish Bowmasters",
-    "444": "Triggered ability from Undercity Sewers",
-    "551": "Scalding Tarn",
-    "459": "<strtable:5487>",
-    "465": "<strtable:67071>",
-    "560": "Triggered ability from Undercity Sewers",
-    "467": "<strtable:47626>",
-    "451": "Triggered ability from Meticulous Archive",
-    "491": "Polluted Delta",
-    "464": "Triggered ability from Fable of the Mirror-Breaker",
-    "569": "Triggered ability from Ephemerate",
     "501": "Triggered ability from Quantum Riddler",
-    "490": "Triggered ability from Phelia, Exuberant Shepherd",
-    "430": "Triggered ability from Thundering Falls",
-    "445": "Triggered ability from Wan Shi Tong, Librarian",
-    "426": "Scalding Tarn",
-    "470": "<strtable:14441>",
-    "460": "Triggered ability from Fable of the Mirror-Breaker",
-    "485": "Triggered ability from Fable of the Mirror-Breaker",
-    "475": "Triggered ability from Goblin Shaman Token",
-    "518": "Triggered ability from Solitude",
-    "566": "Triggered ability from Ragavan, Nimble Pilferer",
-    "520": "Flooded Strand",
-    "449": "Triggered ability from Meticulous Archive",
-    "504": "Arid Mesa",
-    "528": "Triggered ability from Quantum Riddler",
-    "553": "Scalding Tarn",
-    "476": "<strtable:5487>",
-    "473": "Triggered ability from Fable of the Mirror-Breaker",
-    "538": "Misty Rainforest",
-    "481": "Triggered ability from Goblin Shaman Token",
-    "524": "Triggered ability from Undercity Sewers",
-    "433": "Flooded Strand",
-    "573": "Triggered ability from Wan Shi Tong, Librarian",
-    "482": "<strtable:5487>",
-    "455": "Flooded Strand",
-    "461": "<strtable:67071>",
-    "440": "Triggered ability from Elegant Parlor",
-    "557": "Triggered ability from Elegant Parlor",
-    "564": "Field of Ruin",
-    "580": "Triggered ability from Phlage, Titan of Fire's Fury",
-    "581": "Triggered ability from Phlage, Titan of Fire's Fury",
-    "545": "Arid Mesa",
-    "462": "Triggered ability from Phelia, Exuberant Shepherd",
-    "592": "Triggered ability from Quantum Riddler",
-    "480": "Triggered ability from Phlage, Titan of Fire's Fury",
     "532": "Triggered ability from Wan Shi Tong, Librarian",
+    "528": "Triggered ability from Quantum Riddler",
+    "473": "Triggered ability from Fable of the Mirror-Breaker",
+    "553": "Scalding Tarn",
+    "440": "Triggered ability from Elegant Parlor",
+    "475": "Triggered ability from Goblin Shaman Token",
+    "557": "Triggered ability from Elegant Parlor",
+    "580": "Triggered ability from Phlage, Titan of Fire's Fury",
+    "592": "Triggered ability from Quantum Riddler",
     "441": "Arid Mesa",
-    "472": "Triggered ability from Phelia, Exuberant Shepherd",
-    "513": "Triggered ability from Quantum Riddler",
-    "486": "<strtable:5487>",
+    "545": "Arid Mesa",
+    "430": "Triggered ability from Thundering Falls",
+    "490": "Triggered ability from Phelia, Exuberant Shepherd",
+    "491": "Polluted Delta",
     "458": "Triggered ability from Ragavan, Nimble Pilferer",
+    "476": "<strtable:5487>",
+    "524": "Triggered ability from Undercity Sewers",
+    "482": "<strtable:5487>",
+    "466": "Triggered ability from Fable of the Mirror-Breaker",
+    "551": "Scalding Tarn",
+    "569": "Triggered ability from Ephemerate",
+    "459": "<strtable:5487>",
+    "460": "Triggered ability from Fable of the Mirror-Breaker",
+    "538": "Misty Rainforest",
+    "470": "<strtable:14441>",
+    "500": "<strtable:47626>",
+    "472": "Triggered ability from Phelia, Exuberant Shepherd",
+    "564": "Field of Ruin",
+    "581": "Triggered ability from Phlage, Titan of Fire's Fury",
+    "560": "Triggered ability from Undercity Sewers",
+    "504": "Arid Mesa",
+    "513": "Triggered ability from Quantum Riddler",
+    "485": "Triggered ability from Fable of the Mirror-Breaker",
+    "573": "Triggered ability from Wan Shi Tong, Librarian",
+    "455": "Flooded Strand",
+    "444": "Triggered ability from Undercity Sewers",
     "437": "Triggered ability from Undercity Sewers",
     "512": "Triggered ability from Subtlety",
-    "500": "<strtable:47626>"
+    "518": "Triggered ability from Solitude",
+    "520": "Flooded Strand",
+    "461": "<strtable:67071>",
+    "464": "Triggered ability from Fable of the Mirror-Breaker",
+    "566": "Triggered ability from Ragavan, Nimble Pilferer",
+    "451": "Triggered ability from Meticulous Archive",
+    "445": "Triggered ability from Wan Shi Tong, Librarian",
+    "426": "Scalding Tarn",
+    "465": "<strtable:67071>",
+    "481": "Triggered ability from Goblin Shaman Token",
+    "433": "Flooded Strand",
+    "499": "Triggered ability from Orcish Bowmasters",
+    "486": "<strtable:5487>",
+    "449": "Triggered ability from Meticulous Archive",
+    "462": "Triggered ability from Phelia, Exuberant Shepherd",
+    "467": "<strtable:47626>",
+    "480": "Triggered ability from Phlage, Titan of Fire's Fury"
   },
   "card_textures": {
-    "365": 126413,
-    "461": 96866,
-    "422": 34414,
-    "503": 126097,
-    "542": 91203,
-    "384": 121440,
-    "547": 24001,
-    "397": 72062,
-    "401": 78226,
-    "486": 65602,
-    "590": 62689,
-    "428": 122030,
-    "559": 62689,
-    "569": 126097,
-    "346": 72386,
-    "472": 126125,
-    "438": 112116,
-    "370": 90419,
-    "526": 90653,
-    "343": 126125,
-    "566": 47815,
-    "344": 69927,
-    "589": 126097,
-    "509": 126097,
-    "392": 54194,
-    "417": 90889,
-    "519": 90507,
-    "537": 142715,
-    "550": 142715,
-    "573": 90653,
-    "477": 142757,
-    "478": 90653,
-    "368": 90889,
-    "522": 122032,
-    "481": 23586,
-    "489": 142757,
-    "430": 90653,
-    "408": 37174,
-    "543": 106431,
-    "389": 126115,
-    "454": 54194,
-    "396": 126115,
-    "431": 126097,
-    "473": 126097,
-    "517": 142757,
-    "360": 91203,
-    "406": 90651,
-    "385": 87905,
-    "371": 90419,
-    "442": 34414,
-    "493": 79626,
-    "570": 126097,
-    "455": 90653,
-    "334": 126449,
-    "457": 47815,
-    "527": 34622,
-    "359": 91203,
-    "506": 90419,
-    "436": 87909,
-    "441": 91203,
-    "372": 142757,
-    "394": 126159,
-    "429": 87909,
-    "463": 54196,
-    "348": 126097,
+    "402": 78226,
     "400": 123941,
-    "356": 91203,
-    "538": 34590,
-    "583": 126413,
-    "380": 47815,
-    "427": 90889,
-    "420": 97210,
-    "361": 72878,
-    "355": 126261,
-    "565": 65538,
-    "492": 54196,
-    "581": 42512,
-    "404": 90651,
-    "535": 144636,
-    "488": 69927,
-    "443": 144636,
+    "438": 112116,
+    "440": 79626,
+    "514": 72386,
     "548": 90653,
-    "560": 72386,
-    "576": 142757,
-    "423": 90889,
-    "446": 126261,
-    "373": 142757,
-    "497": 112116,
+    "557": 142715,
+    "489": 142757,
+    "437": 91203,
+    "528": 34414,
+    "340": 34414,
     "511": 72476,
-    "352": 126097,
-    "388": 122030,
-    "374": 142757,
-    "496": 62689,
+    "424": 54194,
+    "406": 90651,
+    "519": 90507,
+    "517": 142757,
+    "498": 78226,
+    "363": 126413,
+    "561": 112116,
+    "452": 121434,
+    "405": 90651,
+    "571": 144636,
+    "378": 90653,
+    "432": 34414,
+    "469": 112116,
+    "358": 91203,
+    "503": 126097,
+    "563": 72386,
+    "345": 72386,
+    "547": 24001,
+    "416": 54194,
+    "382": 87905,
+    "387": 121434,
+    "366": 90889,
+    "477": 142757,
+    "429": 87909,
+    "566": 47815,
+    "404": 90651,
+    "349": 126097,
+    "428": 122030,
+    "546": 34414,
+    "494": 62689,
+    "506": 90419,
     "541": 106431,
     "459": 65602,
-    "456": 54194,
-    "471": 126159,
-    "424": 54194,
-    "554": 90889,
-    "558": 122032,
-    "540": 79626,
-    "495": 97210,
-    "460": 142715,
-    "358": 91203,
-    "367": 90889,
-    "354": 126261,
-    "534": 126261,
-    "470": 125883,
-    "440": 79626,
-    "432": 34414,
-    "445": 65538,
-    "345": 72386,
-    "349": 126097,
-    "357": 91203,
-    "340": 34414,
-    "482": 126097,
-    "393": 54194,
-    "342": 126125,
-    "533": 126261,
-    "337": 34414,
-    "549": 90653,
-    "557": 142715,
-    "433": 126449,
-    "552": 34590,
-    "490": 142715,
-    "567": 87905,
-    "363": 126413,
-    "378": 90653,
-    "416": 54194,
-    "476": 96884,
-    "335": 126449,
-    "403": 78226,
-    "376": 90653,
-    "347": 97210,
-    "419": 126261,
-    "377": 90653,
-    "487": 97212,
-    "504": 90419,
-    "387": 121434,
-    "494": 62689,
-    "521": 54194,
-    "546": 34414,
-    "562": 90653,
-    "580": 126097,
-    "474": 90889,
-    "577": 90653,
-    "390": 54194,
-    "382": 87905,
-    "437": 91203,
-    "407": 49014,
-    "514": 72386,
-    "351": 126097,
-    "483": 69927,
-    "485": 142757,
-    "498": 78226,
-    "502": 34414,
-    "405": 90651,
-    "418": 126159,
-    "447": 126261,
-    "468": 126159,
-    "500": 111892,
-    "505": 112116,
-    "516": 91203,
-    "464": 91203,
-    "475": 90419,
-    "507": 72386,
-    "568": 79626,
-    "539": 34622,
-    "575": 47815,
-    "584": 62689,
-    "469": 112116,
-    "530": 142715,
-    "571": 144636,
-    "593": 126261,
-    "508": 54194,
-    "383": 87909,
-    "582": 62689,
-    "588": 62689,
-    "528": 34414,
-    "450": 23586,
-    "587": 142757,
-    "561": 112116,
-    "525": 97492,
-    "379": 90653,
-    "555": 121434,
-    "452": 121434,
-    "453": 90419,
-    "572": 126413,
-    "338": 34414,
-    "510": 90507,
-    "529": 34414,
-    "451": 112116,
-    "364": 126413,
-    "586": 49014,
-    "386": 24001,
-    "462": 97210,
-    "448": 144636,
-    "449": 121440,
-    "513": 126097,
-    "563": 72386,
-    "399": 40024,
-    "362": 126413,
-    "467": 112116,
-    "398": 72062,
-    "336": 126449,
-    "465": 96866,
-    "425": 54194,
-    "426": 90419,
-    "381": 126159,
-    "574": 90889,
-    "458": 97210,
-    "395": 126115,
-    "369": 90889,
-    "375": 142757,
-    "402": 78226,
-    "350": 126097,
-    "421": 126125,
     "434": 54194,
-    "564": 62689,
+    "375": 142757,
+    "543": 106431,
     "353": 126261,
-    "435": 122032,
+    "513": 126097,
+    "383": 87909,
+    "356": 91203,
+    "538": 34590,
+    "576": 142757,
+    "390": 54194,
+    "582": 62689,
+    "376": 90653,
+    "338": 34414,
+    "351": 126097,
+    "355": 126261,
+    "346": 72386,
+    "386": 24001,
+    "423": 90889,
+    "352": 126097,
+    "530": 142715,
+    "539": 34622,
+    "451": 112116,
+    "533": 126261,
+    "371": 90419,
+    "360": 91203,
+    "464": 91203,
+    "337": 34414,
+    "483": 69927,
+    "380": 47815,
+    "504": 90419,
     "444": 79626,
-    "366": 90889,
-    "339": 34414
+    "348": 126097,
+    "490": 142715,
+    "435": 122032,
+    "475": 90419,
+    "529": 34414,
+    "554": 90889,
+    "583": 126413,
+    "485": 142757,
+    "430": 90653,
+    "379": 90653,
+    "473": 126097,
+    "457": 47815,
+    "426": 90419,
+    "449": 121440,
+    "552": 34590,
+    "361": 72878,
+    "396": 126115,
+    "535": 144636,
+    "336": 126449,
+    "367": 90889,
+    "381": 126159,
+    "453": 90419,
+    "419": 126261,
+    "372": 142757,
+    "455": 90653,
+    "510": 90507,
+    "507": 72386,
+    "443": 144636,
+    "335": 126449,
+    "343": 126125,
+    "377": 90653,
+    "570": 126097,
+    "486": 65602,
+    "425": 54194,
+    "447": 126261,
+    "521": 54194,
+    "374": 142757,
+    "365": 126413,
+    "354": 126261,
+    "527": 34622,
+    "542": 91203,
+    "422": 34414,
+    "442": 34414,
+    "525": 97492,
+    "436": 87909,
+    "502": 34414,
+    "568": 79626,
+    "569": 126097,
+    "492": 54196,
+    "572": 126413,
+    "574": 90889,
+    "550": 142715,
+    "462": 97210,
+    "586": 49014,
+    "399": 40024,
+    "421": 126125,
+    "587": 142757,
+    "590": 62689,
+    "403": 78226,
+    "461": 96866,
+    "495": 97210,
+    "505": 112116,
+    "500": 111892,
+    "508": 54194,
+    "580": 126097,
+    "370": 90419,
+    "446": 126261,
+    "476": 96884,
+    "560": 72386,
+    "388": 122030,
+    "589": 126097,
+    "334": 126449,
+    "385": 87905,
+    "398": 72062,
+    "397": 72062,
+    "384": 121440,
+    "350": 126097,
+    "481": 23586,
+    "482": 126097,
+    "448": 144636,
+    "339": 34414,
+    "559": 62689,
+    "549": 90653,
+    "534": 126261,
+    "357": 91203,
+    "493": 79626,
+    "392": 54194,
+    "537": 142715,
+    "407": 49014,
+    "526": 90653,
+    "558": 122032,
+    "575": 47815,
+    "342": 126125,
+    "373": 142757,
+    "487": 97212,
+    "456": 54194,
+    "584": 62689,
+    "393": 54194,
+    "445": 65538,
+    "395": 126115,
+    "359": 91203,
+    "433": 126449,
+    "463": 54196,
+    "516": 91203,
+    "364": 126413,
+    "577": 90653,
+    "522": 122032,
+    "496": 62689,
+    "368": 90889,
+    "454": 54194,
+    "458": 97210,
+    "460": 142715,
+    "478": 90653,
+    "588": 62689,
+    "417": 90889,
+    "450": 23586,
+    "581": 42512,
+    "389": 126115,
+    "441": 91203,
+    "555": 121434,
+    "418": 126159,
+    "488": 69927,
+    "562": 90653,
+    "509": 126097,
+    "573": 90653,
+    "394": 126159,
+    "431": 126097,
+    "468": 126159,
+    "540": 79626,
+    "362": 126413,
+    "369": 90889,
+    "474": 90889,
+    "347": 97210,
+    "564": 62689,
+    "567": 87905,
+    "497": 112116,
+    "467": 112116,
+    "470": 125883,
+    "420": 97210,
+    "465": 96866,
+    "471": 126159,
+    "593": 126261,
+    "565": 65538,
+    "401": 78226,
+    "427": 90889,
+    "472": 126125,
+    "408": 37174,
+    "344": 69927
   }
 }

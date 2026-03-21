@@ -31,6 +31,28 @@ pub enum GamePhase {
 }
 
 impl GamePhase {
+    /// Returns a numeric ordering for phases within a turn.
+    /// Higher values = later in the turn.  Unknown phases return 255
+    /// so they never suppress a known-phase transition.
+    pub fn ordinal(&self) -> u8 {
+        match self {
+            GamePhase::Untap => 0,
+            GamePhase::Upkeep => 1,
+            GamePhase::Draw => 2,
+            GamePhase::PreCombatMain => 3,
+            GamePhase::BeginCombat => 4,
+            GamePhase::DeclareAttackers => 5,
+            GamePhase::DeclareBlockers => 6,
+            GamePhase::FirstStrikeDamage => 7,
+            GamePhase::CombatDamage => 8,
+            GamePhase::EndOfCombat => 9,
+            GamePhase::PostCombatMain => 10,
+            GamePhase::EndStep => 11,
+            GamePhase::Cleanup => 12,
+            GamePhase::Unknown(_) => 255,
+        }
+    }
+
     pub fn from_u8(v: u8) -> GamePhase {
         match v {
             0 => GamePhase::Untap,

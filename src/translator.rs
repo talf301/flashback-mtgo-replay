@@ -53,7 +53,11 @@ impl ReplayTranslator {
     }
 
     /// Process a new game state, emitting actions for everything that changed.
-    pub fn process(&mut self, new_state: &GameState) -> Vec<ReplayAction> {
+    ///
+    /// When `is_full_state` is true, no actions are generated — full state
+    /// snapshots reveal the entire board but don't represent individual game
+    /// actions.  The state is still stored so subsequent diffs are correct.
+    pub fn process(&mut self, new_state: &GameState, is_full_state: bool) -> Vec<ReplayAction> {
         // Record stack occupants BEFORE evaluating diffs
         for (thing_id, thing) in &new_state.things {
             if thing.zone == ZONE_STACK {
@@ -61,7 +65,25 @@ impl ReplayTranslator {
             }
         }
 
-        let actions = if let Some(ref prev) = self.prev {
+        // Skip state updates that regress the game phase within the same turn.
+        // MTGO can interleave state updates from different perspectives, causing
+        // the phase to temporarily go backward.  Ignoring these prevents
+        // duplicate phase changes and mis-attributed actions.
+        if let Some(ref prev) = self.prev {
+            let same_turn = new_state.turn == prev.turn;
+            let phase_regresses = new_state.phase.ordinal() < prev.phase.ordinal()
+                && new_state.phase.ordinal() != 255
+                && prev.phase.ordinal() != 255;
+            if same_turn && phase_regresses && !is_full_state {
+                return Vec::new();
+            }
+        }
+
+        let actions = if is_full_state {
+            // Full state snapshots are sync points, not game actions.
+            // Skip action generation to avoid spurious duplicates.
+            Vec::new()
+        } else if let Some(ref prev) = self.prev {
             self.diff(prev, new_state)
         } else {
             // First state — no diff possible
@@ -127,8 +149,12 @@ impl ReplayTranslator {
             ));
         }
 
-        // Phase change
-        if new.phase != prev.phase {
+        // Phase change — only emit when advancing forward within a turn
+        // (or when the turn changed, which resets the phase sequence).
+        let turn_changed = new.turn > prev.turn;
+        if new.phase != prev.phase
+            && (turn_changed || new.phase.ordinal() > prev.phase.ordinal())
+        {
             actions.push(self.make_action(
                 new,
                 ActionType::PhaseChange {
@@ -451,33 +477,12 @@ impl ReplayTranslator {
                             },
                         ));
                     }
-                } else if zone == ZONE_BATTLEFIELD
-                    && !self.things_seen_on_stack.contains(thing_id)
-                {
-                    // New thing on battlefield, never seen on stack → play land
-                    actions.push(self.make_action(
-                        new,
-                        ActionType::PlayLand {
-                            player_id: self.player_name(new_thing.controller as usize),
-                            card_id: card_id.clone(),
-                        },
-                    ));
-                } else if zone == ZONE_BATTLEFIELD {
-                    // New thing on battlefield, was on stack → resolved spell
-                    actions.push(self.make_action(
-                        new,
-                        ActionType::ZoneTransition {
-                            card_id: card_id.clone(),
-                            from_zone: "stack".to_string(),
-                            to_zone: "battlefield".to_string(),
-                            player_id: Some(
-                                self.player_name(new_thing.controller as usize),
-                            ),
-                        },
-                    ));
                 }
-                // Other zones (graveyard, exile, etc.) for new things are silently skipped
-                // as they typically represent game setup or tokens being created
+                // Battlefield, graveyard, exile, etc. for new things are skipped.
+                // Things appearing on the battlefield for the first time are
+                // typically the opponent's existing permanents becoming visible,
+                // not actual plays.  Real zone changes (hand→battlefield,
+                // stack→battlefield) are caught by the existing-thing path above.
             }
         }
 
@@ -545,10 +550,10 @@ mod tests {
         let mut translator = ReplayTranslator::new();
 
         let s1 = make_state(1, 1, GamePhase::PreCombatMain);
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let s2 = make_state(1, 2, GamePhase::Upkeep);
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         let types: Vec<_> = actions.iter().map(|a| &a.action_type).collect();
         assert!(types.iter().any(|a| matches!(a, ActionType::TurnChange { turn: 2, .. })));
@@ -563,11 +568,11 @@ mod tests {
         translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
 
         let s1 = make_state(1, 1, GamePhase::PreCombatMain);
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
         s2.players[1].life = 17;
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         assert_eq!(actions.len(), 1);
         match &actions[0].action_type {
@@ -590,7 +595,7 @@ mod tests {
 
         let mut s1 = make_state(1, 1, GamePhase::Draw);
         s1.things.insert(10, default_thing(10, ZONE_LIBRARY));
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let mut s2 = make_state(1, 1, GamePhase::Draw);
         let mut t = default_thing(10, ZONE_HAND);
@@ -598,7 +603,7 @@ mod tests {
         s2.things.insert(10, t);
         // Simulate zone change: the old thing was in library, now in hand
         // We need the prev state to have zone=library
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         assert!(actions.iter().any(|a| matches!(
             &a.action_type,
@@ -612,11 +617,11 @@ mod tests {
 
         let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
         s1.things.insert(20, default_thing(20, ZONE_HAND));
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
         s2.things.insert(20, default_thing(20, ZONE_BATTLEFIELD));
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         assert!(actions.iter().any(|a| matches!(
             &a.action_type,
@@ -631,17 +636,17 @@ mod tests {
         // Step 1: thing in hand
         let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
         s1.things.insert(30, default_thing(30, ZONE_HAND));
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         // Step 2: thing goes to stack (cast spell)
         let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
         s2.things.insert(30, default_thing(30, ZONE_STACK));
-        translator.process(&s2);
+        translator.process(&s2, false);
 
         // Step 3: thing resolves to battlefield
         let mut s3 = make_state(1, 1, GamePhase::PreCombatMain);
         s3.things.insert(30, default_thing(30, ZONE_BATTLEFIELD));
-        let actions = translator.process(&s3);
+        let actions = translator.process(&s3, false);
 
         // Should be ZoneTransition (stack→battlefield), NOT PlayLand
         assert!(actions.iter().any(|a| matches!(
@@ -660,13 +665,13 @@ mod tests {
 
         let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
         s1.things.insert(50, default_thing(50, ZONE_BATTLEFIELD));
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
         let mut t = default_thing(50, ZONE_BATTLEFIELD);
         t.tapped = true;
         s2.things.insert(50, t);
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         assert!(actions
             .iter()
@@ -679,13 +684,13 @@ mod tests {
 
         let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
         s1.things.insert(60, default_thing(60, ZONE_BATTLEFIELD));
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
         let mut t = default_thing(60, ZONE_BATTLEFIELD);
         t.plus_counters = 3;
         s2.things.insert(60, t);
-        let actions = translator.process(&s2);
+        let actions = translator.process(&s2, false);
 
         assert!(actions.iter().any(|a| matches!(
             &a.action_type,
@@ -701,7 +706,7 @@ mod tests {
         translator.set_start_time(Utc::now());
 
         let s1 = make_state(1, 1, GamePhase::Draw);
-        translator.process(&s1);
+        translator.process(&s1, false);
 
         translator.reset();
 
@@ -709,5 +714,121 @@ mod tests {
         assert!(translator.player_names.is_empty());
         assert!(translator.start_time.is_none());
         assert!(translator.things_seen_on_stack.is_empty());
+    }
+
+    #[test]
+    fn test_full_state_suppresses_actions() {
+        let mut translator = ReplayTranslator::new();
+
+        let s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s1, false);
+
+        // Full state with new things and a phase change — should produce NO actions
+        let mut s2 = make_state(1, 1, GamePhase::PostCombatMain);
+        s2.things.insert(100, default_thing(100, ZONE_BATTLEFIELD));
+        s2.things.insert(101, default_thing(101, ZONE_HAND));
+        let actions = translator.process(&s2, true);
+        assert!(actions.is_empty(), "Full state should suppress all actions");
+
+        // A subsequent diff should still work — phase changed from PreCombatMain
+        // (stored as prev from s1) to PostCombatMain (stored as prev from s2)
+        let mut s3 = make_state(1, 1, GamePhase::EndStep);
+        s3.things.insert(100, default_thing(100, ZONE_BATTLEFIELD));
+        s3.things.insert(101, default_thing(101, ZONE_HAND));
+        let actions = translator.process(&s3, false);
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::PhaseChange { phase } if phase == "end_step"
+        )));
+    }
+
+    /// New things appearing on the battlefield should NOT produce PlayLand.
+    /// They are typically the opponent's existing permanents becoming visible
+    /// for the first time, not actual land plays.
+    #[test]
+    fn test_new_thing_on_battlefield_does_not_produce_play_land() {
+        let mut translator = ReplayTranslator::new();
+
+        let s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s1, false);
+
+        // A batch of new things appear on battlefield (opponent board revealed)
+        let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        s2.things.insert(200, default_thing(200, ZONE_BATTLEFIELD));
+        s2.things.insert(201, default_thing(201, ZONE_BATTLEFIELD));
+        s2.things.insert(202, default_thing(202, ZONE_BATTLEFIELD));
+        let actions = translator.process(&s2, false);
+
+        assert!(
+            !actions.iter().any(|a| matches!(&a.action_type, ActionType::PlayLand { .. })),
+            "New things on battlefield should not generate PlayLand, got: {:?}",
+            actions.iter().map(|a| &a.action_type).collect::<Vec<_>>()
+        );
+        assert!(
+            !actions.iter().any(|a| matches!(&a.action_type, ActionType::ZoneTransition { .. })),
+            "New things on battlefield should not generate ZoneTransition"
+        );
+    }
+
+    /// A real land play (hand → battlefield for an existing thing) should
+    /// still produce PlayLand.
+    #[test]
+    fn test_existing_thing_hand_to_battlefield_still_produces_play_land() {
+        let mut translator = ReplayTranslator::new();
+
+        let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        s1.things.insert(300, default_thing(300, ZONE_HAND));
+        translator.process(&s1, false);
+
+        let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        s2.things.insert(300, default_thing(300, ZONE_BATTLEFIELD));
+        let actions = translator.process(&s2, false);
+
+        assert!(
+            actions.iter().any(|a| matches!(
+                &a.action_type,
+                ActionType::PlayLand { card_id, .. } if card_id == "300"
+            )),
+            "Hand→battlefield zone change should still produce PlayLand"
+        );
+    }
+
+    /// Phase regressions within a turn should be suppressed entirely —
+    /// no actions generated, no prev state updated.
+    #[test]
+    fn test_phase_regression_suppressed() {
+        let mut translator = ReplayTranslator::new();
+
+        let mut s1 = make_state(1, 1, GamePhase::PostCombatMain);
+        s1.things.insert(400, default_thing(400, ZONE_BATTLEFIELD));
+        translator.process(&s1, false);
+
+        // State update that regresses the phase (postcombat_main → upkeep)
+        // should be completely ignored — no actions, no prev update.
+        let mut s2 = make_state(1, 1, GamePhase::Upkeep);
+        let mut t = default_thing(400, ZONE_BATTLEFIELD);
+        t.tapped = true; // change that should be ignored
+        s2.things.insert(400, t);
+        let actions = translator.process(&s2, false);
+        assert!(actions.is_empty(), "Phase regression should suppress all actions");
+
+        // A forward phase change should still diff against the pre-regression
+        // state (s1), so the tap from s2 should NOT appear.
+        let mut s3 = make_state(1, 1, GamePhase::EndStep);
+        s3.things.insert(400, default_thing(400, ZONE_BATTLEFIELD)); // untapped
+        let actions = translator.process(&s3, false);
+
+        assert!(
+            actions.iter().any(|a| matches!(
+                &a.action_type,
+                ActionType::PhaseChange { phase } if phase == "end_step"
+            )),
+            "Forward phase change should still work after regression"
+        );
+        // Card 400 was untapped in s1 and untapped in s3 — no tap action
+        assert!(
+            !actions.iter().any(|a| matches!(&a.action_type, ActionType::TapPermanent { .. })),
+            "Regressed state changes should not leak through"
+        );
     }
 }

@@ -57,7 +57,7 @@ fn run_pipeline(data: &[u8]) -> Vec<ReplayAction> {
                                 });
 
                                 state.apply_elements(&elements, !is_diff);
-                                let actions = translator.process(state);
+                                let actions = translator.process(state, !is_diff);
                                 all_actions.extend(actions);
                             }
                             Ok(None) => {}
@@ -497,7 +497,7 @@ fn test_commutativity_check() {
                                         };
                                     let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
                                     state_a.apply_elements(&elements_old, false);
-                                    let _ = translator_a.process(state_a);
+                                    let _ = translator_a.process(state_a, false);
                                 }
                                 let elements_new_a =
                                     match statebuf::parse_elements(&new_state_bytes) {
@@ -512,7 +512,7 @@ fn test_commutativity_check() {
                                 let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
                                 state_a.apply_elements(&elements_new_a, false);
                                 let actions_a: Vec<ActionSnapshot> =
-                                    translator_a.process(state_a).iter().map(ActionSnapshot::from).collect();
+                                    translator_a.process(state_a, false).iter().map(ActionSnapshot::from).collect();
 
                                 // ---- Route B ----
                                 // Parse old bytes, build old GameState, then apply diff and parse new bytes.
@@ -529,7 +529,7 @@ fn test_commutativity_check() {
                                         };
                                     let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
                                     state_b.apply_elements(&elements_old_b, false);
-                                    let _ = translator_b.process(state_b);
+                                    let _ = translator_b.process(state_b, false);
                                 }
                                 // Now apply diff: same new_state_bytes already computed by production processor.
                                 let elements_new_b =
@@ -545,7 +545,7 @@ fn test_commutativity_check() {
                                 let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
                                 state_b.apply_elements(&elements_new_b, false);
                                 let actions_b: Vec<ActionSnapshot> =
-                                    translator_b.process(state_b).iter().map(ActionSnapshot::from).collect();
+                                    translator_b.process(state_b, false).iter().map(ActionSnapshot::from).collect();
 
                                 if actions_a != actions_b {
                                     mismatches.push(format!(
@@ -571,12 +571,12 @@ fn test_commutativity_check() {
                             {
                                 let state_a = game_state_a.get_or_insert_with(|| GameState::new(gid));
                                 state_a.apply_elements(&elements, true);
-                                let _ = translator_a.process(state_a);
+                                let _ = translator_a.process(state_a, true);
                             }
                             {
                                 let state_b = game_state_b.get_or_insert_with(|| GameState::new(gid));
                                 state_b.apply_elements(&elements, true);
-                                let _ = translator_b.process(state_b);
+                                let _ = translator_b.process(state_b, true);
                             }
                         }
 

@@ -187,7 +187,7 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                                     }
                                 }
 
-                                let actions = translator.process(state);
+                                let actions = translator.process(state, !is_diff);
                                 all_actions.extend(actions);
                             }
                             Ok(None) => {

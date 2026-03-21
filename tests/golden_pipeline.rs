@@ -290,30 +290,33 @@ fn run_pipeline(messages: Vec<RawMessage>) -> Vec<GameReplay> {
 #[test]
 fn test_golden_file_produces_actions() {
     let data =
-        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+        std::fs::read("tests/fixtures/golden_game3.bin").expect("golden_game3.bin should exist");
     let messages = framing::parse_messages(&data).expect("framing should parse");
     let games = run_pipeline(messages);
-    let actions: Vec<&ReplayAction> = games.iter().flat_map(|g| &g.actions).collect();
+
+    assert_eq!(games.len(), 1, "Expected exactly 1 game, got {}", games.len());
 
     // The golden file should produce a non-trivial number of actions
     assert!(
-        actions.len() > 10,
+        games[0].actions.len() > 10,
         "Expected >10 actions, got {}",
-        actions.len()
+        games[0].actions.len()
     );
 }
 
 #[test]
 fn test_golden_file_has_expected_action_types() {
     let data =
-        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+        std::fs::read("tests/fixtures/golden_game3.bin").expect("golden_game3.bin should exist");
     let messages = framing::parse_messages(&data).expect("framing should parse");
     let games = run_pipeline(messages);
-    let actions: Vec<&ReplayAction> = games.iter().flat_map(|g| &g.actions).collect();
+
+    assert_eq!(games.len(), 1, "Expected exactly 1 game, got {}", games.len());
+    let actions = &games[0].actions;
 
     // Count action types
     let mut type_counts: HashMap<&str, usize> = HashMap::new();
-    for action in &actions {
+    for action in actions {
         let name = match &action.action_type {
             ActionType::DrawCard { .. } => "DrawCard",
             ActionType::PlayLand { .. } => "PlayLand",
@@ -360,13 +363,15 @@ fn test_golden_file_has_expected_action_types() {
 #[test]
 fn test_golden_file_actions_have_valid_turns() {
     let data =
-        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+        std::fs::read("tests/fixtures/golden_game3.bin").expect("golden_game3.bin should exist");
     let messages = framing::parse_messages(&data).expect("framing should parse");
     let games = run_pipeline(messages);
-    let actions: Vec<&ReplayAction> = games.iter().flat_map(|g| &g.actions).collect();
+
+    assert_eq!(games.len(), 1, "Expected exactly 1 game, got {}", games.len());
+    let actions = &games[0].actions;
 
     // All turns should be non-negative
-    for action in &actions {
+    for action in actions {
         assert!(
             action.turn >= 0,
             "Turn should be non-negative, got {}",
@@ -387,10 +392,12 @@ fn test_golden_file_actions_have_valid_turns() {
 #[test]
 fn test_golden_pipeline_has_zone_transitions() {
     let data =
-        std::fs::read("tests/fixtures/golden_v1.bin").expect("golden_v1.bin should exist");
+        std::fs::read("tests/fixtures/golden_game3.bin").expect("golden_game3.bin should exist");
     let messages = framing::parse_messages(&data).expect("framing should parse");
     let games = run_pipeline(messages);
-    let actions: Vec<&ReplayAction> = games.iter().flat_map(|g| &g.actions).collect();
+
+    assert_eq!(games.len(), 1, "Expected exactly 1 game, got {}", games.len());
+    let actions = &games[0].actions;
 
     let play_lands = actions.iter().filter(|a| matches!(&a.action_type, ActionType::PlayLand { .. })).count();
     let zone_transitions = actions.iter().filter(|a| matches!(&a.action_type, ActionType::ZoneTransition { .. })).count();

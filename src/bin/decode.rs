@@ -17,10 +17,12 @@ use flashback::protocol::fls::{self, FlsMessage};
 use flashback::protocol::framing;
 use flashback::protocol::game_messages::{self, GameMessage};
 use flashback::protocol::opcodes;
-use flashback::protocol::statebuf::{self, StateBufProcessor};
+use flashback::protocol::statebuf::{self, StateElement, StateBufProcessor};
 use flashback::replay::schema::{
-    GameHeader, GameReplay, GameResult, PlayerInfo, ReplayAction, ReplayFile, ReplayHeader,
+    ActionType, GameHeader, GameReplay, GameResult, PlayerInfo, ReplayAction, ReplayFile,
+    ReplayHeader,
 };
+use flashback::scryfall;
 use flashback::state::GameState;
 use flashback::translator::ReplayTranslator;
 
@@ -29,18 +31,22 @@ fn main() {
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        eprintln!("Usage: {} <stream_file> [--stats-only] [--output FILE]", args[0]);
+        eprintln!("Usage: {} <stream_file> [--stats-only] [--output FILE] [--text-log]", args[0]);
         eprintln!();
         eprintln!("Decodes a decrypted MTGO TCP stream into a replay JSON file.");
         eprintln!();
         eprintln!("Options:");
         eprintln!("  --stats-only   Print opcode statistics only (no decode)");
         eprintln!("  --output FILE  Write replay JSON to FILE (default: stdout)");
+        eprintln!("  --text-log     Print human-readable game log instead of JSON");
+        eprintln!("  --no-resolve   Skip Scryfall card name lookups (offline mode)");
         process::exit(1);
     }
 
     let path = &args[1];
     let stats_only = args.iter().any(|a| a == "--stats-only");
+    let text_log = args.iter().any(|a| a == "--text-log");
+    let no_resolve = args.iter().any(|a| a == "--no-resolve");
     let output_path = args
         .windows(2)
         .find(|w| w[0] == "--output")
@@ -70,7 +76,16 @@ fn main() {
     }
 
     // Full decode pipeline
-    let replay = decode_pipeline(messages);
+    let mut replay = decode_pipeline(messages);
+
+    if !no_resolve {
+        resolve_card_names(&mut replay);
+    }
+
+    if text_log {
+        print_text_log(&replay);
+        return;
+    }
 
     let json = serde_json::to_string_pretty(&replay).unwrap_or_else(|e| {
         eprintln!("JSON serialization error: {}", e);
@@ -244,6 +259,52 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                                     }
                                 };
 
+                                // Debug: log each element type and key data
+                                for elem in &elements {
+                                    match elem {
+                                        StateElement::PlayerStatus(ps) => {
+                                            // Show only slots with nonzero life or hand
+                                            let active_seats: Vec<_> = (0..ps.life.len())
+                                                .filter(|&i| ps.life[i] != 0 || ps.hand_count[i] != 0 || ps.library_count[i] != 0)
+                                                .map(|i| format!(
+                                                    "seat{}(life={} hand={} lib={} gy={})",
+                                                    i, ps.life[i], ps.hand_count[i],
+                                                    ps.library_count[i], ps.graveyard_count[i]
+                                                ))
+                                                .collect();
+                                            tracing::debug!(
+                                                "PlayerStatus: active_player={} seats=[{}]",
+                                                ps.active_player,
+                                                active_seats.join(", ")
+                                            );
+                                        }
+                                        StateElement::TurnStep(ts) => {
+                                            tracing::debug!(
+                                                "TurnStep: turn={} phase={}",
+                                                ts.turn_number, ts.phase
+                                            );
+                                        }
+                                        StateElement::Thing(te) => {
+                                            let thing_id = te.props.get(&opcodes::THINGNUMBER);
+                                            let zone = te.props.get(&opcodes::ZONE);
+                                            let controller = te.props.get(&opcodes::CONTROLLER);
+                                            let name = te.props.get(&opcodes::CARDNAME_STRING);
+                                            let texture = te.props.get(&opcodes::CARDTEXTURE_NUMBER);
+                                            tracing::debug!(
+                                                "Thing: id={:?} zone={:?} ctrl={:?} name={:?} tex={:?} from_zone={} props_count={}",
+                                                thing_id, zone, controller, name, texture,
+                                                te.from_zone, te.props.len()
+                                            );
+                                        }
+                                        StateElement::Other { element_type, raw } => {
+                                            tracing::debug!(
+                                                "Other element: type={} len={}",
+                                                element_type, raw.len()
+                                            );
+                                        }
+                                    }
+                                }
+
                                 // Initialize or update game state
                                 let state = game_state.get_or_insert_with(|| {
                                     let gid =
@@ -253,9 +314,13 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
 
                                 state.apply_elements(&elements, !is_diff);
 
-                                // Track populated players
+                                // Track populated players — only include seats
+                                // that have meaningful data (nonzero life, hand, or library)
                                 for i in 0..state.players.len() {
-                                    populated_players.insert(i);
+                                    let p = &state.players[i];
+                                    if p.life != 0 || p.hand_count != 0 || p.library_count != 0 {
+                                        populated_players.insert(i);
+                                    }
                                 }
 
                                 // Track game ID
@@ -462,6 +527,303 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
         header,
         games,
         metadata,
+    }
+}
+
+/// Resolve missing card names from Scryfall using texture IDs.
+fn resolve_card_names(replay: &mut ReplayFile) {
+    // Collect all unique MTGO IDs that lack names across all games
+    let mut ids_to_resolve: Vec<i32> = Vec::new();
+    for game in &replay.games {
+        for (thing_id, &mtgo_id) in &game.card_textures {
+            if !game.card_names.contains_key(thing_id) {
+                ids_to_resolve.push(mtgo_id);
+            }
+        }
+    }
+    ids_to_resolve.sort_unstable();
+    ids_to_resolve.dedup();
+
+    if ids_to_resolve.is_empty() {
+        return;
+    }
+
+    eprintln!(
+        "Resolving {} unique card IDs via Scryfall...",
+        ids_to_resolve.len()
+    );
+
+    let mut cache = std::collections::HashMap::new();
+    let resolved = scryfall::resolve_mtgo_ids(&ids_to_resolve, &mut cache);
+
+    eprintln!(
+        "Resolved {}/{} card names",
+        resolved.len(),
+        ids_to_resolve.len()
+    );
+
+    // Fill in card_names for each game
+    for game in &mut replay.games {
+        for (thing_id, &mtgo_id) in &game.card_textures {
+            if !game.card_names.contains_key(thing_id) {
+                if let Some(name) = resolved.get(&mtgo_id) {
+                    game.card_names.insert(thing_id.clone(), name.clone());
+                }
+            }
+        }
+    }
+}
+
+fn card_label(card_id: &str, names: &HashMap<String, String>) -> String {
+    match names.get(card_id) {
+        Some(name) => format!("{} ({})", name, card_id),
+        None => format!("#{}", card_id),
+    }
+}
+
+fn print_text_log(replay: &ReplayFile) {
+    for game in &replay.games {
+        let names = &game.card_names;
+        let players = &game.header.players;
+
+        // Header
+        println!("{}", "=".repeat(60));
+        println!(
+            "  GAME {} — {}",
+            game.game_number,
+            match &game.header.result {
+                GameResult::Win { winner_id } => {
+                    let name = players
+                        .iter()
+                        .find(|p| &p.player_id == winner_id)
+                        .map(|p| p.name.as_str())
+                        .unwrap_or(winner_id);
+                    format!("{} wins", name)
+                }
+                GameResult::Draw => "Draw".to_string(),
+                GameResult::Incomplete => "Incomplete".to_string(),
+            }
+        );
+        println!(
+            "  Players: {}",
+            players
+                .iter()
+                .map(|p| format!("{} ({}hp)", p.name, p.life_total))
+                .collect::<Vec<_>>()
+                .join(" vs ")
+        );
+        println!("  Actions: {}", game.actions.len());
+        println!("  Cards identified: {}/{} names, {} textures",
+            names.len(),
+            game.card_textures.len() + names.len() - names.len(), // total unique cards
+            game.card_textures.len(),
+        );
+        println!("{:=<60}", "");
+        println!();
+
+        let mut last_turn: i32 = -1;
+        let mut last_phase = String::new();
+
+        for action in &game.actions {
+            // Skip pre-game setup noise
+            if action.turn == 0 && action.phase.starts_with("unknown") {
+                continue;
+            }
+
+            // Turn header
+            if action.turn != last_turn {
+                last_turn = action.turn;
+                last_phase.clear();
+                println!("--- Turn {} ({}) ---", action.turn, action.active_player);
+            }
+
+            // Phase header (deduplicated)
+            if action.phase != last_phase {
+                if !matches!(&action.action_type, ActionType::PhaseChange { .. } | ActionType::TurnChange { .. }) {
+                    // Phase changed implicitly — show it
+                    last_phase = action.phase.clone();
+                    println!("  [{}]", action.phase);
+                }
+            }
+
+            match &action.action_type {
+                ActionType::PhaseChange { phase } => {
+                    if *phase != last_phase {
+                        last_phase = phase.clone();
+                        println!("  [{}]", phase);
+                    }
+                    // Skip duplicate phase emissions
+                }
+                ActionType::TurnChange { .. } => {
+                    // Already handled by the turn header above
+                }
+                ActionType::DrawCard {
+                    player_id,
+                    card_id,
+                } => {
+                    println!("    {} draws {}", player_id, card_label(card_id, names));
+                }
+                ActionType::PlayLand {
+                    player_id,
+                    card_id,
+                } => {
+                    println!(
+                        "    {} plays land {}",
+                        player_id,
+                        card_label(card_id, names)
+                    );
+                }
+                ActionType::CastSpell {
+                    player_id,
+                    card_id,
+                } => {
+                    println!(
+                        "    {} casts {}",
+                        player_id,
+                        card_label(card_id, names)
+                    );
+                }
+                ActionType::ActivateAbility {
+                    player_id,
+                    card_id,
+                    ability_id,
+                } => {
+                    println!(
+                        "    {} activates {} (ability {})",
+                        player_id,
+                        card_label(card_id, names),
+                        ability_id
+                    );
+                }
+                ActionType::Attack {
+                    attacker_id,
+                    defender_id,
+                } => {
+                    println!(
+                        "    {} attacks {}",
+                        card_label(attacker_id, names),
+                        defender_id
+                    );
+                }
+                ActionType::Block {
+                    attacker_id,
+                    blocker_id,
+                } => {
+                    let atk = if attacker_id.is_empty() {
+                        "?".to_string()
+                    } else {
+                        card_label(attacker_id, names)
+                    };
+                    println!(
+                        "    {} blocks {}",
+                        card_label(blocker_id, names),
+                        atk
+                    );
+                }
+                ActionType::Resolve { card_id } => {
+                    println!("    {} resolves", card_label(card_id, names));
+                }
+                ActionType::LifeChange {
+                    player_id,
+                    old_life,
+                    new_life,
+                } => {
+                    let delta = new_life - old_life;
+                    let sign = if delta > 0 { "+" } else { "" };
+                    println!(
+                        "    {} life: {} -> {} ({}{})",
+                        player_id, old_life, new_life, sign, delta
+                    );
+                }
+                ActionType::ZoneTransition {
+                    card_id,
+                    from_zone,
+                    to_zone,
+                    player_id,
+                } => {
+                    let who = player_id.as_deref().unwrap_or("?");
+                    println!(
+                        "    [{}] {} moves {} -> {}",
+                        who,
+                        card_label(card_id, names),
+                        from_zone,
+                        to_zone
+                    );
+                }
+                ActionType::TapPermanent { card_id } => {
+                    println!("    tap {}", card_label(card_id, names));
+                }
+                ActionType::UntapPermanent { card_id } => {
+                    println!("    untap {}", card_label(card_id, names));
+                }
+                ActionType::DamageMarked { card_id, damage } => {
+                    println!(
+                        "    {} takes {} damage",
+                        card_label(card_id, names),
+                        damage
+                    );
+                }
+                ActionType::SummoningSickness {
+                    card_id,
+                    has_sickness,
+                } => {
+                    if *has_sickness {
+                        println!("    {} enters (summoning sick)", card_label(card_id, names));
+                    }
+                    // Don't log sickness wearing off — it's noise
+                }
+                ActionType::FaceDown { card_id } => {
+                    println!("    {} turned face down", card_label(card_id, names));
+                }
+                ActionType::FaceUp { card_id } => {
+                    println!("    {} turned face up", card_label(card_id, names));
+                }
+                ActionType::Attach {
+                    card_id,
+                    attached_to_id,
+                } => {
+                    println!(
+                        "    {} attached to {}",
+                        card_label(card_id, names),
+                        card_label(attached_to_id, names)
+                    );
+                }
+                ActionType::Detach { card_id } => {
+                    println!("    {} detached", card_label(card_id, names));
+                }
+                ActionType::CounterUpdate {
+                    card_id,
+                    counter_type,
+                    count,
+                } => {
+                    println!(
+                        "    {} now has {} {} counter(s)",
+                        card_label(card_id, names),
+                        count,
+                        counter_type
+                    );
+                }
+                ActionType::PowerToughnessUpdate {
+                    card_id,
+                    power,
+                    toughness,
+                } => {
+                    println!(
+                        "    {} is now {}/{}",
+                        card_label(card_id, names),
+                        power,
+                        toughness
+                    );
+                }
+                ActionType::PassPriority { player_id } => {
+                    println!("    {} passes priority", player_id);
+                }
+                ActionType::Unknown { description } => {
+                    println!("    ??? {}", description);
+                }
+            }
+        }
+        println!();
     }
 }
 

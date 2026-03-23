@@ -368,6 +368,9 @@ fn test_golden_file_has_expected_action_types() {
             ActionType::PhaseChange { .. } => "PhaseChange",
             ActionType::TurnChange { .. } => "TurnChange",
             ActionType::PassPriority { .. } => "PassPriority",
+            ActionType::Discard { .. } => "Discard",
+            ActionType::Mill { .. } => "Mill",
+            ActionType::CreateToken { .. } => "CreateToken",
             ActionType::Unknown { .. } => "Unknown",
         };
         *type_counts.entry(name).or_default() += 1;

@@ -634,6 +634,7 @@ mod tests {
             loyalty: 0,
             src_thing_id: None,
             from_zone: None,
+            is_token: false,
         }
     }
 

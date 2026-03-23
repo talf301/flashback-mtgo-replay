@@ -143,6 +143,7 @@ pub struct ThingState {
     pub loyalty: i32,
     pub src_thing_id: Option<u32>,
     pub from_zone: Option<i32>,
+    pub is_token: bool,
 }
 
 impl Default for ThingState {
@@ -168,6 +169,7 @@ impl Default for ThingState {
             loyalty: 0,
             src_thing_id: None,
             from_zone: None,
+            is_token: false,
         }
     }
 }
@@ -345,6 +347,11 @@ impl GameState {
                             opcodes::SRC_THING_ID => {
                                 if let PropertyValue::Int(v) = value {
                                     thing.src_thing_id = if *v != 0 { Some(*v as u32) } else { None };
+                                }
+                            }
+                            opcodes::IS_TOKEN => {
+                                if let PropertyValue::Int(v) = value {
+                                    thing.is_token = *v != 0;
                                 }
                             }
                             _ => {

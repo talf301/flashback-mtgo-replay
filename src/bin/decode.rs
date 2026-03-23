@@ -693,11 +693,8 @@ fn print_text_log(replay: &ReplayFile) {
 
             match &action.action_type {
                 ActionType::PhaseChange { phase } => {
-                    if *phase != last_phase {
-                        last_phase = phase.clone();
-                        println!("  [{}]", phase);
-                    }
-                    // Skip duplicate phase emissions
+                    last_phase = phase.clone();
+                    println!("  [{}]", phase);
                 }
                 ActionType::TurnChange { .. } => {
                     // Already handled by the turn header above

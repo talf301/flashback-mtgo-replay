@@ -3,10 +3,11 @@
 //! Compares consecutive `GameState` snapshots and emits `ReplayAction`s
 //! describing what changed between them.
 
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet, VecDeque};
 
 use chrono::{DateTime, Utc};
 
+use crate::chat::{self, ChatEvent};
 use crate::replay::schema::{ActionType, ReplayAction};
 use crate::state::{GamePhase, GameState};
 
@@ -34,6 +35,10 @@ pub struct ReplayTranslator {
     /// state updates from both players' perspectives during the same phase.
     /// Cleared on TurnChange so the first phase of each turn is always emitted.
     last_emitted_phase: Option<GamePhase>,
+    /// Per-thing-id chat context for zone resolution and action classification.
+    chat_context: HashMap<u32, ChatEvent>,
+    /// Pending token creation events keyed by token name.
+    pending_tokens: VecDeque<(String, ChatEvent)>,
 }
 
 impl ReplayTranslator {
@@ -45,6 +50,8 @@ impl ReplayTranslator {
             things_seen_on_stack: HashSet::new(),
             last_known_zones: HashMap::new(),
             last_emitted_phase: None,
+            chat_context: HashMap::new(),
+            pending_tokens: VecDeque::new(),
         }
     }
 
@@ -56,6 +63,24 @@ impl ReplayTranslator {
         self.start_time = Some(t);
     }
 
+    /// Feed a chat message into the translator's context.
+    /// Call this for every UserChat message before processing state diffs.
+    pub fn ingest_chat(&mut self, text: &str) {
+        if let Some(event) = chat::parse_chat(text) {
+            match &event {
+                ChatEvent::CreateToken { token_name, .. } => {
+                    self.pending_tokens.push_back((token_name.clone(), event));
+                }
+                ChatEvent::Discard { card, .. }
+                | ChatEvent::PutIntoGraveyard { card, .. }
+                | ChatEvent::Exile { card, .. }
+                | ChatEvent::PutOnLibrary { card, .. } => {
+                    self.chat_context.insert(card.thing_id, event);
+                }
+            }
+        }
+    }
+
     /// Reset translator state for a new game in a multi-game session.
     /// Player names are preserved across games since they don't change in a match.
     pub fn reset(&mut self) {
@@ -64,6 +89,8 @@ impl ReplayTranslator {
         self.things_seen_on_stack.clear();
         self.last_known_zones.clear();
         self.last_emitted_phase = None;
+        self.chat_context.clear();
+        self.pending_tokens.clear();
     }
 
     /// Process a new game state, emitting actions for everything that changed.
@@ -99,8 +126,10 @@ impl ReplayTranslator {
 
         let actions = if in_pregame {
             Vec::new()
-        } else if let Some(ref prev) = self.prev {
-            self.diff(prev, new_state, is_full_state, phase_regressed)
+        } else if let Some(prev) = self.prev.take() {
+            let result = self.diff(&prev, new_state, is_full_state, phase_regressed);
+            self.prev = Some(prev);
+            result
         } else {
             // First state — no diff possible
             Vec::new()
@@ -177,7 +206,7 @@ impl ReplayTranslator {
     /// `suppress_phase`: when true, skip TurnChange / PhaseChange / LifeChange
     ///     because the state update regressed the phase within a turn.
     fn diff(
-        &self,
+        &mut self,
         prev: &GameState,
         new: &GameState,
         suppress_new_things: bool,
@@ -485,15 +514,90 @@ impl ReplayTranslator {
             } else {
                 // New thing — not in prev state.  Use from_zone to distinguish
                 // real zone transitions from visibility-only appearances.
-                //
-                // from_zone == Some(-1): thing actually moved from another zone
-                //   (the element had a non-trivial from_zone object reference).
-                // from_zone == None: first-time visibility, no zone transition.
                 let moved = new_thing.from_zone == Some(-1);
                 let zone = new_thing.zone;
 
+                // Check chat context for this thing (authoritative source)
+                let chat_event = self.chat_context.remove(thing_id);
+
+                // Resolve source zone: chat > last_known_zones > unknown
+                let resolved_from_zone = if let Some(ref evt) = chat_event {
+                    match evt {
+                        ChatEvent::Discard { .. } => Some(ZONE_HAND),
+                        ChatEvent::PutIntoGraveyard { .. } => {
+                            Some(self.last_known_zones.get(thing_id).copied().unwrap_or(ZONE_LIBRARY))
+                        }
+                        ChatEvent::Exile { .. } | ChatEvent::PutOnLibrary { .. } => {
+                            self.last_known_zones.get(thing_id).copied()
+                        }
+                        ChatEvent::CreateToken { .. } => None,
+                    }
+                } else {
+                    self.last_known_zones.get(thing_id).copied()
+                };
+
+                // Token creation check
+                if zone == ZONE_BATTLEFIELD && new_thing.is_token {
+                    if let Some(pos) = self.pending_tokens.iter().position(|(name, _)| {
+                        new_thing.card_name.as_deref() == Some(name.as_str())
+                    }) {
+                        let (token_name, _) = self.pending_tokens.remove(pos).unwrap();
+                        actions.push(self.make_action(
+                            new,
+                            ActionType::CreateToken {
+                                player_id: self.player_name(new_thing.controller as usize),
+                                card_id: card_id.clone(),
+                                token_name,
+                            },
+                        ));
+                        continue;
+                    }
+                }
+
+                // Chat-driven action classification
+                if let Some(ref evt) = chat_event {
+                    match evt {
+                        ChatEvent::Discard { .. } => {
+                            actions.push(self.make_action(
+                                new,
+                                ActionType::Discard {
+                                    player_id: self.player_name(new_thing.controller as usize),
+                                    card_id: card_id.clone(),
+                                },
+                            ));
+                            continue;
+                        }
+                        ChatEvent::PutIntoGraveyard { .. } => {
+                            let from = resolved_from_zone.unwrap_or(ZONE_LIBRARY);
+                            if from == ZONE_LIBRARY {
+                                actions.push(self.make_action(
+                                    new,
+                                    ActionType::Mill {
+                                        player_id: self.player_name(new_thing.controller as usize),
+                                        card_id: card_id.clone(),
+                                    },
+                                ));
+                            } else {
+                                actions.push(self.make_action(
+                                    new,
+                                    ActionType::ZoneTransition {
+                                        card_id: card_id.clone(),
+                                        from_zone: Self::zone_name(from).to_string(),
+                                        to_zone: Self::zone_name(zone).to_string(),
+                                        player_id: Some(self.player_name(new_thing.controller as usize)),
+                                    },
+                                ));
+                            }
+                            continue;
+                        }
+                        _ => {
+                            // Exile, PutOnLibrary → fall through to zone transition with resolved from
+                        }
+                    }
+                }
+
+                // Original logic with resolved from_zone
                 if zone == ZONE_HAND && moved {
-                    // Drew a card
                     actions.push(self.make_action(
                         new,
                         ActionType::DrawCard {
@@ -502,7 +606,6 @@ impl ReplayTranslator {
                         },
                     ));
                 } else if zone == ZONE_STACK && moved {
-                    // Cast spell or activated ability
                     if let Some(src_id) = new_thing.src_thing_id {
                         if new.things.get(&src_id).map_or(false, |src| {
                             src.zone == ZONE_BATTLEFIELD
@@ -510,8 +613,7 @@ impl ReplayTranslator {
                             actions.push(self.make_action(
                                 new,
                                 ActionType::ActivateAbility {
-                                    player_id: self
-                                        .player_name(new_thing.controller as usize),
+                                    player_id: self.player_name(new_thing.controller as usize),
                                     card_id: src_id.to_string(),
                                     ability_id: card_id.clone(),
                                 },
@@ -520,8 +622,7 @@ impl ReplayTranslator {
                             actions.push(self.make_action(
                                 new,
                                 ActionType::CastSpell {
-                                    player_id: self
-                                        .player_name(new_thing.controller as usize),
+                                    player_id: self.player_name(new_thing.controller as usize),
                                     card_id: card_id.clone(),
                                 },
                             ));
@@ -537,20 +638,16 @@ impl ReplayTranslator {
                     }
                 } else if zone == ZONE_BATTLEFIELD && moved {
                     if self.things_seen_on_stack.contains(thing_id) {
-                        // Was on stack → resolved
                         actions.push(self.make_action(
                             new,
                             ActionType::ZoneTransition {
                                 card_id: card_id.clone(),
                                 from_zone: "stack".to_string(),
                                 to_zone: "battlefield".to_string(),
-                                player_id: Some(
-                                    self.player_name(new_thing.controller as usize),
-                                ),
+                                player_id: Some(self.player_name(new_thing.controller as usize)),
                             },
                         ));
                     } else {
-                        // Not seen on stack → land play
                         actions.push(self.make_action(
                             new,
                             ActionType::PlayLand {
@@ -560,16 +657,16 @@ impl ReplayTranslator {
                         ));
                     }
                 } else if moved && zone != ZONE_LIBRARY {
-                    // Other zone transition (graveyard, exile, etc.)
+                    let from_name = resolved_from_zone
+                        .map(|z| Self::zone_name(z))
+                        .unwrap_or("unknown");
                     actions.push(self.make_action(
                         new,
                         ActionType::ZoneTransition {
                             card_id: card_id.clone(),
-                            from_zone: "unknown".to_string(),
+                            from_zone: from_name.to_string(),
                             to_zone: Self::zone_name(zone).to_string(),
-                            player_id: Some(
-                                self.player_name(new_thing.controller as usize),
-                            ),
+                            player_id: Some(self.player_name(new_thing.controller as usize)),
                         },
                     ));
                 }
@@ -945,5 +1042,140 @@ mod tests {
             actions.iter().any(|a| matches!(&a.action_type, ActionType::TapPermanent { .. })),
             "Thing diffs should still be processed during phase regression"
         );
+    }
+
+    #[test]
+    fn test_chat_discard() {
+        let mut translator = ReplayTranslator::new();
+        translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
+
+        // Initial state: no card 421 visible (it's in hand but hand contents
+        // aren't always in the state — cards appear as new things when discarded)
+        let s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s1, false);
+
+        // Chat arrives before state diff
+        translator.ingest_chat("Alice discards @[Bolt@:100,421:@].");
+
+        // State: card 421 appears in graveyard as a new thing
+        let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        let mut t = default_thing(421, 3); // graveyard
+        t.from_zone = Some(-1);
+        s2.things.insert(421, t);
+        let actions = translator.process(&s2, false);
+
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::Discard { player_id, card_id }
+                if player_id == "Alice" && card_id == "421"
+        )), "Expected Discard action, got: {:?}", actions.iter().map(|a| &a.action_type).collect::<Vec<_>>());
+    }
+
+    #[test]
+    fn test_chat_mill() {
+        let mut translator = ReplayTranslator::new();
+        translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
+
+        let s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s1, false);
+
+        // Chat: surveil puts card into graveyard (card never seen → library source)
+        translator.ingest_chat("Alice puts @[Bolt@:100,283:@] into their graveyard.");
+
+        let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        let mut t = default_thing(283, 3); // graveyard
+        t.from_zone = Some(-1);
+        s2.things.insert(283, t);
+        let actions = translator.process(&s2, false);
+
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::Mill { player_id, card_id }
+                if player_id == "Alice" && card_id == "283"
+        )), "Expected Mill action, got: {:?}", actions.iter().map(|a| &a.action_type).collect::<Vec<_>>());
+    }
+
+    #[test]
+    fn test_chat_create_token() {
+        let mut translator = ReplayTranslator::new();
+        translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
+
+        let s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s1, false);
+
+        translator.ingest_chat("Alice's @[Fable@:194420,458:@] creates a Goblin Shaman Token.");
+
+        let mut s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        let mut t = default_thing(461, ZONE_BATTLEFIELD);
+        t.card_name = Some("Goblin Shaman Token".to_string());
+        t.is_token = true;
+        t.from_zone = Some(-1);
+        s2.things.insert(461, t);
+        let actions = translator.process(&s2, false);
+
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::CreateToken { player_id, token_name, .. }
+                if player_id == "Alice" && token_name == "Goblin Shaman Token"
+        )), "Expected CreateToken action, got: {:?}", actions.iter().map(|a| &a.action_type).collect::<Vec<_>>());
+    }
+
+    #[test]
+    fn test_chat_resolves_unknown_from_zone() {
+        let mut translator = ReplayTranslator::new();
+        translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
+
+        // Card 510 on battlefield — tracked by last_known_zones
+        let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        s1.things.insert(510, default_thing(510, ZONE_BATTLEFIELD));
+        translator.process(&s1, false);
+
+        // Full state prune removes card 510 (but last_known_zones retains it)
+        let s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s2, true);
+
+        // Chat: exile
+        translator.ingest_chat("Alice exiles @[Subtlety@:181014,510:@].");
+
+        // Card reappears in exile as NEW thing (not in prev)
+        let mut s3 = make_state(1, 1, GamePhase::PreCombatMain);
+        let mut t = default_thing(510, 4); // exile
+        t.from_zone = Some(-1);
+        s3.things.insert(510, t);
+        let actions = translator.process(&s3, false);
+
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::ZoneTransition { from_zone, to_zone, .. }
+                if from_zone == "battlefield" && to_zone == "exile"
+        )), "Expected from_zone=battlefield, got: {:?}", actions.iter().map(|a| &a.action_type).collect::<Vec<_>>());
+    }
+
+    #[test]
+    fn test_last_known_zones_fallback() {
+        let mut translator = ReplayTranslator::new();
+        translator.set_player_names(vec!["Alice".into(), "Bob".into()]);
+
+        // Card 600 on battlefield
+        let mut s1 = make_state(1, 1, GamePhase::PreCombatMain);
+        s1.things.insert(600, default_thing(600, ZONE_BATTLEFIELD));
+        translator.process(&s1, false);
+
+        // Full state prune
+        let s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        translator.process(&s2, true);
+
+        // Card 600 reappears in graveyard with NO chat context
+        let mut s3 = make_state(1, 1, GamePhase::PreCombatMain);
+        let mut t = default_thing(600, 3); // graveyard
+        t.from_zone = Some(-1);
+        s3.things.insert(600, t);
+        let actions = translator.process(&s3, false);
+
+        assert!(actions.iter().any(|a| matches!(
+            &a.action_type,
+            ActionType::ZoneTransition { from_zone, to_zone, .. }
+                if from_zone == "battlefield" && to_zone == "graveyard"
+        )), "Expected from_zone=battlefield via last_known_zones, got: {:?}", actions.iter().map(|a| &a.action_type).collect::<Vec<_>>());
     }
 }

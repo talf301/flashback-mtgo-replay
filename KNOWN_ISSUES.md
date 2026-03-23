@@ -47,13 +47,18 @@ Fixed by tracking `last_emitted_phase` in `ReplayTranslator`, independent of the
 
 ---
 
-## P2: Misclassified Zone Transitions
+## ~~P2: Misclassified Zone Transitions~~ — MOSTLY FIXED
 
-**Problem:** Zone transitions from unknown source zones show `from_zone: "unknown"`.
+**Was:** Zone transitions from unknown source zones showed `from_zone: "unknown"` (37 instances in golden file).
 
-**Example:** `ZoneTransition card=431 from="unknown" to="revealed"`
+**Fixed:** Three resolution strategies now resolve source zones:
+1. **Chat context** — `NEW_USER_CHAT` messages parsed for verbs like "discards", "exiles", "puts into graveyard" with embedded card references (`@[Card@:tex,id:@]`) providing authoritative source zone info.
+2. **`last_known_zones` fallback** — tracks every thing's last observed zone across full-state prunes.
+3. **Library heuristic** — cards appearing in the "revealed" zone (16) with no other context default to `from_zone: "library"` (surveil/scry).
 
-**Root cause:** When a thing appears for the first time with `from_zone = Some(-1)` (the sentinel for "moved from somewhere"), we know it moved but don't know the source zone type. The `from_zone` field on `ThingElement` is an object reference, not a zone enum.
+**Remaining:** 5 transitions to the "effects" zone (24) still show `from_zone: "unknown"`. These are internal MTGO state for spells/abilities entering an effects zone — the source zone is unclear from both state and chat.
+
+**Limitation:** Many game actions (opponent discards, mill of opponent's cards) are only visible in the chat log but not reflected in state diffs. Chat context entries for those cards are never consumed because the cards never appear in the game state.
 
 ---
 
@@ -67,13 +72,16 @@ Fixed by tracking `last_emitted_phase` in `ReplayTranslator`, independent of the
 
 ## P3: Missing Action Types
 
-| Action | Why missing |
-|--------|-------------|
-| Token creation | Tokens appear as new Things with `IS_TOKEN` set, but translator doesn't distinguish them |
-| Discard | Hand → Graveyard transitions exist but aren't labeled as "discard" |
-| Scry/Surveil | Library manipulation isn't visible |
+| Action | Status |
+|--------|--------|
+| ~~Token creation~~ | ~~FIXED — chat "creates a" pattern → `CreateToken` action type~~ |
+| ~~Discard~~ | ~~FIXED — chat "discards" pattern → `Discard` action type~~ |
+| ~~Mill~~ | ~~FIXED — chat "puts into graveyard" from library → `Mill` action type~~ |
+| Scry/Surveil | Library manipulation isn't visible in state diffs |
 | Mulligan | Happens before game state tracking begins |
 | Mana tapping | Taps tracked but not correlated with mana production |
+
+**Note on Discard/Mill/CreateToken:** These action types are emitted when both (a) the chat log describes the action AND (b) the card appears in the game state diff. Many opponent actions are only in the chat log without corresponding state changes, so these actions are emitted for the player's own cards but not always for the opponent's.
 
 ---
 

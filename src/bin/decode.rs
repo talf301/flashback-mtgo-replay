@@ -777,6 +777,38 @@ fn print_text_log(replay: &ReplayFile) {
                         player_id, old_life, new_life, sign, delta
                     );
                 }
+                ActionType::Discard {
+                    player_id,
+                    card_id,
+                } => {
+                    println!(
+                        "    {} discards {}",
+                        player_id,
+                        card_label(card_id, names)
+                    );
+                }
+                ActionType::Mill {
+                    player_id,
+                    card_id,
+                } => {
+                    println!(
+                        "    {} mills {}",
+                        player_id,
+                        card_label(card_id, names)
+                    );
+                }
+                ActionType::CreateToken {
+                    player_id,
+                    card_id,
+                    token_name,
+                } => {
+                    println!(
+                        "    {} creates {} ({})",
+                        player_id,
+                        token_name,
+                        card_label(card_id, names)
+                    );
+                }
                 ActionType::ZoneTransition {
                     card_id,
                     from_zone,

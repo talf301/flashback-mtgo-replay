@@ -35,6 +35,9 @@ pub enum ActionType {
         to_zone: String,
         player_id: Option<String>,
     },
+    Discard { player_id: String, card_id: String },
+    Mill { player_id: String, card_id: String },
+    CreateToken { player_id: String, card_id: String, token_name: String },
     TapPermanent { card_id: String },
     UntapPermanent { card_id: String },
     DamageMarked { card_id: String, damage: i32 },
@@ -322,6 +325,19 @@ mod tests {
             },
             ActionType::Unknown {
                 description: "test".to_string(),
+            },
+            ActionType::Discard {
+                player_id: "p1".to_string(),
+                card_id: "c1".to_string(),
+            },
+            ActionType::Mill {
+                player_id: "p1".to_string(),
+                card_id: "c1".to_string(),
+            },
+            ActionType::CreateToken {
+                player_id: "p1".to_string(),
+                card_id: "c1".to_string(),
+                token_name: "Goblin Token".to_string(),
             },
         ];
 

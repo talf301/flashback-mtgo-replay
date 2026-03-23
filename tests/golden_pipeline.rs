@@ -225,6 +225,7 @@ fn run_pipeline(messages: Vec<RawMessage>) -> Vec<GameReplay> {
                         }
                     }
                     GameMessage::UserChat { ref text } => {
+                        translator.ingest_chat(text);
                         if let Some(rest) = text.strip_prefix("Turn ") {
                             if let Some(colon_pos) = rest.find(": ") {
                                 let player_name = &rest[colon_pos + 2..];

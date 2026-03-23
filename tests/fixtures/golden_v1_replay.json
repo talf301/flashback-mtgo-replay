@@ -13,8 +13,8 @@
       }
     ],
     "format": "",
-    "start_time": "2026-03-23T03:50:39.604981381Z",
-    "end_time": "2026-03-23T03:50:40.187265490Z"
+    "start_time": "2026-03-23T06:12:50.418621993Z",
+    "end_time": "2026-03-23T06:12:50.999165101Z"
   },
   "games": [
     {
@@ -41,7 +41,7 @@
       },
       "actions": [
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -53,7 +53,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -64,7 +64,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -75,7 +75,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -87,18 +87,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
-          "turn": 1,
-          "phase": "precombat_main",
-          "active_player": "coreyabaker",
-          "action_type": {
-            "PhaseChange": {
-              "phase": "precombat_main"
-            }
-          }
-        },
-        {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -110,7 +99,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -121,7 +110,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -132,7 +121,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -145,7 +134,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -157,7 +146,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -169,7 +158,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -181,7 +170,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -192,7 +181,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -203,7 +192,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -217,7 +206,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -228,7 +217,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -240,7 +229,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -251,7 +240,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -262,7 +251,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -273,7 +262,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -286,7 +275,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -298,7 +287,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -310,7 +299,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -322,7 +311,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -333,7 +322,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -345,7 +334,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -356,7 +345,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -367,7 +356,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -378,7 +367,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -391,7 +380,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -403,7 +392,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -414,7 +403,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -426,7 +415,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -438,7 +427,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -450,7 +439,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -462,7 +451,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -474,7 +463,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -486,7 +475,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -497,7 +486,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -508,7 +497,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -522,7 +511,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -533,7 +522,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -545,7 +534,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -558,7 +547,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -570,7 +559,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -582,7 +571,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -595,7 +584,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -607,7 +596,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -618,7 +607,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -630,7 +619,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -642,7 +631,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -654,7 +643,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -665,7 +654,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -676,7 +665,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -687,7 +676,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -698,7 +687,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -710,7 +699,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -721,7 +710,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -732,7 +721,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -744,7 +733,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -755,7 +744,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -766,7 +755,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -780,7 +769,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -791,7 +780,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -803,7 +792,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -815,7 +804,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -829,7 +818,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -840,7 +829,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -851,7 +840,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -863,7 +852,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -874,7 +863,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -886,7 +875,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -897,7 +886,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -909,7 +898,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -920,7 +909,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -931,7 +920,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -942,7 +931,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -954,7 +943,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -967,7 +956,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -979,7 +968,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -990,7 +979,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1001,7 +990,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1015,7 +1004,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1027,7 +1016,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1039,7 +1028,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1050,7 +1039,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1061,7 +1050,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1073,7 +1062,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1084,7 +1073,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1096,7 +1085,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1108,7 +1097,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1121,7 +1110,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1133,7 +1122,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -1144,7 +1133,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1155,7 +1144,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1167,7 +1156,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1178,7 +1167,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1191,7 +1180,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1203,7 +1192,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1215,7 +1204,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1226,7 +1215,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1238,7 +1227,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1250,7 +1239,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1262,7 +1251,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1273,7 +1262,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1285,7 +1274,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1297,7 +1286,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1309,7 +1298,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1321,7 +1310,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -1332,7 +1321,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -1344,7 +1333,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1355,7 +1344,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1369,7 +1358,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1380,7 +1369,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1394,7 +1383,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1406,7 +1395,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1420,7 +1409,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1431,7 +1420,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -1442,7 +1431,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -1454,7 +1443,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -1465,7 +1454,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -1476,7 +1465,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1487,7 +1476,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1501,7 +1490,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1513,7 +1502,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1525,7 +1514,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1536,7 +1525,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1547,7 +1536,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1561,7 +1550,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1572,7 +1561,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1586,7 +1575,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1598,7 +1587,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1609,7 +1598,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1622,7 +1611,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1635,7 +1624,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1647,7 +1636,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1659,7 +1648,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1671,7 +1660,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -1682,7 +1671,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -1694,7 +1683,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -1705,7 +1694,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -1716,7 +1705,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1727,7 +1716,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1739,7 +1728,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -1750,7 +1739,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1761,7 +1750,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -1773,7 +1762,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1784,7 +1773,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -1796,7 +1785,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -1807,7 +1796,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1818,7 +1807,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1830,7 +1819,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1841,7 +1830,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1854,7 +1843,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1866,7 +1855,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1878,7 +1867,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1889,7 +1878,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -1901,7 +1890,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1912,7 +1901,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1926,7 +1915,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -1938,7 +1927,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -1949,7 +1938,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -1960,7 +1949,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -1971,7 +1960,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -1982,7 +1971,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -1993,7 +1982,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2006,7 +1995,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2018,7 +2007,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2032,7 +2021,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2044,7 +2033,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2055,7 +2044,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2067,7 +2056,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2079,7 +2068,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2090,7 +2079,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -2101,7 +2090,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -2113,7 +2102,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2124,7 +2113,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2136,7 +2125,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2148,7 +2137,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2160,7 +2149,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2174,7 +2163,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2186,7 +2175,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2200,7 +2189,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -2211,7 +2200,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -2223,7 +2212,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -2234,7 +2223,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -2245,7 +2234,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -2256,7 +2245,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2267,7 +2256,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2279,7 +2268,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2290,7 +2279,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -2301,7 +2290,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -2315,7 +2304,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2326,7 +2315,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -2337,7 +2326,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -2348,7 +2337,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -2360,7 +2349,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -2371,7 +2360,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -2383,7 +2372,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -2396,7 +2385,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -2407,7 +2396,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -2419,7 +2408,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -2430,7 +2419,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -2442,7 +2431,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -2454,7 +2443,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -2465,7 +2454,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -2476,7 +2465,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -2487,7 +2476,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "coreyabaker",
@@ -2498,7 +2487,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_attackers",
           "active_player": "coreyabaker",
@@ -2510,7 +2499,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "declare_blockers",
           "active_player": "coreyabaker",
@@ -2521,7 +2510,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -2532,7 +2521,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -2545,7 +2534,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2556,7 +2545,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2570,7 +2559,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.604981381Z",
+          "timestamp": "2026-03-23T06:12:50.418621993Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -2583,351 +2572,196 @@
         }
       ],
       "card_names": {
-        "408": "Celestial Purge",
-        "541": "Sheoldred's Edict",
-        "455": "Flooded Strand",
-        "447": "Galvanic Discharge",
-        "386": "Hallowed Fountain",
-        "370": "Prismatic Ending",
-        "570": "Phelia, Exuberant Shepherd",
-        "334": "Arena of Glory",
-        "352": "Phelia, Exuberant Shepherd",
-        "423": "Scalding Tarn",
-        "530": "Consult the Star Charts",
-        "425": "Flooded Strand",
-        "445": "Triggered ability from Wan Shi Tong, Librarian",
-        "336": "Arena of Glory",
-        "405": "Obsidian Charmaw",
-        "527": "Misty Rainforest",
-        "473": "Phelia, Exuberant Shepherd",
-        "399": "Surgical Extraction",
-        "431": "Phelia, Exuberant Shepherd",
-        "363": "Phlage, Titan of Fire's Fury",
-        "538": "Misty Rainforest",
-        "547": "Hallowed Fountain",
-        "372": "Quantum Riddler",
-        "492": "Polluted Delta",
-        "482": "Phelia, Exuberant Shepherd",
-        "500": "<strtable:47626>",
-        "451": "Triggered ability from Meticulous Archive",
-        "353": "Galvanic Discharge",
-        "373": "Quantum Riddler",
-        "375": "Quantum Riddler",
-        "350": "Phelia, Exuberant Shepherd",
-        "508": "Flooded Strand",
-        "504": "Prismatic Ending",
-        "522": "Undercity Sewers",
-        "433": "Flooded Strand",
-        "545": "Arid Mesa",
-        "503": "Phelia, Exuberant Shepherd",
-        "358": "Solitude",
-        "490": "Triggered ability from Phelia, Exuberant Shepherd",
-        "347": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "483": "Steam Vents",
-        "446": "Galvanic Discharge",
-        "374": "Quantum Riddler",
-        "392": "Flooded Strand",
-        "406": "Obsidian Charmaw",
-        "394": "Strix Serenade",
-        "472": "Consign to Memory",
-        "379": "Ragavan, Nimble Pilferer",
-        "529": "Arid Mesa",
-        "488": "Steam Vents",
-        "546": "Arid Mesa",
-        "559": "Fatal Push",
-        "342": "Consign to Memory",
-        "481": "Watery Grave",
-        "542": "Solitude",
-        "569": "Triggered ability from Ephemerate",
-        "367": "Scalding Tarn",
-        "494": "Fatal Push",
-        "443": "Wan Shi Tong, Librarian",
-        "396": "Wrath of the Skies",
-        "377": "Ragavan, Nimble Pilferer",
-        "387": "Elegant Parlor",
-        "518": "Triggered ability from Solitude",
-        "516": "Solitude",
-        "577": "Ragavan, Nimble Pilferer",
-        "485": "Triggered ability from Fable of the Mirror-Breaker",
-        "430": "Triggered ability from Thundering Falls",
-        "426": "Scalding Tarn",
-        "520": "Flooded Strand",
-        "491": "Polluted Delta",
-        "357": "Solitude",
-        "376": "Ragavan, Nimble Pilferer",
-        "449": "Meticulous Archive",
-        "351": "Phelia, Exuberant Shepherd",
-        "562": "Ragavan, Nimble Pilferer",
-        "514": "Ephemerate",
-        "355": "Galvanic Discharge",
-        "493": "Island",
-        "378": "Ragavan, Nimble Pilferer",
-        "438": "Orcish Bowmasters",
-        "499": "Triggered ability from Orcish Bowmasters",
-        "361": "Snow-Covered Mountain",
-        "495": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "519": "Subtlety",
-        "420": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "385": "Snow-Covered Plains",
-        "384": "Meticulous Archive",
-        "452": "Elegant Parlor",
-        "442": "Arid Mesa",
-        "434": "Flooded Strand",
-        "581": "Snapcaster Mage",
-        "400": "High Noon",
-        "448": "Wan Shi Tong, Librarian",
-        "521": "Flooded Strand",
-        "416": "Flooded Strand",
-        "470": "<strtable:14441>",
-        "401": "Mystical Dispute",
-        "364": "Phlage, Titan of Fire's Fury",
-        "345": "Ephemerate",
-        "354": "Galvanic Discharge",
-        "402": "Mystical Dispute",
-        "510": "Subtlety",
-        "395": "Wrath of the Skies",
-        "441": "Arid Mesa",
-        "346": "Ephemerate",
-        "458": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "453": "Prismatic Ending",
-        "335": "Arena of Glory",
-        "525": "Otawara, Soaring City",
-        "557": "Consult the Star Charts",
-        "359": "Solitude",
-        "549": "Ragavan, Nimble Pilferer",
-        "389": "Wrath of the Skies",
-        "338": "Arid Mesa",
-        "419": "Galvanic Discharge",
-        "580": "Phelia, Exuberant Shepherd",
-        "417": "Scalding Tarn",
-        "524": "Triggered ability from Undercity Sewers",
-        "456": "Flooded Strand",
-        "343": "Consign to Memory",
-        "537": "Consult the Star Charts",
-        "460": "Triggered ability from Fable of the Mirror-Breaker",
-        "497": "Orcish Bowmasters",
-        "512": "Triggered ability from Subtlety",
-        "550": "Consult the Star Charts",
-        "337": "Arid Mesa",
-        "457": "Sacred Foundry",
-        "564": "Fatal Push",
-        "371": "Prismatic Ending",
-        "381": "Strix Serenade",
-        "539": "Misty Rainforest",
-        "454": "Flooded Strand",
-        "418": "Strix Serenade",
-        "513": "Phelia, Exuberant Shepherd",
-        "496": "Fatal Push",
-        "380": "Sacred Foundry",
-        "560": "Ephemerate",
-        "506": "Prismatic Ending",
-        "471": "Strix Serenade",
-        "360": "Solitude",
-        "427": "Scalding Tarn",
-        "344": "Steam Vents",
-        "369": "Scalding Tarn",
-        "563": "Ephemerate",
-        "368": "Scalding Tarn",
-        "440": "Island",
-        "362": "Phlage, Titan of Fire's Fury",
-        "543": "Sheoldred's Edict",
-        "437": "Triggered ability from Undercity Sewers",
-        "469": "Orcish Bowmasters",
         "573": "Triggered ability from Wan Shi Tong, Librarian",
-        "340": "Arid Mesa",
-        "475": "Triggered ability from Goblin Shaman Token",
-        "390": "Flooded Strand",
-        "505": "Orcish Bowmasters",
-        "349": "Phelia, Exuberant Shepherd",
-        "466": "Triggered ability from Fable of the Mirror-Breaker",
-        "388": "Thundering Falls",
-        "468": "Strix Serenade",
-        "464": "Solitude",
-        "432": "Arid Mesa",
-        "571": "Wan Shi Tong, Librarian",
-        "540": "Island",
-        "463": "Polluted Delta",
-        "528": "Arid Mesa",
-        "404": "Obsidian Charmaw",
-        "407": "Spell Snare",
-        "393": "Flooded Strand",
-        "548": "Ragavan, Nimble Pilferer",
-        "403": "Mystical Dispute",
-        "397": "Ashiok, Dream Render",
-        "476": "<strtable:5487>",
+        "545": "Arid Mesa",
+        "445": "Triggered ability from Wan Shi Tong, Librarian",
+        "426": "Scalding Tarn",
+        "437": "Triggered ability from Undercity Sewers",
+        "460": "Triggered ability from Fable of the Mirror-Breaker",
+        "524": "Triggered ability from Undercity Sewers",
         "566": "Triggered ability from Ragavan, Nimble Pilferer",
-        "383": "Snow-Covered Island",
-        "421": "Consign to Memory",
-        "428": "Thundering Falls",
-        "435": "Undercity Sewers",
-        "422": "Arid Mesa",
-        "509": "Phelia, Exuberant Shepherd",
-        "467": "Orcish Bowmasters",
-        "398": "Ashiok, Dream Render",
-        "365": "Phlage, Titan of Fire's Fury",
+        "518": "Triggered ability from Solitude",
+        "538": "Misty Rainforest",
+        "475": "Triggered ability from Goblin Shaman Token",
+        "451": "Triggered ability from Meticulous Archive",
+        "441": "Arid Mesa",
+        "491": "Polluted Delta",
+        "512": "Triggered ability from Subtlety",
+        "520": "Flooded Strand",
+        "569": "Triggered ability from Ephemerate",
+        "476": "<strtable:5487>",
+        "430": "Triggered ability from Thundering Falls",
+        "500": "<strtable:47626>",
+        "470": "<strtable:14441>",
+        "455": "Flooded Strand",
+        "485": "Triggered ability from Fable of the Mirror-Breaker",
+        "466": "Triggered ability from Fable of the Mirror-Breaker",
+        "433": "Flooded Strand",
+        "490": "Triggered ability from Phelia, Exuberant Shepherd",
+        "499": "Triggered ability from Orcish Bowmasters",
         "461": "<strtable:67071>"
       },
       "card_textures": {
-        "345": 72386,
-        "550": 142715,
-        "513": 126097,
-        "456": 54194,
-        "376": 90653,
-        "514": 72386,
-        "417": 90889,
-        "546": 34414,
-        "408": 37174,
-        "367": 90889,
-        "464": 91203,
-        "357": 91203,
-        "505": 112116,
-        "508": 54194,
-        "390": 54194,
-        "349": 126097,
-        "427": 90889,
-        "344": 69927,
-        "519": 90507,
-        "559": 62689,
         "340": 34414,
-        "352": 126097,
+        "542": 91203,
+        "387": 121434,
+        "487": 97212,
+        "418": 126159,
+        "342": 126125,
+        "448": 144636,
+        "463": 54196,
+        "527": 34622,
+        "353": 126261,
+        "371": 90419,
         "346": 72386,
+        "564": 62689,
+        "389": 126115,
+        "343": 126125,
+        "344": 69927,
+        "440": 79626,
+        "447": 126261,
+        "398": 72062,
         "383": 87909,
-        "370": 90419,
-        "434": 54194,
-        "443": 144636,
-        "373": 142757,
-        "547": 24001,
-        "492": 54196,
-        "472": 126125,
-        "402": 78226,
+        "335": 126449,
+        "496": 62689,
+        "432": 34414,
+        "494": 62689,
+        "539": 34622,
+        "367": 90889,
+        "384": 121440,
         "378": 90653,
-        "570": 126097,
-        "334": 126449,
+        "420": 97210,
+        "404": 90651,
+        "580": 126097,
         "350": 126097,
-        "388": 122030,
-        "336": 126449,
-        "483": 69927,
+        "560": 72386,
+        "446": 126261,
+        "540": 79626,
+        "397": 72062,
+        "425": 54194,
+        "379": 90653,
+        "428": 122030,
+        "454": 54194,
+        "482": 126097,
+        "530": 142715,
+        "547": 24001,
+        "349": 126097,
+        "390": 54194,
+        "488": 69927,
+        "528": 34414,
+        "481": 23586,
+        "497": 112116,
+        "375": 142757,
+        "503": 126097,
+        "357": 91203,
+        "549": 90653,
+        "435": 122032,
+        "377": 90653,
+        "493": 79626,
+        "508": 54194,
+        "434": 54194,
+        "352": 126097,
+        "419": 126261,
+        "495": 97210,
+        "506": 90419,
+        "543": 106431,
+        "368": 90889,
+        "408": 37174,
+        "521": 54194,
+        "563": 72386,
+        "399": 40024,
+        "476": 96884,
+        "423": 90889,
+        "453": 90419,
+        "364": 126413,
         "369": 90889,
         "362": 126413,
-        "541": 106431,
-        "521": 54194,
-        "580": 126097,
-        "337": 34414,
-        "487": 97212,
-        "539": 34622,
-        "358": 91203,
-        "393": 54194,
-        "494": 62689,
-        "468": 126159,
-        "396": 126115,
-        "361": 72878,
-        "458": 97210,
-        "488": 69927,
-        "500": 111892,
-        "432": 34414,
-        "563": 72386,
-        "470": 125883,
-        "560": 72386,
-        "342": 126125,
-        "454": 54194,
-        "379": 90653,
-        "431": 126097,
-        "421": 126125,
-        "397": 72062,
-        "504": 90419,
-        "537": 142715,
-        "423": 90889,
-        "407": 49014,
-        "422": 34414,
-        "440": 79626,
-        "457": 47815,
-        "387": 121434,
-        "438": 112116,
-        "496": 62689,
-        "469": 112116,
-        "354": 126261,
-        "338": 34414,
-        "419": 126261,
-        "420": 97210,
-        "380": 47815,
-        "381": 126159,
-        "392": 54194,
-        "355": 126261,
-        "359": 91203,
-        "418": 126159,
-        "506": 90419,
-        "522": 122032,
-        "571": 144636,
-        "375": 142757,
-        "405": 90651,
-        "386": 24001,
-        "476": 96884,
-        "353": 126261,
-        "530": 142715,
-        "398": 72062,
-        "442": 34414,
-        "363": 126413,
-        "406": 90651,
-        "510": 90507,
-        "525": 97492,
-        "540": 79626,
-        "364": 126413,
-        "384": 121440,
-        "463": 54196,
-        "395": 126115,
-        "399": 40024,
-        "368": 90889,
-        "481": 23586,
-        "557": 142715,
-        "385": 87905,
-        "428": 122030,
-        "447": 126261,
-        "377": 90653,
-        "516": 91203,
-        "497": 112116,
-        "564": 62689,
-        "400": 123941,
-        "503": 126097,
-        "471": 126159,
-        "509": 126097,
-        "404": 90651,
-        "360": 91203,
-        "461": 96866,
-        "527": 34622,
-        "351": 126097,
-        "528": 34414,
         "581": 42512,
-        "562": 90653,
-        "543": 106431,
-        "548": 90653,
-        "416": 54194,
-        "389": 126115,
-        "435": 122032,
-        "449": 121440,
-        "473": 126097,
+        "546": 34414,
+        "516": 91203,
+        "370": 90419,
+        "571": 144636,
+        "361": 72878,
+        "461": 96866,
         "577": 90653,
-        "365": 126413,
-        "446": 126261,
-        "371": 90419,
-        "347": 97210,
-        "493": 79626,
-        "529": 34414,
-        "482": 126097,
-        "343": 126125,
-        "394": 126159,
+        "500": 111892,
+        "334": 126449,
+        "456": 54194,
         "452": 121434,
+        "468": 126159,
+        "360": 91203,
+        "406": 90651,
+        "504": 90419,
+        "469": 112116,
+        "513": 126097,
+        "537": 142715,
+        "358": 91203,
+        "541": 106431,
+        "355": 126261,
+        "376": 90653,
         "374": 142757,
-        "467": 112116,
-        "448": 144636,
-        "372": 142757,
-        "542": 91203,
-        "549": 90653,
-        "425": 54194,
+        "522": 122032,
+        "394": 126159,
+        "347": 97210,
+        "359": 91203,
+        "396": 126115,
         "403": 78226,
+        "505": 112116,
+        "438": 112116,
+        "550": 142715,
+        "427": 90889,
+        "562": 90653,
+        "402": 78226,
+        "449": 121440,
+        "529": 34414,
+        "525": 97492,
+        "548": 90653,
+        "372": 142757,
+        "570": 126097,
+        "422": 34414,
+        "471": 126159,
+        "510": 90507,
+        "405": 90651,
+        "363": 126413,
+        "483": 69927,
+        "514": 72386,
+        "395": 126115,
+        "354": 126261,
+        "381": 126159,
+        "407": 49014,
+        "393": 54194,
+        "337": 34414,
+        "338": 34414,
+        "457": 47815,
+        "380": 47815,
+        "467": 112116,
         "401": 78226,
-        "453": 90419,
-        "335": 126449,
-        "495": 97210
+        "336": 126449,
+        "559": 62689,
+        "472": 126125,
+        "519": 90507,
+        "473": 126097,
+        "351": 126097,
+        "431": 126097,
+        "386": 24001,
+        "421": 126125,
+        "345": 72386,
+        "416": 54194,
+        "464": 91203,
+        "373": 142757,
+        "388": 122030,
+        "443": 144636,
+        "492": 54196,
+        "557": 142715,
+        "458": 97210,
+        "442": 34414,
+        "470": 125883,
+        "392": 54194,
+        "385": 87905,
+        "400": 123941,
+        "509": 126097,
+        "417": 90889,
+        "365": 126413
       }
     },
     {
@@ -2954,7 +2788,7 @@
       },
       "actions": [
         {
-          "timestamp": "2026-03-23T03:50:39.878340403Z",
+          "timestamp": "2026-03-23T06:12:50.690782204Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2966,7 +2800,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.878342003Z",
+          "timestamp": "2026-03-23T06:12:50.690783654Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -2977,7 +2811,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.878904105Z",
+          "timestamp": "2026-03-23T06:12:50.691341167Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -2988,7 +2822,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.879192556Z",
+          "timestamp": "2026-03-23T06:12:50.691646538Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3000,7 +2834,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.880227890Z",
+          "timestamp": "2026-03-23T06:12:50.692692982Z",
           "turn": 1,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -3011,7 +2845,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.880562032Z",
+          "timestamp": "2026-03-23T06:12:50.693027244Z",
           "turn": 1,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3022,7 +2856,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.880876083Z",
+          "timestamp": "2026-03-23T06:12:50.693339545Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -3033,7 +2867,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.881857127Z",
+          "timestamp": "2026-03-23T06:12:50.694326579Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3044,7 +2878,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.882222069Z",
+          "timestamp": "2026-03-23T06:12:50.694710241Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3056,7 +2890,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.883282533Z",
+          "timestamp": "2026-03-23T06:12:50.695784556Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3068,7 +2902,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.883602634Z",
+          "timestamp": "2026-03-23T06:12:50.696097907Z",
           "turn": 1,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -3079,7 +2913,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.883944456Z",
+          "timestamp": "2026-03-23T06:12:50.696449848Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3090,7 +2924,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.884296097Z",
+          "timestamp": "2026-03-23T06:12:50.696805460Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3102,7 +2936,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.884296817Z",
+          "timestamp": "2026-03-23T06:12:50.696806260Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3113,7 +2947,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.885032950Z",
+          "timestamp": "2026-03-23T06:12:50.697544604Z",
           "turn": 2,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -3124,7 +2958,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.885057180Z",
+          "timestamp": "2026-03-23T06:12:50.697569684Z",
           "turn": 2,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -3138,7 +2972,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.885425222Z",
+          "timestamp": "2026-03-23T06:12:50.697931535Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3149,7 +2983,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.885828083Z",
+          "timestamp": "2026-03-23T06:12:50.698338817Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3161,7 +2995,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.886590457Z",
+          "timestamp": "2026-03-23T06:12:50.699114090Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3173,7 +3007,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.886962788Z",
+          "timestamp": "2026-03-23T06:12:50.699493402Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3185,7 +3019,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.887290970Z",
+          "timestamp": "2026-03-23T06:12:50.699822483Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -3196,7 +3030,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.887681741Z",
+          "timestamp": "2026-03-23T06:12:50.700204815Z",
           "turn": 2,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3207,7 +3041,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.888045962Z",
+          "timestamp": "2026-03-23T06:12:50.700574446Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -3218,7 +3052,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.889201077Z",
+          "timestamp": "2026-03-23T06:12:50.701732391Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3229,7 +3063,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.889602419Z",
+          "timestamp": "2026-03-23T06:12:50.702129143Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3241,7 +3075,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.889946310Z",
+          "timestamp": "2026-03-23T06:12:50.702479385Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3254,7 +3088,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.889971421Z",
+          "timestamp": "2026-03-23T06:12:50.702504675Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3266,7 +3100,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.890317852Z",
+          "timestamp": "2026-03-23T06:12:50.702852826Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -3277,7 +3111,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.891094795Z",
+          "timestamp": "2026-03-23T06:12:50.703631419Z",
           "turn": 2,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -3288,7 +3122,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.891471716Z",
+          "timestamp": "2026-03-23T06:12:50.704002441Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3299,7 +3133,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.893402444Z",
+          "timestamp": "2026-03-23T06:12:50.705938359Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3310,7 +3144,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.893404074Z",
+          "timestamp": "2026-03-23T06:12:50.705940709Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3322,7 +3156,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.894185908Z",
+          "timestamp": "2026-03-23T06:12:50.706736373Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3333,7 +3167,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.894582309Z",
+          "timestamp": "2026-03-23T06:12:50.707134195Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3345,7 +3179,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.895341093Z",
+          "timestamp": "2026-03-23T06:12:50.707901688Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3357,7 +3191,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.895341883Z",
+          "timestamp": "2026-03-23T06:12:50.707902698Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3368,7 +3202,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.896189886Z",
+          "timestamp": "2026-03-23T06:12:50.708842442Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3379,7 +3213,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.896219936Z",
+          "timestamp": "2026-03-23T06:12:50.708872692Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3391,7 +3225,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.896611447Z",
+          "timestamp": "2026-03-23T06:12:50.709259864Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -3402,7 +3236,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.897015649Z",
+          "timestamp": "2026-03-23T06:12:50.709668526Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3413,7 +3247,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.897459381Z",
+          "timestamp": "2026-03-23T06:12:50.710096127Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3425,7 +3259,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.897875633Z",
+          "timestamp": "2026-03-23T06:12:50.710524059Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3436,7 +3270,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.898259965Z",
+          "timestamp": "2026-03-23T06:12:50.710912401Z",
           "turn": 3,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -3447,7 +3281,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.898707336Z",
+          "timestamp": "2026-03-23T06:12:50.711368763Z",
           "turn": 3,
           "phase": "first_strike_damage",
           "active_player": "TalTheTurtle",
@@ -3458,7 +3292,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.898708076Z",
+          "timestamp": "2026-03-23T06:12:50.711369763Z",
           "turn": 3,
           "phase": "first_strike_damage",
           "active_player": "TalTheTurtle",
@@ -3471,7 +3305,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.899222418Z",
+          "timestamp": "2026-03-23T06:12:50.711895145Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3482,7 +3316,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.899254878Z",
+          "timestamp": "2026-03-23T06:12:50.711926435Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3494,7 +3328,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.899789871Z",
+          "timestamp": "2026-03-23T06:12:50.712466948Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3506,7 +3340,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.901219177Z",
+          "timestamp": "2026-03-23T06:12:50.713896804Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3517,7 +3351,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.901877879Z",
+          "timestamp": "2026-03-23T06:12:50.714562426Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3529,7 +3363,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.902383611Z",
+          "timestamp": "2026-03-23T06:12:50.715065719Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3541,7 +3375,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.902869033Z",
+          "timestamp": "2026-03-23T06:12:50.715563601Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -3553,7 +3387,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.903794197Z",
+          "timestamp": "2026-03-23T06:12:50.716491295Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3564,7 +3398,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.904304469Z",
+          "timestamp": "2026-03-23T06:12:50.717005917Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3576,7 +3410,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.905761415Z",
+          "timestamp": "2026-03-23T06:12:50.718464563Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -3588,7 +3422,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.906229297Z",
+          "timestamp": "2026-03-23T06:12:50.718936195Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -3599,7 +3433,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.906265917Z",
+          "timestamp": "2026-03-23T06:12:50.718972836Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -3611,7 +3445,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.906267077Z",
+          "timestamp": "2026-03-23T06:12:50.718974336Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -3623,7 +3457,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.906748849Z",
+          "timestamp": "2026-03-23T06:12:50.719459298Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -3634,7 +3468,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.907284012Z",
+          "timestamp": "2026-03-23T06:12:50.719998230Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3646,7 +3480,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.907284722Z",
+          "timestamp": "2026-03-23T06:12:50.719999050Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -3657,7 +3491,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.908308266Z",
+          "timestamp": "2026-03-23T06:12:50.721036294Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -3668,7 +3502,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.908345756Z",
+          "timestamp": "2026-03-23T06:12:50.721073665Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -3680,7 +3514,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.908891648Z",
+          "timestamp": "2026-03-23T06:12:50.721634667Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3691,7 +3525,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.911719330Z",
+          "timestamp": "2026-03-23T06:12:50.724482999Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3703,7 +3537,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.911721090Z",
+          "timestamp": "2026-03-23T06:12:50.724485599Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3717,7 +3551,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.911722210Z",
+          "timestamp": "2026-03-23T06:12:50.724487089Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3729,7 +3563,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.913513557Z",
+          "timestamp": "2026-03-23T06:12:50.726282817Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3741,7 +3575,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.914102899Z",
+          "timestamp": "2026-03-23T06:12:50.726878010Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -3753,7 +3587,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.915211334Z",
+          "timestamp": "2026-03-23T06:12:50.727989394Z",
           "turn": 4,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -3764,7 +3598,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.916324828Z",
+          "timestamp": "2026-03-23T06:12:50.729110439Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3775,7 +3609,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.916919221Z",
+          "timestamp": "2026-03-23T06:12:50.729701142Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3787,7 +3621,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.917478803Z",
+          "timestamp": "2026-03-23T06:12:50.730254734Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3799,7 +3633,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.918089036Z",
+          "timestamp": "2026-03-23T06:12:50.730881517Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3810,7 +3644,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.918094576Z",
+          "timestamp": "2026-03-23T06:12:50.730887137Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3821,7 +3655,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.919371781Z",
+          "timestamp": "2026-03-23T06:12:50.732167012Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -3833,7 +3667,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.920539526Z",
+          "timestamp": "2026-03-23T06:12:50.733470078Z",
           "turn": 4,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -3844,7 +3678,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.921780161Z",
+          "timestamp": "2026-03-23T06:12:50.734725223Z",
           "turn": 4,
           "phase": "first_strike_damage",
           "active_player": "TalTheTurtle",
@@ -3855,7 +3689,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.921781041Z",
+          "timestamp": "2026-03-23T06:12:50.734726363Z",
           "turn": 4,
           "phase": "first_strike_damage",
           "active_player": "TalTheTurtle",
@@ -3868,7 +3702,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.923092546Z",
+          "timestamp": "2026-03-23T06:12:50.736051729Z",
           "turn": 4,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3879,7 +3713,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.923136706Z",
+          "timestamp": "2026-03-23T06:12:50.736096469Z",
           "turn": 4,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3891,7 +3725,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.923137836Z",
+          "timestamp": "2026-03-23T06:12:50.736098059Z",
           "turn": 4,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -3904,137 +3738,80 @@
         }
       ],
       "card_names": {
-        "432": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "471": "Scalding Tarn",
-        "452": "Spell Snare",
-        "400": "Surgical Extraction",
-        "438": "Elegant Parlor",
-        "481": "Triggered ability from Goblin Shaman Token",
-        "454": "Spell Snare",
-        "475": "Prismatic Ending",
-        "416": "Galvanic Discharge",
-        "486": "<strtable:5487>",
-        "433": "Arena of Glory",
-        "417": "Ragavan, Nimble Pilferer",
-        "467": "Polluted Delta",
-        "487": "Polluted Delta",
-        "460": "Consult the Star Charts",
-        "431": "Spell Snare",
-        "405": "Consign to Memory",
-        "482": "<strtable:5487>",
-        "474": "Scalding Tarn",
-        "418": "Strix Serenade",
-        "404": "Obsidian Charmaw",
-        "394": "Strix Serenade",
-        "419": "Spell Snare",
-        "421": "Solitude",
-        "462": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "485": "Triggered ability from Ragavan, Nimble Pilferer",
-        "468": "Sheoldred's Edict",
-        "430": "Ragavan, Nimble Pilferer",
-        "459": "<strtable:5487>",
-        "464": "Triggered ability from Fable of the Mirror-Breaker",
-        "473": "Triggered ability from Fable of the Mirror-Breaker",
-        "470": "Sheoldred's Edict",
-        "453": "Orcish Bowmasters",
-        "401": "High Noon",
-        "399": "Ashiok, Dream Render",
-        "407": "Consign to Memory",
-        "450": "Watery Grave",
-        "436": "Snow-Covered Island",
-        "489": "Quantum Riddler",
-        "478": "Ragavan, Nimble Pilferer",
-        "477": "Quantum Riddler",
-        "402": "Obsidian Charmaw",
-        "422": "Ephemerate",
-        "398": "Ashiok, Dream Render",
-        "461": "Arena of Glory",
-        "395": "Wrath of the Skies",
-        "397": "Wrath of the Skies",
-        "445": "Field of Ruin",
-        "451": "Orcish Bowmasters",
-        "458": "Triggered ability from Ragavan, Nimble Pilferer",
-        "420": "Quantum Riddler",
-        "396": "Wrath of the Skies",
-        "442": "Undercity Sewers",
-        "403": "Obsidian Charmaw",
-        "446": "Prismatic Ending",
-        "406": "Consign to Memory",
-        "447": "Snow-Covered Island",
-        "465": "<strtable:67071>",
-        "440": "Triggered ability from Elegant Parlor",
-        "434": "Ephemerate",
-        "448": "Ragavan, Nimble Pilferer",
-        "435": "Elegant Parlor",
-        "455": "Ragavan, Nimble Pilferer",
-        "476": "Galvanic Discharge",
-        "408": "Celestial Purge",
-        "469": "Ragavan, Nimble Pilferer",
         "444": "Triggered ability from Undercity Sewers",
-        "367": "Prismatic Ending"
+        "464": "Triggered ability from Fable of the Mirror-Breaker",
+        "481": "Triggered ability from Goblin Shaman Token",
+        "485": "Triggered ability from Ragavan, Nimble Pilferer",
+        "482": "<strtable:5487>",
+        "486": "<strtable:5487>",
+        "458": "Triggered ability from Ragavan, Nimble Pilferer",
+        "473": "Triggered ability from Fable of the Mirror-Breaker",
+        "440": "Triggered ability from Elegant Parlor",
+        "459": "<strtable:5487>",
+        "465": "<strtable:67071>"
       },
       "card_textures": {
-        "403": 90651,
-        "435": 121434,
-        "474": 90889,
-        "407": 126125,
-        "420": 142757,
-        "460": 142715,
-        "405": 126125,
-        "459": 65602,
-        "470": 106431,
-        "404": 90651,
-        "454": 49014,
-        "433": 126449,
-        "417": 90653,
-        "489": 142757,
-        "478": 90653,
-        "445": 65538,
-        "477": 142757,
-        "453": 112116,
-        "400": 40024,
-        "451": 112116,
-        "418": 126159,
-        "438": 121434,
+        "406": 126125,
         "367": 90419,
-        "467": 54196,
-        "422": 72386,
         "468": 106431,
-        "431": 49014,
-        "471": 90889,
-        "455": 90653,
+        "476": 126261,
+        "453": 112116,
+        "451": 112116,
+        "408": 37174,
+        "459": 65602,
+        "450": 23586,
+        "433": 126449,
+        "400": 40024,
+        "470": 106431,
+        "477": 142757,
         "421": 91203,
         "442": 122032,
-        "448": 90653,
-        "475": 90419,
-        "430": 90653,
-        "465": 96866,
-        "408": 37174,
-        "402": 90651,
-        "394": 126159,
-        "436": 87909,
-        "447": 87909,
-        "461": 126449,
-        "419": 49014,
-        "486": 65602,
-        "401": 123941,
-        "446": 90419,
-        "452": 49014,
+        "454": 49014,
+        "416": 126261,
         "462": 97210,
-        "406": 126125,
-        "399": 72062,
-        "434": 72386,
-        "398": 72062,
+        "475": 90419,
+        "401": 123941,
+        "422": 72386,
         "432": 97210,
-        "396": 126115,
-        "476": 126261,
-        "397": 126115,
-        "482": 96884,
-        "450": 23586,
+        "474": 90889,
+        "417": 90653,
+        "404": 90651,
+        "434": 72386,
+        "430": 90653,
+        "394": 126159,
+        "407": 126125,
+        "419": 49014,
+        "420": 142757,
         "487": 54196,
-        "395": 126115,
+        "461": 126449,
+        "397": 126115,
+        "431": 49014,
+        "486": 65602,
+        "399": 72062,
+        "445": 65538,
+        "452": 49014,
+        "455": 90653,
+        "465": 96866,
+        "482": 96884,
         "469": 90653,
-        "416": 126261
+        "403": 90651,
+        "435": 121434,
+        "402": 90651,
+        "398": 72062,
+        "448": 90653,
+        "436": 87909,
+        "446": 90419,
+        "447": 87909,
+        "489": 142757,
+        "478": 90653,
+        "396": 126115,
+        "438": 121434,
+        "395": 126115,
+        "405": 126125,
+        "460": 142715,
+        "467": 54196,
+        "418": 126159,
+        "471": 90889
       }
     },
     {
@@ -4061,7 +3838,7 @@
       },
       "actions": [
         {
-          "timestamp": "2026-03-23T03:50:39.927507414Z",
+          "timestamp": "2026-03-23T06:12:50.740543058Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4073,7 +3850,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.927508465Z",
+          "timestamp": "2026-03-23T06:12:50.740544318Z",
           "turn": 1,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4084,7 +3861,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.927982426Z",
+          "timestamp": "2026-03-23T06:12:50.741020910Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4095,7 +3872,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.928249107Z",
+          "timestamp": "2026-03-23T06:12:50.741295962Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4107,7 +3884,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.929248642Z",
+          "timestamp": "2026-03-23T06:12:50.742301306Z",
           "turn": 1,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -4118,7 +3895,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.929569653Z",
+          "timestamp": "2026-03-23T06:12:50.742625907Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4129,7 +3906,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.930526517Z",
+          "timestamp": "2026-03-23T06:12:50.743587771Z",
           "turn": 1,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4140,7 +3917,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.930543707Z",
+          "timestamp": "2026-03-23T06:12:50.743605561Z",
           "turn": 1,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4154,7 +3931,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.930900318Z",
+          "timestamp": "2026-03-23T06:12:50.743964063Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4165,7 +3942,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.931274580Z",
+          "timestamp": "2026-03-23T06:12:50.744341694Z",
           "turn": 1,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4177,7 +3954,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.931950293Z",
+          "timestamp": "2026-03-23T06:12:50.745022668Z",
           "turn": 1,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -4188,7 +3965,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.932312684Z",
+          "timestamp": "2026-03-23T06:12:50.745390469Z",
           "turn": 1,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -4199,7 +3976,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.932668216Z",
+          "timestamp": "2026-03-23T06:12:50.745740741Z",
           "turn": 1,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -4210,7 +3987,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.933036727Z",
+          "timestamp": "2026-03-23T06:12:50.746111162Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4222,7 +3999,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.933037347Z",
+          "timestamp": "2026-03-23T06:12:50.746111862Z",
           "turn": 2,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4233,7 +4010,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.933728880Z",
+          "timestamp": "2026-03-23T06:12:50.746809005Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4244,7 +4021,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.934084051Z",
+          "timestamp": "2026-03-23T06:12:50.747169747Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4256,7 +4033,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.934433033Z",
+          "timestamp": "2026-03-23T06:12:50.747520558Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -4267,7 +4044,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.934800064Z",
+          "timestamp": "2026-03-23T06:12:50.747890140Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4278,7 +4055,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.935181126Z",
+          "timestamp": "2026-03-23T06:12:50.748279172Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4291,7 +4068,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.935200516Z",
+          "timestamp": "2026-03-23T06:12:50.748299302Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4303,7 +4080,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936347850Z",
+          "timestamp": "2026-03-23T06:12:50.749323676Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4317,7 +4094,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936349690Z",
+          "timestamp": "2026-03-23T06:12:50.749325726Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4329,7 +4106,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936350820Z",
+          "timestamp": "2026-03-23T06:12:50.749327176Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4341,7 +4118,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936351780Z",
+          "timestamp": "2026-03-23T06:12:50.749328506Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4355,7 +4132,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936352760Z",
+          "timestamp": "2026-03-23T06:12:50.749329946Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4367,7 +4144,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936354030Z",
+          "timestamp": "2026-03-23T06:12:50.749331676Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4379,7 +4156,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936355010Z",
+          "timestamp": "2026-03-23T06:12:50.749333106Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4391,7 +4168,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936358530Z",
+          "timestamp": "2026-03-23T06:12:50.749337116Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4405,7 +4182,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.936835922Z",
+          "timestamp": "2026-03-23T06:12:50.749810388Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4417,7 +4194,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.938226788Z",
+          "timestamp": "2026-03-23T06:12:50.751204274Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4431,7 +4208,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.939986295Z",
+          "timestamp": "2026-03-23T06:12:50.752964782Z",
           "turn": 2,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4442,7 +4219,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.940486978Z",
+          "timestamp": "2026-03-23T06:12:50.753465094Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4453,7 +4230,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.940989530Z",
+          "timestamp": "2026-03-23T06:12:50.753969236Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4465,7 +4242,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.941435182Z",
+          "timestamp": "2026-03-23T06:12:50.754417678Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4478,7 +4255,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.941491452Z",
+          "timestamp": "2026-03-23T06:12:50.754473468Z",
           "turn": 2,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4490,7 +4267,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.942391505Z",
+          "timestamp": "2026-03-23T06:12:50.755370532Z",
           "turn": 2,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -4501,7 +4278,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.943361869Z",
+          "timestamp": "2026-03-23T06:12:50.756337076Z",
           "turn": 2,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -4512,7 +4289,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.944328203Z",
+          "timestamp": "2026-03-23T06:12:50.757307461Z",
           "turn": 2,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -4523,7 +4300,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.945269707Z",
+          "timestamp": "2026-03-23T06:12:50.758245445Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4535,7 +4312,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.945270517Z",
+          "timestamp": "2026-03-23T06:12:50.758246385Z",
           "turn": 3,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4546,7 +4323,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.946240081Z",
+          "timestamp": "2026-03-23T06:12:50.759213749Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4557,7 +4334,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.946772693Z",
+          "timestamp": "2026-03-23T06:12:50.759750961Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4569,7 +4346,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.947184235Z",
+          "timestamp": "2026-03-23T06:12:50.760163543Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -4580,7 +4357,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.948178679Z",
+          "timestamp": "2026-03-23T06:12:50.761156507Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -4591,7 +4368,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.948655111Z",
+          "timestamp": "2026-03-23T06:12:50.761632199Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4602,7 +4379,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.950722630Z",
+          "timestamp": "2026-03-23T06:12:50.763694278Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4613,7 +4390,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.950724830Z",
+          "timestamp": "2026-03-23T06:12:50.763697298Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4627,7 +4404,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.951202862Z",
+          "timestamp": "2026-03-23T06:12:50.764176720Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4639,7 +4416,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.954085833Z",
+          "timestamp": "2026-03-23T06:12:50.767031622Z",
           "turn": 3,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4650,7 +4427,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.954144824Z",
+          "timestamp": "2026-03-23T06:12:50.767089843Z",
           "turn": 3,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4664,7 +4441,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.954643376Z",
+          "timestamp": "2026-03-23T06:12:50.767587315Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4675,7 +4452,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.957236856Z",
+          "timestamp": "2026-03-23T06:12:50.770188376Z",
           "turn": 3,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4686,7 +4463,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.959238214Z",
+          "timestamp": "2026-03-23T06:12:50.772195334Z",
           "turn": 3,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -4697,7 +4474,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.960251709Z",
+          "timestamp": "2026-03-23T06:12:50.773204659Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4708,7 +4485,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.960814561Z",
+          "timestamp": "2026-03-23T06:12:50.773764711Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4720,7 +4497,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.961360423Z",
+          "timestamp": "2026-03-23T06:12:50.774315074Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4731,7 +4508,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.966790946Z",
+          "timestamp": "2026-03-23T06:12:50.779821617Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4742,7 +4519,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.966796506Z",
+          "timestamp": "2026-03-23T06:12:50.779828337Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4754,7 +4531,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.967336148Z",
+          "timestamp": "2026-03-23T06:12:50.780376710Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4766,7 +4543,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.969192715Z",
+          "timestamp": "2026-03-23T06:12:50.782102707Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4778,7 +4555,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.969199245Z",
+          "timestamp": "2026-03-23T06:12:50.782109687Z",
           "turn": 3,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -4790,7 +4567,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.970242850Z",
+          "timestamp": "2026-03-23T06:12:50.783160282Z",
           "turn": 3,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -4801,7 +4578,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.970862372Z",
+          "timestamp": "2026-03-23T06:12:50.783781395Z",
           "turn": 3,
           "phase": "declare_blockers",
           "active_player": "TalTheTurtle",
@@ -4813,7 +4590,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.972544199Z",
+          "timestamp": "2026-03-23T06:12:50.785473872Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -4824,7 +4601,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.972610659Z",
+          "timestamp": "2026-03-23T06:12:50.785539882Z",
           "turn": 3,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -4838,7 +4615,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.973684134Z",
+          "timestamp": "2026-03-23T06:12:50.786621327Z",
           "turn": 3,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -4849,7 +4626,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.975847063Z",
+          "timestamp": "2026-03-23T06:12:50.788788656Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4861,7 +4638,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.975848003Z",
+          "timestamp": "2026-03-23T06:12:50.788789696Z",
           "turn": 4,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -4872,7 +4649,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.976930657Z",
+          "timestamp": "2026-03-23T06:12:50.789871460Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -4883,7 +4660,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.977462099Z",
+          "timestamp": "2026-03-23T06:12:50.790403543Z",
           "turn": 4,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -4894,7 +4671,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.978538454Z",
+          "timestamp": "2026-03-23T06:12:50.791643768Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "coreyabaker",
@@ -4905,7 +4682,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.979125816Z",
+          "timestamp": "2026-03-23T06:12:50.792233681Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "coreyabaker",
@@ -4917,7 +4694,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.979656568Z",
+          "timestamp": "2026-03-23T06:12:50.792774123Z",
           "turn": 4,
           "phase": "declare_attackers",
           "active_player": "coreyabaker",
@@ -4928,7 +4705,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.980670602Z",
+          "timestamp": "2026-03-23T06:12:50.793792508Z",
           "turn": 4,
           "phase": "declare_blockers",
           "active_player": "coreyabaker",
@@ -4939,7 +4716,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.981205355Z",
+          "timestamp": "2026-03-23T06:12:50.794329940Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4950,7 +4727,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.981205955Z",
+          "timestamp": "2026-03-23T06:12:50.794330660Z",
           "turn": 4,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -4963,7 +4740,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.982895261Z",
+          "timestamp": "2026-03-23T06:12:50.796019857Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4974,7 +4751,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.982963222Z",
+          "timestamp": "2026-03-23T06:12:50.796088967Z",
           "turn": 4,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -4986,7 +4763,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.983481064Z",
+          "timestamp": "2026-03-23T06:12:50.796611930Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -4997,7 +4774,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.984156717Z",
+          "timestamp": "2026-03-23T06:12:50.797225702Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5009,7 +4786,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.984723149Z",
+          "timestamp": "2026-03-23T06:12:50.797762224Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5022,7 +4799,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.984793189Z",
+          "timestamp": "2026-03-23T06:12:50.797829595Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5034,7 +4811,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.987103379Z",
+          "timestamp": "2026-03-23T06:12:50.800128165Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5045,7 +4822,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.987105339Z",
+          "timestamp": "2026-03-23T06:12:50.800131315Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5059,7 +4836,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.987727571Z",
+          "timestamp": "2026-03-23T06:12:50.800756037Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5071,7 +4848,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.989586069Z",
+          "timestamp": "2026-03-23T06:12:50.802601156Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5085,7 +4862,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.990075251Z",
+          "timestamp": "2026-03-23T06:12:50.803089088Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5098,7 +4875,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.990148341Z",
+          "timestamp": "2026-03-23T06:12:50.803162708Z",
           "turn": 4,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5110,7 +4887,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.990646303Z",
+          "timestamp": "2026-03-23T06:12:50.803655740Z",
           "turn": 5,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5122,7 +4899,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.990647153Z",
+          "timestamp": "2026-03-23T06:12:50.803656680Z",
           "turn": 5,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5133,7 +4910,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.991786498Z",
+          "timestamp": "2026-03-23T06:12:50.804798015Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5144,7 +4921,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.992346200Z",
+          "timestamp": "2026-03-23T06:12:50.805358537Z",
           "turn": 5,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -5155,7 +4932,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.992912523Z",
+          "timestamp": "2026-03-23T06:12:50.805922730Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -5166,7 +4943,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.994661840Z",
+          "timestamp": "2026-03-23T06:12:50.807770458Z",
           "turn": 5,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5177,7 +4954,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.995273052Z",
+          "timestamp": "2026-03-23T06:12:50.808387640Z",
           "turn": 5,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5188,7 +4965,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.996453057Z",
+          "timestamp": "2026-03-23T06:12:50.809563725Z",
           "turn": 5,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -5199,7 +4976,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.997642112Z",
+          "timestamp": "2026-03-23T06:12:50.810754390Z",
           "turn": 5,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5210,7 +4987,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:39.998815197Z",
+          "timestamp": "2026-03-23T06:12:50.811925716Z",
           "turn": 5,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5221,7 +4998,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.003617027Z",
+          "timestamp": "2026-03-23T06:12:50.816629426Z",
           "turn": 6,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5233,7 +5010,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.003618287Z",
+          "timestamp": "2026-03-23T06:12:50.816630666Z",
           "turn": 6,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5244,7 +5021,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.004817571Z",
+          "timestamp": "2026-03-23T06:12:50.817829151Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5255,7 +5032,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.005480204Z",
+          "timestamp": "2026-03-23T06:12:50.818493624Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5267,7 +5044,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.005987806Z",
+          "timestamp": "2026-03-23T06:12:50.819001466Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5280,7 +5057,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.006063427Z",
+          "timestamp": "2026-03-23T06:12:50.819075826Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5292,7 +5069,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.006572129Z",
+          "timestamp": "2026-03-23T06:12:50.819585418Z",
           "turn": 6,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -5303,7 +5080,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.007800924Z",
+          "timestamp": "2026-03-23T06:12:50.820810994Z",
           "turn": 6,
           "phase": "end_of_combat",
           "active_player": "coreyabaker",
@@ -5314,7 +5091,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.008392626Z",
+          "timestamp": "2026-03-23T06:12:50.821404136Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -5325,7 +5102,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.010865466Z",
+          "timestamp": "2026-03-23T06:12:50.823978017Z",
           "turn": 6,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5336,7 +5113,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.010942767Z",
+          "timestamp": "2026-03-23T06:12:50.824056268Z",
           "turn": 6,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5348,7 +5125,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.011526749Z",
+          "timestamp": "2026-03-23T06:12:50.824646910Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5359,7 +5136,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.017112342Z",
+          "timestamp": "2026-03-23T06:12:50.831021578Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5370,7 +5147,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.021595860Z",
+          "timestamp": "2026-03-23T06:12:50.835524297Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5382,7 +5159,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.022299223Z",
+          "timestamp": "2026-03-23T06:12:50.836235040Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5394,7 +5171,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.023008946Z",
+          "timestamp": "2026-03-23T06:12:50.836961233Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5406,7 +5183,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.023675229Z",
+          "timestamp": "2026-03-23T06:12:50.837636926Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5419,7 +5196,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.023760259Z",
+          "timestamp": "2026-03-23T06:12:50.837720786Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5431,7 +5208,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.025590167Z",
+          "timestamp": "2026-03-23T06:12:50.839551645Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5443,7 +5220,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.026221959Z",
+          "timestamp": "2026-03-23T06:12:50.840185007Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5456,7 +5233,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.026306270Z",
+          "timestamp": "2026-03-23T06:12:50.840267678Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5468,7 +5245,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.027704235Z",
+          "timestamp": "2026-03-23T06:12:50.841666934Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5479,7 +5256,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.027705955Z",
+          "timestamp": "2026-03-23T06:12:50.841669514Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5493,7 +5270,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.029802814Z",
+          "timestamp": "2026-03-23T06:12:50.843771302Z",
           "turn": 6,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5507,7 +5284,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.030420007Z",
+          "timestamp": "2026-03-23T06:12:50.844388905Z",
           "turn": 6,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -5518,7 +5295,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.031159379Z",
+          "timestamp": "2026-03-23T06:12:50.845131038Z",
           "turn": 6,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5529,7 +5306,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.031901343Z",
+          "timestamp": "2026-03-23T06:12:50.845879851Z",
           "turn": 6,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5540,7 +5317,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.033282348Z",
+          "timestamp": "2026-03-23T06:12:50.847260827Z",
           "turn": 7,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5552,7 +5329,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.033283088Z",
+          "timestamp": "2026-03-23T06:12:50.847261737Z",
           "turn": 7,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5563,7 +5340,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.034676374Z",
+          "timestamp": "2026-03-23T06:12:50.848656203Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5574,7 +5351,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.035361097Z",
+          "timestamp": "2026-03-23T06:12:50.849340477Z",
           "turn": 7,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -5585,7 +5362,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.036056300Z",
+          "timestamp": "2026-03-23T06:12:50.850039670Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -5596,7 +5373,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.038218419Z",
+          "timestamp": "2026-03-23T06:12:50.852198959Z",
           "turn": 7,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5607,7 +5384,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.038310029Z",
+          "timestamp": "2026-03-23T06:12:50.852288699Z",
           "turn": 7,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5619,7 +5396,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.038980062Z",
+          "timestamp": "2026-03-23T06:12:50.852960812Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5630,7 +5407,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.043528190Z",
+          "timestamp": "2026-03-23T06:12:50.857500641Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5642,7 +5419,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.045066317Z",
+          "timestamp": "2026-03-23T06:12:50.859042238Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5654,7 +5431,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.045869880Z",
+          "timestamp": "2026-03-23T06:12:50.859852382Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5666,7 +5443,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.048228799Z",
+          "timestamp": "2026-03-23T06:12:50.862251722Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5680,7 +5457,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.049776136Z",
+          "timestamp": "2026-03-23T06:12:50.863809899Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5692,7 +5469,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.050562639Z",
+          "timestamp": "2026-03-23T06:12:50.864597112Z",
           "turn": 7,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5704,7 +5481,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.052000755Z",
+          "timestamp": "2026-03-23T06:12:50.866035568Z",
           "turn": 7,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -5715,7 +5492,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.053569622Z",
+          "timestamp": "2026-03-23T06:12:50.867603435Z",
           "turn": 7,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5726,7 +5503,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.055159218Z",
+          "timestamp": "2026-03-23T06:12:50.869199532Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5737,7 +5514,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.062851840Z",
+          "timestamp": "2026-03-23T06:12:50.876894355Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5749,7 +5526,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.064422716Z",
+          "timestamp": "2026-03-23T06:12:50.878505982Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5761,7 +5538,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.066080883Z",
+          "timestamp": "2026-03-23T06:12:50.880100579Z",
           "turn": 7,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -5773,7 +5550,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.069440747Z",
+          "timestamp": "2026-03-23T06:12:50.883110422Z",
           "turn": 8,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5785,7 +5562,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.069442057Z",
+          "timestamp": "2026-03-23T06:12:50.883111582Z",
           "turn": 8,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -5796,7 +5573,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.070992913Z",
+          "timestamp": "2026-03-23T06:12:50.884651218Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5807,7 +5584,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.071868436Z",
+          "timestamp": "2026-03-23T06:12:50.885524272Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -5819,7 +5596,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.074216016Z",
+          "timestamp": "2026-03-23T06:12:50.887871612Z",
           "turn": 8,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5830,7 +5607,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.074318016Z",
+          "timestamp": "2026-03-23T06:12:50.887972513Z",
           "turn": 8,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -5844,7 +5621,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.075086600Z",
+          "timestamp": "2026-03-23T06:12:50.888732216Z",
           "turn": 8,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -5855,7 +5632,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.076748687Z",
+          "timestamp": "2026-03-23T06:12:50.890377563Z",
           "turn": 8,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -5866,7 +5643,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.078346633Z",
+          "timestamp": "2026-03-23T06:12:50.891968810Z",
           "turn": 8,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -5877,7 +5654,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.079244537Z",
+          "timestamp": "2026-03-23T06:12:50.892849094Z",
           "turn": 8,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -5889,7 +5666,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.080091600Z",
+          "timestamp": "2026-03-23T06:12:50.893699047Z",
           "turn": 8,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -5900,7 +5677,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.082620371Z",
+          "timestamp": "2026-03-23T06:12:50.896201128Z",
           "turn": 8,
           "phase": "declare_attackers",
           "active_player": "TalTheTurtle",
@@ -5912,7 +5689,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.083401704Z",
+          "timestamp": "2026-03-23T06:12:50.896981412Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5923,7 +5700,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.083506694Z",
+          "timestamp": "2026-03-23T06:12:50.897083772Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5935,7 +5712,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.083507664Z",
+          "timestamp": "2026-03-23T06:12:50.897085232Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5947,7 +5724,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.089299068Z",
+          "timestamp": "2026-03-23T06:12:50.902866297Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5959,7 +5736,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.092651112Z",
+          "timestamp": "2026-03-23T06:12:50.906195571Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5971,7 +5748,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.093574626Z",
+          "timestamp": "2026-03-23T06:12:50.907049915Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5983,7 +5760,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.095281163Z",
+          "timestamp": "2026-03-23T06:12:50.908741242Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -5995,7 +5772,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.096148936Z",
+          "timestamp": "2026-03-23T06:12:50.909606146Z",
           "turn": 8,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -6007,7 +5784,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.097760753Z",
+          "timestamp": "2026-03-23T06:12:50.911210713Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6018,7 +5795,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.099478950Z",
+          "timestamp": "2026-03-23T06:12:50.912940020Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6031,7 +5808,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.099588110Z",
+          "timestamp": "2026-03-23T06:12:50.913049060Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6043,7 +5820,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.100353163Z",
+          "timestamp": "2026-03-23T06:12:50.913824964Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6056,7 +5833,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.100471344Z",
+          "timestamp": "2026-03-23T06:12:50.913935884Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6068,7 +5845,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.102837524Z",
+          "timestamp": "2026-03-23T06:12:50.916128374Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6080,7 +5857,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.108191506Z",
+          "timestamp": "2026-03-23T06:12:50.921450337Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6092,7 +5869,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.109952993Z",
+          "timestamp": "2026-03-23T06:12:50.923197784Z",
           "turn": 8,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6104,7 +5881,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.110710076Z",
+          "timestamp": "2026-03-23T06:12:50.923948547Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6116,7 +5893,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.110710856Z",
+          "timestamp": "2026-03-23T06:12:50.923951527Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6127,7 +5904,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.112499673Z",
+          "timestamp": "2026-03-23T06:12:50.925754895Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -6138,7 +5915,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.113486947Z",
+          "timestamp": "2026-03-23T06:12:50.926736980Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -6150,7 +5927,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.114252700Z",
+          "timestamp": "2026-03-23T06:12:50.927509643Z",
           "turn": 9,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -6161,7 +5938,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.115169294Z",
+          "timestamp": "2026-03-23T06:12:50.928416307Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -6172,7 +5949,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.118264677Z",
+          "timestamp": "2026-03-23T06:12:50.931323059Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6183,7 +5960,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.120256105Z",
+          "timestamp": "2026-03-23T06:12:50.933208267Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6195,7 +5972,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.125540147Z",
+          "timestamp": "2026-03-23T06:12:50.938568310Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6207,7 +5984,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.126483380Z",
+          "timestamp": "2026-03-23T06:12:50.939505844Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6219,7 +5996,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.127472155Z",
+          "timestamp": "2026-03-23T06:12:50.940593249Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6231,7 +6008,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.127474045Z",
+          "timestamp": "2026-03-23T06:12:50.940596179Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6243,7 +6020,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.128455399Z",
+          "timestamp": "2026-03-23T06:12:50.941577383Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6254,7 +6031,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.129494053Z",
+          "timestamp": "2026-03-23T06:12:50.942608868Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6268,7 +6045,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.130465567Z",
+          "timestamp": "2026-03-23T06:12:50.943568942Z",
           "turn": 9,
           "phase": "upkeep",
           "active_player": "TalTheTurtle",
@@ -6280,7 +6057,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.132220084Z",
+          "timestamp": "2026-03-23T06:12:50.945308379Z",
           "turn": 9,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -6291,7 +6068,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.132340925Z",
+          "timestamp": "2026-03-23T06:12:50.945435140Z",
           "turn": 9,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -6303,7 +6080,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.133260258Z",
+          "timestamp": "2026-03-23T06:12:50.946301074Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6314,7 +6091,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.134614734Z",
+          "timestamp": "2026-03-23T06:12:50.947422548Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6326,7 +6103,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.144536015Z",
+          "timestamp": "2026-03-23T06:12:50.957263001Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6340,7 +6117,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.144538165Z",
+          "timestamp": "2026-03-23T06:12:50.957265551Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6352,7 +6129,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.144539425Z",
+          "timestamp": "2026-03-23T06:12:50.957267401Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6364,7 +6141,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.144540485Z",
+          "timestamp": "2026-03-23T06:12:50.957269011Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6376,7 +6153,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.144542065Z",
+          "timestamp": "2026-03-23T06:12:50.957271501Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6388,7 +6165,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.145546779Z",
+          "timestamp": "2026-03-23T06:12:50.958274545Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6400,7 +6177,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.149629275Z",
+          "timestamp": "2026-03-23T06:12:50.962351942Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6412,7 +6189,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.150707530Z",
+          "timestamp": "2026-03-23T06:12:50.963374117Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6426,7 +6203,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.150709240Z",
+          "timestamp": "2026-03-23T06:12:50.963376167Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6438,7 +6215,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.154665896Z",
+          "timestamp": "2026-03-23T06:12:50.967163093Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6451,7 +6228,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.154667256Z",
+          "timestamp": "2026-03-23T06:12:50.967164123Z",
           "turn": 9,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6464,7 +6241,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.156602234Z",
+          "timestamp": "2026-03-23T06:12:50.969082352Z",
           "turn": 9,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -6475,7 +6252,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.157614828Z",
+          "timestamp": "2026-03-23T06:12:50.970088426Z",
           "turn": 9,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -6486,7 +6263,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.158619532Z",
+          "timestamp": "2026-03-23T06:12:50.971084490Z",
           "turn": 9,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6497,7 +6274,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.159688777Z",
+          "timestamp": "2026-03-23T06:12:50.972151545Z",
           "turn": 10,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6509,7 +6286,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.159689547Z",
+          "timestamp": "2026-03-23T06:12:50.972152395Z",
           "turn": 10,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6520,7 +6297,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.161808726Z",
+          "timestamp": "2026-03-23T06:12:50.974147574Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -6531,7 +6308,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.162826560Z",
+          "timestamp": "2026-03-23T06:12:50.975140198Z",
           "turn": 10,
           "phase": "begin_combat",
           "active_player": "coreyabaker",
@@ -6542,7 +6319,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.163829134Z",
+          "timestamp": "2026-03-23T06:12:50.976129462Z",
           "turn": 10,
           "phase": "postcombat_main",
           "active_player": "coreyabaker",
@@ -6553,7 +6330,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.167044097Z",
+          "timestamp": "2026-03-23T06:12:50.979204475Z",
           "turn": 10,
           "phase": "draw",
           "active_player": "TalTheTurtle",
@@ -6564,7 +6341,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.168113171Z",
+          "timestamp": "2026-03-23T06:12:50.980270630Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6575,7 +6352,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.176616616Z",
+          "timestamp": "2026-03-23T06:12:50.988628866Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6587,7 +6364,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.177627721Z",
+          "timestamp": "2026-03-23T06:12:50.989643800Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6601,7 +6378,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.177629111Z",
+          "timestamp": "2026-03-23T06:12:50.989645680Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6613,7 +6390,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.178661835Z",
+          "timestamp": "2026-03-23T06:12:50.990686754Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6625,7 +6402,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.179711049Z",
+          "timestamp": "2026-03-23T06:12:50.991742119Z",
           "turn": 10,
           "phase": "precombat_main",
           "active_player": "TalTheTurtle",
@@ -6637,7 +6414,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.180614603Z",
+          "timestamp": "2026-03-23T06:12:50.992644753Z",
           "turn": 10,
           "phase": "begin_combat",
           "active_player": "TalTheTurtle",
@@ -6648,7 +6425,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.181675937Z",
+          "timestamp": "2026-03-23T06:12:50.993698918Z",
           "turn": 10,
           "phase": "end_of_combat",
           "active_player": "TalTheTurtle",
@@ -6659,7 +6436,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.182728441Z",
+          "timestamp": "2026-03-23T06:12:50.994742882Z",
           "turn": 10,
           "phase": "postcombat_main",
           "active_player": "TalTheTurtle",
@@ -6670,7 +6447,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.183776525Z",
+          "timestamp": "2026-03-23T06:12:50.995761426Z",
           "turn": 11,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6682,7 +6459,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.183777515Z",
+          "timestamp": "2026-03-23T06:12:50.995762376Z",
           "turn": 11,
           "phase": "upkeep",
           "active_player": "coreyabaker",
@@ -6693,7 +6470,7 @@
           }
         },
         {
-          "timestamp": "2026-03-23T03:50:40.185948634Z",
+          "timestamp": "2026-03-23T06:12:50.997847275Z",
           "turn": 11,
           "phase": "precombat_main",
           "active_player": "coreyabaker",
@@ -6705,390 +6482,215 @@
         }
       ],
       "card_names": {
-        "560": "Triggered ability from Undercity Sewers",
-        "433": "Quantum Riddler",
-        "505": "Arid Mesa",
         "440": "Triggered ability from Undercity Sewers",
-        "558": "Undercity Sewers",
-        "454": "Field of Ruin",
-        "480": "Triggered ability from Phlage, Titan of Fire's Fury",
-        "405": "Consign to Memory",
-        "428": "Hallowed Fountain",
-        "522": "Thundering Falls",
-        "418": "Scalding Tarn",
-        "517": "Quantum Riddler",
-        "438": "Undercity Sewers",
-        "343": "Ephemerate",
-        "530": "Wan Shi Tong, Librarian",
-        "345": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "355": "Solitude",
-        "485": "Quantum Riddler",
-        "495": "Subtlety",
-        "543": "Quantum Riddler",
-        "349": "Phelia, Exuberant Shepherd",
-        "432": "Phlage, Titan of Fire's Fury",
-        "509": "Wan Shi Tong, Librarian",
-        "466": "Triggered ability from Orcish Bowmasters",
-        "507": "Ephemerate",
-        "476": "Hallowed Fountain",
-        "547": "Quantum Riddler",
-        "394": "Strix Serenade",
-        "524": "Triggered ability from Thundering Falls",
-        "447": "Meticulous Archive",
-        "490": "Consult the Star Charts",
-        "368": "Prismatic Ending",
-        "340": "Arid Mesa",
-        "546": "Sheoldred's Edict",
-        "424": "Flooded Strand",
-        "407": "Consign to Memory",
-        "421": "Flooded Strand",
-        "395": "Wrath of the Skies",
-        "572": "Phlage, Titan of Fire's Fury",
-        "508": "Force of Negation",
-        "548": "Sheoldred's Edict",
-        "534": "Galvanic Discharge",
-        "334": "Arena of Glory",
-        "386": "Flooded Strand",
-        "423": "Phelia, Exuberant Shepherd",
-        "406": "Consign to Memory",
-        "506": "Sacred Foundry",
-        "420": "Thundering Falls",
-        "570": "Flooded Strand",
-        "370": "Quantum Riddler",
-        "555": "Elegant Parlor",
-        "582": "Fatal Push",
-        "422": "Phelia, Exuberant Shepherd",
-        "371": "Quantum Riddler",
-        "350": "Galvanic Discharge",
-        "402": "Obsidian Charmaw",
-        "564": "Field of Ruin",
-        "561": "Orcish Bowmasters",
-        "364": "Scalding Tarn",
-        "566": "Sacred Foundry",
-        "467": "<strtable:47626>",
-        "470": "Phelia, Exuberant Shepherd",
-        "352": "Galvanic Discharge",
-        "379": "Strix Serenade",
-        "576": "Quantum Riddler",
-        "436": "Flooded Strand",
-        "592": "Triggered ability from Quantum Riddler",
-        "381": "Meticulous Archive",
-        "482": "Phlage, Titan of Fire's Fury",
-        "575": "Sacred Foundry",
-        "392": "Mystical Dispute",
-        "481": "Triggered ability from Phlage, Titan of Fire's Fury",
-        "457": "Quantum Riddler",
-        "516": "Ragavan, Nimble Pilferer",
-        "492": "Watery Grave",
-        "342": "Ephemerate",
-        "419": "Prismatic Ending",
-        "397": "Wrath of the Skies",
-        "574": "Scalding Tarn",
-        "551": "Scalding Tarn",
-        "545": "Triggered ability from Quantum Riddler",
-        "382": "Snow-Covered Plains",
-        "514": "Quantum Riddler",
-        "553": "Scalding Tarn",
-        "513": "Triggered ability from Quantum Riddler",
-        "393": "Spell Snare",
-        "451": "Quantum Riddler",
-        "374": "Ragavan, Nimble Pilferer",
-        "580": "Triggered ability from Phlage, Titan of Fire's Fury",
-        "425": "Thundering Falls",
-        "477": "Phlage, Titan of Fire's Fury",
-        "384": "Elegant Parlor",
-        "431": "Solitude",
-        "581": "Triggered ability from Phlage, Titan of Fire's Fury",
-        "360": "Phlage, Titan of Fire's Fury",
-        "593": "Galvanic Discharge",
-        "430": "Steam Vents",
-        "399": "Ashiok, Dream Render",
-        "538": "Scalding Tarn",
-        "550": "Scalding Tarn",
-        "504": "Arid Mesa",
-        "540": "Fatal Push",
-        "511": "Force of Negation",
-        "400": "Surgical Extraction",
-        "338": "Arid Mesa",
-        "464": "Orcish Bowmasters",
-        "377": "Sacred Foundry",
-        "563": "Field of Ruin",
-        "429": "Snow-Covered Island",
-        "390": "Mystical Dispute",
-        "408": "Celestial Purge",
-        "356": "Solitude",
-        "590": "Fatal Push",
-        "483": "Orcish Bowmasters",
-        "583": "Phlage, Titan of Fire's Fury",
-        "403": "Obsidian Charmaw",
-        "497": "Subtlety",
-        "404": "Obsidian Charmaw",
-        "376": "Ragavan, Nimble Pilferer",
-        "365": "Scalding Tarn",
-        "525": "Phlage, Titan of Fire's Fury",
-        "533": "Galvanic Discharge",
-        "416": "Snow-Covered Island",
-        "475": "Hallowed Fountain",
-        "462": "Triggered ability from Phelia, Exuberant Shepherd",
-        "339": "Arid Mesa",
-        "573": "Ragavan, Nimble Pilferer",
-        "577": "Galvanic Discharge",
-        "498": "Mystical Dispute",
-        "586": "Spell Snare",
-        "521": "Thundering Falls",
-        "348": "Phelia, Exuberant Shepherd",
-        "358": "Snow-Covered Mountain",
-        "398": "Ashiok, Dream Render",
-        "375": "Ragavan, Nimble Pilferer",
-        "426": "Prismatic Ending",
-        "472": "Triggered ability from Phelia, Exuberant Shepherd",
-        "571": "Flooded Strand",
-        "486": "Consult the Star Charts",
-        "502": "Arid Mesa",
-        "458": "Mystical Dispute",
-        "588": "Fatal Push",
-        "452": "Steam Vents",
-        "460": "Mystical Dispute",
-        "445": "Flooded Strand",
-        "494": "Quantum Riddler",
-        "401": "High Noon",
-        "373": "Ragavan, Nimble Pilferer",
-        "532": "Triggered ability from Wan Shi Tong, Librarian",
-        "496": "Mystical Dispute",
-        "396": "Wrath of the Skies",
-        "569": "Phelia, Exuberant Shepherd",
-        "434": "Mystical Dispute",
-        "417": "Hallowed Fountain",
-        "435": "Phelia, Exuberant Shepherd",
-        "387": "Flooded Strand",
-        "587": "Quantum Riddler",
-        "437": "Solitude",
-        "336": "Arena of Glory",
-        "372": "Quantum Riddler",
-        "542": "Fatal Push",
-        "565": "Field of Ruin",
-        "455": "Phelia, Exuberant Shepherd",
-        "456": "Ephemerate",
         "528": "Triggered ability from Quantum Riddler",
-        "539": "Phelia, Exuberant Shepherd",
-        "520": "Triggered ability from Quantum Riddler",
+        "551": "Scalding Tarn",
+        "467": "<strtable:47626>",
+        "481": "Triggered ability from Phlage, Titan of Fire's Fury",
+        "480": "Triggered ability from Phlage, Titan of Fire's Fury",
+        "462": "Triggered ability from Phelia, Exuberant Shepherd",
         "557": "Triggered ability from Elegant Parlor",
-        "541": "Ragavan, Nimble Pilferer",
-        "535": "Wan Shi Tong, Librarian",
-        "450": "Phelia, Exuberant Shepherd",
-        "584": "Fatal Push",
-        "359": "Phlage, Titan of Fire's Fury",
-        "589": "Phelia, Exuberant Shepherd",
-        "552": "Scalding Tarn",
-        "567": "Snow-Covered Plains",
-        "362": "Phlage, Titan of Fire's Fury",
-        "493": "Galvanic Discharge",
+        "564": "Field of Ruin",
+        "472": "Triggered ability from Phelia, Exuberant Shepherd",
         "501": "Triggered ability from Quantum Riddler",
-        "344": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-        "529": "Quantum Riddler",
-        "441": "Solitude",
-        "568": "Island",
-        "446": "Flooded Strand",
-        "442": "Flooded Strand",
-        "510": "Ephemerate",
-        "444": "Island",
-        "366": "Scalding Tarn",
+        "581": "Triggered ability from Phlage, Titan of Fire's Fury",
+        "592": "Triggered ability from Quantum Riddler",
+        "466": "Triggered ability from Orcish Bowmasters",
+        "532": "Triggered ability from Wan Shi Tong, Librarian",
+        "545": "Triggered ability from Quantum Riddler",
+        "553": "Scalding Tarn",
         "449": "Triggered ability from Meticulous Archive",
-        "526": "Ragavan, Nimble Pilferer",
-        "427": "Scalding Tarn",
-        "459": "Quantum Riddler",
-        "337": "Arid Mesa",
-        "503": "Arid Mesa",
-        "335": "Arena of Glory",
-        "351": "Galvanic Discharge",
-        "554": "Scalding Tarn",
-        "378": "Strix Serenade",
-        "353": "Galvanic Discharge",
-        "549": "Scalding Tarn"
+        "513": "Triggered ability from Quantum Riddler",
+        "445": "Flooded Strand",
+        "524": "Triggered ability from Thundering Falls",
+        "560": "Triggered ability from Undercity Sewers",
+        "580": "Triggered ability from Phlage, Titan of Fire's Fury",
+        "520": "Triggered ability from Quantum Riddler",
+        "504": "Arid Mesa"
       },
       "card_textures": {
-        "575": 47815,
         "571": 54194,
-        "426": 90419,
-        "533": 126261,
-        "386": 54194,
-        "447": 121440,
-        "514": 142757,
-        "335": 126449,
-        "490": 142715,
-        "558": 122032,
-        "573": 90653,
-        "587": 142757,
-        "508": 72476,
-        "572": 126413,
-        "423": 126097,
-        "360": 126413,
-        "460": 78226,
-        "339": 34414,
-        "356": 91203,
-        "334": 126449,
-        "511": 72476,
-        "582": 62689,
-        "467": 111892,
-        "364": 90889,
-        "377": 47815,
-        "372": 142757,
-        "497": 90507,
-        "486": 142715,
-        "379": 126159,
-        "550": 90889,
-        "421": 54194,
-        "555": 121434,
-        "406": 126125,
-        "422": 126097,
-        "355": 91203,
-        "583": 126413,
-        "400": 40024,
-        "502": 34414,
-        "397": 126115,
-        "576": 142757,
-        "353": 126261,
-        "584": 62689,
-        "390": 78226,
-        "577": 126261,
-        "344": 97210,
-        "405": 126125,
-        "507": 72386,
-        "566": 47815,
-        "568": 79626,
-        "433": 142757,
-        "427": 90889,
-        "509": 144636,
-        "431": 91203,
-        "541": 90653,
-        "570": 54194,
-        "398": 72062,
-        "425": 122030,
-        "349": 126097,
-        "540": 62689,
-        "373": 90653,
-        "402": 90651,
-        "459": 142757,
-        "403": 90651,
-        "401": 123941,
-        "395": 126115,
-        "482": 126413,
-        "442": 54194,
-        "376": 90653,
-        "458": 78226,
-        "470": 126097,
-        "549": 90889,
-        "586": 49014,
-        "494": 142757,
-        "438": 122032,
-        "382": 87905,
-        "393": 49014,
-        "394": 126159,
-        "496": 78226,
-        "495": 90507,
-        "416": 87909,
-        "430": 69927,
-        "429": 87909,
-        "457": 142757,
-        "516": 90653,
-        "370": 142757,
-        "526": 90653,
-        "348": 126097,
-        "338": 34414,
-        "387": 54194,
-        "589": 126097,
-        "396": 126115,
-        "371": 142757,
-        "424": 54194,
-        "506": 47815,
-        "352": 126261,
-        "368": 90419,
-        "522": 122030,
-        "419": 90419,
-        "547": 142757,
-        "365": 90889,
-        "505": 34414,
-        "475": 24001,
-        "567": 87905,
-        "417": 24001,
-        "525": 126413,
-        "590": 62689,
-        "588": 62689,
-        "451": 142757,
-        "455": 126097,
-        "510": 72386,
-        "454": 65538,
-        "521": 122030,
-        "552": 34590,
-        "404": 90651,
-        "444": 79626,
-        "543": 142757,
-        "358": 72878,
-        "529": 142757,
-        "546": 106431,
-        "342": 72386,
-        "350": 126261,
-        "336": 126449,
-        "435": 126097,
-        "407": 126125,
-        "399": 72062,
-        "503": 34414,
-        "542": 62689,
-        "574": 90889,
-        "428": 24001,
-        "378": 126159,
-        "538": 34590,
-        "548": 106431,
-        "437": 91203,
-        "498": 78226,
-        "374": 90653,
-        "408": 37174,
-        "337": 34414,
-        "375": 90653,
-        "452": 69927,
-        "569": 126097,
-        "436": 54194,
         "345": 97210,
-        "384": 121434,
-        "593": 126261,
-        "351": 126261,
-        "362": 126413,
-        "340": 34414,
-        "446": 54194,
-        "535": 144636,
-        "464": 112116,
-        "476": 24001,
-        "418": 90889,
-        "554": 90889,
-        "563": 65538,
-        "477": 126413,
-        "343": 72386,
-        "434": 78226,
-        "565": 65538,
-        "517": 142757,
-        "483": 112116,
         "492": 23586,
-        "456": 72386,
-        "534": 126261,
-        "420": 122030,
-        "485": 142757,
-        "432": 126413,
-        "539": 126097,
-        "381": 121440,
+        "565": 65538,
+        "349": 126097,
+        "497": 90507,
+        "589": 126097,
+        "390": 78226,
+        "548": 106431,
+        "348": 126097,
+        "517": 142757,
+        "362": 126413,
+        "428": 24001,
+        "338": 34414,
+        "337": 34414,
+        "457": 142757,
+        "572": 126413,
+        "382": 87905,
         "392": 78226,
-        "450": 126097,
-        "359": 126413,
-        "561": 112116,
+        "582": 62689,
+        "552": 34590,
+        "405": 126125,
+        "454": 65538,
+        "467": 111892,
+        "396": 126115,
+        "470": 126097,
+        "490": 142715,
+        "435": 126097,
+        "423": 126097,
+        "530": 144636,
+        "521": 122030,
+        "541": 90653,
+        "568": 79626,
+        "356": 91203,
+        "575": 47815,
+        "408": 37174,
+        "402": 90651,
+        "573": 90653,
+        "586": 49014,
+        "370": 142757,
+        "433": 142757,
+        "379": 126159,
+        "533": 126261,
+        "446": 54194,
+        "429": 87909,
+        "516": 90653,
+        "335": 126449,
+        "535": 144636,
+        "477": 126413,
+        "399": 72062,
+        "376": 90653,
+        "372": 142757,
+        "401": 123941,
+        "387": 54194,
+        "526": 90653,
+        "566": 47815,
+        "343": 72386,
+        "365": 90889,
+        "424": 54194,
+        "475": 24001,
+        "588": 62689,
+        "398": 72062,
+        "459": 142757,
+        "494": 142757,
+        "529": 142757,
+        "555": 121434,
+        "339": 34414,
+        "427": 90889,
+        "483": 112116,
+        "486": 142715,
+        "464": 112116,
+        "542": 62689,
+        "431": 91203,
+        "498": 78226,
+        "352": 126261,
+        "418": 90889,
+        "442": 54194,
+        "419": 90419,
+        "460": 78226,
+        "420": 122030,
+        "364": 90889,
+        "416": 87909,
+        "421": 54194,
+        "381": 121440,
+        "377": 47815,
+        "355": 91203,
+        "511": 72476,
+        "534": 126261,
+        "574": 90889,
+        "587": 142757,
+        "547": 142757,
+        "400": 40024,
         "441": 91203,
-        "493": 126261,
+        "476": 24001,
+        "569": 126097,
+        "495": 90507,
+        "344": 97210,
+        "394": 126159,
+        "350": 126261,
+        "353": 126261,
+        "393": 49014,
+        "506": 47815,
+        "549": 90889,
+        "570": 54194,
+        "550": 90889,
+        "351": 126261,
+        "496": 78226,
+        "397": 126115,
+        "539": 126097,
+        "583": 126413,
+        "590": 62689,
+        "509": 144636,
+        "406": 126125,
+        "452": 69927,
+        "384": 121434,
+        "434": 78226,
+        "438": 122032,
+        "432": 126413,
+        "426": 90419,
         "366": 90889,
-        "530": 144636
+        "458": 78226,
+        "450": 126097,
+        "334": 126449,
+        "485": 142757,
+        "543": 142757,
+        "342": 72386,
+        "374": 90653,
+        "404": 90651,
+        "436": 54194,
+        "558": 122032,
+        "593": 126261,
+        "368": 90419,
+        "375": 90653,
+        "522": 122030,
+        "502": 34414,
+        "567": 87905,
+        "540": 62689,
+        "447": 121440,
+        "563": 65538,
+        "525": 126413,
+        "437": 91203,
+        "584": 62689,
+        "430": 69927,
+        "507": 72386,
+        "407": 126125,
+        "359": 126413,
+        "425": 122030,
+        "422": 126097,
+        "444": 79626,
+        "395": 126115,
+        "451": 142757,
+        "577": 126261,
+        "455": 126097,
+        "505": 34414,
+        "554": 90889,
+        "360": 126413,
+        "510": 72386,
+        "336": 126449,
+        "373": 90653,
+        "493": 126261,
+        "386": 54194,
+        "340": 34414,
+        "378": 126159,
+        "403": 90651,
+        "456": 72386,
+        "482": 126413,
+        "371": 142757,
+        "508": 72476,
+        "546": 106431,
+        "358": 72878,
+        "417": 24001,
+        "561": 112116,
+        "576": 142757,
+        "503": 34414,
+        "514": 142757,
+        "538": 34590
       }
     }
   ],
   "metadata": {
-    "version": "2.0",
+    "decoder": "flashback",
     "decode_errors": "7",
-    "decoder": "flashback"
+    "version": "2.0"
   }
 }

@@ -41,21 +41,9 @@ The decode pipeline now uses chat-based turn ownership instead of priority signa
 
 ---
 
-## P2: Duplicate PhaseChange Events
+## ~~P2: Duplicate PhaseChange Events~~ — FIXED
 
-**Problem:** The same phase gets emitted multiple times within a turn.
-
-**Example from Game 1, Turn 1:**
-```
-[7]  precombat_main PhaseChange precombat_main
-[8]  precombat_main PlayLand player_1 card=423
-[9]  precombat_main PhaseChange precombat_main   ← duplicate
-[10] precombat_main PlayLand player_0 card=425
-```
-
-**Root cause:** Multiple state updates arrive during the same phase. Each one where `new.phase != prev.phase` emits a PhaseChange — but `prev` reflects the *last processed state*, not the *last emitted phase*. Interleaved updates from both players' perspectives cause the phase to flip back and forth.
-
-**Fix needed:** Track last-emitted phase separately from prev state, and only emit PhaseChange when advancing to a genuinely new phase.
+Fixed by tracking `last_emitted_phase` in `ReplayTranslator`, independent of the `prev` state snapshot. PhaseChange is only emitted when advancing to a phase that differs from the last emitted one. Resets on turn change and game reset.
 
 ---
 

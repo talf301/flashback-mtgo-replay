@@ -8,7 +8,7 @@ use std::collections::{HashMap, HashSet};
 use chrono::{DateTime, Utc};
 
 use crate::replay::schema::{ActionType, ReplayAction};
-use crate::state::GameState;
+use crate::state::{GamePhase, GameState};
 
 /// MTGO CardZone constants (from decompiled client, verified against golden file).
 /// Note: the spec documentation listed different values (1=Hand, 2=Library, 7=Battlefield)
@@ -29,6 +29,11 @@ pub struct ReplayTranslator {
     /// (pruned by a full state) and later reappears at a different zone,
     /// we can still detect the zone change.
     last_known_zones: HashMap<u32, i32>,
+    /// Tracks the last phase for which we emitted a PhaseChange action.
+    /// Prevents duplicate PhaseChange events caused by interleaved MTGO
+    /// state updates from both players' perspectives during the same phase.
+    /// Cleared on TurnChange so the first phase of each turn is always emitted.
+    last_emitted_phase: Option<GamePhase>,
 }
 
 impl ReplayTranslator {
@@ -39,6 +44,7 @@ impl ReplayTranslator {
             start_time: None,
             things_seen_on_stack: HashSet::new(),
             last_known_zones: HashMap::new(),
+            last_emitted_phase: None,
         }
     }
 
@@ -57,6 +63,7 @@ impl ReplayTranslator {
         self.start_time = None;
         self.things_seen_on_stack.clear();
         self.last_known_zones.clear();
+        self.last_emitted_phase = None;
     }
 
     /// Process a new game state, emitting actions for everything that changed.
@@ -98,6 +105,19 @@ impl ReplayTranslator {
             // First state — no diff possible
             Vec::new()
         };
+
+        // Update last_emitted_phase tracking
+        for action in &actions {
+            match &action.action_type {
+                ActionType::TurnChange { .. } => {
+                    self.last_emitted_phase = None;
+                }
+                ActionType::PhaseChange { .. } => {
+                    self.last_emitted_phase = Some(new_state.phase.clone());
+                }
+                _ => {}
+            }
+        }
 
         // Update last_known_zones for every thing in the new state.
         for (thing_id, thing) in &new_state.things {
@@ -179,8 +199,13 @@ impl ReplayTranslator {
 
             // Phase change — only emit when advancing forward within a turn
             // (or when the turn changed, which resets the phase sequence).
+            // Also skip if we already emitted this exact phase (dedup for
+            // interleaved MTGO state updates).
             let turn_changed = new.turn > prev.turn;
+            let already_emitted = self.last_emitted_phase.as_ref()
+                .map_or(false, |emitted| *emitted == new.phase);
             if new.phase != prev.phase
+                && !already_emitted
                 && (turn_changed || new.phase.ordinal() > prev.phase.ordinal())
             {
                 actions.push(self.make_action(
@@ -854,6 +879,40 @@ mod tests {
                 ActionType::PlayLand { card_id, .. } if card_id == "300"
             )),
             "Hand→battlefield zone change should still produce PlayLand"
+        );
+    }
+
+    /// Duplicate PhaseChange events are suppressed when interleaved MTGO state
+    /// updates cause the same phase transition to appear multiple times.
+    #[test]
+    fn test_duplicate_phase_change_suppressed() {
+        let mut translator = ReplayTranslator::new();
+
+        // Initial state
+        let s1 = make_state(1, 1, GamePhase::Upkeep);
+        translator.process(&s1, false);
+
+        // State update advances to precombat_main — should emit PhaseChange
+        let s2 = make_state(1, 1, GamePhase::PreCombatMain);
+        let actions = translator.process(&s2, false);
+        assert!(
+            actions.iter().any(|a| matches!(&a.action_type, ActionType::PhaseChange { phase } if phase == "precombat_main")),
+            "First precombat_main should emit PhaseChange"
+        );
+
+        // Another state update still at precombat_main — should NOT emit PhaseChange
+        let mut s3 = make_state(1, 1, GamePhase::PreCombatMain);
+        s3.players[0].life = 18; // some other change to make the state different
+        let actions = translator.process(&s3, false);
+        assert!(
+            !actions.iter().any(|a| matches!(&a.action_type, ActionType::PhaseChange { .. })),
+            "Duplicate precombat_main should not emit PhaseChange, got: {:?}",
+            actions.iter().map(|a| &a.action_type).collect::<Vec<_>>()
+        );
+        // But the life change should still be emitted
+        assert!(
+            actions.iter().any(|a| matches!(&a.action_type, ActionType::LifeChange { .. })),
+            "Life change should still be emitted"
         );
     }
 

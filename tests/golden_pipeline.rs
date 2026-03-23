@@ -144,9 +144,13 @@ fn run_pipeline(messages: Vec<RawMessage>) -> Vec<GameReplay> {
 
                                 state.apply_elements(&elements, !is_diff);
 
-                                // Track populated players
+                                // Track populated players — only include seats
+                                // that have meaningful data (nonzero life, hand, or library)
                                 for i in 0..state.players.len() {
-                                    populated_players.insert(i);
+                                    let p = &state.players[i];
+                                    if p.life != 0 || p.hand_count != 0 || p.library_count != 0 {
+                                        populated_players.insert(i);
+                                    }
                                 }
 
                                 // Track game ID
@@ -1021,7 +1025,14 @@ fn test_golden_snapshot_regression() {
     }).collect();
 
     let expected_json = std::fs::read_to_string("tests/fixtures/golden_game3_replay.json").unwrap();
-    let expected: Vec<ActionSnapshot> = serde_json::from_str(&expected_json).unwrap();
+    // The fixture is a ReplayFile; extract actions from the first game.
+    let replay_file: flashback::replay::schema::ReplayFile = serde_json::from_str(&expected_json).unwrap();
+    let expected: Vec<ActionSnapshot> = replay_file.games[0].actions.iter().map(|a| ActionSnapshot {
+        turn: a.turn,
+        phase: a.phase.clone(),
+        active_player: a.active_player.clone(),
+        action_type: a.action_type.clone(),
+    }).collect();
 
     assert_eq!(actual.len(), expected.len(), "action count mismatch");
     for (i, (a, e)) in actual.iter().zip(expected.iter()).enumerate() {

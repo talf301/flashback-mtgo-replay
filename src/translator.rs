@@ -84,7 +84,15 @@ impl ReplayTranslator {
             false
         };
 
-        let actions = if let Some(ref prev) = self.prev {
+        // Suppress all actions during pre-game setup (turn 0, unknown phase).
+        // These are initial state snapshots revealing existing board state,
+        // not actual game actions.  We still update prev/zones below so
+        // diffing works once real gameplay begins.
+        let in_pregame = new_state.turn == 0 && new_state.phase.ordinal() == 255;
+
+        let actions = if in_pregame {
+            Vec::new()
+        } else if let Some(ref prev) = self.prev {
             self.diff(prev, new_state, is_full_state, phase_regressed)
         } else {
             // First state — no diff possible

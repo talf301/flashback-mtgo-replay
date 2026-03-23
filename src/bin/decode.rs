@@ -280,8 +280,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                                         }
                                         StateElement::TurnStep(ts) => {
                                             tracing::debug!(
-                                                "TurnStep: turn={} phase={}",
-                                                ts.turn_number, ts.phase
+                                                "TurnStep: turn={} phase={} prompted={:?}",
+                                                ts.turn_number, ts.phase, ts.prompted_player
                                             );
                                         }
                                         StateElement::Thing(te) => {
@@ -465,8 +465,8 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
             | FlsMessage::MatchStarted { .. } => {
                 tracing::debug!("Boundary signal (ignored): {:?}", fls_msg);
             }
-            FlsMessage::PlayerOrder { .. } => {
-                tracing::debug!("PlayerOrder (no-op)");
+            FlsMessage::PlayerOrder { ref raw } => {
+                tracing::debug!("PlayerOrder: raw={:?} (len={})", raw, raw.len());
             }
             FlsMessage::Other(_) => {}
         }

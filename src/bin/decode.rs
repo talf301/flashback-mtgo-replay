@@ -442,6 +442,7 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                     }
                     GameMessage::UserChat { ref text } => {
                         tracing::debug!("CHAT: {}", text);
+                        translator.ingest_chat(text);
                         // Parse "Turn N: PlayerName" to set active player
                         if let Some(rest) = text.strip_prefix("Turn ") {
                             if let Some(colon_pos) = rest.find(": ") {

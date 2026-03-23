@@ -338,18 +338,50 @@ impl ReplayTranslator {
                             },
                         ));
                     } else {
-                        // General zone transition (includes stack→battlefield)
-                        actions.push(self.make_action(
-                            new,
-                            ActionType::ZoneTransition {
-                                card_id: card_id.clone(),
-                                from_zone: Self::zone_name(from).to_string(),
-                                to_zone: Self::zone_name(to).to_string(),
-                                player_id: Some(
-                                    self.player_name(new_thing.controller as usize),
-                                ),
-                            },
-                        ));
+                        // Check chat context for enriched action types
+                        let chat_event = self.chat_context.remove(thing_id);
+                        let emitted = if let Some(ref evt) = chat_event {
+                            match evt {
+                                ChatEvent::Discard { .. } if from == ZONE_HAND => {
+                                    actions.push(self.make_action(
+                                        new,
+                                        ActionType::Discard {
+                                            player_id: self.player_name(new_thing.controller as usize),
+                                            card_id: card_id.clone(),
+                                        },
+                                    ));
+                                    true
+                                }
+                                ChatEvent::PutIntoGraveyard { .. } if from == ZONE_LIBRARY => {
+                                    actions.push(self.make_action(
+                                        new,
+                                        ActionType::Mill {
+                                            player_id: self.player_name(new_thing.controller as usize),
+                                            card_id: card_id.clone(),
+                                        },
+                                    ));
+                                    true
+                                }
+                                _ => false,
+                            }
+                        } else {
+                            false
+                        };
+
+                        if !emitted {
+                            // General zone transition (includes stack→battlefield)
+                            actions.push(self.make_action(
+                                new,
+                                ActionType::ZoneTransition {
+                                    card_id: card_id.clone(),
+                                    from_zone: Self::zone_name(from).to_string(),
+                                    to_zone: Self::zone_name(to).to_string(),
+                                    player_id: Some(
+                                        self.player_name(new_thing.controller as usize),
+                                    ),
+                                },
+                            ));
+                        }
                     }
                 }
 
@@ -657,9 +689,12 @@ impl ReplayTranslator {
                         ));
                     }
                 } else if moved && zone != ZONE_LIBRARY {
-                    let from_name = resolved_from_zone
-                        .map(|z| Self::zone_name(z))
-                        .unwrap_or("unknown");
+                    // Heuristic: cards appearing in "revealed" zone (16) with no
+                    // other context were revealed from the library (surveil, scry).
+                    let from = resolved_from_zone.unwrap_or_else(|| {
+                        if zone == 16 { ZONE_LIBRARY } else { -99 }
+                    });
+                    let from_name = if from == -99 { "unknown" } else { Self::zone_name(from) };
                     actions.push(self.make_action(
                         new,
                         ActionType::ZoneTransition {

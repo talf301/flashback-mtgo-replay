@@ -330,6 +330,8 @@ pub struct PlayerStatusElement {
 pub struct TurnStepElement {
     pub turn_number: i32,
     pub phase: u8,
+    /// The player currently being prompted (from PromptedPlayer field).
+    pub prompted_player: Option<u8>,
 }
 
 #[derive(Debug, Clone)]
@@ -451,11 +453,32 @@ fn parse_turn_step_element(payload: &[u8]) -> Result<TurnStepElement, DecodeErro
         });
     }
     let turn_number = i32::from_le_bytes([payload[0], payload[1], payload[2], payload[3]]);
-    // GamePhase is stored as i32 but we only need the low byte
+    // CurrentPhase is stored as i32 but we only need the low byte
     let phase = payload[4];
+
+    // TurnStep layout (observed from wire data):
+    //   offset 0-3:  TurnNumber (i32 LE)
+    //   offset 4-7:  CurrentPhase (i32 LE)
+    //   offset 8-11: sequence counter (i32 LE)
+    //   offset 12-23: flags/unknown (12 bytes)
+    //   offset 24:   PromptedPlayer (byte) — 0 or 1 for real players, 255 = no prompt
+    //   offset 25:   SpecialStepType (byte)
+    //   offset 26+:  PromptText (fixed-size null-padded ASCII)
+    let prompted_player = if payload.len() > 24 {
+        let val = payload[24];
+        if val < 16 {
+            Some(val)
+        } else {
+            None // 255 = no prompt active
+        }
+    } else {
+        None
+    };
+
     Ok(TurnStepElement {
         turn_number,
         phase,
+        prompted_player,
     })
 }
 
@@ -475,23 +498,16 @@ fn parse_player_status_element(payload: &[u8]) -> Result<PlayerStatusElement, De
     let graveyard_count = read_fixed_i16_array(&mut cursor, &mut buf2, PLAYER_STATUS_SEATS)?;
     let time_left = read_fixed_i32_array(&mut cursor, &mut buf4, PLAYER_STATUS_SEATS)?;
 
-    // background_image_names: string[] — i32 count then wide strings, read and discard
-    if cursor.read_exact(&mut buf4).is_ok() {
-        let str_count = i32::from_le_bytes(buf4);
-        for _ in 0..str_count {
-            if cursor.read_exact(&mut buf4).is_err() {
-                break;
-            }
-            let char_count = i32::from_le_bytes(buf4);
-            if char_count > 0 {
-                cursor
-                    .seek(SeekFrom::Current(char_count as i64 * 2))
-                    .ok();
-            }
-        }
-    }
+    // background_image_names: 16 fixed-size slots of 29 bytes each (null-padded ASCII).
+    // The MTGO wire format uses fixed-size buffers, NOT length-prefixed string arrays.
+    const BG_IMAGE_SLOT_SIZE: usize = 29;
+    let bg_skip = PLAYER_STATUS_SEATS * BG_IMAGE_SLOT_SIZE; // 16 * 29 = 464
+    cursor.seek(SeekFrom::Current(bg_skip as i64)).ok();
 
-    // ActivePlayer: byte
+    // After the background image slots, the remaining bytes (typically 5) contain:
+    // ActivePlayer (byte) + unknown trailing bytes.
+    // However, in practice the ActivePlayer byte here is always 0 in observed data.
+    // The actual active player is tracked via TurnStep.prompted_player instead.
     let mut buf1 = [0u8; 1];
     let active_player = if cursor.read_exact(&mut buf1).is_ok() {
         buf1[0]

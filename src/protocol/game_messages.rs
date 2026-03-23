@@ -24,11 +24,21 @@ pub struct GamePlayStatusMessage {
 }
 
 #[derive(Debug, Clone)]
+pub struct UserListPlayer {
+    pub user_id: u32,
+    pub name: String,
+}
+
+#[derive(Debug, Clone)]
 pub enum GameMessage {
     GamePlayStatus(GamePlayStatusMessage),
     GameOver,
     GameResults(GameResultsMessage),
-    Other { opcode: u16 },
+    /// Chat / game log message (opcode 4355). Text has @P prefix stripped.
+    UserChat { text: String },
+    /// Player list with seat ordering (opcode 4356).
+    UserList { players: Vec<UserListPlayer> },
+    Other { opcode: u16, payload: Vec<u8> },
 }
 
 /// Decode a game-level message from the raw MetaMessage bytes.
@@ -41,7 +51,9 @@ pub fn decode_game_message(meta: &[u8]) -> Result<GameMessage, DecodeError> {
         opcodes::GAME_PLAY_STATUS => decode_game_play_status(&inner.payload),
         opcodes::GAME_OVER => Ok(GameMessage::GameOver),
         opcodes::GAME_RESULTS => game_results::decode_game_results(&inner.payload).map(GameMessage::GameResults),
-        _ => Ok(GameMessage::Other { opcode: inner.opcode }),
+        opcodes::NEW_USER_CHAT => decode_user_chat(&inner.payload),
+        opcodes::MASTER_USER_LIST => decode_user_list(&inner.payload),
+        _ => Ok(GameMessage::Other { opcode: inner.opcode, payload: inner.payload }),
     }
 }
 
@@ -155,6 +167,68 @@ fn decode_game_play_status(payload: &[u8]) -> Result<GameMessage, DecodeError> {
     }))
 }
 
+/// Decode a NEW_USER_CHAT message (opcode 4355).
+///
+/// Wire layout:
+///   0-1:   type marker
+///   2-9:   game ID / header
+///   10-11: unknown
+///   12-15: text length (i32 LE)
+///   16+:   ASCII text, prefixed with "@P"
+fn decode_user_chat(payload: &[u8]) -> Result<GameMessage, DecodeError> {
+    if payload.len() < 16 {
+        return Ok(GameMessage::UserChat { text: String::new() });
+    }
+    let text_len = i32::from_le_bytes([
+        payload[12], payload[13], payload[14], payload[15],
+    ]) as usize;
+    let text_start = 16;
+    let text_end = (text_start + text_len).min(payload.len());
+    let raw = String::from_utf8_lossy(&payload[text_start..text_end]);
+    let text = raw.strip_prefix("@P").unwrap_or(&raw).to_string();
+    Ok(GameMessage::UserChat { text })
+}
+
+/// Decode a MASTER_USER_LIST message (opcode 4356).
+///
+/// Wire layout:
+///   0-9:   header (type marker + game fields)
+///   10-13: player count (i32 LE)
+///   For each player:
+///     4 bytes: user ID (u32 LE)
+///     4 bytes: name length (i32 LE)
+///     N bytes: ASCII name
+///     3 bytes: trailing flags
+fn decode_user_list(payload: &[u8]) -> Result<GameMessage, DecodeError> {
+    if payload.len() < 14 {
+        return Ok(GameMessage::UserList { players: Vec::new() });
+    }
+    let count = i32::from_le_bytes([
+        payload[10], payload[11], payload[12], payload[13],
+    ]) as usize;
+    let mut players = Vec::with_capacity(count);
+    let mut offset = 14;
+    for _ in 0..count {
+        if offset + 8 > payload.len() {
+            break;
+        }
+        let user_id = u32::from_le_bytes([
+            payload[offset], payload[offset + 1], payload[offset + 2], payload[offset + 3],
+        ]);
+        let name_len = i32::from_le_bytes([
+            payload[offset + 4], payload[offset + 5], payload[offset + 6], payload[offset + 7],
+        ]) as usize;
+        offset += 8;
+        if offset + name_len > payload.len() {
+            break;
+        }
+        let name = String::from_utf8_lossy(&payload[offset..offset + name_len]).to_string();
+        offset += name_len + 3; // 3 trailing flag bytes
+        players.push(UserListPlayer { user_id, name });
+    }
+    Ok(GameMessage::UserList { players })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -232,7 +306,7 @@ mod tests {
         let meta = wrap_as_meta(9999, &[0x01]);
         let result = decode_game_message(&meta).unwrap();
         match result {
-            GameMessage::Other { opcode } => assert_eq!(opcode, 9999),
+            GameMessage::Other { opcode, .. } => assert_eq!(opcode, 9999),
             _ => panic!("expected Other"),
         }
     }
@@ -260,6 +334,7 @@ mod tests {
                 Ok(GameMessage::GamePlayStatus(_)) => play_status_count += 1,
                 Ok(GameMessage::GameOver) => game_over_count += 1,
                 Ok(GameMessage::GameResults(_)) => other_game_count += 1,
+                Ok(GameMessage::UserChat { .. } | GameMessage::UserList { .. }) => other_game_count += 1,
                 Ok(GameMessage::Other { .. }) => other_game_count += 1,
                 Err(e) => {
                     eprintln!("game decode error: {e}");

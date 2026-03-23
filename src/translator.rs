@@ -51,10 +51,10 @@ impl ReplayTranslator {
     }
 
     /// Reset translator state for a new game in a multi-game session.
+    /// Player names are preserved across games since they don't change in a match.
     pub fn reset(&mut self) {
         self.prev = None;
         self.start_time = None;
-        self.player_names.clear();
         self.things_seen_on_stack.clear();
         self.last_known_zones.clear();
     }
@@ -778,7 +778,7 @@ mod tests {
         translator.reset();
 
         assert!(translator.prev.is_none());
-        assert!(translator.player_names.is_empty());
+        assert_eq!(translator.player_names, vec!["A".to_string()]); // preserved across reset
         assert!(translator.start_time.is_none());
         assert!(translator.things_seen_on_stack.is_empty());
     }

@@ -21,6 +21,8 @@ pub const FLS_MATCH_GAME_STARTED: u16 = 2463;
 
 // === Game-level opcodes (Level 2, inside MetaMessage) ===
 
+pub const NEW_USER_CHAT: u16 = 4355;
+pub const MASTER_USER_LIST: u16 = 4356;
 pub const GAME_RESULTS: u16 = 4485;
 pub const GAME_OVER: u16 = 4632;
 pub const GAME_NEXT_STEP: u16 = 4643;

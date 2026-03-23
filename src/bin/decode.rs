@@ -27,7 +27,9 @@ use flashback::state::GameState;
 use flashback::translator::ReplayTranslator;
 
 fn main() {
-    tracing_subscriber::fmt::init();
+    tracing_subscriber::fmt()
+        .with_writer(std::io::stderr)
+        .init();
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
@@ -183,6 +185,9 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
     let mut current_winner_seat: Option<u8> = None;
     let mut populated_players: HashSet<usize> = HashSet::new();
 
+    // Player name → seat index mapping, built from MASTER_USER_LIST messages.
+    let mut player_seat_map: HashMap<String, usize> = HashMap::new();
+
     // Deferred packaging: GameOver arrives before GameResults in the protocol
     // stream, so on GameOver we snapshot the game state, reset the pipeline,
     // and defer packaging until GameResults arrives with winner info.
@@ -238,6 +243,11 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                             saved_game_state = None;
                             pending_package = false;
                         }
+
+                        tracing::debug!(
+                            "GamePlayStatus: waiting_for={} priority={}",
+                            gps.player_waiting_for, gps.priority_player
+                        );
 
                         let is_diff =
                             gps.flags & opcodes::FLAG_GAMESTATE_CONTAINS_DIFFS != 0;
@@ -412,7 +422,42 @@ fn decode_pipeline(messages: Vec<framing::RawMessage>) -> ReplayFile {
                             game_state = None;
                         }
                     }
-                    GameMessage::Other { opcode } => {
+                    GameMessage::UserList { ref players } => {
+                        if players.len() >= 2 && player_seat_map.is_empty() {
+                            let names: Vec<String> = players.iter()
+                                .map(|p| p.name.clone())
+                                .collect();
+                            for (i, p) in players.iter().enumerate() {
+                                player_seat_map.insert(p.name.clone(), i);
+                            }
+                            translator.set_player_names(names);
+                            tracing::info!(
+                                "Player seats: {}",
+                                players.iter().enumerate()
+                                    .map(|(i, p)| format!("seat{}={}", i, p.name))
+                                    .collect::<Vec<_>>()
+                                    .join(", ")
+                            );
+                        }
+                    }
+                    GameMessage::UserChat { ref text } => {
+                        tracing::debug!("CHAT: {}", text);
+                        // Parse "Turn N: PlayerName" to set active player
+                        if let Some(rest) = text.strip_prefix("Turn ") {
+                            if let Some(colon_pos) = rest.find(": ") {
+                                let player_name = &rest[colon_pos + 2..];
+                                if let Some(&seat) = player_seat_map.get(player_name) {
+                                    if let Some(ref mut state) = game_state {
+                                        state.active_player = seat;
+                                    }
+                                    tracing::debug!(
+                                        "Turn owner: {} (seat {})", player_name, seat
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    GameMessage::Other { opcode, .. } => {
                         tracing::trace!("Skipping game opcode {}", opcode);
                     }
                 }

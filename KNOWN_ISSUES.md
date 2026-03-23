@@ -29,15 +29,15 @@ Fixed by suppressing all action emission in the translator while `turn == 0 && p
 
 ---
 
-## P1: active_player Tracking — PARTIALLY FIXED
+## ~~P1: active_player Tracking~~ — FIXED
 
-**Was:** Every action showed `active_player: "player_0"`.
+**Was:** Every action showed `active_player: "player_0"`. Priority-based signals (`prompted_player`, `player_waiting_for`) tracked who had priority, not whose turn it was — unreliable due to player-configured stop settings.
 
-**Fixed:** Two issues resolved:
-1. **PlayerStatus background_image_names** were parsed as a length-prefixed string array, but are actually 16 fixed-size 29-byte slots. The bogus "count" consumed all remaining bytes, making the ActivePlayer byte unreachable. Fixed to skip 16×29 bytes. (The ActivePlayer byte here is always 0 anyway.)
-2. **TurnStep.prompted_player** at byte offset 24 now parsed correctly. Values 0/1 indicate which player has priority; 255 means no active prompt. Used to update `active_player` in game state.
+**Fixed:** Two new game-level messages decoded:
+1. **`MASTER_USER_LIST` (opcode 4356)** provides the seat index → player name mapping (e.g., seat 0 = "coreyabaker", seat 1 = "TalTheTurtle").
+2. **`NEW_USER_CHAT` (opcode 4355)** contains the in-game chat log, including authoritative `"Turn N: PlayerName"` messages that definitively identify whose turn it is.
 
-**Remaining limitation:** `active_player` only changes when a player is explicitly prompted (combat phases, responses). During non-interactive phases, it defaults to the last prompted player (usually player_0). MTGO bundles both players' turns into a single turn number, with a phase regression marking the boundary. The `prompted_player` field is the only per-player signal in the protocol — no explicit "whose turn is it" field has been found.
+The decode pipeline now uses chat-based turn ownership instead of priority signals. Player names are resolved to seat indices via the UserList mapping. The `PlayerStatus.active_player` byte (always 0 in practice) and `TurnStep.prompted_player` are no longer used for turn tracking.
 
 ---
 

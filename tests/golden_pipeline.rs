@@ -85,6 +85,7 @@ fn run_pipeline(messages: Vec<RawMessage>) -> Vec<GameReplay> {
     let mut current_game_id: String = String::new();
     let mut current_winner_seat: Option<u8> = None;
     let mut populated_players: HashSet<usize> = HashSet::new();
+    let mut player_seat_map: HashMap<String, usize> = HashMap::new();
 
     // Saved game state snapshot: GameOver arrives before GameResults in the
     // protocol stream, so on GameOver we snapshot the game state for player
@@ -211,6 +212,29 @@ fn run_pipeline(messages: Vec<RawMessage>) -> Vec<GameReplay> {
                         translator.reset();
                         statebuf_proc.reset();
                         game_state = None;
+                    }
+                    GameMessage::UserList { ref players } => {
+                        if players.len() >= 2 && player_seat_map.is_empty() {
+                            let names: Vec<String> = players.iter()
+                                .map(|p| p.name.clone())
+                                .collect();
+                            for (i, p) in players.iter().enumerate() {
+                                player_seat_map.insert(p.name.clone(), i);
+                            }
+                            translator.set_player_names(names);
+                        }
+                    }
+                    GameMessage::UserChat { ref text } => {
+                        if let Some(rest) = text.strip_prefix("Turn ") {
+                            if let Some(colon_pos) = rest.find(": ") {
+                                let player_name = &rest[colon_pos + 2..];
+                                if let Some(&seat) = player_seat_map.get(player_name) {
+                                    if let Some(ref mut state) = game_state {
+                                        state.active_player = seat;
+                                    }
+                                }
+                            }
+                        }
                     }
                     _ => {}
                 }

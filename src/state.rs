@@ -223,7 +223,9 @@ impl GameState {
                             }
                         }
                     }
-                    self.active_player = ps.active_player as usize;
+                    // Note: ps.active_player is always 0 in observed data.
+                    // active_player is set from chat "Turn N: PlayerName" messages
+                    // in the decode pipeline instead.
                 }
                 StateElement::TurnStep(ts) => {
                     self.turn = ts.turn_number;
@@ -414,7 +416,9 @@ mod tests {
         assert_eq!(state.players[1].library_count, 52);
         assert_eq!(state.players[0].graveyard_count, 0);
         assert_eq!(state.players[1].graveyard_count, 2);
-        assert_eq!(state.active_player, 1);
+        // active_player is no longer set from PlayerStatus (always 0 in practice);
+        // it's set from chat "Turn N: PlayerName" messages in the decode pipeline.
+        assert_eq!(state.active_player, 0);
     }
 
     #[test]

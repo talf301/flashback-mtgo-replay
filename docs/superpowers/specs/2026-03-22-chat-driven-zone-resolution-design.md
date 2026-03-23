@@ -34,7 +34,7 @@ pub enum ChatEvent {
     PutIntoGraveyard { player: String, card: ChatCardRef },
     Exile { player: String, card: ChatCardRef },
     PutOnLibrary { player: String, card: ChatCardRef, position: LibPos },
-    CreateToken { player: String, token_name: String },
+    CreateToken { player: String, source_card: ChatCardRef, token_name: String },
 }
 ```
 
@@ -52,10 +52,15 @@ Unrecognized chat is ignored — returns `None`.
 
 ### 2. Chat Context in Translator (`src/translator.rs`)
 
-New field on `ReplayTranslator`:
+New fields on `ReplayTranslator`:
 
 ```rust
+/// Per-thing-id chat context for zone resolution and action classification.
 chat_context: HashMap<u32, ChatEvent>,
+/// Pending token creation events, keyed by token name (e.g., "Goblin Shaman Token").
+/// When a new thing appears on the battlefield with IS_TOKEN set and its card name
+/// matches a pending token entry, it is classified as CreateToken.
+pending_tokens: VecDeque<(String, ChatEvent)>,
 ```
 
 New public method:
@@ -64,7 +69,9 @@ New public method:
 pub fn ingest_chat(&mut self, text: &str)
 ```
 
-Parses the chat text via `chat.rs`, inserts result keyed by thing_id. Called from `decode.rs` on every `UserChat` message — single line addition to the existing match arm.
+Parses the chat text via `chat.rs`. For card-targeted events (Discard, PutIntoGraveyard, Exile, PutOnLibrary), inserts into `chat_context` keyed by the card's thing_id. For `CreateToken` events, pushes onto `pending_tokens` keyed by the token name string.
+
+Called from `decode.rs` on every `UserChat` message, placed **before** the existing turn-ownership parsing.
 
 **Resolution order** when processing a new thing with `from_zone == Some(-1)`:
 
@@ -72,7 +79,27 @@ Parses the chat text via `chat.rs`, inserts result keyed by thing_id. Called fro
 2. `last_known_zones.get(&thing_id)` — source zone from prior state tracking
 3. Fallback — "unknown" (existing behavior, should become rare)
 
-`chat_context` is cleared on `reset()`.
+**Token matching** when a new thing appears on the battlefield with `IS_TOKEN` property set:
+
+1. Check `pending_tokens` for an entry whose token name matches the thing's card name
+2. If found, emit `ActionType::CreateToken` with the token's thing_id as `card_id` and the token name
+3. If not found, fall through to existing logic (generic ZoneTransition or PlayLand)
+
+`chat_context` and `pending_tokens` are cleared on `reset()`.
+
+**Action classification from chat context:**
+
+When `chat_context` provides a `ChatEvent` for a thing_id, the translator uses it to determine both `from_zone` and `ActionType`:
+
+| ChatEvent | Inferred from_zone | ActionType |
+|---|---|---|
+| `Discard` | hand | `Discard` |
+| `PutIntoGraveyard` | library (if `last_known_zones` absent or shows library) | `Mill` |
+| `PutIntoGraveyard` | other (if `last_known_zones` shows non-library zone) | `ZoneTransition` with resolved from_zone |
+| `Exile` | `last_known_zones` value, or "unknown" | `ZoneTransition` with resolved from_zone |
+| `PutOnLibrary` | `last_known_zones` value, or "unknown" | `ZoneTransition` with resolved from_zone |
+
+This means `PutIntoGraveyard` only becomes `Mill` when the source is library. If the card was on the battlefield (e.g., destroyed), it remains a `ZoneTransition` with `from_zone: "battlefield"`. The chat verb "puts X into their graveyard" is ambiguous — the source zone disambiguates.
 
 ### 3. New ActionType Variants (`src/replay/schema.rs`)
 
@@ -155,6 +182,13 @@ MTGO stream
 - **Unit tests for translator**: Mock state diffs with chat context pre-loaded, verify correct `from_zone` and `ActionType`
 - **Golden file regression**: Re-run pipeline on `golden_v1.bin`, verify zero `from_zone: "unknown"` (or near-zero), verify new action types appear where expected
 - **Web viewer**: Existing tests updated for new variants; verify new types render labels
+
+## Notes
+
+- **Exile and PutOnLibrary** chat events resolve `from_zone` on existing `ZoneTransition` actions — they do not produce new ActionType variants. PutOnLibrary may not be observable in state diffs (library contents are hidden), so it primarily serves as from_zone context.
+- **Chat resolution only applies to the "new thing" code path** in the translator (things with `from_zone == Some(-1)` not present in prev state). Existing things that change zones already have their old zone tracked directly.
+- **Player names** in chat events are raw strings matching the `player_names` vec on the translator. The translator already resolves names to `player_id` strings via `player_name()`.
+- **`@P` prefix** is already stripped from UserChat text by `decode_user_chat()` — the chat parser receives clean text.
 
 ## What This Doesn't Cover
 

@@ -139,4 +139,58 @@ describe('State Reconstruction Engine', () => {
     expect(card?.counters).toHaveLength(1);
     expect(card?.counters[0].type).toBe('+1/+1');
   });
+
+  it('should handle Discard action', () => {
+    const actions: RawReplayAction[] = [
+      {
+        turn: 1,
+        phase: 'main1',
+        active_player: 'player1',
+        action_type: { DrawCard: { player_id: 'player1', card_id: 'card1' } },
+      },
+      {
+        turn: 1,
+        phase: 'main1',
+        active_player: 'player1',
+        action_type: { Discard: { player_id: 'player1', card_id: 'card1' } },
+      },
+    ];
+    const rec = new Reconstructor();
+    rec.loadReplay(makeReplay(actions));
+    const state = rec.reconstruct(2);
+    expect(state.zones.find(z => z.name === 'hand')?.cards ?? []).toHaveLength(0);
+    expect(state.zones.find(z => z.name === 'graveyard')?.cards).toHaveLength(1);
+  });
+
+  it('should handle Mill action', () => {
+    const actions: RawReplayAction[] = [
+      {
+        turn: 1,
+        phase: 'main1',
+        active_player: 'player1',
+        action_type: { Mill: { player_id: 'player1', card_id: 'card1' } },
+      },
+    ];
+    const rec = new Reconstructor();
+    rec.loadReplay(makeReplay(actions));
+    const state = rec.reconstruct(1);
+    expect(state.zones.find(z => z.name === 'graveyard')?.cards).toHaveLength(1);
+  });
+
+  it('should handle CreateToken action', () => {
+    const actions: RawReplayAction[] = [
+      {
+        turn: 1,
+        phase: 'main1',
+        active_player: 'player1',
+        action_type: { CreateToken: { player_id: 'player1', card_id: 'token1', token_name: 'Goblin Token' } },
+      },
+    ];
+    const rec = new Reconstructor();
+    rec.loadReplay(makeReplay(actions));
+    const state = rec.reconstruct(1);
+    const bf = state.zones.find(z => z.name === 'battlefield');
+    expect(bf?.cards).toHaveLength(1);
+    expect(bf?.cards[0].name).toBe('Goblin Token');
+  });
 });

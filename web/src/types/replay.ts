@@ -69,6 +69,9 @@ export type RawActionType =
   | { Resolve: { card_id: string } }
   | { LifeChange: { player_id: string; old_life: number; new_life: number } }
   | { ZoneTransition: { card_id: string; from_zone: string; to_zone: string; player_id?: string } }
+  | { Discard: { player_id: string; card_id: string } }
+  | { Mill: { player_id: string; card_id: string } }
+  | { CreateToken: { player_id: string; card_id: string; token_name: string } }
   | { TapPermanent: { card_id: string } }
   | { UntapPermanent: { card_id: string } }
   | { DamageMarked: { card_id: string; damage: number } }

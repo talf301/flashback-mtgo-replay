@@ -164,6 +164,28 @@ function applyAction(state: BoardState, raw: RawReplayAction, cardNames: Record<
       return updateCard(newState, card_id, c => ({ ...c, power, toughness }));
     }
 
+    case 'Discard':
+      return applyZoneTransition(newState, {
+        card_id: (data as { card_id: string }).card_id,
+        from_zone: 'hand',
+        to_zone: 'graveyard',
+        player_id: (data as { player_id: string }).player_id,
+      }, cardNames);
+
+    case 'Mill':
+      return applyZoneTransition(newState, {
+        card_id: (data as { card_id: string }).card_id,
+        from_zone: 'library',
+        to_zone: 'graveyard',
+        player_id: (data as { player_id: string }).player_id,
+      }, cardNames);
+
+    case 'CreateToken': {
+      const { player_id, card_id, token_name } = data as { player_id: string; card_id: string; token_name: string };
+      const tokenCard = { ...createCard(card_id, player_id), name: token_name };
+      return addCardToZone(newState, 'battlefield', player_id, tokenCard);
+    }
+
     case 'TurnChange':
     case 'PhaseChange':
     case 'PassPriority':

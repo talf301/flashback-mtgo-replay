@@ -139,6 +139,8 @@ mtgo-replay-omp/
 │   │   └── schema.rs         # ReplayFile JSON schema + serialization
 │   ├── state.rs              # GameState model (Things, Players, Phases)
 │   ├── translator.rs         # State-diff to ReplayAction translation
+│   ├── chat.rs               # Chat parser (player names, turns, zone resolution)
+│   ├── scryfall.rs           # Card name resolution via Scryfall API
 │   ├── main.rs               # Capture agent CLI
 │   └── bin/
 │       └── decode.rs         # Decode pipeline CLI
@@ -211,6 +213,9 @@ mtgo-replay-omp/
 | `Attach` / `Detach` | Equipment/aura attachment changed |
 | `CounterUpdate` | Counter count changed (+1/+1, loyalty, etc.) |
 | `PowerToughnessUpdate` | P/T changed |
+| `Discard` | Card discarded from hand |
+| `Mill` | Card milled from library to graveyard |
+| `CreateToken` | Token created on the battlefield |
 | `TurnChange` | New turn started |
 | `PhaseChange` | Game phase changed |
 
@@ -222,11 +227,14 @@ mtgo-replay-omp/
 
 ### What Works
 
-- **Full decode pipeline**: raw MTGO stream → framing → FLS → game messages → StateBuf → state → actions → JSON
+- **Full decode pipeline**: raw MTGO stream -> framing -> FLS -> game messages -> StateBuf -> state -> actions -> JSON
 - **Golden file validation**: 12MB capture (10,195 messages) decodes to 623 actions across a 3-game Modern Bo3 match
-- **Web viewer**: loads .flashback files, reconstructs board state, renders zones/cards/life totals, step-through controls
-- **20+ action types** decoded from state diffs
-- **Card names** extracted from CARDNAME_STRING property where available
+- **Multi-game support**: per-game replay schema (v2.0) with game selector UI
+- **Web viewer**: loads .flashback files, reconstructs board state, renders zones/cards/life totals, step-through controls with playback speed
+- **23+ action types** decoded from state diffs (including Discard, Mill, CreateToken)
+- **Card name resolution** via Scryfall API (~99% coverage)
+- **Chat-driven enrichment**: player names, turn tracking, and zone resolution extracted from MTGO chat logs
+- **Phase deduplication**: PhaseChange events deduplicated at source
 
 ### Known Limitations
 

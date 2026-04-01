@@ -4,7 +4,7 @@ This guide covers development practices, testing, and code style for the Flashba
 
 ## Prerequisites
 
-- .NET 8+ (for the recorder)
+- .NET 10+ (for the recorder — MTGOSDK requires net10.0-windows)
 - Node.js 18+
 - npm
 

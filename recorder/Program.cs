@@ -1,32 +1,64 @@
+using System.Windows.Forms;
+using FlashbackRecorder.Models;
+
 namespace FlashbackRecorder;
 
 /// <summary>
-/// Minimal entry point for the Flashback Recorder.
-/// Game session management, file writing, and UI are added in later tasks.
+/// Entry point for the Flashback Recorder.
+/// Launches the system tray application and connects to MTGO.
 /// </summary>
 public static class Program
 {
-    public static async Task Main(string[] args)
+    [STAThread]
+    public static void Main(string[] args)
     {
-        using var cts = new CancellationTokenSource();
-        Console.CancelKeyPress += (_, e) => { e.Cancel = true; cts.Cancel(); };
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
+        var settings = Settings.Load();
         using IMtgoClient client = new MtgoClient();
+        using var trayApp = new TrayApp(client, settings);
 
-        Console.WriteLine("Flashback Recorder — waiting for MTGO...");
-        await client.ConnectAsync(cts.Token);
-        Console.WriteLine("Attached to MTGO.");
+        // Wire the session manager to update tray state and show notifications.
+        using var sessionManager = new GameSessionManager(
+            client,
+            onReplayComplete: replay =>
+            {
+                trayApp.OnGameSaved(replay);
+            });
 
-        // Keep alive until Ctrl+C. Session manager will hook into events.
-        try
+        // Track game start for icon state.
+        client.OnGameStatusChange += (_, e) =>
         {
-            await Task.Delay(Timeout.Infinite, cts.Token);
-        }
-        catch (OperationCanceledException)
-        {
-            // Normal shutdown.
-        }
+            if (e.Status == GameStatus.Started)
+                trayApp.OnGameStarted();
+        };
 
-        Console.WriteLine("Shutting down.");
+        // Connect to MTGO in a background thread.
+        var cts = new CancellationTokenSource();
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                trayApp.OnConnectionStateChanged(ConnectionState.WaitingForProcess);
+                await client.ConnectAsync(cts.Token);
+                trayApp.OnConnectionStateChanged(ConnectionState.Attached);
+            }
+            catch (OperationCanceledException)
+            {
+                // Normal shutdown.
+            }
+            catch (Exception)
+            {
+                trayApp.OnConnectionStateChanged(ConnectionState.Error);
+            }
+        });
+
+        // Run the Windows message loop (keeps tray icon alive).
+        Application.Run();
+
+        // Cleanup on exit.
+        cts.Cancel();
     }
 }

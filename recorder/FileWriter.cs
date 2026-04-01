@@ -194,7 +194,14 @@ public class FileWriter
     /// </summary>
     internal static string SanitizeFileName(string name)
     {
-        var invalidChars = Path.GetInvalidFileNameChars();
+        // Hardcoded Windows-invalid filename chars so behavior is consistent cross-platform
+        var invalidChars = new HashSet<char>(new[] {
+            '"', '<', '>', '|', '\0',
+            (char)1, (char)2, (char)3, (char)4, (char)5, (char)6, (char)7, (char)8, (char)9, (char)10,
+            (char)11, (char)12, (char)13, (char)14, (char)15, (char)16, (char)17, (char)18, (char)19, (char)20,
+            (char)21, (char)22, (char)23, (char)24, (char)25, (char)26, (char)27, (char)28, (char)29, (char)30,
+            (char)31, ':', '*', '?', '\\', '/'
+        });
         var sanitized = new string(name.Where(c => !invalidChars.Contains(c)).ToArray());
         // Replace spaces with underscores for cleaner file names
         sanitized = sanitized.Replace(' ', '_');

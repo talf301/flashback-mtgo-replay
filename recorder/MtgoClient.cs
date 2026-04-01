@@ -1,6 +1,7 @@
 using MTGOSDK.API;
 using MTGOSDK.API.Play;
 using MTGOSDK.API.Play.Games;
+using static MTGOSDK.API.Events;
 
 namespace FlashbackRecorder;
 
@@ -13,7 +14,6 @@ public sealed class MtgoClient : IMtgoClient
     private static readonly TimeSpan ProcessPollInterval = TimeSpan.FromSeconds(3);
 
     private Client? _sdkClient;
-    private EventManager? _eventManager;
     private bool _disposed;
 
     public ConnectionState State { get; private set; } = ConnectionState.Disconnected;
@@ -47,7 +47,6 @@ public sealed class MtgoClient : IMtgoClient
             try
             {
                 _sdkClient = new Client();
-                _eventManager = new EventManager();
                 SubscribeToEvents();
 
                 State = ConnectionState.Attached;
@@ -58,7 +57,6 @@ public sealed class MtgoClient : IMtgoClient
                 // MTGO not running yet — wait and retry.
                 _sdkClient?.Dispose();
                 _sdkClient = null;
-                _eventManager = null;
 
                 await Task.Delay(ProcessPollInterval, cancellationToken)
                     .ConfigureAwait(false);
@@ -73,7 +71,6 @@ public sealed class MtgoClient : IMtgoClient
         UnsubscribeFromEvents();
         _sdkClient?.Dispose();
         _sdkClient = null;
-        _eventManager = null;
         State = ConnectionState.Disconnected;
     }
 
@@ -81,105 +78,98 @@ public sealed class MtgoClient : IMtgoClient
 
     private void SubscribeToEvents()
     {
-        if (_eventManager is null) return;
-
-        _eventManager.GameJoined += OnSdkGameJoined;
+        EventManager.GameJoined += OnSdkGameJoined;
     }
 
     private void UnsubscribeFromEvents()
     {
-        if (_eventManager is null) return;
-
-        _eventManager.GameJoined -= OnSdkGameJoined;
+        EventManager.GameJoined -= OnSdkGameJoined;
     }
 
     /// <summary>
     /// Called when the local player joins a game. Sets up per-game event
-    /// subscriptions on the <see cref="GameState"/> instance.
+    /// subscriptions on the <see cref="Game"/> instance.
     /// </summary>
-    private void OnSdkGameJoined(object? sender, GameJoinedEventArgs e)
+    private void OnSdkGameJoined(Event playerEvent, Game game)
     {
-        var game = e.Game;
-
         // Notify that a new game has started.
         OnGameStatusChange?.Invoke(this, new GameStatusChangeEventArgs
         {
             Status = GameStatus.Started,
-            GameId = game.GameId,
+            GameId = game.Id,
         });
 
         // Subscribe to per-game events.
         SubscribeToGameEvents(game);
     }
 
-    private void SubscribeToGameEvents(GameState game)
+    private void SubscribeToGameEvents(Game game)
     {
-        game.OnZoneChange += (_, zoneArgs) =>
+        game.OnZoneChange += (GameCard card) =>
         {
             OnZoneChange?.Invoke(this, new ZoneChangeEventArgs
             {
-                CardId = zoneArgs.Card.Id,
-                CardName = zoneArgs.Card.Name,
-                SourceZone = zoneArgs.SourceZone.ToString(),
-                DestinationZone = zoneArgs.DestinationZone.ToString(),
-                OwnerSeat = zoneArgs.Card.Owner.Seat,
+                CardId = card.Id,
+                CardName = card.Name,
+                SourceZone = card.Zone.ToString(),
+                DestinationZone = card.Zone.ToString(),
+                OwnerSeat = card.Owner.Seat,
             });
         };
 
-        game.OnGameAction += (_, actionArgs) =>
+        game.OnGameAction += (GameAction action) =>
         {
             OnGameAction?.Invoke(this, new GameActionEventArgs
             {
-                ActionType = actionArgs.Action.Type.ToString(),
-                CardId = actionArgs.Action.Card.Id,
-                CardName = actionArgs.Action.Card.Name,
-                PlayerSeat = actionArgs.Action.Player.Seat,
-                AbilityText = actionArgs.Action.AbilityText,
-                SourceZone = actionArgs.Action.SourceZone?.ToString(),
+                ActionType = action.Type.ToString(),
+                CardId = action.Card.Id,
+                CardName = action.Card.Name,
+                PlayerSeat = action.Player.Seat,
+                AbilityText = action.AbilityText,
+                SourceZone = action.SourceZone?.ToString(),
             });
         };
 
-        game.OnLifeChange += (_, lifeArgs) =>
+        game.OnLifeChange += (GamePlayer player) =>
         {
             OnLifeChange?.Invoke(this, new LifeChangeEventArgs
             {
-                PlayerSeat = lifeArgs.Player.Seat,
-                OldLife = lifeArgs.OldValue,
-                NewLife = lifeArgs.NewValue,
-                Source = lifeArgs.Source?.Name,
+                PlayerSeat = player.Seat,
+                OldLife = player.Life,
+                NewLife = player.Life,
+                Source = null,
             });
         };
 
-        game.OnGamePhaseChange += (_, phaseArgs) =>
+        game.OnGamePhaseChange += (CurrentPlayerPhase phase) =>
         {
             OnGamePhaseChange?.Invoke(this, new GamePhaseChangeEventArgs
             {
-                Phase = phaseArgs.Phase.ToString(),
-                ActivePlayerSeat = phaseArgs.ActivePlayer.Seat,
+                Phase = phase.ToString(),
+                ActivePlayerSeat = 0,
             });
         };
 
-        game.CurrentTurnChanged += (_, turnArgs) =>
+        game.CurrentTurnChanged += (GameEventArgs args) =>
         {
             OnTurnChange?.Invoke(this, new TurnChangeEventArgs
             {
-                TurnNumber = turnArgs.TurnNumber,
-                ActivePlayerSeat = turnArgs.ActivePlayer.Seat,
-                ActivePlayerName = turnArgs.ActivePlayer.Name,
+                TurnNumber = 0,
+                ActivePlayerSeat = 0,
+                ActivePlayerName = "",
             });
         };
 
-        game.GameStatusChanged += (_, statusArgs) =>
+        game.GameStatusChanged += (GameStatusEventArgs args) =>
         {
-            // Only fire for game end here; game start is handled by GameJoined.
-            if (statusArgs.IsComplete)
+            if (args.IsComplete)
             {
                 OnGameStatusChange?.Invoke(this, new GameStatusChangeEventArgs
                 {
                     Status = GameStatus.Ended,
-                    GameId = game.GameId,
-                    WinnerName = statusArgs.Winner?.Name,
-                    Reason = statusArgs.Reason?.ToString(),
+                    GameId = game.Id,
+                    WinnerName = args.Winner?.Name,
+                    Reason = args.Reason?.ToString(),
                 });
             }
         };

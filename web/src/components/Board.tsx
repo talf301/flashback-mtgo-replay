@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import type { BoardState } from '../types/state';
 import { Zone } from './Zone';
+import { ManaPool } from './ManaPool';
+import { CombatPairings } from './CombatPairings';
 
 export interface BoardProps {
   boardState: BoardState;
@@ -32,6 +34,29 @@ export function Board({
 
     return { grouped, shared };
   }, [boardState.zones]);
+
+  const playerLookup = useMemo(() => {
+    const map: Record<string, (typeof boardState.players)[number]> = {};
+    for (const p of boardState.players) {
+      map[p.name] = p;
+    }
+    return map;
+  }, [boardState.players]);
+
+  const isCombatPhase = [
+    'begin_combat',
+    'declare_attackers',
+    'declare_blockers',
+    'combat_damage',
+    'end_of_combat',
+  ].includes(boardState.phase);
+
+  const combatCards = useMemo(() => {
+    if (!isCombatPhase) return [];
+    return boardState.zones
+      .flatMap((z) => z.cards)
+      .filter((c) => c.combatStatus.attacking || c.combatStatus.blocking);
+  }, [boardState.zones, isCombatPhase]);
 
   const phaseLabel = (phase: string): string => {
     const map: Record<string, string> = {
@@ -75,10 +100,11 @@ export function Board({
         </div>
       </div>
 
-      {/* Life totals */}
+      {/* Life totals and mana pools */}
       <div className="flex gap-4 mb-4 flex-wrap">
         {playerIds.map((pid) => {
-          const life = boardState.lifeTotals[pid] ?? 20;
+          const player = playerLookup[pid];
+          const life = player?.life ?? 20;
           const isActive = boardState.activePlayer === pid;
           return (
             <div
@@ -90,10 +116,16 @@ export function Board({
               <div className="text-sm text-slate-400">{playerNames[pid] || pid}</div>
               <div className={`text-2xl font-bold ${life <= 5 ? 'text-red-400' : 'text-white'}`}>{life}</div>
               <div className="text-xs text-slate-500">Life</div>
+              {player?.manaPool && <ManaPool manaPool={player.manaPool} />}
             </div>
           );
         })}
       </div>
+
+      {/* Combat pairings */}
+      {isCombatPhase && combatCards.length > 0 && (
+        <CombatPairings cards={combatCards} playerNames={playerNames} />
+      )}
 
       {/* Stack */}
       {boardState.stack.length > 0 && (

@@ -23,6 +23,7 @@ export function Card({
 
   const isSelectedClass = isSelected ? 'ring-2 ring-blue-500 ring-offset-2' : '';
   const tappedClass = card.tapped ? 'rotate-90 opacity-80' : '';
+  const counterEntries = Object.entries(card.counters);
 
   if (card.faceDown) {
     return (
@@ -38,10 +39,12 @@ export function Card({
     );
   }
 
+  const { attacking, blocking } = card.combatStatus;
+
   return (
     <div className="relative">
       <div
-        className={`${sizeClasses[size]} ${isSelectedClass} ${tappedClass} bg-slate-800 rounded-lg border-2 ${card.attacking ? 'border-red-500' : card.blocking ? 'border-orange-500' : 'border-slate-600'} p-2 cursor-pointer hover:border-slate-400 transition-colors`}
+        className={`${sizeClasses[size]} ${isSelectedClass} ${tappedClass} bg-slate-800 rounded-lg border-2 ${attacking ? 'border-red-500' : blocking ? 'border-orange-500' : 'border-slate-600'} p-2 cursor-pointer hover:border-slate-400 transition-colors`}
         onClick={onClick}
       >
         <div className="h-full flex flex-col justify-between">
@@ -63,18 +66,20 @@ export function Card({
             {card.summoningSick && (
               <div className="text-yellow-500 text-xs">Summoning Sick</div>
             )}
-            {card.attachedToId && (
-              <div className="text-blue-400 text-xs truncate">Attached to #{card.attachedToId}</div>
+            {card.attachments.length > 0 && (
+              <div className="text-blue-400 text-xs truncate">
+                {card.attachments.length} attachment{card.attachments.length !== 1 ? 's' : ''}
+              </div>
             )}
-            {showCounters && card.counters.length > 0 && (
+            {showCounters && counterEntries.length > 0 && (
               <div className="flex gap-1 flex-wrap">
-                {card.counters.map((counter, idx) => (
+                {counterEntries.map(([type, amount]) => (
                   <div
-                    key={idx}
+                    key={type}
                     className="bg-amber-600 text-white text-xs px-1 rounded"
-                    title={`${counter.type}: ${counter.amount}`}
+                    title={`${type}: ${amount}`}
                   >
-                    {counter.amount} {counter.type}
+                    {amount} {type}
                   </div>
                 ))}
               </div>
@@ -83,10 +88,10 @@ export function Card({
         </div>
       </div>
 
-      {card.attacking && (
+      {attacking && (
         <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded">ATK</div>
       )}
-      {card.blocking && (
+      {blocking && (
         <div className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs px-1 rounded">BLK</div>
       )}
     </div>

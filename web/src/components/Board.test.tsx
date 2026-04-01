@@ -30,10 +30,10 @@ describe('Board Component', () => {
         cards: [{ ...createCard('card-4'), name: 'Creature 3' }],
       },
     ],
-    lifeTotals: {
-      'player-1': 18,
-      'player-2': 20,
-    },
+    players: [
+      { name: 'player-1', seat: 1, life: 18, manaPool: { W: 0, U: 0, B: 0, R: 0, G: 0, C: 0 } },
+      { name: 'player-2', seat: 2, life: 20, manaPool: { W: 0, U: 0, B: 0, R: 0, G: 0, C: 0 } },
+    ],
     turn: 3,
     phase: 'precombat_main',
     activePlayer: 'player-1',
@@ -199,7 +199,7 @@ describe('Board Component', () => {
   it('should handle default life totals', () => {
     const boardStateNoLife: BoardState = {
       ...mockBoardState,
-      lifeTotals: {},
+      players: [],
     };
 
     render(

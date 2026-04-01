@@ -1,76 +1,54 @@
 /**
  * Tests for GameLog Component
- *
- * GameLog.tsx still imports parseActionType from types/replay (removed in v3).
- * We mock it here so the component can render. The mock handles the old externally-
- * tagged action_type format that the component currently expects.
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-
-// Provide parseActionType mock before GameLog loads
-vi.mock('../types/replay', async () => {
-  const actual = await vi.importActual<typeof import('../types/replay')>('../types/replay');
-  return {
-    ...actual,
-    parseActionType: (actionType: Record<string, unknown>) => {
-      if (!actionType) return { type: 'Unknown', data: {} };
-      const keys = Object.keys(actionType);
-      if (keys.length > 0) {
-        const type = keys[0];
-        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
-      }
-      return { type: 'Unknown', data: {} };
-    },
-  };
-});
-
 import { GameLog } from './GameLog';
+import type { EventEntry } from '../types/replay';
 
 describe('GameLog Component', () => {
-  // Mock actions use the old externally-tagged format that GameLog.tsx currently expects
-  const mockActions = [
+  const mockActions: EventEntry[] = [
     {
-      timestamp: '2024-01-01T10:00:00Z',
+      type: 'event',
       turn: 1,
       phase: 'beginning',
-      active_player: 'player-1',
-      action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
+      active_player: 'Alice',
+      event: { type: 'DrawCard', player: 'Alice', card_id: 'card-1' },
     },
     {
-      timestamp: '2024-01-01T10:00:05Z',
+      type: 'event',
       turn: 1,
       phase: 'main1',
-      active_player: 'player-1',
-      action_type: { PlayLand: { player_id: 'player-1', card_id: 'card-2' } },
+      active_player: 'Alice',
+      event: { type: 'PlayLand', player: 'Alice', card_id: 'card-2' },
     },
     {
-      timestamp: '2024-01-01T10:00:10Z',
+      type: 'event',
       turn: 1,
       phase: 'main1',
-      active_player: 'player-1',
-      action_type: { CastSpell: { player_id: 'player-1', card_id: 'card-3' } },
+      active_player: 'Alice',
+      event: { type: 'CastSpell', player: 'Alice', card_id: 'card-3' },
     },
     {
-      timestamp: '2024-01-01T10:00:15Z',
+      type: 'event',
       turn: 1,
       phase: 'combat',
-      active_player: 'player-1',
-      action_type: { Attack: { attacker_id: 'card-2', defender_id: 'player-2' } },
+      active_player: 'Alice',
+      event: { type: 'Attack', attacker_id: 'card-2' },
     },
     {
-      timestamp: '2024-01-01T10:00:20Z',
+      type: 'event',
       turn: 1,
       phase: 'end',
-      active_player: 'player-1',
-      action_type: { PassPriority: { player_id: 'player-1' } },
+      active_player: 'Alice',
+      event: { type: 'PassPriority', player: 'Alice' },
     },
-  ] as any[];
+  ];
 
   const mockPlayerNames = {
-    'player-1': 'Alice',
-    'player-2': 'Bob',
+    'Alice': 'Alice',
+    'Bob': 'Bob',
   };
 
   beforeEach(() => {
@@ -204,15 +182,15 @@ describe('GameLog Component', () => {
   });
 
   it('should use playerId when playerName not found', () => {
-    const actionsWithoutNames = [
+    const actionsWithoutNames: EventEntry[] = [
       {
-        timestamp: '2024-01-01T10:00:00Z',
+        type: 'event',
         turn: 1,
         phase: 'beginning',
         active_player: 'unknown-player',
-        action_type: { DrawCard: { player_id: 'unknown-player', card_id: 'card-1' } },
+        event: { type: 'DrawCard', player: 'unknown-player', card_id: 'card-1' },
       },
-    ] as any[];
+    ];
 
     render(
       <GameLog
@@ -235,27 +213,6 @@ describe('GameLog Component', () => {
     );
 
     expect(container.firstChild).toHaveClass('custom-class');
-  });
-
-  it('should handle actions without known type', () => {
-    const actionsWithUnknown = [
-      {
-        timestamp: '2024-01-01T10:00:00Z',
-        turn: 1,
-        phase: 'beginning',
-        active_player: 'player-1',
-        action_type: { Unknown: { description: 'game ended' } },
-      },
-    ] as any[];
-
-    render(
-      <GameLog
-        actions={actionsWithUnknown}
-        playerNameMap={mockPlayerNames}
-      />,
-    );
-
-    expect(screen.getByText('game ended')).toBeInTheDocument();
   });
 
   it('should format phase names correctly', () => {

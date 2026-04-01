@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
-import type { RawReplayAction } from '../types/replay';
-import { parseActionType } from '../types/replay';
+import type { EventEntry } from '../types/replay';
 
 export interface GameLogProps {
-  actions: RawReplayAction[];
+  actions: EventEntry[];
   currentStep?: number;
   onActionClick?: (step: number) => void;
   playerNameMap?: Record<string, string>;
@@ -34,7 +33,12 @@ export function GameLog({
   }, [currentStep, autoScroll]);
 
   const parsedActions = useMemo(
-    () => actions.map((a, i) => ({ index: i, raw: a, ...parseActionType(a.action_type) })),
+    () => actions.map((entry, i) => ({
+      index: i,
+      entry,
+      type: entry.event.type,
+      data: entry.event as Record<string, unknown>,
+    })),
     [actions],
   );
 
@@ -49,8 +53,8 @@ export function GameLog({
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((a) =>
         a.type.toLowerCase().includes(query) ||
-        a.raw.active_player?.toLowerCase().includes(query) ||
-        a.raw.phase?.toLowerCase().includes(query),
+        a.entry.active_player?.toLowerCase().includes(query) ||
+        a.entry.phase?.toLowerCase().includes(query),
       );
     }
 
@@ -122,8 +126,6 @@ export function GameLog({
         return `Turn ${data.turn}`;
       case 'PassPriority':
         return `passed priority`;
-      case 'Unknown':
-        return data.description as string || 'unknown action';
       default:
         return type;
     }
@@ -197,7 +199,7 @@ export function GameLog({
         ) : (
           filteredActions.map((action) => {
             const isCurrentStep = currentStep !== undefined && action.index === currentStep - 1;
-            const playerForAction = (action.data.player_id as string) ?? action.raw.active_player;
+            const playerForAction = (action.data.player as string) ?? action.entry.active_player;
 
             return (
               <div
@@ -213,14 +215,14 @@ export function GameLog({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs text-slate-500">#{action.index + 1}</span>
-                      {action.raw.turn > 0 && (
+                      {action.entry.turn > 0 && (
                         <span className="text-xs text-slate-500">
-                          T{action.raw.turn}
+                          T{action.entry.turn}
                         </span>
                       )}
-                      {action.raw.phase && (
+                      {action.entry.phase && (
                         <span className="text-xs text-slate-400">
-                          {action.raw.phase}
+                          {action.entry.phase}
                         </span>
                       )}
                     </div>

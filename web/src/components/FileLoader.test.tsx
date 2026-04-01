@@ -9,37 +9,30 @@ import type { ReplayFile } from '../types/replay';
 
 describe('FileLoader Component', () => {
   const mockReplayFile: ReplayFile = {
-    metadata: {},
+    version: '3.0',
     header: {
+      game_id: 123,
       format: 'Standard',
       start_time: '2024-01-01T10:00:00Z',
+      result: { winner: '', reason: '' },
+      complete: false,
       players: [
-        { player_id: 'player-1', name: 'Alice', life_total: 20 },
-        { player_id: 'player-2', name: 'Bob', life_total: 20 },
+        { name: 'Alice', seat: 0 },
+        { name: 'Bob', seat: 1 },
       ],
+      decklist: { mainboard: [], sideboard: [] },
+      sideboard_changes: null,
     },
-    games: [
+    timeline: [
       {
-        game_number: 1,
-        header: {
-          game_id: 'test-game-123',
-          players: [
-            { player_id: 'player-1', name: 'Alice', life_total: 20 },
-            { player_id: 'player-2', name: 'Bob', life_total: 20 },
-          ],
-          result: 'Incomplete',
-        },
-        actions: [
-          {
-            timestamp: '2024-01-01T10:00:00Z',
-            turn: 1,
-            phase: 'beginning',
-            active_player: 'player-1',
-            action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
-          },
-        ],
+        type: 'event',
+        turn: 1,
+        phase: 'beginning',
+        active_player: 'Alice',
+        event: { type: 'DrawCard', player: 'Alice', card_id: 'card-1' },
       },
     ],
+    card_catalog: {},
   };
 
   const mockJsonContent = JSON.stringify(mockReplayFile);

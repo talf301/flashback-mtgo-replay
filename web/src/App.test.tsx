@@ -1,37 +1,13 @@
 /**
  * Tests for Main App Component
- *
- * App.tsx still uses the old games[] structure. These tests mock parseActionType
- * (used by GameLog) so the app can render, and use old-format mock data that
- * matches App.tsx's current expectations. When App.tsx is updated for v3, the
- * mock data should be updated to use timeline/card_catalog format.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// Mock parseActionType so GameLog renders inside App
-vi.mock('./types/replay', async () => {
-  const actual = await vi.importActual<typeof import('./types/replay')>('./types/replay');
-  return {
-    ...actual,
-    parseActionType: (actionType: Record<string, unknown>) => {
-      if (!actionType) return { type: 'Unknown', data: {} };
-      const keys = Object.keys(actionType);
-      if (keys.length > 0) {
-        const type = keys[0];
-        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
-      }
-      return { type: 'Unknown', data: {} };
-    },
-  };
-});
-
 import { App } from './App';
-import { getCardBatch } from './api/scryfall';
 
-vi.mock('./api/scryfall');
 vi.mock('./engine/reconstructor', async () => {
   const { createEmptyBoardState } = await import('./types/state');
   class MockReconstructor {
@@ -46,53 +22,44 @@ vi.mock('./engine/reconstructor', async () => {
 });
 
 describe('App Component', () => {
-  // Mock replay file using the format that App.tsx currently reads (games[])
   const mockReplayFile = {
-    metadata: {},
+    version: '3.0',
     header: {
+      game_id: 123,
       format: 'Standard',
       start_time: '2024-01-01T10:00:00Z',
       end_time: '2024-01-01T10:30:00Z',
+      result: { winner: 'Alice', reason: 'Concession' },
+      complete: true,
       players: [
-        { player_id: 'player-1', name: 'Alice', life_total: 20 },
-        { player_id: 'player-2', name: 'Bob', life_total: 20 },
+        { name: 'Alice', seat: 0 },
+        { name: 'Bob', seat: 1 },
       ],
+      decklist: { mainboard: [], sideboard: [] },
+      sideboard_changes: null,
     },
-    games: [
+    timeline: [
       {
-        game_number: 1,
-        header: {
-          game_id: 'test-game-123',
-          players: [
-            { player_id: 'player-1', name: 'Alice', life_total: 20 },
-            { player_id: 'player-2', name: 'Bob', life_total: 20 },
-          ],
-          result: { Win: { winner_id: 'player-1' } },
-        },
-        actions: [
-          {
-            timestamp: '2024-01-01T10:00:00Z',
-            turn: 1,
-            phase: 'beginning',
-            active_player: 'player-1',
-            action_type: { DrawCard: { player_id: 'player-1', card_id: 'card-1' } },
-          },
-          {
-            timestamp: '2024-01-01T10:00:05Z',
-            turn: 1,
-            phase: 'main1',
-            active_player: 'player-1',
-            action_type: { PlayLand: { player_id: 'player-1', card_id: 'card-2' } },
-          },
-        ],
+        type: 'event',
+        turn: 1,
+        phase: 'beginning',
+        active_player: 'Alice',
+        event: { type: 'DrawCard', player: 'Alice', card_id: 'card-1' },
+      },
+      {
+        type: 'event',
+        turn: 1,
+        phase: 'main1',
+        active_player: 'Alice',
+        event: { type: 'PlayLand', player: 'Alice', card_id: 'card-2' },
       },
     ],
+    card_catalog: {},
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
     vi.useFakeTimers({ shouldAdvanceTime: true });
-    (getCardBatch as any).mockResolvedValue([]);
   });
 
   afterEach(() => {
@@ -138,7 +105,7 @@ describe('App Component', () => {
     }
 
     await waitFor(() => {
-      expect(screen.getByText('Game: test-game-123')).toBeInTheDocument();
+      expect(screen.getByText('Game: 123')).toBeInTheDocument();
       expect(screen.getByText('Standard')).toBeInTheDocument();
       expect(screen.getAllByText('Alice').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);

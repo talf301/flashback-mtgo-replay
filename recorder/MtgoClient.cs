@@ -87,6 +87,21 @@ public sealed class MtgoClient : IMtgoClient
     }
 
     /// <summary>
+    /// Returns a seat index for a player by finding their position in the
+    /// game's player list. Returns -1 if not found.
+    /// </summary>
+    private static int GetSeatIndex(Game game, GamePlayer player)
+    {
+        var players = game.Players;
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].Name == player.Name)
+                return i;
+        }
+        return -1;
+    }
+
+    /// <summary>
     /// Called when the local player joins a game. Sets up per-game event
     /// subscriptions on the <see cref="Game"/> instance.
     /// </summary>
@@ -111,9 +126,9 @@ public sealed class MtgoClient : IMtgoClient
             {
                 CardId = card.Id,
                 CardName = card.Name,
-                SourceZone = card.Zone.ToString(),
-                DestinationZone = card.Zone.ToString(),
-                OwnerSeat = card.Owner.Seat,
+                SourceZone = card.PreviousZone?.ToString() ?? "Unknown",
+                DestinationZone = card.Zone?.ToString() ?? "Unknown",
+                OwnerSeat = GetSeatIndex(game, card.Owner),
             });
         };
 
@@ -122,11 +137,11 @@ public sealed class MtgoClient : IMtgoClient
             OnGameAction?.Invoke(this, new GameActionEventArgs
             {
                 ActionType = action.Type.ToString(),
-                CardId = action.Card.Id,
-                CardName = action.Card.Name,
-                PlayerSeat = action.Player.Seat,
-                AbilityText = action.AbilityText,
-                SourceZone = action.SourceZone?.ToString(),
+                CardId = action.ActionId,
+                CardName = action.Name,
+                PlayerSeat = 0,
+                AbilityText = null,
+                SourceZone = null,
             });
         };
 
@@ -134,7 +149,7 @@ public sealed class MtgoClient : IMtgoClient
         {
             OnLifeChange?.Invoke(this, new LifeChangeEventArgs
             {
-                PlayerSeat = player.Seat,
+                PlayerSeat = GetSeatIndex(game, player),
                 OldLife = player.Life,
                 NewLife = player.Life,
                 Source = null,
@@ -162,14 +177,15 @@ public sealed class MtgoClient : IMtgoClient
 
         game.GameStatusChanged += (GameStatusEventArgs args) =>
         {
-            if (args.IsComplete)
+            if (args.NewStatus == MTGOSDK.API.Play.Games.GameStatus.Finished)
             {
+                var winners = game.WinningPlayers;
                 OnGameStatusChange?.Invoke(this, new GameStatusChangeEventArgs
                 {
-                    Status = GameStatus.Ended,
+                    Status = FlashbackRecorder.GameStatus.Ended,
                     GameId = game.Id,
-                    WinnerName = args.Winner?.Name,
-                    Reason = args.Reason?.ToString(),
+                    WinnerName = winners.Count > 0 ? winners[0].Name : null,
+                    Reason = null,
                 });
             }
         };

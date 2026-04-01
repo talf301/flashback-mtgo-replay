@@ -3,101 +3,44 @@
  *
  * These tests verify the complete user flow from file loading through
  * replay playback and interaction.
- *
- * App.tsx still uses the old games[] structure. We mock parseActionType
- * (used by GameLog) so the app can render.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// Mock parseActionType so GameLog renders inside App
-vi.mock('./types/replay', async () => {
-  const actual = await vi.importActual<typeof import('./types/replay')>('./types/replay');
-  return {
-    ...actual,
-    parseActionType: (actionType: Record<string, unknown>) => {
-      if (!actionType) return { type: 'Unknown', data: {} };
-      const keys = Object.keys(actionType);
-      if (keys.length > 0) {
-        const type = keys[0];
-        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
-      }
-      return { type: 'Unknown', data: {} };
-    },
-  };
-});
-
 import { App } from './App';
-import { getCardBatch } from './api/scryfall';
 
-vi.mock('./api/scryfall');
+vi.mock('./engine/reconstructor', async () => {
+  const { createEmptyBoardState } = await import('./types/state');
+  class MockReconstructor {
+    loadReplay = vi.fn();
+    reconstruct = vi.fn().mockReturnValue(createEmptyBoardState());
+    getActionCount = vi.fn().mockReturnValue(0);
+    getTimelineLength = vi.fn().mockReturnValue(0);
+    getCardNames = vi.fn().mockReturnValue({});
+    getCatalog = vi.fn().mockReturnValue({});
+  }
+  return { Reconstructor: MockReconstructor };
+});
 
 describe('App E2E Tests', () => {
   const mockReplayFile = {
-    metadata: {},
+    version: '3.0',
     header: {
+      game_id: 456,
       format: 'Modern',
       start_time: '2024-01-01T10:00:00Z',
       end_time: '2024-01-01T11:00:00Z',
+      result: { winner: 'Player One', reason: 'Concession' },
+      complete: true,
       players: [
-        { player_id: 'player-1', name: 'Player One', life_total: 20 },
-        { player_id: 'player-2', name: 'Player Two', life_total: 20 },
+        { name: 'Player One', seat: 0 },
+        { name: 'Player Two', seat: 1 },
       ],
+      decklist: { mainboard: [], sideboard: [] },
+      sideboard_changes: null,
     },
-    // games[] is read by App.tsx (old format, still present until App is updated to v3)
-    games: [
-      {
-        game_number: 1,
-        header: {
-          game_id: 'e2e-test-game',
-          players: [
-            { player_id: 'player-1', name: 'Player One', life_total: 20 },
-            { player_id: 'player-2', name: 'Player Two', life_total: 20 },
-          ],
-          result: { Win: { winner_id: 'player-1' } },
-        },
-        actions: [
-          {
-            timestamp: '2024-01-01T10:00:00Z',
-            turn: 1,
-            phase: 'beginning',
-            active_player: 'player-1',
-            action_type: { DrawCard: { player_id: 'player-1', card_id: 'lightning-bolt' } },
-          },
-          {
-            timestamp: '2024-01-01T10:00:05Z',
-            turn: 1,
-            phase: 'main1',
-            active_player: 'player-1',
-            action_type: { PlayLand: { player_id: 'player-1', card_id: 'mountain' } },
-          },
-          {
-            timestamp: '2024-01-01T10:00:10Z',
-            turn: 1,
-            phase: 'main1',
-            active_player: 'player-1',
-            action_type: { CastSpell: { player_id: 'player-1', card_id: 'lightning-bolt' } },
-          },
-          {
-            timestamp: '2024-01-01T10:00:15Z',
-            turn: 1,
-            phase: 'combat',
-            active_player: 'player-1',
-            action_type: { PassPriority: { player_id: 'player-1' } },
-          },
-          {
-            timestamp: '2024-01-01T10:00:20Z',
-            turn: 1,
-            phase: 'end',
-            active_player: 'player-1',
-            action_type: { PassPriority: { player_id: 'player-1' } },
-          },
-        ],
-      },
-    ],
-    // v3 timeline/catalog for the real Reconstructor
     timeline: [
       { type: 'event', turn: 1, phase: 'beginning', active_player: 'Player One', event: { type: 'DrawCard', player: 'Player One', card_id: 'lightning-bolt' } },
       { type: 'event', turn: 1, phase: 'main1', active_player: 'Player One', event: { type: 'PlayLand', player: 'Player One', card_id: 'mountain' } },
@@ -106,31 +49,10 @@ describe('App E2E Tests', () => {
       { type: 'event', turn: 1, phase: 'end', active_player: 'Player One', event: { type: 'PassPriority', player: 'Player One' } },
     ],
     card_catalog: {},
-  } as any;
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (getCardBatch as any).mockResolvedValue([
-      {
-        id: 'lb-123',
-        name: 'Lightning Bolt',
-        cmc: 1,
-        type_line: 'Instant',
-        colors: ['R'],
-        color_identity: ['R'],
-        image_uris: {
-          small: 'https://example.com/small.jpg',
-          normal: 'https://example.com/normal.jpg',
-          large: 'https://example.com/large.jpg',
-          png: 'https://example.com/card.png',
-          art_crop: 'https://example.com/art.jpg',
-          border_crop: 'https://example.com/border.jpg',
-        },
-        legalities: { modern: 'legal' },
-        set_name: 'Modern Horizons 2',
-        collector_number: '123',
-      },
-    ]);
   });
 
   afterEach(() => {
@@ -154,7 +76,7 @@ describe('App E2E Tests', () => {
       // Verify app loaded
       await waitFor(() => {
         expect(screen.getByText('MTG Replay Viewer')).toBeInTheDocument();
-        expect(screen.getByText('Game: e2e-test-game')).toBeInTheDocument();
+        expect(screen.getByText('Game: 456')).toBeInTheDocument();
       });
 
       // Step 2: Verify initial state
@@ -295,7 +217,7 @@ describe('App E2E Tests', () => {
       }
 
       await waitFor(() => {
-        expect(screen.getByText('Game: e2e-test-game')).toBeInTheDocument();
+        expect(screen.getByText('Game: 456')).toBeInTheDocument();
       });
 
       // Click load new replay
@@ -319,7 +241,7 @@ describe('App E2E Tests', () => {
       }
 
       await waitFor(() => {
-        expect(screen.getByText('Game: e2e-test-game')).toBeInTheDocument();
+        expect(screen.getByText('Game: 456')).toBeInTheDocument();
       });
     });
 
@@ -339,7 +261,7 @@ describe('App E2E Tests', () => {
       // Verify header info
       await waitFor(() => {
         expect(screen.getByText('MTG Replay Viewer')).toBeInTheDocument();
-        expect(screen.getByText('Game: e2e-test-game')).toBeInTheDocument();
+        expect(screen.getByText('Game: 456')).toBeInTheDocument();
         expect(screen.getByText('Modern')).toBeInTheDocument();
       });
 
@@ -352,7 +274,7 @@ describe('App E2E Tests', () => {
       expect(screen.getByText('Game Info')).toBeInTheDocument();
       expect(screen.getByText('Started:')).toBeInTheDocument();
       expect(screen.getByText('Ended:')).toBeInTheDocument();
-      expect(screen.getByText('Actions:')).toBeInTheDocument();
+      expect(screen.getByText('Timeline entries:')).toBeInTheDocument();
       expect(screen.getByText(/Result:/)).toBeInTheDocument();
     });
 

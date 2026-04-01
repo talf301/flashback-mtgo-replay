@@ -40,8 +40,8 @@ export function FileLoader({
       throw new Error('Missing or invalid header');
     }
 
-    if (!Array.isArray(replay.games) || replay.games.length === 0) {
-      throw new Error('Missing or invalid games array');
+    if (!Array.isArray(replay.timeline) || replay.timeline.length === 0) {
+      throw new Error('Missing or invalid timeline array');
     }
 
     return true;

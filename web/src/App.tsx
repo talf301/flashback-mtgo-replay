@@ -11,7 +11,6 @@ import { FileLoader } from './components/FileLoader';
 
 export function App() {
   const [replayFile, setReplayFile] = useState<ReplayFile | null>(null);
-  const [gameIndex, setGameIndex] = useState(0);
   const [reconstructor, setReconstructor] = useState<Reconstructor | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [boardState, setBoardState] = useState<BoardState>(createEmptyBoardState());
@@ -20,42 +19,34 @@ export function App() {
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const playbackIntervalRef = useRef<number | null>(null);
 
-  const currentGame = replayFile?.games[gameIndex];
-  const totalSteps = currentGame?.actions.length ?? 0;
+  const totalSteps = replayFile?.timeline.length ?? 0;
   const canStepForward = currentStep < totalSteps;
   const canStepBackward = currentStep > 0;
 
   const playerNames = replayFile?.header.players.reduce(
-    (acc, player) => ({ ...acc, [player.player_id]: player.name }),
+    (acc, player) => ({ ...acc, [player.name]: player.name }),
     {} as Record<string, string>,
   ) ?? {};
-  const playerIds = replayFile?.header.players.map((p) => p.player_id) ?? [];
+  const playerIds = replayFile?.header.players.map((p) => p.name) ?? [];
+
+  const cardNameMap = replayFile
+    ? Object.fromEntries(
+        Object.entries(replayFile.card_catalog).map(([id, entry]) => [id, entry.name]),
+      )
+    : {};
 
   const handleFileLoad = useCallback((file: ReplayFile) => {
     setReplayFile(file);
-    setGameIndex(0);
     setCurrentStep(0);
     setIsPlaying(false);
 
     const r = new Reconstructor();
-    r.loadReplay(file, 0);
+    r.loadReplay(file);
     setReconstructor(r);
 
     // Initialize to step 0 (empty board before any actions)
     setBoardState(r.reconstruct(0));
   }, []);
-
-  const handleGameSwitch = useCallback(
-    (newIndex: number) => {
-      if (!replayFile || !reconstructor) return;
-      reconstructor.loadReplay(replayFile, newIndex);
-      setGameIndex(newIndex);
-      setCurrentStep(0);
-      setIsPlaying(false);
-      setBoardState(reconstructor.reconstruct(0));
-    },
-    [replayFile, reconstructor],
-  );
 
   const stepTo = useCallback(
     (step: number) => {
@@ -139,7 +130,12 @@ export function App() {
     );
   }
 
-  const winnerId = currentGame ? getWinnerId(currentGame.header.result) : undefined;
+  const winnerId = getWinnerId(replayFile.header.result);
+
+  // Filter timeline to event entries for the game log
+  const eventEntries = replayFile.timeline.filter(
+    (entry): entry is import('./types/replay').EventEntry => entry.type === 'event',
+  );
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -147,26 +143,9 @@ export function App() {
         <div className="max-w-full mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-white">MTG Replay Viewer</h1>
-            <p className="text-sm text-slate-400">Game: {currentGame?.header.game_id}</p>
+            <p className="text-sm text-slate-400">Game: {replayFile.header.game_id}</p>
           </div>
           <div className="flex items-center gap-2">
-            {replayFile.games.length > 1 && (
-              <div className="game-selector flex gap-1">
-                {replayFile.games.map((game, i) => (
-                  <button
-                    key={i}
-                    className={`px-3 py-1 rounded text-sm transition-colors ${
-                      i === gameIndex
-                        ? 'active bg-blue-600 text-white'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                    }`}
-                    onClick={() => handleGameSwitch(i)}
-                  >
-                    Game {game.game_number}
-                  </button>
-                ))}
-              </div>
-            )}
             {replayFile.header.format && (
               <div className="px-3 py-1 bg-slate-800 rounded text-slate-300 text-sm">
                 {replayFile.header.format}
@@ -179,11 +158,11 @@ export function App() {
       <div className="flex h-[calc(100vh-64px)]">
         <aside className="w-80 border-r border-slate-800 bg-slate-900/50 overflow-hidden flex flex-col">
           <GameLog
-            actions={currentGame?.actions ?? []}
+            actions={eventEntries}
             currentStep={currentStep}
             onActionClick={handleActionClick}
             playerNameMap={playerNames}
-            cardNameMap={currentGame?.card_names ?? {}}
+            cardNameMap={cardNameMap}
             autoScroll={true}
           />
         </aside>
@@ -221,10 +200,10 @@ export function App() {
               <h3 className="text-sm font-semibold text-slate-300 mb-2">Players</h3>
               <div className="space-y-2">
                 {replayFile.header.players.map((player) => (
-                  <div key={player.player_id} className="flex items-center justify-between">
+                  <div key={player.name} className="flex items-center justify-between">
                     <div className="text-sm text-slate-400">{player.name}</div>
                     <div className="text-xs text-slate-500 bg-slate-800 px-2 py-0.5 rounded">
-                      {player.player_id}
+                      Seat {player.seat}
                     </div>
                   </div>
                 ))}
@@ -247,24 +226,21 @@ export function App() {
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span>Actions:</span>
-                  <span>{currentGame?.actions.length ?? 0}</span>
+                  <span>Timeline entries:</span>
+                  <span>{replayFile.timeline.length}</span>
                 </div>
-                {currentGame && (
-                  <div className="flex justify-between">
-                    <span>Result:</span>
-                    <span className={winnerId ? 'text-green-400' : ''}>
-                      {getResultLabel(currentGame.header.result)}
-                    </span>
-                  </div>
-                )}
+                <div className="flex justify-between">
+                  <span>Result:</span>
+                  <span className={winnerId ? 'text-green-400' : ''}>
+                    {getResultLabel(replayFile.header.result)}
+                  </span>
+                </div>
               </div>
             </div>
 
             <button
               onClick={() => {
                 setReplayFile(null);
-                setGameIndex(0);
                 setReconstructor(null);
                 setCurrentStep(0);
                 setIsPlaying(false);

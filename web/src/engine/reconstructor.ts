@@ -1,6 +1,6 @@
 import { BoardState, createEmptyBoardState, CardState, createCard, Zone } from '../types/state';
 import { RawReplayAction, ReplayFile, parseActionType } from '../types/replay';
-import { resolveCardNamesByMtgoId } from '../api/scryfall';
+
 
 /**
  * Reconstructs board state by applying actions sequentially.
@@ -20,37 +20,6 @@ export class Reconstructor {
     }
     this.actions = game.actions;
     this.cardNames = game.card_names ? { ...game.card_names } : {};
-  }
-
-  /**
-   * Resolves unnamed cards using MTGO IDs from card_textures via Scryfall.
-   * Merges resolved names into cardNames. Returns the number of newly resolved names.
-   */
-  async resolveCardTextures(cardTextures: Record<string, number>): Promise<number> {
-    // Find MTGO IDs for cards that don't already have names
-    const unresolvedIds = new Map<number, string[]>(); // mtgo_id → [card_ids]
-    for (const [cardId, mtgoId] of Object.entries(cardTextures)) {
-      if (!this.cardNames[cardId]) {
-        const existing = unresolvedIds.get(mtgoId) ?? [];
-        existing.push(cardId);
-        unresolvedIds.set(mtgoId, existing);
-      }
-    }
-
-    if (unresolvedIds.size === 0) return 0;
-
-    const resolved = await resolveCardNamesByMtgoId([...unresolvedIds.keys()]);
-
-    let count = 0;
-    for (const [mtgoId, card] of resolved) {
-      const cardIds = unresolvedIds.get(mtgoId) ?? [];
-      for (const cardId of cardIds) {
-        this.cardNames[cardId] = card.name;
-        count++;
-      }
-    }
-
-    return count;
   }
 
   reconstruct(step: number): BoardState {

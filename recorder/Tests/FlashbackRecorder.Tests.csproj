@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>FlashbackRecorder.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="xunit" Version="2.7.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!--
+    Include source files from the main project directly instead of a ProjectReference,
+    because the main project targets net8.0-windows and depends on MTGOSDK (Windows-only).
+    We exclude MtgoClient.cs (the SDK implementation) since tests use MockMtgoClient.
+  -->
+  <ItemGroup>
+    <Compile Include="../IMtgoClient.cs" Link="IMtgoClient.cs" />
+    <Compile Include="../GameSessionManager.cs" Link="GameSessionManager.cs" />
+    <Compile Include="../Models/GameEvent.cs" Link="Models/GameEvent.cs" />
+    <Compile Include="../Models/Snapshot.cs" Link="Models/Snapshot.cs" />
+    <Compile Include="../Models/GameSession.cs" Link="Models/GameSession.cs" />
+    <Compile Include="../Models/ReplayData.cs" Link="Models/ReplayData.cs" />
+    <Compile Include="../Models/ReplayFormat.cs" Link="Models/ReplayFormat.cs" />
+    <Compile Include="../FileWriter.cs" Link="FileWriter.cs" />
+  </ItemGroup>
+
+</Project>

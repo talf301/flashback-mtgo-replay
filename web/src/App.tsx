@@ -43,53 +43,16 @@ export function App() {
 
     // Initialize to step 0 (empty board before any actions)
     setBoardState(r.reconstruct(0));
-
-    // Resolve unnamed cards via Scryfall using MTGO IDs
-    const game = file.games[0];
-    if (game?.card_textures && Object.keys(game.card_textures).length > 0) {
-      r.resolveCardTextures(game.card_textures).then((count) => {
-        if (count > 0) {
-          console.log(`Resolved ${count} card names from Scryfall`);
-          // Merge resolved names back into the replay file for GameLog etc.
-          setReplayFile((prev) => {
-            if (!prev) return prev;
-            const updatedGames = prev.games.map((g, i) =>
-              i === 0
-                ? { ...g, card_names: { ...g.card_names, ...r.getCardNames() } }
-                : g
-            );
-            return { ...prev, games: updatedGames };
-          });
-        }
-      });
-    }
   }, []);
 
   const handleGameSwitch = useCallback(
-    async (newIndex: number) => {
+    (newIndex: number) => {
       if (!replayFile || !reconstructor) return;
       reconstructor.loadReplay(replayFile, newIndex);
       setGameIndex(newIndex);
       setCurrentStep(0);
       setIsPlaying(false);
       setBoardState(reconstructor.reconstruct(0));
-
-      const game = replayFile.games[newIndex];
-      if (game?.card_textures && Object.keys(game.card_textures).length > 0) {
-        const count = await reconstructor.resolveCardTextures(game.card_textures);
-        if (count > 0) {
-          console.log(`Resolved ${count} card names from Scryfall`);
-          setReplayFile((prev) => {
-            if (!prev) return prev;
-            const updatedGames = prev.games.map((g, i) =>
-              i === newIndex
-                ? { ...g, card_names: { ...g.card_names, ...reconstructor.getCardNames() } }
-                : g
-            );
-            return { ...prev, games: updatedGames };
-          });
-        }
-      }
     },
     [replayFile, reconstructor],
   );

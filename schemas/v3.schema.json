@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flashback-mtgo-replay/schemas/v3.schema.json",
+  "title": "Flashback v3 Replay Format",
+  "description": "Schema for v3 .flashback replay files. Single-game per file with snapshot+event timeline and a card catalog.",
+  "type": "object",
+  "required": ["version", "header", "timeline", "card_catalog"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "3",
+      "description": "Format version. Always '3' for this schema."
+    },
+    "header": { "$ref": "#/$defs/ReplayHeader" },
+    "timeline": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/TimelineEntry" },
+      "description": "Ordered array of interleaved snapshot and event entries."
+    },
+    "card_catalog": { "$ref": "#/$defs/CardCatalog" }
+  },
+  "$defs": {
+    "ReplayHeader": {
+      "type": "object",
+      "required": ["game_id", "players", "format", "start_time", "result", "complete", "decklist"],
+      "additionalProperties": false,
+      "properties": {
+        "game_id": { "type": "integer", "description": "MTGO game ID." },
+        "players": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/PlayerInfo" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "format": { "type": "string", "description": "Game format (Standard, Modern, etc.)." },
+        "start_time": { "type": "string", "format": "date-time" },
+        "end_time": { "type": ["string", "null"], "format": "date-time" },
+        "result": { "$ref": "#/$defs/GameResult" },
+        "complete": { "type": "boolean", "description": "True if the game recording completed normally." },
+        "decklist": { "$ref": "#/$defs/Decklist" },
+        "sideboard_changes": {
+          "oneOf": [
+            { "$ref": "#/$defs/SideboardChanges" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "PlayerInfo": {
+      "type": "object",
+      "required": ["name", "seat"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "seat": { "type": "integer", "minimum": 1, "maximum": 2 }
+      }
+    },
+    "GameResult": {
+      "type": "object",
+      "required": ["winner", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "winner": { "type": "string", "description": "Winner player name, or empty string if no winner." },
+        "reason": { "type": "string", "description": "Win reason (concession, timeout, life, decking, etc.)." }
+      }
+    },
+    "Decklist": {
+      "type": "object",
+      "required": ["mainboard", "sideboard"],
+      "additionalProperties": false,
+      "properties": {
+        "mainboard": { "type": "array", "items": { "type": "string" } },
+        "sideboard": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "SideboardChanges": {
+      "type": "object",
+      "required": ["in", "out"],
+      "additionalProperties": false,
+      "properties": {
+        "in": { "type": "array", "items": { "type": "string" } },
+        "out": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "TimelineEntry": {
+      "oneOf": [
+        { "$ref": "#/$defs/SnapshotEntry" },
+        { "$ref": "#/$defs/EventEntry" }
+      ]
+    },
+    "SnapshotEntry": {
+      "type": "object",
+      "required": ["type", "turn", "phase", "active_player", "state"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "snapshot" },
+        "turn": { "type": "integer", "minimum": 0 },
+        "phase": { "type": "string" },
+        "active_player": { "type": "string" },
+        "state": { "$ref": "#/$defs/SnapshotState" }
+      }
+    },
+    "EventEntry": {
+      "type": "object",
+      "required": ["type", "turn", "phase", "active_player", "event"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "event" },
+        "turn": { "type": "integer", "minimum": 0 },
+        "phase": { "type": "string" },
+        "active_player": { "type": "string" },
+        "event": { "$ref": "#/$defs/GameEvent" }
+      }
+    },
+    "SnapshotState": {
+      "type": "object",
+      "required": ["players", "active_player", "priority_player"],
+      "additionalProperties": false,
+      "properties": {
+        "players": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/PlayerSnapshot" }
+        },
+        "active_player": { "type": "string" },
+        "priority_player": { "type": "string" }
+      }
+    },
+    "PlayerSnapshot": {
+      "type": "object",
+      "required": ["name", "seat", "life", "mana_pool", "zones"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "seat": { "type": "integer" },
+        "life": { "type": "integer" },
+        "mana_pool": { "$ref": "#/$defs/ManaPool" },
+        "zones": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/ZoneSnapshot" }
+        }
+      }
+    },
+    "ManaPool": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "W": { "type": "integer", "minimum": 0 },
+        "U": { "type": "integer", "minimum": 0 },
+        "B": { "type": "integer", "minimum": 0 },
+        "R": { "type": "integer", "minimum": 0 },
+        "G": { "type": "integer", "minimum": 0 },
+        "C": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "ZoneSnapshot": {
+      "type": "object",
+      "required": ["cards"],
+      "additionalProperties": false,
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CardObject" }
+        },
+        "count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "CardObject": {
+      "type": "object",
+      "required": ["id", "catalog_id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "catalog_id": { "type": "string" },
+        "tapped": { "type": "boolean" },
+        "flipped": { "type": "boolean" },
+        "face_down": { "type": "boolean" },
+        "power": { "type": "integer" },
+        "toughness": { "type": "integer" },
+        "damage": { "type": "integer", "minimum": 0 },
+        "counters": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        },
+        "attachments": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "combat_status": { "$ref": "#/$defs/CombatStatus" },
+        "summoning_sickness": { "type": "boolean" },
+        "controller": { "type": "string" }
+      }
+    },
+    "CombatStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attacking": { "type": "boolean" },
+        "blocking": { "type": "boolean" },
+        "attack_target": { "type": "string" },
+        "block_target": { "type": "string" }
+      }
+    },
+    "GameEvent": {
+      "type": "object",
+      "required": ["type"],
+      "oneOf": [
+        {
+          "properties": { "type": { "const": "DrawCard" }, "player": { "type": "string" }, "card_id": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "PlayLand" }, "player": { "type": "string" }, "card_id": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "CastSpell" }, "player": { "type": "string" }, "card_id": { "type": "string" }, "source_zone": { "type": "string" }, "ability_text": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "ActivateAbility" }, "player": { "type": "string" }, "card_id": { "type": "string" }, "ability_text": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "Resolve" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "ZoneTransition" }, "card_id": { "type": "string" }, "from_zone": { "type": "string" }, "to_zone": { "type": "string" }, "player": { "type": "string" } },
+          "required": ["type", "card_id", "from_zone", "to_zone"]
+        },
+        {
+          "properties": { "type": { "const": "Attack" }, "attacker_id": { "type": "string" }, "target": { "type": "string" } },
+          "required": ["type", "attacker_id"]
+        },
+        {
+          "properties": { "type": { "const": "Block" }, "blocker_id": { "type": "string" }, "attacker_id": { "type": "string" } },
+          "required": ["type", "blocker_id", "attacker_id"]
+        },
+        {
+          "properties": { "type": { "const": "LifeChange" }, "player": { "type": "string" }, "old_life": { "type": "integer" }, "new_life": { "type": "integer" }, "source": { "type": "string" } },
+          "required": ["type", "player", "old_life", "new_life"]
+        },
+        {
+          "properties": { "type": { "const": "TapPermanent" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "UntapPermanent" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "DamageMarked" }, "card_id": { "type": "string" }, "damage": { "type": "integer" } },
+          "required": ["type", "card_id", "damage"]
+        },
+        {
+          "properties": { "type": { "const": "SummoningSickness" }, "card_id": { "type": "string" }, "has_sickness": { "type": "boolean" } },
+          "required": ["type", "card_id", "has_sickness"]
+        },
+        {
+          "properties": { "type": { "const": "FaceDown" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "FaceUp" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "Attach" }, "card_id": { "type": "string" }, "attached_to_id": { "type": "string" } },
+          "required": ["type", "card_id", "attached_to_id"]
+        },
+        {
+          "properties": { "type": { "const": "Detach" }, "card_id": { "type": "string" } },
+          "required": ["type", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "CounterUpdate" }, "card_id": { "type": "string" }, "counter_type": { "type": "string" }, "count": { "type": "integer" } },
+          "required": ["type", "card_id", "counter_type", "count"]
+        },
+        {
+          "properties": { "type": { "const": "PowerToughnessUpdate" }, "card_id": { "type": "string" }, "power": { "type": "integer" }, "toughness": { "type": "integer" } },
+          "required": ["type", "card_id", "power", "toughness"]
+        },
+        {
+          "properties": { "type": { "const": "Discard" }, "player": { "type": "string" }, "card_id": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "Mill" }, "player": { "type": "string" }, "card_id": { "type": "string" } },
+          "required": ["type", "player", "card_id"]
+        },
+        {
+          "properties": { "type": { "const": "CreateToken" }, "player": { "type": "string" }, "card_id": { "type": "string" }, "token_name": { "type": "string" } },
+          "required": ["type", "player", "card_id", "token_name"]
+        },
+        {
+          "properties": { "type": { "const": "TurnChange" }, "turn": { "type": "integer" }, "player": { "type": "string" } },
+          "required": ["type", "turn", "player"]
+        },
+        {
+          "properties": { "type": { "const": "PhaseChange" }, "phase": { "type": "string" } },
+          "required": ["type", "phase"]
+        },
+        {
+          "properties": { "type": { "const": "PassPriority" }, "player": { "type": "string" } },
+          "required": ["type", "player"]
+        }
+      ]
+    },
+    "CardCatalog": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/CardCatalogEntry" },
+      "description": "Maps catalog_id to card metadata. Each unique card name appears once."
+    },
+    "CardCatalogEntry": {
+      "type": "object",
+      "required": ["name", "mana_cost", "type_line"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "mana_cost": { "type": "string" },
+        "type_line": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,12 +1,34 @@
 /**
  * Tests for Main App Component
+ *
+ * App.tsx still uses the old games[] structure. These tests mock parseActionType
+ * (used by GameLog) so the app can render, and use old-format mock data that
+ * matches App.tsx's current expectations. When App.tsx is updated for v3, the
+ * mock data should be updated to use timeline/card_catalog format.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+// Mock parseActionType so GameLog renders inside App
+vi.mock('./types/replay', async () => {
+  const actual = await vi.importActual<typeof import('./types/replay')>('./types/replay');
+  return {
+    ...actual,
+    parseActionType: (actionType: Record<string, unknown>) => {
+      if (!actionType) return { type: 'Unknown', data: {} };
+      const keys = Object.keys(actionType);
+      if (keys.length > 0) {
+        const type = keys[0];
+        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
+      }
+      return { type: 'Unknown', data: {} };
+    },
+  };
+});
+
 import { App } from './App';
-import type { ReplayFile } from './types/replay';
 import { getCardBatch } from './api/scryfall';
 
 vi.mock('./api/scryfall');
@@ -16,12 +38,16 @@ vi.mock('./engine/reconstructor', async () => {
     loadReplay = vi.fn();
     reconstruct = vi.fn().mockReturnValue(createEmptyBoardState());
     getActionCount = vi.fn().mockReturnValue(0);
+    getTimelineLength = vi.fn().mockReturnValue(0);
+    getCardNames = vi.fn().mockReturnValue({});
+    getCatalog = vi.fn().mockReturnValue({});
   }
   return { Reconstructor: MockReconstructor };
 });
 
 describe('App Component', () => {
-  const mockReplayFile: ReplayFile = {
+  // Mock replay file using the format that App.tsx currently reads (games[])
+  const mockReplayFile = {
     metadata: {},
     header: {
       format: 'Standard',
@@ -83,7 +109,6 @@ describe('App Component', () => {
   it('should render app after file load', async () => {
     const { container } = render(<App />);
 
-    // Simulate file load by creating a mock file
     const input = container.querySelector('input[type="file"]') as HTMLInputElement;
     const file = new File([JSON.stringify(mockReplayFile)], 'test.json', {
       type: 'application/json',

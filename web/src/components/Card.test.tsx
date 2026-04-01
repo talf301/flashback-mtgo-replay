@@ -42,10 +42,10 @@ describe('Card Component', () => {
     const mockCard = {
       ...createCard('card-1'),
       name: 'Test Card',
-      counters: [
-        { type: '+1/+1', amount: 2 },
-        { type: '-1/-1', amount: 1 },
-      ],
+      counters: {
+        '+1/+1': 2,
+        '-1/-1': 1,
+      },
     };
 
     render(<Card card={mockCard} showCounters={true} />);
@@ -126,7 +126,7 @@ describe('Card Component', () => {
     const mockCard = {
       ...createCard('card-1'),
       name: 'Test Card',
-      counters: [{ type: '+1/+1', amount: 2 }],
+      counters: { '+1/+1': 2 },
     };
 
     render(<Card card={mockCard} showCounters={false} />);

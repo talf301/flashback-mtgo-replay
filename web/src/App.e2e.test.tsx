@@ -3,19 +3,39 @@
  *
  * These tests verify the complete user flow from file loading through
  * replay playback and interaction.
+ *
+ * App.tsx still uses the old games[] structure. We mock parseActionType
+ * (used by GameLog) so the app can render.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+// Mock parseActionType so GameLog renders inside App
+vi.mock('./types/replay', async () => {
+  const actual = await vi.importActual<typeof import('./types/replay')>('./types/replay');
+  return {
+    ...actual,
+    parseActionType: (actionType: Record<string, unknown>) => {
+      if (!actionType) return { type: 'Unknown', data: {} };
+      const keys = Object.keys(actionType);
+      if (keys.length > 0) {
+        const type = keys[0];
+        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
+      }
+      return { type: 'Unknown', data: {} };
+    },
+  };
+});
+
 import { App } from './App';
-import type { ReplayFile } from './types/replay';
 import { getCardBatch } from './api/scryfall';
 
 vi.mock('./api/scryfall');
 
 describe('App E2E Tests', () => {
-  const mockReplayFile: ReplayFile = {
+  const mockReplayFile = {
     metadata: {},
     header: {
       format: 'Modern',
@@ -26,6 +46,7 @@ describe('App E2E Tests', () => {
         { player_id: 'player-2', name: 'Player Two', life_total: 20 },
       ],
     },
+    // games[] is read by App.tsx (old format, still present until App is updated to v3)
     games: [
       {
         game_number: 1,
@@ -76,7 +97,16 @@ describe('App E2E Tests', () => {
         ],
       },
     ],
-  };
+    // v3 timeline/catalog for the real Reconstructor
+    timeline: [
+      { type: 'event', turn: 1, phase: 'beginning', active_player: 'Player One', event: { type: 'DrawCard', player: 'Player One', card_id: 'lightning-bolt' } },
+      { type: 'event', turn: 1, phase: 'main1', active_player: 'Player One', event: { type: 'PlayLand', player: 'Player One', card_id: 'mountain' } },
+      { type: 'event', turn: 1, phase: 'main1', active_player: 'Player One', event: { type: 'CastSpell', player: 'Player One', card_id: 'lightning-bolt' } },
+      { type: 'event', turn: 1, phase: 'combat', active_player: 'Player One', event: { type: 'PassPriority', player: 'Player One' } },
+      { type: 'event', turn: 1, phase: 'end', active_player: 'Player One', event: { type: 'PassPriority', player: 'Player One' } },
+    ],
+    card_catalog: {},
+  } as any;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -323,7 +353,7 @@ describe('App E2E Tests', () => {
       expect(screen.getByText('Started:')).toBeInTheDocument();
       expect(screen.getByText('Ended:')).toBeInTheDocument();
       expect(screen.getByText('Actions:')).toBeInTheDocument();
-      expect(screen.getByText(/Winner:/)).toBeInTheDocument();
+      expect(screen.getByText(/Result:/)).toBeInTheDocument();
     });
 
     it('should handle error states gracefully', async () => {

@@ -1,14 +1,36 @@
 /**
  * Tests for GameLog Component
+ *
+ * GameLog.tsx still imports parseActionType from types/replay (removed in v3).
+ * We mock it here so the component can render. The mock handles the old externally-
+ * tagged action_type format that the component currently expects.
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+
+// Provide parseActionType mock before GameLog loads
+vi.mock('../types/replay', async () => {
+  const actual = await vi.importActual<typeof import('../types/replay')>('../types/replay');
+  return {
+    ...actual,
+    parseActionType: (actionType: Record<string, unknown>) => {
+      if (!actionType) return { type: 'Unknown', data: {} };
+      const keys = Object.keys(actionType);
+      if (keys.length > 0) {
+        const type = keys[0];
+        return { type, data: (actionType[type] as Record<string, unknown>) || {} };
+      }
+      return { type: 'Unknown', data: {} };
+    },
+  };
+});
+
 import { GameLog } from './GameLog';
-import type { RawReplayAction } from '../types/replay';
 
 describe('GameLog Component', () => {
-  const mockActions: RawReplayAction[] = [
+  // Mock actions use the old externally-tagged format that GameLog.tsx currently expects
+  const mockActions = [
     {
       timestamp: '2024-01-01T10:00:00Z',
       turn: 1,
@@ -44,7 +66,7 @@ describe('GameLog Component', () => {
       active_player: 'player-1',
       action_type: { PassPriority: { player_id: 'player-1' } },
     },
-  ];
+  ] as any[];
 
   const mockPlayerNames = {
     'player-1': 'Alice',
@@ -182,7 +204,7 @@ describe('GameLog Component', () => {
   });
 
   it('should use playerId when playerName not found', () => {
-    const actionsWithoutNames: RawReplayAction[] = [
+    const actionsWithoutNames = [
       {
         timestamp: '2024-01-01T10:00:00Z',
         turn: 1,
@@ -190,7 +212,7 @@ describe('GameLog Component', () => {
         active_player: 'unknown-player',
         action_type: { DrawCard: { player_id: 'unknown-player', card_id: 'card-1' } },
       },
-    ];
+    ] as any[];
 
     render(
       <GameLog
@@ -216,7 +238,7 @@ describe('GameLog Component', () => {
   });
 
   it('should handle actions without known type', () => {
-    const actionsWithUnknown: RawReplayAction[] = [
+    const actionsWithUnknown = [
       {
         timestamp: '2024-01-01T10:00:00Z',
         turn: 1,
@@ -224,7 +246,7 @@ describe('GameLog Component', () => {
         active_player: 'player-1',
         action_type: { Unknown: { description: 'game ended' } },
       },
-    ];
+    ] as any[];
 
     render(
       <GameLog

@@ -1,0 +1,148 @@
+{
+  "version": "3",
+  "header": {
+    "game_id": 98765,
+    "players": [
+      { "name": "Alice", "seat": 1 },
+      { "name": "Bob", "seat": 2 }
+    ],
+    "format": "Standard",
+    "start_time": "2024-06-15T14:30:00Z",
+    "end_time": "2024-06-15T14:52:00Z",
+    "result": { "winner": "Alice", "reason": "concession" },
+    "complete": true,
+    "decklist": {
+      "mainboard": ["Mountain", "Mountain", "Lightning Bolt", "Grizzly Bears"],
+      "sideboard": ["Shock"]
+    },
+    "sideboard_changes": null
+  },
+  "timeline": [
+    {
+      "type": "snapshot",
+      "turn": 1,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "state": {
+        "players": [
+          {
+            "name": "Alice",
+            "seat": 1,
+            "life": 20,
+            "mana_pool": {},
+            "zones": {
+              "hand": { "cards": [{ "id": "inst-1", "catalog_id": "mountain" }] },
+              "battlefield": { "cards": [] },
+              "library": { "cards": [], "count": 6 },
+              "graveyard": { "cards": [] }
+            }
+          },
+          {
+            "name": "Bob",
+            "seat": 2,
+            "life": 20,
+            "mana_pool": {},
+            "zones": {
+              "hand": { "cards": [] },
+              "battlefield": { "cards": [] },
+              "library": { "cards": [], "count": 7 },
+              "graveyard": { "cards": [] }
+            }
+          }
+        ],
+        "active_player": "Alice",
+        "priority_player": "Alice"
+      }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "PlayLand", "player": "Alice", "card_id": "inst-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "TapPermanent", "card_id": "inst-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "CastSpell", "player": "Alice", "card_id": "bolt-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "Resolve", "card_id": "bolt-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 20, "new_life": 17, "source": "bolt-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "end_of_turn",
+      "active_player": "Alice",
+      "event": { "type": "PassPriority", "player": "Alice" }
+    },
+    {
+      "type": "snapshot",
+      "turn": 2,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "state": {
+        "players": [
+          {
+            "name": "Alice",
+            "seat": 1,
+            "life": 20,
+            "mana_pool": {},
+            "zones": {
+              "hand": { "cards": [] },
+              "battlefield": { "cards": [{ "id": "inst-1", "catalog_id": "mountain", "tapped": true }] },
+              "library": { "cards": [], "count": 6 },
+              "graveyard": { "cards": [{ "id": "bolt-1", "catalog_id": "lightning-bolt" }] }
+            }
+          },
+          {
+            "name": "Bob",
+            "seat": 2,
+            "life": 17,
+            "mana_pool": {},
+            "zones": {
+              "hand": { "cards": [] },
+              "battlefield": { "cards": [] },
+              "library": { "cards": [], "count": 7 },
+              "graveyard": { "cards": [] }
+            }
+          }
+        ],
+        "active_player": "Bob",
+        "priority_player": "Bob"
+      }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "untap",
+      "active_player": "Bob",
+      "event": { "type": "TurnChange", "turn": 2, "player": "Bob" }
+    }
+  ],
+  "card_catalog": {
+    "mountain": { "name": "Mountain", "mana_cost": "", "type_line": "Basic Land - Mountain" },
+    "lightning-bolt": { "name": "Lightning Bolt", "mana_cost": "{R}", "type_line": "Instant" },
+    "grizzly-bears": { "name": "Grizzly Bears", "mana_cost": "{1}{G}", "type_line": "Creature - Bear" }
+  }
+}

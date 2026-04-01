@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { App } from './App';
@@ -372,14 +372,18 @@ describe('App Component', () => {
     await userEvent.click(playButton);
 
     // Advance timer
-    vi.advanceTimersByTime(1100);
+    await act(async () => {
+      vi.advanceTimersByTime(1100);
+    });
 
     await waitFor(() => {
       expect(screen.getByText('Step 1 / 2')).toBeInTheDocument();
     });
 
     // Advance timer again
-    vi.advanceTimersByTime(1100);
+    await act(async () => {
+      vi.advanceTimersByTime(1100);
+    });
 
     await waitFor(() => {
       expect(screen.getByText('Step 2 / 2')).toBeInTheDocument();

@@ -1,0 +1,762 @@
+{
+  "version": "3",
+  "header": {
+    "game_id": 100042,
+    "players": [
+      { "name": "Alice", "seat": 1 },
+      { "name": "Bob", "seat": 2 }
+    ],
+    "format": "Modern",
+    "start_time": "2026-03-15T19:05:00Z",
+    "end_time": "2026-03-15T19:28:00Z",
+    "result": { "winner": "Alice", "reason": "life" },
+    "complete": true,
+    "decklist": {
+      "mainboard": [
+        "Ragavan, Nimble Pilferer",
+        "Ragavan, Nimble Pilferer",
+        "Dragon's Rage Channeler",
+        "Dragon's Rage Channeler",
+        "Murktide Regent",
+        "Murktide Regent",
+        "Lightning Bolt",
+        "Lightning Bolt",
+        "Counterspell",
+        "Counterspell",
+        "Unholy Heat",
+        "Expressive Iteration",
+        "Expressive Iteration",
+        "Mishra's Bauble",
+        "Mishra's Bauble",
+        "Steam Vents",
+        "Steam Vents",
+        "Scalding Tarn",
+        "Scalding Tarn"
+      ],
+      "sideboard": [
+        "Engineered Explosives",
+        "Flusterstorm",
+        "Blood Moon"
+      ]
+    },
+    "sideboard_changes": null
+  },
+  "timeline": [
+    {
+      "type": "snapshot",
+      "turn": 1,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "state": {
+        "players": [
+          {
+            "name": "Alice",
+            "seat": 1,
+            "life": 20,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "a-1", "catalog_id": "ragavan" },
+                  { "id": "a-2", "catalog_id": "drc" },
+                  { "id": "a-3", "catalog_id": "bolt" },
+                  { "id": "a-4", "catalog_id": "counterspell" },
+                  { "id": "a-5", "catalog_id": "scalding-tarn" },
+                  { "id": "a-6", "catalog_id": "steam-vents" },
+                  { "id": "a-7", "catalog_id": "mishras-bauble" }
+                ]
+              },
+              "battlefield": { "cards": [] },
+              "library": { "cards": [], "count": 53 },
+              "graveyard": { "cards": [] }
+            }
+          },
+          {
+            "name": "Bob",
+            "seat": 2,
+            "life": 20,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "b-1", "catalog_id": "goyf" },
+                  { "id": "b-2", "catalog_id": "wrenn" },
+                  { "id": "b-3", "catalog_id": "push" },
+                  { "id": "b-4", "catalog_id": "thoughtseize" },
+                  { "id": "b-5", "catalog_id": "verdant-catacombs" },
+                  { "id": "b-6", "catalog_id": "blooming-marsh" },
+                  { "id": "b-7", "catalog_id": "overgrown-tomb" }
+                ]
+              },
+              "battlefield": { "cards": [] },
+              "library": { "cards": [], "count": 53 },
+              "graveyard": { "cards": [] }
+            }
+          }
+        ],
+        "active_player": "Alice",
+        "priority_player": "Alice"
+      }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "PlayLand", "player": "Alice", "card_id": "a-5" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "TapPermanent", "card_id": "a-5" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "ZoneTransition", "card_id": "a-5", "from_zone": "battlefield", "to_zone": "graveyard", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "ZoneTransition", "card_id": "a-6", "from_zone": "library", "to_zone": "battlefield", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "LifeChange", "player": "Alice", "old_life": 20, "new_life": 17, "source": "a-6" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "TapPermanent", "card_id": "a-6" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "CastSpell", "player": "Alice", "card_id": "a-1", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "Resolve", "card_id": "a-1" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "SummoningSickness", "card_id": "a-1", "has_sickness": true }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "end_of_turn",
+      "active_player": "Alice",
+      "event": { "type": "PassPriority", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 1,
+      "phase": "end_of_turn",
+      "active_player": "Alice",
+      "event": { "type": "PassPriority", "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "TurnChange", "turn": 2, "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "DrawCard", "player": "Bob", "card_id": "b-8" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "PlayLand", "player": "Bob", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "TapPermanent", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "CastSpell", "player": "Bob", "card_id": "b-4", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "Resolve", "card_id": "b-4" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "Discard", "player": "Alice", "card_id": "a-4" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 20, "new_life": 18, "source": "b-4" }
+    },
+    {
+      "type": "event",
+      "turn": 2,
+      "phase": "end_of_turn",
+      "active_player": "Bob",
+      "event": { "type": "PassPriority", "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "event": { "type": "TurnChange", "turn": 3, "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "untap",
+      "active_player": "Alice",
+      "event": { "type": "UntapPermanent", "card_id": "a-6" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "event": { "type": "DrawCard", "player": "Alice", "card_id": "a-8" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "CastSpell", "player": "Alice", "card_id": "a-7", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "Resolve", "card_id": "a-7" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "SummoningSickness", "card_id": "a-1", "has_sickness": false }
+    },
+    {
+      "type": "snapshot",
+      "turn": 3,
+      "phase": "combat_begin",
+      "active_player": "Alice",
+      "state": {
+        "players": [
+          {
+            "name": "Alice",
+            "seat": 1,
+            "life": 17,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "a-2", "catalog_id": "drc" },
+                  { "id": "a-3", "catalog_id": "bolt" },
+                  { "id": "a-8", "catalog_id": "expressive-iteration" }
+                ]
+              },
+              "battlefield": {
+                "cards": [
+                  { "id": "a-6", "catalog_id": "steam-vents", "tapped": false },
+                  { "id": "a-1", "catalog_id": "ragavan", "tapped": false, "power": 2, "toughness": 1, "summoning_sickness": false }
+                ]
+              },
+              "library": { "cards": [], "count": 51 },
+              "graveyard": {
+                "cards": [
+                  { "id": "a-5", "catalog_id": "scalding-tarn" },
+                  { "id": "a-7", "catalog_id": "mishras-bauble" }
+                ]
+              }
+            }
+          },
+          {
+            "name": "Bob",
+            "seat": 2,
+            "life": 18,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "b-1", "catalog_id": "goyf" },
+                  { "id": "b-2", "catalog_id": "wrenn" },
+                  { "id": "b-3", "catalog_id": "push" },
+                  { "id": "b-5", "catalog_id": "verdant-catacombs" },
+                  { "id": "b-7", "catalog_id": "overgrown-tomb" },
+                  { "id": "b-8", "catalog_id": "inquisition" }
+                ]
+              },
+              "battlefield": {
+                "cards": [
+                  { "id": "b-6", "catalog_id": "blooming-marsh", "tapped": true }
+                ]
+              },
+              "library": { "cards": [], "count": 52 },
+              "graveyard": {
+                "cards": [
+                  { "id": "b-4", "catalog_id": "thoughtseize" }
+                ]
+              }
+            }
+          }
+        ],
+        "active_player": "Alice",
+        "priority_player": "Alice"
+      }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "combat_attackers",
+      "active_player": "Alice",
+      "event": { "type": "Attack", "attacker_id": "a-1", "target": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "combat_damage",
+      "active_player": "Alice",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 18, "new_life": 16, "source": "a-1" }
+    },
+    {
+      "type": "event",
+      "turn": 3,
+      "phase": "end_of_turn",
+      "active_player": "Alice",
+      "event": { "type": "PassPriority", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "TurnChange", "turn": 4, "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "DrawCard", "player": "Bob", "card_id": "b-9" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "PlayLand", "player": "Bob", "card_id": "b-7" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 16, "new_life": 14, "source": "b-7" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "UntapPermanent", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "TapPermanent", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "TapPermanent", "card_id": "b-7" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "CastSpell", "player": "Bob", "card_id": "b-1", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "Resolve", "card_id": "b-1" }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "SummoningSickness", "card_id": "b-1", "has_sickness": true }
+    },
+    {
+      "type": "event",
+      "turn": 4,
+      "phase": "end_of_turn",
+      "active_player": "Bob",
+      "event": { "type": "PassPriority", "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "event": { "type": "TurnChange", "turn": 5, "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "untap",
+      "active_player": "Alice",
+      "event": { "type": "UntapPermanent", "card_id": "a-6" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "beginning",
+      "active_player": "Alice",
+      "event": { "type": "DrawCard", "player": "Alice", "card_id": "a-9" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "PlayLand", "player": "Alice", "card_id": "a-9" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "TapPermanent", "card_id": "a-6" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "TapPermanent", "card_id": "a-9" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "CastSpell", "player": "Alice", "card_id": "a-8", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "precombat_main",
+      "active_player": "Alice",
+      "event": { "type": "Resolve", "card_id": "a-8" }
+    },
+    {
+      "type": "snapshot",
+      "turn": 5,
+      "phase": "combat_begin",
+      "active_player": "Alice",
+      "state": {
+        "players": [
+          {
+            "name": "Alice",
+            "seat": 1,
+            "life": 17,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "a-2", "catalog_id": "drc" },
+                  { "id": "a-3", "catalog_id": "bolt" },
+                  { "id": "a-10", "catalog_id": "unholy-heat" }
+                ]
+              },
+              "battlefield": {
+                "cards": [
+                  { "id": "a-6", "catalog_id": "steam-vents", "tapped": true },
+                  { "id": "a-9", "catalog_id": "scalding-tarn-2", "tapped": true },
+                  { "id": "a-1", "catalog_id": "ragavan", "tapped": false, "power": 2, "toughness": 1 }
+                ]
+              },
+              "library": { "cards": [], "count": 49 },
+              "graveyard": {
+                "cards": [
+                  { "id": "a-5", "catalog_id": "scalding-tarn" },
+                  { "id": "a-7", "catalog_id": "mishras-bauble" },
+                  { "id": "a-8", "catalog_id": "expressive-iteration" }
+                ]
+              }
+            }
+          },
+          {
+            "name": "Bob",
+            "seat": 2,
+            "life": 14,
+            "mana_pool": {},
+            "zones": {
+              "hand": {
+                "cards": [
+                  { "id": "b-2", "catalog_id": "wrenn" },
+                  { "id": "b-3", "catalog_id": "push" },
+                  { "id": "b-5", "catalog_id": "verdant-catacombs" },
+                  { "id": "b-8", "catalog_id": "inquisition" },
+                  { "id": "b-9", "catalog_id": "liliana" }
+                ]
+              },
+              "battlefield": {
+                "cards": [
+                  { "id": "b-6", "catalog_id": "blooming-marsh", "tapped": true },
+                  { "id": "b-7", "catalog_id": "overgrown-tomb", "tapped": true },
+                  { "id": "b-1", "catalog_id": "goyf", "tapped": false, "power": 4, "toughness": 5, "summoning_sickness": true }
+                ]
+              },
+              "library": { "cards": [], "count": 51 },
+              "graveyard": {
+                "cards": [
+                  { "id": "b-4", "catalog_id": "thoughtseize" }
+                ]
+              }
+            }
+          }
+        ],
+        "active_player": "Alice",
+        "priority_player": "Alice"
+      }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "combat_attackers",
+      "active_player": "Alice",
+      "event": { "type": "Attack", "attacker_id": "a-1", "target": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "combat_damage",
+      "active_player": "Alice",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 14, "new_life": 12, "source": "a-1" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "postcombat_main",
+      "active_player": "Alice",
+      "event": { "type": "CastSpell", "player": "Alice", "card_id": "a-3", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "postcombat_main",
+      "active_player": "Alice",
+      "event": { "type": "Resolve", "card_id": "a-3" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "postcombat_main",
+      "active_player": "Alice",
+      "event": { "type": "LifeChange", "player": "Bob", "old_life": 12, "new_life": 9, "source": "a-3" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "postcombat_main",
+      "active_player": "Alice",
+      "event": { "type": "ZoneTransition", "card_id": "a-3", "from_zone": "stack", "to_zone": "graveyard", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 5,
+      "phase": "end_of_turn",
+      "active_player": "Alice",
+      "event": { "type": "PassPriority", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "TurnChange", "turn": 6, "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "untap",
+      "active_player": "Bob",
+      "event": { "type": "UntapPermanent", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "untap",
+      "active_player": "Bob",
+      "event": { "type": "UntapPermanent", "card_id": "b-7" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "untap",
+      "active_player": "Bob",
+      "event": { "type": "SummoningSickness", "card_id": "b-1", "has_sickness": false }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "beginning",
+      "active_player": "Bob",
+      "event": { "type": "DrawCard", "player": "Bob", "card_id": "b-10" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "PlayLand", "player": "Bob", "card_id": "b-5" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "TapPermanent", "card_id": "b-5" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "ZoneTransition", "card_id": "b-5", "from_zone": "battlefield", "to_zone": "graveyard", "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "ZoneTransition", "card_id": "b-11", "from_zone": "library", "to_zone": "battlefield", "player": "Bob" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "TapPermanent", "card_id": "b-6" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "CastSpell", "player": "Bob", "card_id": "b-3", "source_zone": "hand" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "Resolve", "card_id": "b-3" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "precombat_main",
+      "active_player": "Bob",
+      "event": { "type": "ZoneTransition", "card_id": "a-1", "from_zone": "battlefield", "to_zone": "graveyard", "player": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "combat_attackers",
+      "active_player": "Bob",
+      "event": { "type": "Attack", "attacker_id": "b-1", "target": "Alice" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "combat_damage",
+      "active_player": "Bob",
+      "event": { "type": "LifeChange", "player": "Alice", "old_life": 17, "new_life": 13, "source": "b-1" }
+    },
+    {
+      "type": "event",
+      "turn": 6,
+      "phase": "end_of_turn",
+      "active_player": "Bob",
+      "event": { "type": "PassPriority", "player": "Bob" }
+    }
+  ],
+  "card_catalog": {
+    "ragavan": { "name": "Ragavan, Nimble Pilferer", "mana_cost": "{R}", "type_line": "Legendary Creature - Monkey Pirate" },
+    "drc": { "name": "Dragon's Rage Channeler", "mana_cost": "{R}", "type_line": "Creature - Human Shaman" },
+    "bolt": { "name": "Lightning Bolt", "mana_cost": "{R}", "type_line": "Instant" },
+    "counterspell": { "name": "Counterspell", "mana_cost": "{U}{U}", "type_line": "Instant" },
+    "scalding-tarn": { "name": "Scalding Tarn", "mana_cost": "", "type_line": "Land" },
+    "scalding-tarn-2": { "name": "Scalding Tarn", "mana_cost": "", "type_line": "Land" },
+    "steam-vents": { "name": "Steam Vents", "mana_cost": "", "type_line": "Land - Island Mountain" },
+    "mishras-bauble": { "name": "Mishra's Bauble", "mana_cost": "{0}", "type_line": "Artifact" },
+    "expressive-iteration": { "name": "Expressive Iteration", "mana_cost": "{U}{R}", "type_line": "Sorcery" },
+    "unholy-heat": { "name": "Unholy Heat", "mana_cost": "{R}", "type_line": "Instant" },
+    "murktide": { "name": "Murktide Regent", "mana_cost": "{5}{U}{U}", "type_line": "Creature - Dragon" },
+    "goyf": { "name": "Tarmogoyf", "mana_cost": "{1}{G}", "type_line": "Creature - Lhurgoyf" },
+    "wrenn": { "name": "Wrenn and Six", "mana_cost": "{R}{G}", "type_line": "Legendary Planeswalker - Wrenn" },
+    "push": { "name": "Fatal Push", "mana_cost": "{B}", "type_line": "Instant" },
+    "thoughtseize": { "name": "Thoughtseize", "mana_cost": "{B}", "type_line": "Sorcery" },
+    "verdant-catacombs": { "name": "Verdant Catacombs", "mana_cost": "", "type_line": "Land" },
+    "blooming-marsh": { "name": "Blooming Marsh", "mana_cost": "", "type_line": "Land" },
+    "overgrown-tomb": { "name": "Overgrown Tomb", "mana_cost": "", "type_line": "Land - Swamp Forest" },
+    "inquisition": { "name": "Inquisition of Kozilek", "mana_cost": "{B}", "type_line": "Sorcery" },
+    "liliana": { "name": "Liliana of the Veil", "mana_cost": "{1}{B}{B}", "type_line": "Legendary Planeswalker - Liliana" }
+  }
+}

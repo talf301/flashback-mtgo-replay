@@ -27,6 +27,7 @@ export function FileLoader({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loadedFileName, setLoadedFileName] = useState<string | null>(null);
+  const [isDemoLoading, setIsDemoLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateReplayFile = (data: unknown): data is ReplayFile => {
@@ -146,6 +147,35 @@ export function FileLoader({
     fileInputRef.current?.click();
   };
 
+  const handleLoadDemo = useCallback(async () => {
+    setError(null);
+    setIsDemoLoading(true);
+    try {
+      const response = await fetch('/demo.flashback');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch demo replay: ${response.status}`);
+      }
+      const text = await response.text();
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(text);
+      } catch {
+        throw new Error('Failed to parse demo replay JSON');
+      }
+      if (!validateReplayFile(parsed)) {
+        throw new Error('Invalid demo replay file structure');
+      }
+      setLoadedFileName('demo.flashback');
+      onFileLoad(parsed);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error loading demo';
+      setError(errorMessage);
+      onError?.(errorMessage);
+    } finally {
+      setIsDemoLoading(false);
+    }
+  }, [onFileLoad, onError]);
+
   const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -250,6 +280,24 @@ export function FileLoader({
             {error}
           </p>
         </div>
+      )}
+
+      {/* Demo replay button */}
+      {!loadedFileName && !isLoading && (
+        <button
+          onClick={handleLoadDemo}
+          disabled={isDemoLoading}
+          className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-wait text-white rounded-lg transition-colors w-full flex items-center justify-center gap-2"
+        >
+          {isDemoLoading ? (
+            <>
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              Loading Demo...
+            </>
+          ) : (
+            'Load Demo Replay'
+          )}
+        </button>
       )}
 
       {/* File info */}

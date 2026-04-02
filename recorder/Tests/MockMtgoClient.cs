@@ -1,4 +1,5 @@
 using FlashbackRecorder;
+using FlashbackRecorder.Models;
 
 namespace FlashbackRecorder.Tests;
 
@@ -9,6 +10,15 @@ namespace FlashbackRecorder.Tests;
 public class MockMtgoClient : IMtgoClient
 {
     public ConnectionState State { get; set; } = ConnectionState.Attached;
+
+    /// <summary>Card catalog entries to return from GetCardCatalog().</summary>
+    public Dictionary<string, CardCatalogEntry> CardCatalog { get; set; } = new();
+
+    /// <summary>Deck list to return from CaptureDeckList().</summary>
+    public DeckList? DeckListToReturn { get; set; }
+
+    /// <summary>Snapshot state to return from CaptureSnapshot().</summary>
+    public Dictionary<string, object>? SnapshotToReturn { get; set; }
 
     public event EventHandler<ZoneChangeEventArgs>? OnZoneChange;
     public event EventHandler<GameActionEventArgs>? OnGameAction;
@@ -21,13 +31,20 @@ public class MockMtgoClient : IMtgoClient
     public void Disconnect() { State = ConnectionState.Disconnected; }
     public void Dispose() { }
 
+    public Dictionary<string, CardCatalogEntry> GetCardCatalog() => new(CardCatalog);
+    public DeckList? CaptureDeckList() => DeckListToReturn;
+    public Dictionary<string, object> CaptureSnapshot(int turn) =>
+        SnapshotToReturn ?? new Dictionary<string, object>();
+
     // ── Simulation helpers ──
 
-    public void SimulateGameStart(int gameId) =>
+    public void SimulateGameStart(int gameId, List<PlayerInfo>? players = null, string? format = null) =>
         OnGameStatusChange?.Invoke(this, new GameStatusChangeEventArgs
         {
             Status = GameStatus.Started,
             GameId = gameId,
+            Players = players,
+            Format = format,
         });
 
     public void SimulateGameEnd(int gameId, string? winner = null, string? reason = null) =>

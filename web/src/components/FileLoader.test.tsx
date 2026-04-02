@@ -317,7 +317,7 @@ describe('FileLoader Component', () => {
       fireEvent.click(screen.getByText('Load Demo Replay'));
 
       await waitFor(() => {
-        expect(global.fetch).toHaveBeenCalledWith('/demo.flashback');
+        expect(global.fetch).toHaveBeenCalledWith(`${import.meta.env.BASE_URL}demo.flashback`);
         expect(handleLoad).toHaveBeenCalledWith(demoReplayContent);
         expect(screen.getByText('demo.flashback')).toBeInTheDocument();
       });

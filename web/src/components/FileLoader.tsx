@@ -151,7 +151,7 @@ export function FileLoader({
     setError(null);
     setIsDemoLoading(true);
     try {
-      const response = await fetch('/demo.flashback');
+      const response = await fetch(`${import.meta.env.BASE_URL}demo.flashback`);
       if (!response.ok) {
         throw new Error(`Failed to fetch demo replay: ${response.status}`);
       }

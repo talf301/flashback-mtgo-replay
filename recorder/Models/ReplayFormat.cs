@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace FlashbackRecorder.Models;
@@ -13,7 +14,7 @@ namespace FlashbackRecorder.Models;
 public class ReplayFileFormat
 {
     [JsonPropertyName("version")]
-    public string Version { get; init; } = "3.0";
+    public string Version { get; init; } = "3";
 
     [JsonPropertyName("header")]
     public required ReplayFileHeader Header { get; init; }
@@ -137,9 +138,9 @@ public class EventPayloadFormat
     [JsonPropertyName("type")]
     public required string Type { get; init; }
 
-    [JsonPropertyName("data")]
-    public Dictionary<string, object> Data { get; init; } = new();
-
     [JsonPropertyName("timestamp")]
     public string Timestamp { get; init; } = "";
+
+    [JsonExtensionData]
+    public Dictionary<string, JsonElement>? Fields { get; init; }
 }

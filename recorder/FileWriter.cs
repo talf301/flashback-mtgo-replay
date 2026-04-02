@@ -90,7 +90,7 @@ public class FileWriter
     internal static ReplayFileFormat ConvertToFileFormat(ReplayData replay)
     {
         var header = ConvertHeader(replay.Header);
-        var timeline = ConvertTimeline(replay.Timeline);
+        var timeline = ConvertTimeline(replay.Timeline, replay.Header);
         var catalog = ConvertCardCatalog(replay.CardCatalog);
 
         return new ReplayFileFormat
@@ -134,7 +134,28 @@ public class FileWriter
         };
     }
 
-    private static List<TimelineEntryFormat> ConvertTimeline(List<TimelineEntry> timeline)
+    /// <summary>
+    /// Maps internal camelCase event data keys to snake_case on-disk keys,
+    /// and resolves seat numbers to player names using the header.
+    /// </summary>
+    private static readonly Dictionary<string, string> FieldKeyMap = new()
+    {
+        ["cardId"] = "card_id",
+        ["cardName"] = "card_name",
+        ["playerSeat"] = "player",
+        ["ownerSeat"] = "owner",
+        ["sourceZone"] = "from_zone",
+        ["destinationZone"] = "to_zone",
+        ["oldLife"] = "old_life",
+        ["newLife"] = "new_life",
+        ["abilityText"] = "ability_text",
+        ["actionType"] = "action_type",
+    };
+
+    /// <summary>Keys whose integer values are seat numbers that should be resolved to player names.</summary>
+    private static readonly HashSet<string> SeatKeys = new() { "playerSeat", "ownerSeat" };
+
+    private static List<TimelineEntryFormat> ConvertTimeline(List<TimelineEntry> timeline, ReplayHeader header)
     {
         return timeline.Select(entry =>
         {
@@ -160,8 +181,8 @@ public class FileWriter
                     Event = new EventPayloadFormat
                     {
                         Type = entry.Event.Type,
-                        Data = entry.Event.Data,
                         Timestamp = entry.Event.Timestamp.ToString("o"),
+                        Fields = ConvertEventFields(entry.Event.Data, header),
                     },
                 };
             }
@@ -174,6 +195,39 @@ public class FileWriter
                 };
             }
         }).ToList();
+    }
+
+    /// <summary>
+    /// Converts internal event data dictionary to snake_case JsonElement fields,
+    /// resolving seat numbers to player names.
+    /// </summary>
+    private static Dictionary<string, JsonElement>? ConvertEventFields(
+        Dictionary<string, object> data, ReplayHeader header)
+    {
+        if (data.Count == 0) return null;
+
+        var result = new Dictionary<string, JsonElement>();
+        foreach (var (key, value) in data)
+        {
+            var mappedKey = FieldKeyMap.TryGetValue(key, out var snakeKey) ? snakeKey : key;
+
+            JsonElement element;
+            if (SeatKeys.Contains(key) && value is int seatNumber)
+            {
+                // Resolve seat number to player name
+                var playerName = header.Players
+                    .FirstOrDefault(p => p.Seat == seatNumber)?.Name ?? seatNumber.ToString();
+                element = JsonSerializer.SerializeToElement(playerName);
+            }
+            else
+            {
+                element = JsonSerializer.SerializeToElement(value);
+            }
+
+            result[mappedKey] = element;
+        }
+
+        return result;
     }
 
     private static Dictionary<string, CardCatalogEntryFormat> ConvertCardCatalog(

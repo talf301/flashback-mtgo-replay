@@ -48,7 +48,7 @@ public class GameSessionManagerTests
 
         Assert.Single(_replays);
         var replay = _replays[0];
-        Assert.Equal("3.0", replay.Version);
+        Assert.Equal("3", replay.Version);
         Assert.True(replay.Header.Complete);
         Assert.Equal(1001, replay.Header.GameId);
         Assert.Equal(1, replay.Header.GameNumber);

@@ -213,7 +213,7 @@ public class FileWriterTests : IDisposable
         var doc = JsonDocument.Parse(json);
         var root = doc.RootElement;
 
-        Assert.Equal("3.0", root.GetProperty("version").GetString());
+        Assert.Equal("3", root.GetProperty("version").GetString());
         Assert.True(root.TryGetProperty("header", out _));
         Assert.True(root.TryGetProperty("timeline", out _));
         Assert.True(root.TryGetProperty("card_catalog", out _));
@@ -377,24 +377,47 @@ public class FileWriterTests : IDisposable
 
         var evt = eventEntry.GetProperty("event");
         Assert.Equal("CastSpell", evt.GetProperty("type").GetString());
-        Assert.True(evt.TryGetProperty("data", out _));
         Assert.True(evt.TryGetProperty("timestamp", out _));
+        // Fields should be flattened into the event object (no "data" wrapper)
+        Assert.False(evt.TryGetProperty("data", out _));
+        Assert.Equal("Lightning Bolt", evt.GetProperty("card_name").GetString());
 
         // State should not be present on event entries
         Assert.False(eventEntry.TryGetProperty("state", out _));
     }
 
     [Fact]
-    public void SerializeToJson_EventDataPayload()
+    public void SerializeToJson_EventFieldsFlattened_WithSnakeCaseKeys()
     {
         var replay = CreateFullReplay();
         var json = FileWriter.SerializeToJson(replay);
         var doc = JsonDocument.Parse(json);
-        var eventData = doc.RootElement.GetProperty("timeline")[1]
-            .GetProperty("event").GetProperty("data");
+        var evt = doc.RootElement.GetProperty("timeline")[1].GetProperty("event");
 
-        Assert.Equal("Lightning Bolt", eventData.GetProperty("cardName").GetString());
-        Assert.Equal(0, eventData.GetProperty("playerSeat").GetInt32());
+        // Fields are flattened into the event object (no "data" wrapper)
+        Assert.False(evt.TryGetProperty("data", out _));
+
+        // camelCase keys are mapped to snake_case
+        Assert.Equal("Lightning Bolt", evt.GetProperty("card_name").GetString());
+        Assert.Equal(101, evt.GetProperty("card_id").GetInt32());
+
+        // playerSeat resolved to player name
+        Assert.Equal("Alice", evt.GetProperty("player").GetString());
+    }
+
+    [Fact]
+    public void SerializeToJson_SeatResolution_LifeChangeEvent()
+    {
+        var replay = CreateFullReplay();
+        var json = FileWriter.SerializeToJson(replay);
+        var doc = JsonDocument.Parse(json);
+        var evt = doc.RootElement.GetProperty("timeline")[2].GetProperty("event");
+
+        // playerSeat=1 resolved to "Bob"
+        Assert.Equal("Bob", evt.GetProperty("player").GetString());
+        // camelCase life fields mapped to snake_case
+        Assert.Equal(20, evt.GetProperty("old_life").GetInt32());
+        Assert.Equal(17, evt.GetProperty("new_life").GetInt32());
     }
 
     // ── Card catalog tests ──
@@ -457,7 +480,7 @@ public class FileWriterTests : IDisposable
         var doc = JsonDocument.Parse(content);
 
         // Should be able to parse and has expected top-level keys
-        Assert.Equal("3.0", doc.RootElement.GetProperty("version").GetString());
+        Assert.Equal("3", doc.RootElement.GetProperty("version").GetString());
         Assert.True(doc.RootElement.TryGetProperty("header", out _));
         Assert.True(doc.RootElement.TryGetProperty("timeline", out _));
         Assert.True(doc.RootElement.TryGetProperty("card_catalog", out _));
@@ -501,7 +524,7 @@ public class FileWriterTests : IDisposable
         var root = doc.RootElement;
 
         // Version
-        Assert.Equal("3.0", root.GetProperty("version").GetString());
+        Assert.Equal("3", root.GetProperty("version").GetString());
 
         // Header
         var header = root.GetProperty("header");

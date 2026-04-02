@@ -250,4 +250,116 @@ describe('FileLoader Component', () => {
     expect(screen.getByText(/Maximum size:/)).toBeInTheDocument();
     expect(screen.getByText(/5\.00 MB/)).toBeInTheDocument();
   });
+
+  describe('Load Demo Replay', () => {
+    const demoReplayContent: ReplayFile = {
+      version: '3',
+      header: {
+        game_id: 100042,
+        format: 'Modern',
+        start_time: '2026-03-15T19:05:00Z',
+        end_time: '2026-03-15T19:28:00Z',
+        result: { winner: 'Alice', reason: 'life' },
+        complete: true,
+        players: [
+          { name: 'Alice', seat: 1 },
+          { name: 'Bob', seat: 2 },
+        ],
+        decklist: { mainboard: ['Ragavan, Nimble Pilferer'], sideboard: [] },
+        sideboard_changes: null,
+      },
+      timeline: [
+        {
+          type: 'event',
+          turn: 1,
+          phase: 'precombat_main',
+          active_player: 'Alice',
+          event: { type: 'DrawCard', player: 'Alice', card_id: 'a-1' },
+        },
+      ],
+      card_catalog: {
+        ragavan: { name: 'Ragavan, Nimble Pilferer', mana_cost: '{R}', type_line: 'Legendary Creature - Monkey Pirate' },
+      },
+    };
+
+    it('should show Load Demo Replay button in empty state', () => {
+      const handleLoad = vi.fn();
+      render(<FileLoader onFileLoad={handleLoad} />);
+
+      expect(screen.getByText('Load Demo Replay')).toBeInTheDocument();
+    });
+
+    it('should not show Load Demo Replay button when file is loaded', async () => {
+      const handleLoad = vi.fn();
+      const { container } = render(<FileLoader onFileLoad={handleLoad} />);
+
+      const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+      if (input) {
+        const fileList = [mockFile] as unknown as FileList;
+        Object.defineProperty(input, 'files', { value: fileList, writable: false });
+        fireEvent.change(input);
+      }
+
+      await waitFor(() => {
+        expect(screen.queryByText('Load Demo Replay')).not.toBeInTheDocument();
+      });
+    });
+
+    it('should fetch and load demo replay on button click', async () => {
+      const handleLoad = vi.fn();
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify(demoReplayContent)),
+      });
+
+      render(<FileLoader onFileLoad={handleLoad} />);
+
+      fireEvent.click(screen.getByText('Load Demo Replay'));
+
+      await waitFor(() => {
+        expect(global.fetch).toHaveBeenCalledWith('/demo.flashback');
+        expect(handleLoad).toHaveBeenCalledWith(demoReplayContent);
+        expect(screen.getByText('demo.flashback')).toBeInTheDocument();
+      });
+    });
+
+    it('should show error when demo fetch fails', async () => {
+      const handleLoad = vi.fn();
+      const handleError = vi.fn();
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 404,
+        text: () => Promise.resolve('Not found'),
+      });
+
+      render(<FileLoader onFileLoad={handleLoad} onError={handleError} />);
+
+      fireEvent.click(screen.getByText('Load Demo Replay'));
+
+      await waitFor(() => {
+        expect(screen.getByText(/Failed to fetch demo replay: 404/)).toBeInTheDocument();
+        expect(handleError).toHaveBeenCalledWith('Failed to fetch demo replay: 404');
+      });
+
+      expect(handleLoad).not.toHaveBeenCalled();
+    });
+
+    it('should show error when demo response is invalid JSON', async () => {
+      const handleLoad = vi.fn();
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        text: () => Promise.resolve('not valid json'),
+      });
+
+      render(<FileLoader onFileLoad={handleLoad} />);
+
+      fireEvent.click(screen.getByText('Load Demo Replay'));
+
+      await waitFor(() => {
+        expect(screen.getByText(/Failed to parse demo replay JSON/)).toBeInTheDocument();
+      });
+
+      expect(handleLoad).not.toHaveBeenCalled();
+    });
+  });
 });

@@ -19,14 +19,18 @@ public static class Program
         var settings = Settings.Load();
         using IMtgoClient client = new MtgoClient();
         using var trayApp = new TrayApp(client, settings);
+        var fileWriter = new FileWriter(settings.OutputDirectory);
 
         // Wire the session manager to update tray state and show notifications.
         using var sessionManager = new GameSessionManager(
             client,
             onReplayComplete: replay =>
             {
+                fileWriter.WriteReplay(replay);
                 trayApp.OnGameSaved(replay);
-            });
+            },
+            deckListProvider: _ => client.CaptureDeckList(),
+            snapshotProvider: (gameId, turn) => client.CaptureSnapshot(turn));
 
         // Track game start for icon state.
         client.OnGameStatusChange += (_, e) =>

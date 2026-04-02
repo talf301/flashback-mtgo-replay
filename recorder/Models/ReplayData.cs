@@ -6,7 +6,7 @@ namespace FlashbackRecorder.Models;
 /// </summary>
 public class ReplayData
 {
-    public string Version { get; init; } = "3.0";
+    public string Version { get; init; } = "3";
 
     public required ReplayHeader Header { get; init; }
 

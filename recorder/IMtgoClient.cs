@@ -1,3 +1,5 @@
+using FlashbackRecorder.Models;
+
 namespace FlashbackRecorder;
 
 /// <summary>
@@ -15,6 +17,17 @@ public interface IMtgoClient : IDisposable
 
     /// <summary>Disconnect from the MTGO process and unsubscribe all events.</summary>
     void Disconnect();
+
+    // ── Data providers ──
+
+    /// <summary>Returns the accumulated card catalog for the current game.</summary>
+    Dictionary<string, CardCatalogEntry> GetCardCatalog();
+
+    /// <summary>Captures the registered deck list from the current event.</summary>
+    DeckList? CaptureDeckList();
+
+    /// <summary>Captures a full board state snapshot for the given turn.</summary>
+    Dictionary<string, object> CaptureSnapshot(int turn);
 
     // ── Event callbacks matching spec: Recorder Architecture > 1. MTGOSDK Integration Layer ──
 
@@ -95,6 +108,8 @@ public class GameStatusChangeEventArgs : EventArgs
     public required int GameId { get; init; }
     public string? WinnerName { get; init; }
     public string? Reason { get; init; }
+    public List<PlayerInfo>? Players { get; init; }
+    public string? Format { get; init; }
 }
 
 public enum GameStatus

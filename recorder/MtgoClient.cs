@@ -1,5 +1,6 @@
 using FlashbackRecorder.Models;
 using MTGOSDK.API;
+using MTGOSDK.API.Collection;
 using MTGOSDK.API.Play;
 using MTGOSDK.API.Play.Games;
 using static MTGOSDK.API.Events;
@@ -96,8 +97,8 @@ public sealed class MtgoClient : IMtgoClient
 
         return new DeckList
         {
-            Mainboard = deck.Mainboard.Select(c => c.Name).ToList(),
-            Sideboard = deck.Sideboard.Select(c => c.Name).ToList(),
+            Mainboard = deck.GetCards(DeckRegion.MainDeck).Select(c => c.Name).ToList(),
+            Sideboard = deck.GetCards(DeckRegion.Sideboard).Select(c => c.Name).ToList(),
         };
     }
 
@@ -170,7 +171,7 @@ public sealed class MtgoClient : IMtgoClient
 
         if (zone != null)
         {
-            foreach (var card in zone)
+            foreach (var card in zone.Cards)
             {
                 TryCaptureCardMetadata(card);
 

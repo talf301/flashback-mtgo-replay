@@ -197,8 +197,8 @@ public sealed class MtgoClient : IMtgoClient
 
                 // Attachments
                 var attachments = card.Associations
-                    .Where(a => a.Type == CardAssociation.EquippedTo || a.Type == CardAssociation.EquippedWith)
-                    .Select(a => a.Card.Id.ToString())
+                    .Where(a => a.Association == CardAssociation.EquippedTo || a.Association == CardAssociation.EquippedWith)
+                    .Select(a => a.TargetId.ToString())
                     .ToList();
                 if (attachments.Count > 0)
                     cardData["attachments"] = attachments;

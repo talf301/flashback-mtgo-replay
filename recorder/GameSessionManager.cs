@@ -82,7 +82,7 @@ public sealed class GameSessionManager : IDisposable
     {
         if (e.Status == GameStatus.Started)
         {
-            StartNewGame(e.GameId);
+            StartNewGame(e);
         }
         else if (e.Status == GameStatus.Ended)
         {
@@ -90,7 +90,7 @@ public sealed class GameSessionManager : IDisposable
         }
     }
 
-    private void StartNewGame(int gameId)
+    private void StartNewGame(GameStatusChangeEventArgs e)
     {
         // If there's an in-progress session (e.g. MTGO crashed and restarted),
         // finalize it as incomplete before starting a new one.
@@ -103,15 +103,22 @@ public sealed class GameSessionManager : IDisposable
 
         _currentSession = new GameSession
         {
-            GameId = gameId,
+            GameId = e.GameId,
             GameNumber = _gameCounter,
             StartTime = DateTimeOffset.UtcNow,
         };
 
+        // Populate players and format from event args.
+        if (e.Players != null)
+        {
+            _currentSession.Players = e.Players;
+        }
+        _currentSession.Format = e.Format;
+
         // Capture deck list at game start.
         if (_deckListProvider != null)
         {
-            _currentSession.DeckList = _deckListProvider(gameId);
+            _currentSession.DeckList = _deckListProvider(e.GameId);
         }
     }
 
@@ -254,7 +261,7 @@ public sealed class GameSessionManager : IDisposable
 
     // ── Replay assembly ──
 
-    private static ReplayData AssembleReplay(GameSession session)
+    private ReplayData AssembleReplay(GameSession session)
     {
         GameResult? result = null;
         if (session.WinnerName != null || session.EndReason != null)
@@ -273,6 +280,7 @@ public sealed class GameSessionManager : IDisposable
                 GameId = session.GameId,
                 GameNumber = session.GameNumber,
                 Players = session.Players,
+                Format = session.Format,
                 StartTime = session.StartTime,
                 EndTime = session.EndTime,
                 Result = result,
@@ -280,6 +288,7 @@ public sealed class GameSessionManager : IDisposable
                 DeckList = session.DeckList,
             },
             Timeline = session.Timeline.ToList(),
+            CardCatalog = _client.GetCardCatalog(),
         };
     }
 

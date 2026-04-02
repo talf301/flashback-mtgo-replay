@@ -20,6 +20,12 @@ public class GameSessionManagerTests
             snapshotProvider);
     }
 
+    private static List<PlayerInfo> TestPlayers() => new()
+    {
+        new PlayerInfo { Name = "Alice", Seat = 0 },
+        new PlayerInfo { Name = "Bob", Seat = 1 },
+    };
+
     // ── Normal game lifecycle ──
 
     [Fact]
@@ -28,7 +34,7 @@ public class GameSessionManagerTests
         using var manager = CreateManager();
 
         // Start game
-        _client.SimulateGameStart(gameId: 1001);
+        _client.SimulateGameStart(gameId: 1001, players: TestPlayers(), format: "Modern");
         Assert.NotNull(manager.CurrentSession);
         Assert.Equal(1001, manager.CurrentSession!.GameId);
         Assert.Equal(1, manager.CurrentSession.GameNumber);
@@ -97,6 +103,70 @@ public class GameSessionManagerTests
         Assert.Equal(1, evt.Turn);
         Assert.Equal("combat", evt.Phase);
         Assert.Equal("Alice", evt.ActivePlayer);
+    }
+
+    // ── Players and format population ──
+
+    [Fact]
+    public void GameStart_PopulatesPlayersFromEventArgs()
+    {
+        using var manager = CreateManager();
+
+        var players = TestPlayers();
+        _client.SimulateGameStart(1001, players: players, format: "Modern");
+        _client.SimulateGameEnd(1001, "Alice");
+
+        var replay = _replays[0];
+        Assert.Equal(2, replay.Header.Players.Count);
+        Assert.Equal("Alice", replay.Header.Players[0].Name);
+        Assert.Equal(0, replay.Header.Players[0].Seat);
+        Assert.Equal("Bob", replay.Header.Players[1].Name);
+        Assert.Equal(1, replay.Header.Players[1].Seat);
+    }
+
+    [Fact]
+    public void GameStart_PopulatesFormatFromEventArgs()
+    {
+        using var manager = CreateManager();
+
+        _client.SimulateGameStart(1001, players: TestPlayers(), format: "Modern");
+        _client.SimulateGameEnd(1001);
+
+        Assert.Equal("Modern", _replays[0].Header.Format);
+    }
+
+    [Fact]
+    public void GameStart_NullPlayers_DefaultsToEmptyList()
+    {
+        using var manager = CreateManager();
+
+        _client.SimulateGameStart(1001);
+        _client.SimulateGameEnd(1001);
+
+        Assert.Empty(_replays[0].Header.Players);
+    }
+
+    // ── Card catalog ──
+
+    [Fact]
+    public void AssembleReplay_IncludesCardCatalog()
+    {
+        _client.CardCatalog = new Dictionary<string, CardCatalogEntry>
+        {
+            ["42"] = new CardCatalogEntry { Name = "Lightning Bolt", ManaCost = "{R}", TypeLine = "Instant" },
+            ["99"] = new CardCatalogEntry { Name = "Mountain", TypeLine = "Basic Land — Mountain" },
+        };
+
+        using var manager = CreateManager();
+
+        _client.SimulateGameStart(1001);
+        _client.SimulateGameEnd(1001, "Alice");
+
+        var catalog = _replays[0].CardCatalog;
+        Assert.Equal(2, catalog.Count);
+        Assert.Equal("Lightning Bolt", catalog["42"].Name);
+        Assert.Equal("{R}", catalog["42"].ManaCost);
+        Assert.Equal("Mountain", catalog["99"].Name);
     }
 
     // ── Deck list capture ──

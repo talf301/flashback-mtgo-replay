@@ -1,3 +1,4 @@
+using FlashbackRecorder.Models;
 using MTGOSDK.API;
 using MTGOSDK.API.Play;
 using MTGOSDK.API.Play.Games;
@@ -15,6 +16,12 @@ public sealed class MtgoClient : IMtgoClient
 
     private Client? _sdkClient;
     private bool _disposed;
+
+    // ── Per-game state ──
+    private Game? _currentGame;
+    private Event? _currentEvent;
+    private Dictionary<string, int> _previousLife = new();
+    private Dictionary<string, CardCatalogEntry> _cardCatalog = new();
 
     public ConnectionState State { get; private set; } = ConnectionState.Disconnected;
 
@@ -71,7 +78,181 @@ public sealed class MtgoClient : IMtgoClient
         UnsubscribeFromEvents();
         _sdkClient?.Dispose();
         _sdkClient = null;
+        _currentGame = null;
+        _currentEvent = null;
         State = ConnectionState.Disconnected;
+    }
+
+    // ── Data providers ──
+
+    /// <inheritdoc />
+    public Dictionary<string, CardCatalogEntry> GetCardCatalog() => new(_cardCatalog);
+
+    /// <inheritdoc />
+    public DeckList? CaptureDeckList()
+    {
+        var deck = _currentEvent?.RegisteredDeck;
+        if (deck == null) return null;
+
+        return new DeckList
+        {
+            Mainboard = deck.Mainboard.Select(c => c.Name).ToList(),
+            Sideboard = deck.Sideboard.Select(c => c.Name).ToList(),
+        };
+    }
+
+    /// <inheritdoc />
+    public Dictionary<string, object> CaptureSnapshot(int turn)
+    {
+        if (_currentGame == null)
+            return new Dictionary<string, object>();
+
+        var game = _currentGame;
+        var players = new List<Dictionary<string, object>>();
+
+        foreach (var player in game.Players)
+        {
+            var playerData = new Dictionary<string, object>
+            {
+                ["name"] = player.Name,
+                ["seat"] = GetSeatIndex(game, player),
+                ["life"] = player.Life,
+            };
+
+            // Mana pool
+            var manaPool = new Dictionary<string, int>
+            {
+                ["W"] = 0, ["U"] = 0, ["B"] = 0, ["R"] = 0, ["G"] = 0, ["C"] = 0,
+            };
+            foreach (var mana in player.ManaPool)
+            {
+                var color = mana.Color.ToString();
+                if (manaPool.ContainsKey(color))
+                    manaPool[color]++;
+                else
+                    manaPool[color] = 1;
+            }
+            playerData["mana_pool"] = manaPool;
+
+            // Zones
+            var zones = new Dictionary<string, object>();
+            zones["hand"] = CaptureZone(game, player, CardZone.Hand);
+            zones["battlefield"] = CaptureZone(game, player, CardZone.Battlefield);
+            zones["graveyard"] = CaptureZone(game, player, CardZone.Graveyard);
+            zones["exile"] = CaptureZone(game, player, CardZone.Exile);
+            zones["library"] = new Dictionary<string, object>
+            {
+                ["cards"] = new List<object>(),
+                ["count"] = player.LibraryCount,
+            };
+            playerData["zones"] = zones;
+
+            players.Add(playerData);
+        }
+
+        var snapshot = new Dictionary<string, object>
+        {
+            ["players"] = players,
+        };
+
+        if (game.ActivePlayer != null)
+            snapshot["active_player"] = game.ActivePlayer.Name;
+        if (game.PriorityPlayer != null)
+            snapshot["priority_player"] = game.PriorityPlayer.Name;
+
+        return snapshot;
+    }
+
+    private Dictionary<string, object> CaptureZone(Game game, GamePlayer player, CardZone zoneType)
+    {
+        var zone = game.GetGameZone(player, zoneType);
+        var cards = new List<Dictionary<string, object>>();
+
+        if (zone != null)
+        {
+            foreach (var card in zone)
+            {
+                TryCaptureCardMetadata(card);
+
+                var cardData = new Dictionary<string, object>
+                {
+                    ["id"] = card.Id.ToString(),
+                    ["catalog_id"] = card.Id.ToString(),
+                    ["tapped"] = card.IsTapped,
+                    ["face_down"] = card.IsFlipped,
+                    ["summoning_sickness"] = card.HasSummoningSickness,
+                };
+
+                if (card.Power != null) cardData["power"] = card.Power;
+                if (card.Toughness != null) cardData["toughness"] = card.Toughness;
+                cardData["damage"] = card.Damage;
+
+                // Counters
+                var counters = card.Counters
+                    .GroupBy(c => c)
+                    .ToDictionary(g => g.Key.ToString(), g => g.Count());
+                if (counters.Count > 0)
+                    cardData["counters"] = counters;
+
+                // Attachments
+                var attachments = card.Associations
+                    .Where(a => a.Type == CardAssociation.EquippedTo || a.Type == CardAssociation.EquippedWith)
+                    .Select(a => a.Card.Id.ToString())
+                    .ToList();
+                if (attachments.Count > 0)
+                    cardData["attachments"] = attachments;
+
+                // Combat status
+                if (card.IsAttacking || card.IsBlocking)
+                {
+                    var combat = new Dictionary<string, object>();
+                    if (card.IsAttacking)
+                    {
+                        combat["attacking"] = true;
+                        var targets = card.AttackingOrders?.Select(p => p.Name).ToList();
+                        if (targets?.Count > 0) combat["target"] = targets[0];
+                    }
+                    if (card.IsBlocking)
+                    {
+                        combat["blocking"] = true;
+                        var blocked = card.BlockingOrders?.Select(c => c.Id.ToString()).ToList();
+                        if (blocked?.Count > 0) combat["blocked"] = blocked;
+                    }
+                    cardData["combat_status"] = combat;
+                }
+
+                // Controller (only if different from owner)
+                if (card.Controller?.Name != card.Owner?.Name && card.Controller != null)
+                    cardData["controller"] = card.Controller.Name;
+
+                cards.Add(cardData);
+            }
+        }
+
+        var result = new Dictionary<string, object> { ["cards"] = cards };
+        if (zoneType == CardZone.Hand)
+            result["count"] = cards.Count;
+        return result;
+    }
+
+    // ── Card catalog ──
+
+    private void TryCaptureCardMetadata(GameCard card)
+    {
+        var id = card.Id.ToString();
+        if (_cardCatalog.ContainsKey(id)) return;
+
+        var def = card.Definition;
+        _cardCatalog[id] = new CardCatalogEntry
+        {
+            Name = card.Name,
+            ManaCost = def?.ManaCost,
+            TypeLine = def != null
+                ? string.Join(" ", def.Types) + (def.Subtypes.Count > 0
+                    ? " \u2014 " + string.Join(" ", def.Subtypes)
+                    : "")
+                : null,
+        };
     }
 
     // ── SDK event wiring ──
@@ -107,11 +288,28 @@ public sealed class MtgoClient : IMtgoClient
     /// </summary>
     private void OnSdkGameJoined(Event playerEvent, Game game)
     {
-        // Notify that a new game has started.
+        _currentGame = game;
+        _currentEvent = playerEvent;
+        _cardCatalog.Clear();
+
+        // Initialize life cache from game players.
+        _previousLife.Clear();
+        foreach (var player in game.Players)
+        {
+            _previousLife[player.Name] = player.Life;
+        }
+
+        // Notify that a new game has started with player and format info.
         OnGameStatusChange?.Invoke(this, new GameStatusChangeEventArgs
         {
             Status = GameStatus.Started,
             GameId = game.Id,
+            Players = game.Players.Select((p, i) => new PlayerInfo
+            {
+                Name = p.Name,
+                Seat = i,
+            }).ToList(),
+            Format = playerEvent.Format?.Name,
         });
 
         // Subscribe to per-game events.
@@ -122,6 +320,8 @@ public sealed class MtgoClient : IMtgoClient
     {
         game.OnZoneChange += (GameCard card) =>
         {
+            TryCaptureCardMetadata(card);
+
             OnZoneChange?.Invoke(this, new ZoneChangeEventArgs
             {
                 CardId = card.Id,
@@ -134,34 +334,42 @@ public sealed class MtgoClient : IMtgoClient
 
         game.OnGameAction += (GameAction action) =>
         {
+            var cardAction = action as CardAction;
+            if (cardAction?.Card != null)
+                TryCaptureCardMetadata(cardAction.Card);
+
             OnGameAction?.Invoke(this, new GameActionEventArgs
             {
                 ActionType = action.Type.ToString(),
-                CardId = action.ActionId,
-                CardName = action.Name,
-                PlayerSeat = 0,
-                AbilityText = null,
-                SourceZone = null,
+                CardId = cardAction?.Card?.Id ?? action.ActionId,
+                CardName = cardAction?.Card?.Name ?? action.Name,
+                PlayerSeat = cardAction?.Card != null
+                    ? GetSeatIndex(game, cardAction.Card.Controller)
+                    : 0,
+                AbilityText = action.Name,
+                SourceZone = cardAction?.Card?.Zone?.ToString(),
             });
         };
 
         game.OnLifeChange += (GamePlayer player) =>
         {
+            _previousLife.TryGetValue(player.Name, out var oldLife);
             OnLifeChange?.Invoke(this, new LifeChangeEventArgs
             {
                 PlayerSeat = GetSeatIndex(game, player),
-                OldLife = player.Life,
+                OldLife = oldLife,
                 NewLife = player.Life,
-                Source = null,
+                Source = null,  // SDK doesn't expose life change source
             });
+            _previousLife[player.Name] = player.Life;
         };
 
         game.OnGamePhaseChange += (CurrentPlayerPhase phase) =>
         {
             OnGamePhaseChange?.Invoke(this, new GamePhaseChangeEventArgs
             {
-                Phase = phase.ToString(),
-                ActivePlayerSeat = 0,
+                Phase = phase.CurrentPhase.ToString(),
+                ActivePlayerSeat = GetSeatIndex(game, phase.ActivePlayer),
             });
         };
 
@@ -169,9 +377,9 @@ public sealed class MtgoClient : IMtgoClient
         {
             OnTurnChange?.Invoke(this, new TurnChangeEventArgs
             {
-                TurnNumber = 0,
-                ActivePlayerSeat = 0,
-                ActivePlayerName = "",
+                TurnNumber = game.CurrentTurn,
+                ActivePlayerSeat = GetSeatIndex(game, game.ActivePlayer),
+                ActivePlayerName = game.ActivePlayer?.Name ?? "",
             });
         };
 

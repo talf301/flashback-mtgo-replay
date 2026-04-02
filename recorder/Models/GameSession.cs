@@ -12,7 +12,10 @@ public class GameSession
     public DateTimeOffset? EndTime { get; set; }
 
     /// <summary>Player info: name → seat mapping.</summary>
-    public List<PlayerInfo> Players { get; init; } = new();
+    public List<PlayerInfo> Players { get; set; } = new();
+
+    /// <summary>Game format (e.g. "Modern", "Standard").</summary>
+    public string? Format { get; set; }
 
     /// <summary>Deck list captured at game start.</summary>
     public DeckList? DeckList { get; set; }
